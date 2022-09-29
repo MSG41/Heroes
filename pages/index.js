@@ -1,14 +1,13 @@
-import { getJobs } from '../datalayer';
+import datasource from '../datalayer';
 import JobsPage from '../components/ui/JobsPage';
-import { getJobsSkills } from '../datalayer/contentful/job';
 
 export default function Index({ jobs, jobSkills }) {
   return <JobsPage jobs={jobs} jobSkills={jobSkills} />;
 }
 
 export const getStaticProps = async (ctx) => {
-  const jobs = await getJobs();
-  const jobSkills = await getJobsSkills();
+  const jobs = await datasource.getJobs();
+  const jobSkills = await datasource.getJobsSkills();
 
   return {
     props: {
