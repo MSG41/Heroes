@@ -298,7 +298,7 @@ function JobsPageSideBarForm({
         </div>
       </div>
       {/* Alert */}
-      <div className='relative bg-indigo-200 rounded-sm p-5 min-w-60'>
+      {/* <div className='relative bg-indigo-200 rounded-sm p-5 min-w-60'>
         <div className='absolute bottom-0 -mb-3'>
           <svg
             width='44'
@@ -353,7 +353,10 @@ function JobsPageSideBarForm({
             </a>
           </div>
         </div>
-      </div>
+      </div> */}
+
+      {/* End Alert */}
+
     </div>
   );
 }

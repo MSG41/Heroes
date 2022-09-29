@@ -6,6 +6,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+
         liftedgreen: {
           50: '#acd8cc',
           100: '#98cec0',
@@ -17,6 +18,7 @@ module.exports = {
           700: '#2b8d73',
           800: '#267e66',
           900: '#226e5a',
+          999: '#252260',
         },
       },
     },
