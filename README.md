@@ -1,1 +1,3 @@
-## TODO
+#npm i
+
+#npm run dev
