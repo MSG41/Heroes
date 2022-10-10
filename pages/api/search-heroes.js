@@ -1,4 +1,4 @@
-import { searchJobs, searchCompaniesButReturnJobs } from '../../datalayer';
+import { searchHeroes, searchCompaniesButReturnHeroes } from '../../datalayer';
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -17,8 +17,8 @@ export default async function handler(req, res) {
       ? Math.max(...sideBarFormState.baseSalaryBounds)
       : 1000000;
 
-  const jobTypes = sideBarFormState.jobTypes.map((jobType) =>
-    capitalizeFirstLetter(jobType)
+  const heroTypes = sideBarFormState.heroTypes.map((heroType) =>
+    capitalizeFirstLetter(heroType)
   );
 
   const experienceLevels = sideBarFormState.experienceLevels.map(
@@ -30,28 +30,28 @@ export default async function handler(req, res) {
     searchBarText: searchFormState,
     minBaseSalary,
     maxBaseSalary,
-    jobTypes,
+    heroTypes,
     experienceLevels,
   };
 
   console.log(query);
 
   // search in the jobs entities
-  const jobs1 = await searchJobs(query);
+  const heroes1 = await searchHeroes(query);
 
   // seatch in the job entities by company name
-  let jobs2 = [];
+  let heroes2 = [];
   if (query.searchBarText) {
-    jobs2 = await searchCompaniesButReturnJobs(query.searchBarText);
+    heroes2 = await searchCompaniesButReturnHeroes(query.searchBarText);
   }
 
   // merge the two results
-  let jobs1Ids = jobs1.map((job) => job.id);
-  jobs2.map((job2) => {
-    if (!jobs1Ids.includes(job2.id)) {
-      jobs1.push(job2);
+  let heroes1Ids = heroes1.map((hero) => hero.id);
+  heroes2.map((hero2) => {
+    if (!heroes1Ids.includes(hero2.id)) {
+      heroes1.push(hero2);
     }
   });
 
-  res.status(200).json(jobs1);
+  res.status(200).json(heroes1);
 }

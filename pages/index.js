@@ -1,19 +1,19 @@
-import { getJobs } from '../datalayer';
-import JobsPage from '../components/ui/JobsPage';
-import { getJobsSkills } from '../datalayer/contentful/job';
+import { getHeroes } from '../datalayer';
+import HeroesPage from '../components/ui/HeroesPage';
+import { getHeroesSkills } from '../datalayer/contentful/heroes';
 
-export default function Index({ jobs, jobSkills }) {
-  return <JobsPage jobs={jobs} jobSkills={jobSkills} />;
+export default function Index({ heroes, heroSkills }) {
+  return <HeroesPage heroes={heroes} heroSkills={heroSkills} />;
 }
 
 export const getStaticProps = async (ctx) => {
-  const jobs = await getJobs();
-  const jobSkills = await getJobsSkills();
+  const heroes = await getHeroes();
+  const heroSkills = await getHeroesSkills();
 
   return {
     props: {
-      jobs,
-      jobSkills,
+      heroes,
+      heroSkills,
     },
     revalidate: 5,
   };

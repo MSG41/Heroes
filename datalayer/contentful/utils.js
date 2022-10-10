@@ -36,10 +36,16 @@ export const companyReducer = (rawCompany) => {
 
 export const tagsReducer = (tagsField) => {
   let tags = [];
+
+
+
   tagsField.map((rawTag) => {
     const tag = rawTag.sys.id;
     tags.push(tag);
   });
+
+  tags.sort();
+
   return tags;
 };
 
@@ -49,29 +55,30 @@ export const skillsReducer = (parsedTags) => {
   return skills;
 };
 
-export const jobReducer = (rawJob, parseRelatedJobs = true) => {
-  let job = { ...rawJob.fields };
+export const heroReducer = (rawHero, parseRelatedHeroes = true) => {
+  let hero = { ...rawHero.fields };
 
-  job.id = rawJob.sys.id;
-  job.locale = rawJob.sys.locale;
-  job.datePosted = dateReducer(rawJob.fields.datePosted);
-  job.company = companyReducer(rawJob.fields.company);
-  job.aboutYou = richTextReducer(rawJob.fields.aboutYou);
-  job.remunerationPackage = richTextReducer(rawJob.fields.remunerationPackage);
-  job.jobResponsibilities = richTextReducer(rawJob.fields.jobResponsibilities);
-  job.jobDescription = richTextReducer(rawJob.fields.jobDescription);
-  job.tags = tagsReducer(rawJob.metadata.tags);
-  job.skills = skillsReducer(job.tags);
+  hero.id = rawHero.sys.id;
+  hero.locale = rawHero.sys.locale;
+  hero.datePosted = dateReducer(rawHero.fields.datePosted);
+  hero.company = companyReducer(rawHero.fields.company);
+  hero.aboutYou = richTextReducer(rawHero.fields.aboutYou);
+  hero.remunerationPackage = richTextReducer(rawHero.fields.remunerationPackage);
+  hero.jobResponsibilities = richTextReducer(rawHero.fields.jobResponsibilities);
+  hero.jobDescription = richTextReducer(rawHero.fields.jobDescription);
+  hero.tags = tagsReducer(rawHero.metadata.tags);
+  hero.skills = skillsReducer(hero.tags);
+  hero.foto = imageReducer(rawHero.fields.foto);
 
-  const relatedJobs = rawJob.fields.relatedJobs || [];
+  const relatedHeroes = rawHero.fields.relatedHeroes || [];
 
-  if (!parseRelatedJobs) {
-    job.relatedJobs = [];
+  if (!parseRelatedHeroes) {
+    hero.relatedHeroes = [];
   } else {
-    job.relatedJobs = relatedJobs.map((relatedJob) => {
-      return jobReducer(relatedJob, false);
+    hero.relatedHeroes = relatedHeroes.map((relatedHero) => {
+      return heroReducer(relatedHero, false);
     });
   }
 
-  return job;
+  return hero;
 };

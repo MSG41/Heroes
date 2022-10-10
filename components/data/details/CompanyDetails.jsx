@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ChevronLeftIcon } from '@heroicons/react/solid';
-import JobsList from '../lists/JobsList';
+import HeroesList from '../lists/HeroesList';
 
 function groupArrayOfObjects(list, key) {
   return list.reduce(function (rv, x) {
@@ -11,13 +11,13 @@ function groupArrayOfObjects(list, key) {
   }, {});
 }
 
-const CompanyDetails = ({ company, companyJobs }) => {
-  console.log({ company, companyJobs });
-  const jobsGroupedByCategories = groupArrayOfObjects(
-    companyJobs,
-    'jobCategory'
+const CompanyDetails = ({ company, companyHeroes }) => {
+  console.log({ company, companyHeroes });
+  const heroesGroupedByCategories = groupArrayOfObjects(
+    companyHeroes,
+    'heroCategory'
   );
-  console.log('jobsGroupedByCategories = ', jobsGroupedByCategories);
+  console.log('heroesGroupedByCategories = ', heroesGroupedByCategories);
   return (
     <>
       <main>
@@ -99,16 +99,16 @@ const CompanyDetails = ({ company, companyJobs }) => {
 
             {/* Job lists */}
             <div className='space-y-6'>
-              {jobsGroupedByCategories &&
-                Object.keys(jobsGroupedByCategories).map((jobCategory) => {
-                  const jobs = jobsGroupedByCategories[jobCategory];
+              {HeroesGroupedByCategories &&
+                Object.keys(HeroesGroupedByCategories).map((heroCategory) => {
+                  const heroes = heroesGroupedByCategories[heroCategory];
                   return (
-                    <div key={jobCategory}>
+                    <div key={heroCategory}>
                       <h4 className='text-slate-800 font-medium mb-4'>
-                        {jobCategory}
+                        {heroCategory}
                       </h4>
                       {/* Job category list */}
-                      <JobsList jobs={jobs} />
+                      <HeroesList heroes={heroes} />
                     </div>
                   );
                 })}

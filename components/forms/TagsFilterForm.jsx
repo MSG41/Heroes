@@ -5,15 +5,18 @@ import { ChevronDownIcon, FilterIcon } from '@heroicons/react/solid';
 export default function TagsFilterForm({
   selectedTags,
   setSideBarFormState,
-  jobSkills,
+  heroSkills,
 }) {
 
   const filter = {
     id: 'skills-filter',
     name: 'Filter By Skills',
-    options: jobSkills.map((skill) => ({ value: skill, label: skill })),
+    options: heroSkills.map((skill) => ({ value: skill, label: skill })),
   };
   
+  
+
+
   const selectedTagsCount = selectedTags.length;
 
   const handleSelectedTag = (e, option) => {
@@ -40,6 +43,7 @@ export default function TagsFilterForm({
       key={filter.name}
       id='desktop-menu'
       className='relative z-10 inline-block text-left'
+    
     >
       <div>
         <Popover.Button className='group inline-flex items-center justify-center text-sm font-medium text-gray-900 hover:text-gray-900'>

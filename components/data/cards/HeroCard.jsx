@@ -1,45 +1,74 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-const JobCard = ({ job }) => {
-  //console.log(job);
+const HeroCard = ({ hero }) => {
+  //console.log(hero);
   return (
     <div
-      className={`shadow-lg rounded-sm border px-5 py-4 ${
-        job.featuredJob
-          ? 'bg-amber-50 border-amber-300'
-          : 'bg-white border-slate-200'
-      }`}
+      className={`shadow-lg rounded-sm border px-5 py-4 ${hero.featuredHero
+        ? 'bg-amber-50 border-amber-300'
+        : 'bg-white border-slate-200'
+        }`}
     >
       <div className='md:flex justify-between items-center space-y-4 md:space-y-0 space-x-2'>
         {/* Left side */}
         <div className='flex items-start space-x-3 md:space-x-4'>
-          <div className='w-9 h-9 shrink-0 mt-1'>
+          <div className='object- w-[150px]	 h-[250px]   '>
             <Image
-              className='w-9 h-9 rounded-full'
-              src={job.company.logo.url}
-              width={job.company.logo.width}
-              height={job.company.logo.height}
-              alt={`${job.company.name} - ${job.company.logo.alt}`}
+
+              className='w-9 h-9 rounded-full '
+              src={hero.foto.url}
+              width={hero.foto.width}
+              height={hero.foto.height}
+              alt={`${hero.heroName} - ${hero.foto.alt}`}
             />
           </div>
           <div>
-            <Link href={`/job/${job.slug}`}>
+            <Link href={`/heroes/${hero.slug}`}>
               <a
                 className='inline-flex font-semibold text-slate-800'
-                href={`/job/${job.slug}`}
+                href={`/heroes/${hero.slug}`}
               >
-                {job.title}
+                {hero.heroName}
               </a>
             </Link>
-            <div className='text-sm text-slate-500'>
+
+
+
+            
+            <div> Skills: 
+                    <div className='flex flex-wrap items-center -m-1'>
+                      {hero.skills &&
+                        hero.skills.map((skill) => (
+                          <div className='m-1' key={skill}>
+                            <a
+                              className='text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1'
+                              href='#'
+                            >
+                              {skill}
+                            </a>
+                          </div>
+                        ))}
+                      
+                    </div>
+                  </div>
+
+
+
+            {/* <div className='text-sm text-slate-500'>
               {job.jobType} / {job.experienceLevel} / {job.company.city}{' '}
               {job.remoteOk && '/ Remote Ok'}
-            </div>
+            </div> */}
+
+
           </div>
+
+
         </div>
+
+
         {/* Right side */}
-        <div className='flex flex-col space-y-1 items-end'>
+        {/* <div className='flex flex-col space-y-1 items-end'>
           <div className='text-sm text-slate-900'>
             £{job.baseAnnualSalary} / Year
           </div>
@@ -66,10 +95,12 @@ const JobCard = ({ job }) => {
               </svg>
             </button>
           </div>
-        </div>
+        </div> */}
+
+
       </div>
     </div>
   );
 };
 
-export default JobCard;
+export default HeroCard;

@@ -6,13 +6,13 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-function JobsPageSideBarForm({
-  jobSkills,
+function HeroesPageSideBarForm({
+  heroSkills,
   sideBarFormState,
   setSideBarFormState,
-  setDisplayedJobs,
+  setDisplayedHeroes,
 }) {
-  const jobTypesOptions = [
+  const heroTypesOptions = [
     { value: 'full-time', display: 'Full Time' },
     { value: 'part-time', display: 'Part Time' },
     { value: 'internship', display: 'Internship' },
@@ -53,27 +53,27 @@ function JobsPageSideBarForm({
     });
   };
 
-  const handleFeaturedJobsOnlyChange = (checked) => {
+  const handleFeaturedHeroesOnlyChange = (checked) => {
     console.log(checked);
     //TODO: send request and filter jobs
     setSideBarFormState((prevState) => {
-      return { ...prevState, featuredJobsOnly: !prevState.featuredJobsOnly };
+      return { ...prevState, featuredHeroesOnly: !prevState.featuredHeroesOnly };
     });
   };
 
-  const handleJobTypeSelect = (e, option) => {
+  const handleHeroTypeSelect = (e, option) => {
     console.log(e.target.checked, option);
     if (e.target.checked) {
       setSideBarFormState((prevState) => {
-        const jobTypes = [...prevState.jobTypes];
-        jobTypes.push(option);
-        return { ...prevState, jobTypes };
+        const heroTypes = [...prevState.heroTypes];
+        heroTypes.push(option);
+        return { ...prevState, heroTypes };
       });
     } else {
       setSideBarFormState((prevState) => {
         return {
           ...prevState,
-          jobTypes: prevState.jobTypes.filter((jobType) => option != jobType),
+          heroTypes: prevState.heroTypes.filter((heroType) => option != heroType),
         };
       });
     }
@@ -143,7 +143,7 @@ function JobsPageSideBarForm({
         <div className='grid md:grid-cols-2 xl:grid-cols-1 gap-6'>
           {/* Group 0*/}
           <TagsFilterForm
-            jobSkills={jobSkills}
+            heroSkills={heroSkills}
             selectedTags={sideBarFormState.selectedTags}
             setSideBarFormState={setSideBarFormState}
           />
@@ -178,10 +178,10 @@ function JobsPageSideBarForm({
           {/* Group 2 */}
           <Switch.Group as='div' className='flex items-center'>
             <Switch
-              checked={sideBarFormState.featuredJobsOnly}
-              onChange={handleFeaturedJobsOnlyChange}
+              checked={sideBarFormState.featuredHeroesOnly}
+              onChange={handleFeaturedHeroesOnlyChange}
               className={classNames(
-                sideBarFormState.featuredJobsOnly
+                sideBarFormState.featuredHeroesOnly
                   ? 'bg-indigo-600'
                   : 'bg-gray-200',
                 'relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
@@ -190,7 +190,7 @@ function JobsPageSideBarForm({
               <span
                 aria-hidden='true'
                 className={classNames(
-                  sideBarFormState.featuredJobsOnly
+                  sideBarFormState.featuredHeroesOnly
                     ? 'translate-x-5'
                     : 'translate-x-0',
                   'pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200'
@@ -210,15 +210,15 @@ function JobsPageSideBarForm({
               Job Types
             </div>
             <ul className='space-y-2'>
-              {jobTypesOptions.map((option) => {
+              {heroTypesOptions.map((option) => {
                 return (
                   <li key={option.value}>
                     <label className='flex items-center'>
                       <input
                         type='checkbox'
                         className='form-checkbox'
-                        onChange={(e) => handleJobTypeSelect(e, option.value)}
-                        checked={sideBarFormState.jobTypes.includes(
+                        onChange={(e) => handleHeroTypeSelect(e, option.value)}
+                        checked={sideBarFormState.heroTypes.includes(
                           option.value
                         )}
                       />
@@ -282,9 +282,9 @@ function JobsPageSideBarForm({
                             option.bounds
                           )
                         }
-                        checked={sideBarFormState.baseSalaryOptions.includes(
-                          option.value
-                        )}
+                      // checked={sideBarFormState.baseSalaryOptions.includes(
+                      //   option.value
+                      // )}
                       />
                       <span className='text-sm text-slate-600 font-medium ml-2'>
                         {option.display}
@@ -361,4 +361,4 @@ function JobsPageSideBarForm({
   );
 }
 
-export default JobsPageSideBarForm;
+export default HeroesPageSideBarForm;

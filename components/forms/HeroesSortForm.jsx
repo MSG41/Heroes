@@ -1,35 +1,35 @@
 import { useState } from 'react';
 import {
-  sortJobsByDatePosted,
-  sortJobsByBaseAnnualSalary,
-  sortJobsByCompanyName,
+  sortHeroesByDatePosted,
+  sortHeroesByBaseAnnualSalary,
+  sortHeroesByCompanyName,
 } from '../../datalayer/utils';
 
-const JobsSortForm = ({ jobs, setDisplayedJobs }) => {
+const HeroesSortForm = ({ jobs, setDisplayedHeroes }) => {
   const [sortby, setSortby] = useState('date-posted');
 
   const handleChange = (e) => {
     e.preventDefault();
     const newSortby = e.target.value;
     if (newSortby === 'date-posted-asc') {
-      const sortedJobs = sortJobsByDatePosted({ jobs, ASC: true });
-      setDisplayedJobs(sortedJobs);
+      const sortedHeroes = sortHeroesByDatePosted({ jobs, ASC: true });
+      setDisplayedHeroes(sortedHeroes);
     }
     if (newSortby === 'date-posted-desc') {
-      const sortedJobs = sortJobsByDatePosted({ jobs, ASC: false });
+      const sortedHeroes = sortHeroesByDatePosted({ jobs, ASC: false });
       setDisplayedJobs(sortedJobs);
     }
     if (newSortby === 'salary-asc') {
-      const sortedJobs = sortJobsByBaseAnnualSalary({ jobs, ASC: true });
+      const sortedHeroes = sortHeroesByBaseAnnualSalary({ jobs, ASC: true });
       setDisplayedJobs(sortedJobs);
     }
     if (newSortby === 'salary-desc') {
-      const sortedJobs = sortJobsByBaseAnnualSalary({ jobs, ASC: false });
-      setDisplayedJobs(sortedJobs);
+      const sortedHeroes = sortHeroesByBaseAnnualSalary({ jobs, ASC: false });
+      setDisplayedHeroes(sortedHeroes);
     }
     if (newSortby === 'company') {
-      const sortedJobs = sortJobsByCompanyName({ jobs });
-      setDisplayedJobs(sortedJobs);
+      const sortedHeroes = sortHeroesByCompanyName({ jobs });
+      setDisplayedHeroes(sortedHeroes);
     }
     setSortby(newSortby);
 
@@ -72,4 +72,4 @@ const JobsSortForm = ({ jobs, setDisplayedJobs }) => {
   );
 };
 
-export default JobsSortForm;
+export default HeroesSortForm;

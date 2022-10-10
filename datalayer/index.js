@@ -1,11 +1,11 @@
 export {
-  getJobs,
-  getJobBySlug,
-  getJobsSlugs,
-  getJobsByCompanyId,
-  searchJobs,
-  searchCompaniesButReturnJobs,
-} from './contentful/job';
+  getHeroes,
+  getHeroBySlug,
+  getHeroesSlugs,
+  getHeroesByCompanyId,
+  searchHeroes,
+  searchCompaniesButReturnHeroes,
+} from './contentful/heroes';
 export {
   getCompanies,
   getCompaniesSlugs,

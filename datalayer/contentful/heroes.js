@@ -1,17 +1,17 @@
 import { client } from './client';
-import { jobReducer, skillsReducer, tagsReducer } from './utils';
+import { heroReducer, skillsReducer, tagsReducer } from './utils';
 
-export const getJobs = async () => {
-  const res = await client.getEntries({ content_type: 'job' });
-  const rawJobs = res.items;
+export const getHeroes = async () => {
+  const res = await client.getEntries({ content_type: 'heroes' });
+  const rawHeroes = res.items;
 
-  const jobs = rawJobs.map((rawJob) => {
-    return jobReducer(rawJob);
+  const heroes = rawHeroes.map((rawHeroes) => {
+    return heroReducer(rawHeroes);
   });
-  return jobs;
+  return heroes;
 };
 
-export const getJobsSkills = async () => {
+export const getHeroesSkills = async () => {
   const res = await client.getTags();
   const rawTags = res.items;
 
@@ -20,18 +20,18 @@ export const getJobsSkills = async () => {
   return skills;
 };
 
-export const getJobsSlugs = async () => {
+export const getHeroesSlugs = async () => {
   const rawSlugs = await client.getEntries({
-    content_type: 'job',
+    content_type: 'heroes',
     select: ['fields.slug'],
   });
   const slugs = rawSlugs.items.map((rawSlug) => rawSlug.fields.slug);
   return slugs;
 };
 
-export const getJobBySlug = async ({ slug }) => {
+export const getHeroBySlug = async ({ slug }) => {
   const found = await client.getEntries({
-    content_type: 'job',
+    content_type: 'heroes',
     'fields.slug': slug,
 
     // needed to fetch linked items, otherwise job.fields.relatedJobs[0].fields.company.fields is undefined
@@ -40,29 +40,32 @@ export const getJobBySlug = async ({ slug }) => {
   });
 
   if (found.items.length == 0) return null;
-  const job = found.items[0];
-  return jobReducer(job);
+  const hero = found.items[0];
+  return heroReducer(hero);
 };
 
-export const getJobsByCompanyId = async ({ id }) => {
+export const getHeroesByCompanyId = async ({ id }) => {
   const res = await client.getEntries({
-    content_type: 'job',
+    content_type: 'heroes',
     'fields.company.sys.id': id,
     include: 2,
   });
 
-  const rawJobs = res.items;
-  const jobs = rawJobs.map((rawJob) => {
-    return jobReducer(rawJob);
+  const rawHeroes = res.items;
+  const Heroes = rawHeroes.map((rawHero) => {
+    return heroReducer(rawHero);
   });
-  return jobs;
+  return Heroes;
 };
 
-export const searchJobs = async (query) => {
+export const searchHeroes = async (query) => {
   let contentFullQuery = {
-    content_type: 'job',
+    content_type: 'heroes',
     include: 2,
   };
+
+
+  //continue here--------------------------------
 
   // Add Equality Query Filters
   if (query.remoteOkOnly)
@@ -92,31 +95,31 @@ export const searchJobs = async (query) => {
   // contentFullQuery['fields.experienceLevel[in]'] = query.experienceLevels;
 
   const res = await client.getEntries(contentFullQuery);
-  const foundJobs = res.items;
+  const foundHeroes = res.items;
 
-  const jobs = foundJobs.map((rawJob) => {
-    return jobReducer(rawJob);
+  const heroes = foundHeroes.map((rawHero) => {
+    return heroReducer(rawHero);
   });
 
   // Now because contentful doesn't have an OR operator we have to filter at the application level which is not efficient
-  let filteredJobs = jobs.filter((job) => {
+  let filteredHeroes = heroes.filter((hero) => {
     if (query.experienceLevels.length == 0) return true;
-    if (query.experienceLevels.includes(job.experienceLevel)) return true;
+    if (query.experienceLevels.includes(hero.experienceLevel)) return true;
     return false;
   });
 
-  filteredJobs = filteredJobs.filter((job) => {
+  filteredHeroes = filteredHeroes.filter((hero) => {
     if (query.jobTypes.length == 0) return true;
     if (query.jobTypes.includes(job.jobType)) return true;
     return false;
   });
 
-  return filteredJobs;
+  return filteredHeroes;
 };
 
-export const searchCompaniesButReturnJobs = async (searchBarText) => {
+export const searchCompaniesButReturnHeroes = async (searchBarText) => {
   let contentFullQuery = {
-    content_type: 'job',
+    content_type: 'heroes',
     'fields.company.sys.contentType.sys.id': 'company',
     'fields.company.fields.name[match]': searchBarText,
 
@@ -127,11 +130,11 @@ export const searchCompaniesButReturnJobs = async (searchBarText) => {
     include: 2,
   };
   const res = await client.getEntries(contentFullQuery);
-  const foundJobs = res.items;
+  const foundHeroes = res.items;
 
-  const jobs = foundJobs.map((rawJob) => {
-    return jobReducer(rawJob);
+  const heroes = foundHeroes.map((rawHero) => {
+    return heroReducer(rawHero);
   });
 
-  return jobs;
+  return heroes;
 };

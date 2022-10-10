@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-const SearchJobForm = ({
+const SearchHeroForm = ({
   searchFormState,
   setSearchFormState,
-  setDisplayedJobs,
+  setDisplayedHeroes,
 }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,14 +17,14 @@ const SearchJobForm = ({
   return (
     <div className='mb-5'>
       <form className='relative' onSubmit={handleSubmit}>
-        <label htmlFor='job-search' className='sr-only'>
+        <label htmlFor='hero-search' className='sr-only'>
           Search
         </label>
         <input
-          id='job-search'
+          id='hero-search'
           className='form-input w-full pl-9 focus:border-slate-300'
           type='search'
-          placeholder='Search job title or keyword…'
+          placeholder='Search hero name or keyword…'
           value={searchFormState}
           onChange={(e) => setSearchFormState(e.target.value)}
         />
@@ -47,4 +47,4 @@ const SearchJobForm = ({
   );
 };
 
-export default SearchJobForm;
+export default SearchHeroForm;

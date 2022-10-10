@@ -1,18 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect, useRef } from 'react';
-import JobsList from '../data/lists/JobsList';
-import SearchJobForm from '../forms/SearchJobForm';
-import JobsPageSideBarForm from '../forms/JobsPageSideBarForm';
-import JobsSortForm from '../forms/JobsSortForm';
+import HeroesList from '../data/lists/HeroesList';
+import SearchHeroForm from '../forms/SearchHeroForm';
+import HeroesPageSideBarForm from '../forms/HeroesPageSideBarForm';
+import HeroesSortForm from '../forms/HeroesSortForm';
 
-export default function JobsPage({ jobs, jobSkills }) {
-  const [displayedJobs, setDisplayedJobs] = useState(jobs);
+export default function HeroesPage({ heroes, heroSkills }) {
+  const [displayedHeroes, setDisplayedHeroes] = useState(heroes);
 
   const [sideBarFormState, setSideBarFormState] = useState({
-    jobTypes: [],
+    heroTypes: [],
     experienceLevels: [],
     remoteOkOnly: false,
-    featuredJobsOnly: false,
+    featuredHeroesOnly: false,
     baseSalaryOptions: [],
     baseSalaryBounds: [],
     selectedTags: [],
@@ -20,7 +20,7 @@ export default function JobsPage({ jobs, jobSkills }) {
 
   const [searchFormState, setSearchFormState] = useState('');
 
-  const searchJobs = async (apiUrl, formsStates) => {
+  const searchHeroes = async (apiUrl, formsStates) => {
     const response = await fetch(apiUrl, {
       method: 'POST',
       headers: {
@@ -28,9 +28,9 @@ export default function JobsPage({ jobs, jobSkills }) {
       },
       body: JSON.stringify(formsStates),
     });
-    const foundJobs = await response.json();
-    console.log(foundJobs);
-    setDisplayedJobs(foundJobs);
+    const foundHeroes = await response.json();
+    console.log(foundHeroes);
+    setDisplayedHeroes(foundHeroes);
   };
 
   const initialRender1 = useRef(true);
@@ -41,7 +41,7 @@ export default function JobsPage({ jobs, jobSkills }) {
     } else {
       console.log('sidebar state form changed => triggering a search');
       const formsStates = { searchFormState, sideBarFormState };
-      searchJobs('api/search-jobs', formsStates);
+      searchHeroes('api/search-heroes', formsStates);
     }
   }, [sideBarFormState]);
 
@@ -54,19 +54,19 @@ export default function JobsPage({ jobs, jobSkills }) {
       console.log('search form changed && length >= 3 OR ==0 => triggering a search');
       if (searchFormState.length >= 3 || searchFormState.length == 0) {
         const formsStates = { searchFormState, sideBarFormState };
-        searchJobs('api/search-jobs', formsStates);
+        searchHeroes('api/search-heroes', formsStates);
       }
     }
   }, [searchFormState]);
 
-  let jobsFoundMessage = `Found ${displayedJobs.length} Jobs`;
-  switch (displayedJobs.length) {
+  let heroesFoundMessage = `Found ${displayedHeroes.length} Heroes`;
+  switch (displayedHeroes.length) {
     case 0: {
-      jobsFoundMessage = 'No Jobs found.';
+      heroesFoundMessage = 'No Heroes found.';
       break;
     }
     case 1: {
-      jobsFoundMessage = 'Only one Job found.';
+      heroesFoundMessage = 'Only one Hero found.';
       break;
     }
 
@@ -86,23 +86,23 @@ export default function JobsPage({ jobs, jobSkills }) {
 
   return (
     <div className='flex flex-col space-y-10 sm:flex-row sm:space-x-6 sm:space-y-0 md:flex-col md:space-x-0 md:space-y-10 xl:flex-row xl:space-x-6 xl:space-y-0 mt-9'>
-      <JobsPageSideBarForm
-        jobSkills={jobSkills}
+      <HeroesPageSideBarForm
+        heroSkills={heroSkills}
         sideBarFormState={sideBarFormState}
         setSideBarFormState={setSideBarFormState}
-        setdisplayedJobs={setDisplayedJobs}
+        setdisplayedHeroes={setDisplayedHeroes}
       />
       <div className='w-full'>
-        <SearchJobForm
+        <SearchHeroForm
           searchFormState={searchFormState}
           setSearchFormState={setSearchFormState}
-          setdisplayedJobs={setDisplayedJobs}
+          setdisplayedHeroes={setDisplayedHeroes}
         />
         {/* Jobs header */}
         <div className='flex justify-between items-center mb-4'>
           {/* Number of jobs found message  */}
           <div className='text-sm text-slate-500 italic'>
-            {jobsFoundMessage}
+            {heroesFoundMessage}
           </div>
 
           {/* skills tags */}
@@ -136,12 +136,12 @@ export default function JobsPage({ jobs, jobSkills }) {
           </div>
 
           {/* Sort */}
-          <JobsSortForm
-            jobs={displayedJobs}
-            setDisplayedJobs={setDisplayedJobs}
+          <HeroesSortForm
+            heroes={displayedHeroes}
+            setDisplayedHeroes={setDisplayedHeroes}
           />
         </div>
-        <JobsList jobs={displayedJobs} />
+        <HeroesList heroes={displayedHeroes} />
       </div>
     </div>
   );

@@ -4,9 +4,9 @@ import Image from 'next/image';
 
 import { ArrowRightIcon, ChevronLeftIcon } from '@heroicons/react/solid';
 
-import JobCard from '../cards/JobCard';
+import HeroCard from '../cards/HeroCard';
 
-const JobDetails = ({ job }) => {
+const HeroDetails = ({ hero }) => {
   return (
     <div className='px-4 sm:px-6 lg:px-8 py-8 w-full'>
       {/* Page content */}
@@ -22,15 +22,15 @@ const JobDetails = ({ job }) => {
             </Link>
           </div>
           <div className='text-xs text-slate-500 italic mb-2'>
-            Posted On: <span className='font-semibold'>{job.datePosted}</span>
+            Posted On: <span className='font-semibold'>{hero.datePosted}</span>
             {'  -  '}
             Job Category:{' '}
-            <span className='font-semibold'>{job.jobCategory}</span>
+            <span className='font-semibold'>{hero.heroCategory}</span>
           </div>
           <header className='mb-4'>
             {/* Title */}
             <h1 className='text-2xl md:text-3xl text-slate-800 font-bold'>
-              {job.title}
+              {hero.heroName}
             </h1>
 
             {/* Important Job Details */}
@@ -39,14 +39,14 @@ const JobDetails = ({ job }) => {
               <div className='flex items-start space-x-3 md:space-x-4'>
                 <div>
                   <div className='text-sm text-slate-500'>
-                    {job.jobType} / {job.experienceLevel} / {job.company.city}{' '}
-                    {job.remoteOk && '/ Remote Ok'}
+                    {hero.heroType} / {hero.experienceLevel} / {hero.company.city}{' '}
+                    {hero.remoteOk && '/ Remote Ok'}
                   </div>
                   {/* Skill Tags */}
                   <div>
                     <div className='flex flex-wrap items-center -m-1'>
-                      {job.skills &&
-                        job.skills.map((skill) => (
+                      {hero.skills &&
+                        hero.skills.map((skill) => (
                           <div className='m-1' key={skill}>
                             <a
                               className='text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1'
@@ -64,10 +64,10 @@ const JobDetails = ({ job }) => {
               {/* Right side */}
               <div className='flex flex-col space-y-1 items-end'>
                 <div className='text-sm text-slate-900'>
-                  £{job.baseAnnualSalary} / Year
+                  £{hero.baseAnnualSalary} / Year
                 </div>
                 <div className='flex items-center space-x-4 pl-10 md:pl-0'>
-                  {job.featuredJob && (
+                  {hero.featuredJob && (
                     <div
                       className={`text-xs inline-flex font-medium rounded-full text-center px-2.5 py-1 bg-amber-100 text-amber-600`}
                     >
@@ -96,22 +96,22 @@ const JobDetails = ({ job }) => {
               <div className='inline-flex mb-3'>
                 <Image
                   className='w-16 h-16 rounded-full'
-                  src={job.company.logo.url}
-                  width={job.company.logo.width}
-                  height={job.company.logo.height}
-                  alt={`${job.company.name} - ${job.company.logo.alt}`}
+                  src={hero.company.logo.url}
+                  width={hero.company.logo.width}
+                  height={hero.company.logo.height}
+                  alt={`${hero.company.name} - ${hero.company.logo.alt}`}
                 />
               </div>
               <div className='text-lg font-bold text-slate-800 mb-1'>
-                {job.company.name}
+                {hero.company.name}
               </div>
               <div className='text-sm text-slate-500 italic'>
-                {job.company.city}
+                {hero.company.city}
               </div>
             </div>
             <div className='space-y-2 sm:flex sm:space-y-0 sm:space-x-2'>
               <a
-                href={job.applicationLink}
+                href={hero.applicationLink}
                 className='flex items-center justify-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
               >
                 Apply Today
@@ -121,9 +121,9 @@ const JobDetails = ({ job }) => {
                 />
               </a>
 
-              <Link href={`/company/${job.company.slug}`}>
+              <Link href={`/company/${hero.company.slug}`}>
                 <a
-                  href={`/company/${job.company.slug}`}
+                  href={`/company/${hero.company.slug}`}
                   className='flex items-center justify-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-slate-700 ring-slate-600 bg-slate-200 hover:bg-slate-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-700'
                 >
                   All Company Jobs
@@ -146,7 +146,7 @@ const JobDetails = ({ job }) => {
             <div
               className='space-y-6 text-slate-500 font-normal text-sm'
               dangerouslySetInnerHTML={{
-                __html: job.jobDescription,
+                __html: hero.heroDescription,
               }}
             ></div>
           </div>
@@ -160,7 +160,7 @@ const JobDetails = ({ job }) => {
             <div
               className='space-y-6 text-slate-500 font-normal text-sm'
               dangerouslySetInnerHTML={{
-                __html: job.aboutYou,
+                __html: hero.aboutYou,
               }}
             ></div>
           </div>
@@ -174,7 +174,7 @@ const JobDetails = ({ job }) => {
             <div
               className='space-y-6 text-slate-500 font-normal text-sm'
               dangerouslySetInnerHTML={{
-                __html: job.jobResponsibilities,
+                __html: hero.heroResponsibilities,
               }}
             ></div>
           </div>
@@ -188,7 +188,7 @@ const JobDetails = ({ job }) => {
             <div
               className='space-y-6 text-slate-500 font-normal text-sm'
               dangerouslySetInnerHTML={{
-                __html: job.remunerationPackage,
+                __html: hero.remunerationPackage,
               }}
             ></div>
           </div>
@@ -203,7 +203,7 @@ const JobDetails = ({ job }) => {
               {/* Apply button */}
 
               <a
-                href={job.applicationLink}
+                href={hero.applicationLink}
                 className='inline-flex items-center justify-center p-2 bg-indigo-500 hover:bg-indigo-600 text-white'
               >
                 Apply Today{' '}
@@ -252,19 +252,21 @@ const JobDetails = ({ job }) => {
           </div>
           <hr className='my-6 border-t border-slate-200' />
 
-          {/* Related Jobs */}
-          {job.relatedJobs.length ? (
+          Related Heroes
+          {/* {hero.relatedhero.length ? (
             <div>
               <h2 className='text-xl leading-snug text-slate-800 font-bold mb-6'>
-                Related Jobs
+                Related hero
               </h2>
               <div className='space-y-2 mt-6'>
-                {job.relatedJobs.map((job) => {
-                  return <JobCard key={job.id} job={job} />;
+                {hero.relatedhero.map((hero) => {
+                  return <HeroCard key={hero.id} hero={hero} />;
                 })}
               </div>
             </div>
-          ) : null}
+          ) : null} */}
+
+          
         </div>
 
         {/* Sidebar */}
@@ -275,22 +277,22 @@ const JobDetails = ({ job }) => {
               <div className='inline-flex mb-3'>
                 <Image
                   className='w-16 h-16 rounded-full'
-                  src={job.company.logo.url}
-                  width={job.company.logo.width}
-                  height={job.company.logo.height}
-                  alt={`${job.company.name} - ${job.company.logo.alt}`}
+                  src={hero.company.logo.url}
+                  width={hero.company.logo.width}
+                  height={hero.company.logo.height}
+                  alt={`${hero.company.name} - ${hero.company.logo.alt}`}
                 />
               </div>
               <div className='text-lg font-bold text-slate-800 mb-1'>
-                {job.company.name}
+                {hero.company.name}
               </div>
               <div className='text-sm text-slate-500 italic'>
-                {job.company.city}
+                {hero.company.city}
               </div>
             </div>
             <div className='space-y-2'>
               <a
-                href={job.applicationLink}
+                href={hero.applicationLink}
                 className='inline-flex items-center justify-center w-full p-2 bg-indigo-500 hover:bg-indigo-600 text-white'
               >
                 Apply Today{' '}
@@ -300,9 +302,9 @@ const JobDetails = ({ job }) => {
                 />
               </a>
 
-              <Link href={`/company/${job.company.slug}`}>
+              <Link href={`/company/${hero.company.slug}`}>
                 <a
-                  href={`/company/${job.company.slug}`}
+                  href={`/company/${hero.company.slug}`}
                   className='flex items-center justify-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-slate-700 ring-slate-600 bg-slate-200 hover:bg-slate-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-700'
                 >
                   All Company Jobs
@@ -320,4 +322,4 @@ const JobDetails = ({ job }) => {
   );
 };
 
-export default JobDetails;
+export default HeroDetails;
