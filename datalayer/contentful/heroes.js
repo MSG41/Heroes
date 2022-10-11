@@ -68,14 +68,14 @@ export const searchHeroes = async (query) => {
   //continue here--------------------------------
 
   // Add Equality Query Filters
-  if (query.remoteOkOnly)
-    contentFullQuery['fields.remoteOk'] = query.remoteOkOnly;
-  if (query.featuredJobsOnly)
-    contentFullQuery['fields.featuredJob'] = query.featuredJobsOnly;
+  // if (query.remoteOkOnly)
+  //   contentFullQuery['fields.remoteOk'] = query.remoteOkOnly;
+  // if (query.featuredJobsOnly)
+  //   contentFullQuery['fields.featuredJob'] = query.featuredJobsOnly;
 
   // Add Range Query Filters
-  contentFullQuery['fields.baseAnnualSalary[gte]'] = query.minBaseSalary;
-  contentFullQuery['fields.baseAnnualSalary[lte]'] = query.maxBaseSalary;
+  // contentFullQuery['fields.baseAnnualSalary[gte]'] = query.minBaseSalary;
+  // contentFullQuery['fields.baseAnnualSalary[lte]'] = query.maxBaseSalary;
 
   // Add Tags Query Filters
   // we first parse the skills tags back to their contentful-specific version with the "skill." prefix
@@ -109,8 +109,8 @@ export const searchHeroes = async (query) => {
   });
 
   filteredHeroes = filteredHeroes.filter((hero) => {
-    if (query.jobTypes.length == 0) return true;
-    if (query.jobTypes.includes(job.jobType)) return true;
+    if (query.heroTypes.length == 0) return true;
+    if (query.heroTypes.includes(hero.heroType)) return true;
     return false;
   });
 
@@ -124,9 +124,9 @@ export const searchCompaniesButReturnHeroes = async (searchBarText) => {
     'fields.company.fields.name[match]': searchBarText,
 
     // multiple matches are NOT supported by Contentful so we prioritise the company name
-    // 'fields.company.fields.city[match]': searchBarText,
-    // 'fields.company.fields.slogan[match]': searchBarText,
-    // 'fields.company.fields.website[match]': searchBarText,
+    'fields.company.fields.city[match]': searchBarText,
+    'fields.company.fields.slogan[match]': searchBarText,
+    'fields.company.fields.website[match]': searchBarText,
     include: 2,
   };
   const res = await client.getEntries(contentFullQuery);

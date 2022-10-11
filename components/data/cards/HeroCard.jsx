@@ -35,30 +35,32 @@ const HeroCard = ({ hero }) => {
 
 
 
-            
-            <div> Skills: 
-                    <div className='flex flex-wrap items-center -m-1'>
-                      {hero.skills &&
-                        hero.skills.map((skill) => (
-                          <div className='m-1' key={skill}>
-                            <a
-                              className='text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1'
-                              href='#'
-                            >
-                              {skill}
-                            </a>
-                          </div>
-                        ))}
-                      
+
+            <div> Skills:
+              <div className='flex flex-wrap items-center -m-1'>
+                {hero.skills &&
+                  hero.skills.map((skill) => (
+                    <div className='m-1' key={skill}>
+                      <a
+                        className='text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1'
+                        href='#'
+                      >
+                        {skill}
+                      </a>
                     </div>
-                  </div>
+                  ))}
+
+              </div>
+            </div>
 
 
 
-            {/* <div className='text-sm text-slate-500'>
-              {job.jobType} / {job.experienceLevel} / {job.company.city}{' '}
-              {job.remoteOk && '/ Remote Ok'}
-            </div> */}
+            <div className='text-sm text-slate-500'>
+              <a href={hero.socials}>{hero.socials}</a> 
+              {/* {hero.sex}/ {hero.heightInCm} / {hero.company.city}{' '} */}
+              {/* {hero.remoteOk && '/ Remote Ok'} */}
+              {/* {hero.sex} */}
+            </div>
 
 
           </div>
@@ -68,15 +70,15 @@ const HeroCard = ({ hero }) => {
 
 
         {/* Right side */}
-        {/* <div className='flex flex-col space-y-1 items-end'>
+        <div className='flex flex-col space-y-1 items-end'>
           <div className='text-sm text-slate-900'>
-            £{job.baseAnnualSalary} / Year
+            €{hero.baseAnnualSalary} / Year
           </div>
           <div className='flex items-center space-x-4 pl-10 md:pl-0'>
             <div className='text-sm text-slate-500 italic whitespace-nowrap'>
-              {job.datePosted}
+              {hero.datePosted}
             </div>
-            {job.featuredJob && (
+            {hero.featuredHero && (
               <div
                 className={`text-xs inline-flex font-medium rounded-full text-center px-2.5 py-1 bg-amber-100 text-amber-600`}
               >
@@ -95,7 +97,7 @@ const HeroCard = ({ hero }) => {
               </svg>
             </button>
           </div>
-        </div> */}
+        </div>
 
 
       </div>

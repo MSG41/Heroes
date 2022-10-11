@@ -5,30 +5,30 @@ import {
   sortHeroesByCompanyName,
 } from '../../datalayer/utils';
 
-const HeroesSortForm = ({ jobs, setDisplayedHeroes }) => {
+const HeroesSortForm = ({ heroes, setDisplayedHeroes }) => {
   const [sortby, setSortby] = useState('date-posted');
 
   const handleChange = (e) => {
     e.preventDefault();
     const newSortby = e.target.value;
     if (newSortby === 'date-posted-asc') {
-      const sortedHeroes = sortHeroesByDatePosted({ jobs, ASC: true });
+      const sortedHeroes = sortHeroesByDatePosted({ heroes, ASC: true });
       setDisplayedHeroes(sortedHeroes);
     }
     if (newSortby === 'date-posted-desc') {
-      const sortedHeroes = sortHeroesByDatePosted({ jobs, ASC: false });
-      setDisplayedJobs(sortedJobs);
+      const sortedHeroes = sortHeroesByDatePosted({ heroes, ASC: false });
+      setDisplayedHeroes(sortedHeroes);
     }
     if (newSortby === 'salary-asc') {
-      const sortedHeroes = sortHeroesByBaseAnnualSalary({ jobs, ASC: true });
-      setDisplayedJobs(sortedJobs);
+      const sortedHeroes = sortHeroesByBaseAnnualSalary({ heroes, ASC: true });
+      setDisplayedHeroes(sortedHeroes);
     }
     if (newSortby === 'salary-desc') {
-      const sortedHeroes = sortHeroesByBaseAnnualSalary({ jobs, ASC: false });
+      const sortedHeroes = sortHeroesByBaseAnnualSalary({ heroes, ASC: false });
       setDisplayedHeroes(sortedHeroes);
     }
     if (newSortby === 'company') {
-      const sortedHeroes = sortHeroesByCompanyName({ jobs });
+      const sortedHeroes = sortHeroesByCompanyName({ heroes });
       setDisplayedHeroes(sortedHeroes);
     }
     setSortby(newSortby);
