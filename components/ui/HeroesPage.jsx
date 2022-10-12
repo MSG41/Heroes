@@ -5,7 +5,7 @@ import SearchHeroForm from '../forms/SearchHeroForm';
 import HeroesPageSideBarForm from '../forms/HeroesPageSideBarForm';
 import HeroesSortForm from '../forms/HeroesSortForm';
 
-export default function HeroesPage({ heroes, heroSkills }) {
+export default function HeroesPage({ heroes, heroSkills, heroHair }) {
   const [displayedHeroes, setDisplayedHeroes] = useState(heroes);
 
   const [sideBarFormState, setSideBarFormState] = useState({
@@ -16,6 +16,7 @@ export default function HeroesPage({ heroes, heroSkills }) {
     baseSalaryOptions: [],
     baseSalaryBounds: [],
     selectedTags: [],
+    selectedHairTags: [],
   });
 
   const [searchFormState, setSearchFormState] = useState('');
@@ -84,10 +85,22 @@ export default function HeroesPage({ heroes, heroSkills }) {
     });
   };
 
+  // HairTag delete 
+  const handleHairTagDelete = (e, hairTag) => {
+    e.preventDefault();
+    setSideBarFormState((prevState) => {
+      return {
+        ...prevState,
+        selectedHairTags: prevState.selectedHairTags.filter((tag) => hairTag != tag),
+      };
+    });
+  };
+
   return (
     <div className='flex flex-col space-y-10 sm:flex-row sm:space-x-6 sm:space-y-0 md:flex-col md:space-x-0 md:space-y-10 xl:flex-row xl:space-x-6 xl:space-y-0 mt-9'>
       <HeroesPageSideBarForm
         heroSkills={heroSkills}
+        heroHair={heroHair}
         sideBarFormState={sideBarFormState}
         setSideBarFormState={setSideBarFormState}
         setdisplayedHeroes={setDisplayedHeroes}
@@ -98,9 +111,9 @@ export default function HeroesPage({ heroes, heroSkills }) {
           setSearchFormState={setSearchFormState}
           setdisplayedHeroes={setDisplayedHeroes}
         />
-        {/* Jobs header */}
+        {/* Heroes header */}
         <div className='flex justify-between items-center mb-4'>
-          {/* Number of jobs found message  */}
+          {/* Number of heroes found message  */}
           <div className='text-sm text-slate-500 italic'>
             {heroesFoundMessage}
           </div>
@@ -122,6 +135,36 @@ export default function HeroesPage({ heroes, heroSkills }) {
                         fill='none'
                         viewBox='0 0 8 8'
                         onClick={(e) => handleSkillTagDelete(e, skill)}
+                      >
+                        <path
+                          strokeLinecap='round'
+                          strokeWidth='1.5'
+                          d='M1 1l6 6m0-6L1 7'
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                ))}
+            </div>
+          </div>
+
+          {/* hair tags */}
+          <div>
+            <div className='flex flex-wrap items-center -m-1 max-w-2xl'>
+              {sideBarFormState.selectedHairTags &&
+                sideBarFormState.selectedHairTags.map((hair) => (
+                  <div className='m-1' key={hair}>
+                    <a
+                      className='text-xs hover:scale-110  hover:bg-red-100 hover:text-red-600 inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1'
+                      href='#'
+                    >
+                      {hair}
+                      <svg
+                        className='h-2 w-2 ml-2 mt-1 text-sm hover:cursor-pointer'
+                        stroke='currentColor'
+                        fill='none'
+                        viewBox='0 0 8 8'
+                        onClick={(e) => handleHairTagDelete(e, hair)}
                       >
                         <path
                           strokeLinecap='round'

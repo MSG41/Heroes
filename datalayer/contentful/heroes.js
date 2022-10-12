@@ -1,5 +1,5 @@
 import { client } from './client';
-import { heroReducer, skillsReducer, tagsReducer } from './utils';
+import { heroReducer, skillsReducer, tagsReducer, hairReducer } from './utils';
 
 export const getHeroes = async () => {
   const res = await client.getEntries({ content_type: 'heroes' });
@@ -18,6 +18,17 @@ export const getHeroesSkills = async () => {
   const tags = tagsReducer(rawTags);
   const skills = skillsReducer(tags);
   return skills;
+};
+
+//  Get Hero Hair
+
+export const getHeroesHair = async () => {
+  const res = await client.getTags();
+  const rawTags = res.items;
+
+  const tags = tagsReducer(rawTags);
+  const hair = hairReducer(tags);
+  return hair;
 };
 
 export const getHeroesSlugs = async () => {
@@ -82,6 +93,11 @@ export const searchHeroes = async (query) => {
   const selectedTags = query.selectedTags.map((tag) => `skill.${tag}`);
   if (selectedTags.length)
     contentFullQuery['metadata.tags.sys.id[in]'] = selectedTags.join(',');
+
+  // we first parse the hair tags back to their contentful-specific version with the "hair." prefix
+  const selectedHairTags = query.selectedHairTags.map((tag) => `hair.${tag}`);
+  if (selectedHairTags.length)
+    contentFullQuery['metadata.tags.sys.id[in]'] = selectedHairTags.join(',');
 
   // Add Full Text Search Query
   if (query.searchBarText) {

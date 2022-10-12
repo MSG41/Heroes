@@ -55,6 +55,13 @@ export const skillsReducer = (parsedTags) => {
   return skills;
 };
 
+// hairReducer 
+export const hairReducer = (parsedTags) => {
+  const hairTags = parsedTags.filter((tag) => tag.includes('hair.'));
+  const hair = hairTags.map((hairTag) => hairTag.replace('hair.', ''));
+  return hair;
+};
+
 export const heroReducer = (rawHero, parseRelatedHeroes = true) => {
   let hero = { ...rawHero.fields };
 
@@ -68,6 +75,7 @@ export const heroReducer = (rawHero, parseRelatedHeroes = true) => {
   hero.jobDescription = richTextReducer(rawHero.fields.jobDescription);
   hero.tags = tagsReducer(rawHero.metadata.tags);
   hero.skills = skillsReducer(hero.tags);
+  hero.hair = hairReducer(hero.tags);
   hero.foto = imageReducer(rawHero.fields.foto);
 
   const relatedHeroes = rawHero.fields.relatedHeroes || [];
