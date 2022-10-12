@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Switch } from '@headlessui/react';
 import TagsFilterForm from './TagsFilterForm';
 import TagsFilterHairForm from './TagsFilterHairForm';
+import TagsFilterEyeForm from './TagsFilterEyeForm';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -10,6 +11,7 @@ function classNames(...classes) {
 function HeroesPageSideBarForm({
   heroSkills,
   heroHair,
+  heroEye,
   sideBarFormState,
   setSideBarFormState,
   setDisplayedHeroes,
@@ -158,6 +160,14 @@ function HeroesPageSideBarForm({
             setSideBarFormState={setSideBarFormState}
           />
 
+          {/* FilterEyeForm */}
+
+          <TagsFilterEyeForm
+            heroEye={heroEye}
+            selectedEyeTags={sideBarFormState.selectedEyeTags}
+            setSideBarFormState={setSideBarFormState}
+          />
+
           {/* Group 1 */}
           <Switch.Group as='div' className='flex items-center'>
             <Switch
@@ -165,7 +175,7 @@ function HeroesPageSideBarForm({
               onChange={handleRemoteOkChange}
               className={classNames(
                 sideBarFormState.remoteOkOnly ? 'bg-indigo-600' : 'bg-gray-200',
-                'relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 z-[9]'
+                'relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 z-[8]'
               )}
             >
               <span
@@ -209,7 +219,7 @@ function HeroesPageSideBarForm({
             </Switch>
             <Switch.Label as='span' className='ml-3'>
               <span className='text-sm font-medium text-gray-900'>
-                Featured Jobs Only
+                Featured Heroes Only
               </span>
             </Switch.Label>
           </Switch.Group>
@@ -217,7 +227,7 @@ function HeroesPageSideBarForm({
           {/* Group 3 */}
           <div>
             <div className='text-sm text-slate-800 font-semibold mb-3'>
-              Job Types
+              Hero Types
             </div>
             <ul className='space-y-2'>
               {heroTypesOptions.map((option) => {
@@ -275,7 +285,7 @@ function HeroesPageSideBarForm({
           {/* Group 5 */}
           <div>
             <div className='text-sm text-slate-800 font-semibold mb-3'>
-              Salary Range
+              Pay Range
             </div>
             <ul className='space-y-2'>
               {baseSalaryRangesOptions.map((option) => {

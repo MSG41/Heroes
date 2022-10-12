@@ -2,91 +2,96 @@ import date from 'date-and-time';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 export const dateReducer = (dateStr) => {
-  const dateObj = date.parse(dateStr.split('T')[0], 'YYYY-MM-DD');
-  return dateObj.toDateString();
+	const dateObj = date.parse(dateStr.split('T')[0], 'YYYY-MM-DD');
+	return dateObj.toDateString();
 };
 
 export const richTextReducer = (rawRichtext) => {
-  const parsedRichText = documentToHtmlString(rawRichtext);
-  let styledRichText = parsedRichText.replace(
-    '<ul>',
-    "<ul style='list-style-type: circle;'>"
-  );
-  return styledRichText;
+	const parsedRichText = documentToHtmlString(rawRichtext);
+	let styledRichText = parsedRichText.replace('<ul>', "<ul style='list-style-type: circle;'>");
+	return styledRichText;
 };
 
 export const imageReducer = (imageField) => {
-  return {
-    url: `https:${imageField.fields.file.url}`,
-    alt: imageField.fields.title,
-    height: imageField.fields.file.details.image.height,
-    width: imageField.fields.file.details.image.width,
-    contentType: imageField.fields.file.contentType,
-  };
+	return {
+		url: `https:${imageField.fields.file.url}`,
+		alt: imageField.fields.title,
+		height: imageField.fields.file.details.image.height,
+		width: imageField.fields.file.details.image.width,
+		contentType: imageField.fields.file.contentType
+	};
 };
 
 export const companyReducer = (rawCompany) => {
-  let company = { ...rawCompany.fields };
-  company.id = rawCompany.sys.id;
-  company.locale = rawCompany.sys.locale;
-  company.logo = imageReducer(rawCompany.fields.logo);
-  company.coverImage = imageReducer(rawCompany.fields.coverImage);
-  return company;
+	let company = { ...rawCompany.fields };
+	company.id = rawCompany.sys.id;
+	company.locale = rawCompany.sys.locale;
+	company.logo = imageReducer(rawCompany.fields.logo);
+	company.coverImage = imageReducer(rawCompany.fields.coverImage);
+	return company;
 };
 
 export const tagsReducer = (tagsField) => {
-  let tags = [];
+	let tags = [];
 
+	tagsField.map((rawTag) => {
+		const tag = rawTag.sys.id;
+		tags.push(tag);
+	});
 
+	//sorting the results alphabetically ;) easy peasy.
+	tags.sort();
 
-  tagsField.map((rawTag) => {
-    const tag = rawTag.sys.id;
-    tags.push(tag);
-  });
-
-  tags.sort();
-
-  return tags;
+	return tags;
 };
 
+//skillsReducer
 export const skillsReducer = (parsedTags) => {
-  const skillTags = parsedTags.filter((tag) => tag.includes('skill.'));
-  const skills = skillTags.map((skillTag) => skillTag.replace('skill.', ''));
-  return skills;
+	const skillTags = parsedTags.filter((tag) => tag.includes('skill.'));
+	const skills = skillTags.map((skillTag) => skillTag.replace('skill.', ''));
+	return skills;
 };
 
-// hairReducer 
+// hairReducer
 export const hairReducer = (parsedTags) => {
-  const hairTags = parsedTags.filter((tag) => tag.includes('hair.'));
-  const hair = hairTags.map((hairTag) => hairTag.replace('hair.', ''));
-  return hair;
+	const hairTags = parsedTags.filter((tag) => tag.includes('hair.'));
+	const hair = hairTags.map((hairTag) => hairTag.replace('hair.', ''));
+	return hair;
+};
+
+// eyeReducer
+export const eyeReducer = (parsedTags) => {
+	const eyeTags = parsedTags.filter((tag) => tag.includes('eye.'));
+	const eye = eyeTags.map((eyeTag) => eyeTag.replace('eye.', ''));
+	return eye;
 };
 
 export const heroReducer = (rawHero, parseRelatedHeroes = true) => {
-  let hero = { ...rawHero.fields };
+	let hero = { ...rawHero.fields };
 
-  hero.id = rawHero.sys.id;
-  hero.locale = rawHero.sys.locale;
-  hero.datePosted = dateReducer(rawHero.fields.datePosted);
-  hero.company = companyReducer(rawHero.fields.company);
-  hero.aboutYou = richTextReducer(rawHero.fields.aboutYou);
-  hero.remunerationPackage = richTextReducer(rawHero.fields.remunerationPackage);
-  hero.jobResponsibilities = richTextReducer(rawHero.fields.jobResponsibilities);
-  hero.jobDescription = richTextReducer(rawHero.fields.jobDescription);
-  hero.tags = tagsReducer(rawHero.metadata.tags);
-  hero.skills = skillsReducer(hero.tags);
-  hero.hair = hairReducer(hero.tags);
-  hero.foto = imageReducer(rawHero.fields.foto);
+	hero.id = rawHero.sys.id;
+	hero.locale = rawHero.sys.locale;
+	hero.datePosted = dateReducer(rawHero.fields.datePosted);
+	hero.company = companyReducer(rawHero.fields.company);
+	hero.aboutYou = richTextReducer(rawHero.fields.aboutYou);
+	hero.remunerationPackage = richTextReducer(rawHero.fields.remunerationPackage);
+	hero.jobResponsibilities = richTextReducer(rawHero.fields.jobResponsibilities);
+	hero.jobDescription = richTextReducer(rawHero.fields.jobDescription);
+	hero.tags = tagsReducer(rawHero.metadata.tags);
+	hero.skills = skillsReducer(hero.tags);
+	hero.hair = hairReducer(hero.tags);
+	hero.eye = eyeReducer(hero.tags);
+	hero.foto = imageReducer(rawHero.fields.foto);
 
-  const relatedHeroes = rawHero.fields.relatedHeroes || [];
+	const relatedHeroes = rawHero.fields.relatedHeroes || [];
 
-  if (!parseRelatedHeroes) {
-    hero.relatedHeroes = [];
-  } else {
-    hero.relatedHeroes = relatedHeroes.map((relatedHero) => {
-      return heroReducer(relatedHero, false);
-    });
-  }
+	if (!parseRelatedHeroes) {
+		hero.relatedHeroes = [];
+	} else {
+		hero.relatedHeroes = relatedHeroes.map((relatedHero) => {
+			return heroReducer(relatedHero, false);
+		});
+	}
 
-  return hero;
+	return hero;
 };

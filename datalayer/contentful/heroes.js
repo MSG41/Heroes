@@ -1,5 +1,5 @@
 import { client } from './client';
-import { heroReducer, skillsReducer, tagsReducer, hairReducer } from './utils';
+import { heroReducer, skillsReducer, tagsReducer, hairReducer, eyeReducer } from './utils';
 
 export const getHeroes = async () => {
   const res = await client.getEntries({ content_type: 'heroes' });
@@ -11,6 +11,7 @@ export const getHeroes = async () => {
   return heroes;
 };
 
+//  Get Hero Skills
 export const getHeroesSkills = async () => {
   const res = await client.getTags();
   const rawTags = res.items;
@@ -21,7 +22,6 @@ export const getHeroesSkills = async () => {
 };
 
 //  Get Hero Hair
-
 export const getHeroesHair = async () => {
   const res = await client.getTags();
   const rawTags = res.items;
@@ -30,6 +30,19 @@ export const getHeroesHair = async () => {
   const hair = hairReducer(tags);
   return hair;
 };
+
+//  Get Hero Eye
+export const getHeroesEye = async () => {
+  const res = await client.getTags();
+  const rawTags = res.items;
+
+  const tags = tagsReducer(rawTags);
+  const eye = eyeReducer(tags);
+  return eye;
+};
+
+
+
 
 export const getHeroesSlugs = async () => {
   const rawSlugs = await client.getEntries({
@@ -89,6 +102,7 @@ export const searchHeroes = async (query) => {
   // contentFullQuery['fields.baseAnnualSalary[lte]'] = query.maxBaseSalary;
 
   // Add Tags Query Filters
+
   // we first parse the skills tags back to their contentful-specific version with the "skill." prefix
   const selectedTags = query.selectedTags.map((tag) => `skill.${tag}`);
   if (selectedTags.length)
@@ -98,6 +112,11 @@ export const searchHeroes = async (query) => {
   const selectedHairTags = query.selectedHairTags.map((tag) => `hair.${tag}`);
   if (selectedHairTags.length)
     contentFullQuery['metadata.tags.sys.id[in]'] = selectedHairTags.join(',');
+
+  // we first parse the eye tags back to their contentful-specific version with the "hair." prefix
+  const selectedEyeTags = query.selectedEyeTags.map((tag) => `eye.${tag}`);
+  if (selectedEyeTags.length)
+    contentFullQuery['metadata.tags.sys.id[in]'] = selectedEyeTags.join(',');
 
   // Add Full Text Search Query
   if (query.searchBarText) {
