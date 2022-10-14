@@ -1,5 +1,5 @@
 import { client } from './client';
-import { heroReducer, skillsReducer, tagsReducer, hairReducer, eyeReducer, tattooReducer } from './utils';
+import { heroReducer, skillsReducer, tagsReducer, hairReducer, eyeReducer, tattooReducer, scarsReducer, sexReducer, invoiceReducer } from './utils';
 
 export const getHeroes = async () => {
   const res = await client.getEntries({ content_type: 'heroes' });
@@ -49,6 +49,36 @@ export const getHeroesTattoo = async () => {
   const tags = tagsReducer(rawTags);
   const tattoo = tattooReducer(tags);
   return tattoo;
+};
+
+//  Get Hero Scars
+export const getHeroesScars = async () => {
+  const res = await client.getTags();
+  const rawTags = res.items;
+
+  const tags = tagsReducer(rawTags);
+  const scars = scarsReducer(tags);
+  return scars;
+};
+
+//  Get Hero Sex
+export const getHeroesSex = async () => {
+  const res = await client.getTags();
+  const rawTags = res.items;
+
+  const tags = tagsReducer(rawTags);
+  const sex = sexReducer(tags);
+  return sex;
+};
+
+//  Get Hero Invoice
+export const getHeroesInvoice = async () => {
+  const res = await client.getTags();
+  const rawTags = res.items;
+
+  const tags = tagsReducer(rawTags);
+  const invoice = invoiceReducer(tags);
+  return invoice;
 };
 
 
@@ -128,10 +158,25 @@ export const searchHeroes = async (query) => {
   if (selectedEyeTags.length)
     contentFullQuery['metadata.tags.sys.id[in]'] = selectedEyeTags.join(',');
 
-     // we first parse the eye tags back to their contentful-specific version with the "tattoo." prefix
+  // we first parse the eye tags back to their contentful-specific version with the "tattoo." prefix
   const selectedTattooTags = query.selectedTattooTags.map((tag) => `tattoo.${tag}`);
   if (selectedTattooTags.length)
     contentFullQuery['metadata.tags.sys.id[in]'] = selectedTattooTags.join(',');
+
+  // we first parse the eye tags back to their contentful-specific version with the "scars." prefix
+  const selectedScarsTags = query.selectedScarsTags.map((tag) => `scars.${tag}`);
+  if (selectedScarsTags.length)
+    contentFullQuery['metadata.tags.sys.id[in]'] = selectedScarsTags.join(',');
+
+  // we first parse the eye tags back to their contentful-specific version with the "sex." prefix
+  const selectedSexTags = query.selectedSexTags.map((tag) => `sex.${tag}`);
+  if (selectedSexTags.length)
+    contentFullQuery['metadata.tags.sys.id[in]'] = selectedSexTags.join(',');
+
+  // we first parse the eye tags back to their contentful-specific version with the "invoice." prefix
+  const selectedInvoiceTags = query.selectedInvoiceTags.map((tag) => `invoice.${tag}`);
+  if (selectedInvoiceTags.length)
+    contentFullQuery['metadata.tags.sys.id[in]'] = selectedInvoiceTags.join(',');
 
   // Add Full Text Search Query
   if (query.searchBarText) {

@@ -5,7 +5,7 @@ import SearchHeroForm from '../forms/SearchHeroForm';
 import HeroesPageSideBarForm from '../forms/HeroesPageSideBarForm';
 import HeroesSortForm from '../forms/HeroesSortForm';
 
-export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, heroTattoo }) {
+export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, heroTattoo, heroScars, heroSex, heroInvoice }) {
   const [displayedHeroes, setDisplayedHeroes] = useState(heroes);
 
   const [sideBarFormState, setSideBarFormState] = useState({
@@ -19,6 +19,9 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
     selectedHairTags: [],
     selectedEyeTags: [],
     selectedTattooTags: [],
+    selectedScarsTags: [],
+    selectedSexTags: [],
+    selectedInvoiceTags: [],
   });
 
   const [searchFormState, setSearchFormState] = useState('');
@@ -121,6 +124,39 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
     });
   };
 
+  // scarsTag delete 
+  const handleScarsTagDelete = (e, scarsTag) => {
+    e.preventDefault();
+    setSideBarFormState((prevState) => {
+      return {
+        ...prevState,
+        selectedScarsTags: prevState.selectedScarsTags.filter((tag) => scarsTag != tag),
+      };
+    });
+  };
+
+  // sexTag delete 
+  const handleSexTagDelete = (e, sexTag) => {
+    e.preventDefault();
+    setSideBarFormState((prevState) => {
+      return {
+        ...prevState,
+        selectedSexTags: prevState.selectedSexTags.filter((tag) => sexTag != tag),
+      };
+    });
+  };
+
+  // invoiceTag delete 
+  const handleInvoiceTagDelete = (e, invoiceTag) => {
+    e.preventDefault();
+    setSideBarFormState((prevState) => {
+      return {
+        ...prevState,
+        selectedInvoiceTags: prevState.selectedInvoiceTags.filter((tag) => invoiceTag != tag),
+      };
+    });
+  };
+
   return (
     <div className='flex flex-col space-y-10 sm:flex-row sm:space-x-6 sm:space-y-0 md:flex-col md:space-x-0 md:space-y-10 xl:flex-row xl:space-x-6 xl:space-y-0 mt-9'>
       <HeroesPageSideBarForm
@@ -128,18 +164,21 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
         heroHair={heroHair}
         heroEye={heroEye}
         heroTattoo={heroTattoo}
+        heroScars ={heroScars}
+        heroSex ={heroSex}
+        heroInvoice ={heroInvoice}
         sideBarFormState={sideBarFormState}
         setSideBarFormState={setSideBarFormState}
         setdisplayedHeroes={setDisplayedHeroes}
       />
-      <div className='w-full'>
+      <div className='w-[850px] '>
         <SearchHeroForm
           searchFormState={searchFormState}
           setSearchFormState={setSearchFormState}
           setdisplayedHeroes={setDisplayedHeroes}
         />
         {/* Heroes header */}
-        <div className='flex justify-between items-center mb-4'>
+        <div className='flex justify-between items-center mb-4 '>
           {/* Number of heroes found message  */}
           <div className='text-sm text-slate-500 italic'>
             {heroesFoundMessage}
@@ -215,7 +254,7 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
                       className='text-xs hover:scale-110  hover:bg-red-100 hover:text-red-600 inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1'
                       href='#'
                     >
-                      {eye}
+                      (eyes){eye}
                       <svg
                         className='h-2 w-2 ml-2 mt-1 text-sm hover:cursor-pointer'
                         stroke='currentColor'
@@ -265,12 +304,102 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
             </div>
           </div>
 
+           {/* scars tags */}
+           <div>
+            <div className='flex flex-wrap items-center -m-1 max-w-2xl'>
+              {sideBarFormState.selectedScarsTags &&
+                sideBarFormState.selectedScarsTags.map((scars) => (
+                  <div className='m-1' key={scars}>
+                    <a
+                      className='text-xs hover:scale-110  hover:bg-red-100 hover:text-red-600 inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1'
+                      href='#'
+                    >
+                      (scars){scars}
+                      <svg
+                        className='h-2 w-2 ml-2 mt-1 text-sm hover:cursor-pointer'
+                        stroke='currentColor'
+                        fill='none'
+                        viewBox='0 0 8 8'
+                        onClick={(e) => handleScarsTagDelete(e, scars)}
+                      >
+                        <path
+                          strokeLinecap='round'
+                          strokeWidth='1.5'
+                          d='M1 1l6 6m0-6L1 7'
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                ))}
+            </div>
+          </div>
+
+           {/* sex tags */}
+           <div>
+            <div className='flex flex-wrap items-center -m-1 max-w-2xl'>
+              {sideBarFormState.selectedSexTags &&
+                sideBarFormState.selectedSexTags.map((sex) => (
+                  <div className='m-1' key={sex}>
+                    <a
+                      className='text-xs hover:scale-110  hover:bg-red-100 hover:text-red-600 inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1'
+                      href='#'
+                    >
+                      (sex){sex}
+                      <svg
+                        className='h-2 w-2 ml-2 mt-1 text-sm hover:cursor-pointer'
+                        stroke='currentColor'
+                        fill='none'
+                        viewBox='0 0 8 8'
+                        onClick={(e) => handleSexTagDelete(e, sex)}
+                      >
+                        <path
+                          strokeLinecap='round'
+                          strokeWidth='1.5'
+                          d='M1 1l6 6m0-6L1 7'
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                ))}
+            </div>
+          </div>
+
+           {/* invoice tags */}
+           <div>
+            <div className='flex flex-wrap items-center -m-1 max-w-2xl'>
+              {sideBarFormState.selectedInvoiceTags &&
+                sideBarFormState.selectedInvoiceTags.map((invoice) => (
+                  <div className='m-1' key={invoice}>
+                    <a
+                      className='text-xs hover:scale-110  hover:bg-red-100 hover:text-red-600 inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1'
+                      href='#'
+                    >
+                      (invoice){invoice}
+                      <svg
+                        className='h-2 w-2 ml-2 mt-1 text-sm hover:cursor-pointer'
+                        stroke='currentColor'
+                        fill='none'
+                        viewBox='0 0 8 8'
+                        onClick={(e) => handleInvoiceTagDelete(e, invoice)}
+                      >
+                        <path
+                          strokeLinecap='round'
+                          strokeWidth='1.5'
+                          d='M1 1l6 6m0-6L1 7'
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                ))}
+            </div>
+          </div>
+
           {/* Sort */}
           {/* <HeroesSortForm
             heroes={displayedHeroes}
             setDisplayedHeroes={setDisplayedHeroes}
           /> */}
-          
+
         </div>
         <HeroesList heroes={displayedHeroes} />
       </div>

@@ -73,6 +73,27 @@ export const tattooReducer = (parsedTags) => {
 	return tattoo;
 };
 
+// scarReducer
+export const scarsReducer = (parsedTags) => {
+	const scarsTags = parsedTags.filter((tag) => tag.includes('scars.'));
+	const scars = scarsTags.map((scarsTag) => scarsTag.replace('scars.', ''));
+	return scars;
+};
+
+// sexReducer
+export const sexReducer = (parsedTags) => {
+	const sexTags = parsedTags.filter((tag) => tag.includes('sex.'));
+	const sex = sexTags.map((sexTag) => sexTag.replace('sex.', ''));
+	return sex;
+};
+
+// invoiceReducer
+export const invoiceReducer = (parsedTags) => {
+	const invoiceTags = parsedTags.filter((tag) => tag.includes('invoice.'));
+	const invoice = invoiceTags.map((invoiceTag) => invoiceTag.replace('invoice.', ''));
+	return invoice;
+};
+
 export const heroReducer = (rawHero, parseRelatedHeroes = true) => {
 	let hero = { ...rawHero.fields };
 
@@ -89,6 +110,9 @@ export const heroReducer = (rawHero, parseRelatedHeroes = true) => {
 	hero.hair = hairReducer(hero.tags);
 	hero.eye = eyeReducer(hero.tags);
 	hero.tattoo = tattooReducer(hero.tags);
+	hero.scars = scarsReducer(hero.tags);
+	hero.sex = sexReducer(hero.tags);
+	hero.invoice = invoiceReducer(hero.tags);
 	hero.foto = imageReducer(rawHero.fields.foto);
 
 	const relatedHeroes = rawHero.fields.relatedHeroes || [];

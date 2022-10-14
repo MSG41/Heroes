@@ -7,11 +7,11 @@ const HeroCard = ({ hero }) => {
 		<div
 			className={`shadow-lg rounded-sm border px-5 py-4 ${hero.featuredHero
 				? 'bg-amber-50 border-amber-300'
-				: 'bg-white border-slate-200'}`}
+				: 'bg-white border-slate-200'} max-h-[200px] overflow-auto`}
 		>
-			<div className="md:flex justify-between items-center space-y-4 md:space-y-0 space-x-2">
+			<div className="md:flex justify-between items-center space-y-4 md:space-y-0 space-x-2 ">
 				{/* Left side */}
-				<div className="flex items-start space-x-3 md:space-x-4">
+				<div className="flex items-start space-x-3 md:space-x-8 ">
 					<div className="object- w-[150px]	 h-[250px]   ">
 						<Image
 							className="w-9 h-9 rounded-full "
@@ -23,7 +23,7 @@ const HeroCard = ({ hero }) => {
 					</div>
 					<div>
 						<Link href={`/heroes/${hero.slug}`}>
-							<a className="inline-flex font-semibold text-slate-800" href={`/heroes/${hero.slug}`}>
+							<a className="inline-flex font-semibold text-slate-1200 text-[24px]" href={`/heroes/${hero.slug}`}>
 								{hero.heroName}
 							</a>
 						</Link>
@@ -34,7 +34,7 @@ const HeroCard = ({ hero }) => {
 						</div>
 						{/* space between */}
 
-						<div>
+						<div className="text-[14px] font-semibold text-slate-800">
 							{' '}
 							Skills:
 							<div className="flex flex-wrap items-center -m-1">
@@ -58,7 +58,7 @@ const HeroCard = ({ hero }) => {
 						</div>
 						{/* space between */}
 
-						<div>
+						<div className="text-[14px] font-semibold text-slate-800">
 							{' '}
 							Hair Color:
 							<div className="flex flex-wrap items-center -m-1">
@@ -82,7 +82,7 @@ const HeroCard = ({ hero }) => {
 						</div>
 						{/* space between */}
 
-						<div>
+						<div className="text-[14px] font-semibold text-slate-800">
 							{' '}
 							Eye Color:
 							<div className="flex flex-wrap items-center -m-1">
@@ -106,7 +106,7 @@ const HeroCard = ({ hero }) => {
 						</div>
 						{/* space between */}
 
-						<div>
+						<div className="text-[14px] font-semibold text-slate-800">
 							{' '}
 							Tattoo:
 							<div className="flex flex-wrap items-center -m-1">
@@ -130,7 +130,79 @@ const HeroCard = ({ hero }) => {
 						</div>
 						{/* space between */}
 
+						<div className="text-[14px] font-semibold text-slate-800">
+							{' '}
+							Scars:
+							<div className="flex flex-wrap items-center -m-1">
+								{hero.scars &&
+									hero.scars.map((scars) => (
+										<div className="m-1" key={scars}>
+											<a
+												className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+												href="#"
+											>
+												{scars}
+											</a>
+										</div>
+									))}
+							</div>
+						</div>
+
+						{/* space between */}
 						<div>
+							<br />
+						</div>
+						{/* space between */}
+
+						<div className="text-[14px] font-semibold text-slate-800">
+							{' '}
+							Sex:
+							<div className="flex flex-wrap items-center -m-1">
+								{hero.sex &&
+									hero.sex.map((sex) => (
+										<div className="m-1" key={sex}>
+											<a
+												className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+												href="#"
+											>
+												{sex}
+											</a>
+										</div>
+									))}
+							</div>
+						</div>
+
+						{/* space between */}
+						<div>
+							<br />
+						</div>
+						{/* space between */}
+
+						<div className="text-[14px] font-semibold text-slate-800">
+							{' '}
+							Invoice:
+							<div className="flex flex-wrap items-center -m-1">
+								{hero.invoice &&
+									hero.invoice.map((invoice) => (
+										<div className="m-1" key={invoice}>
+											<a
+												className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+												href="#"
+											>
+												{invoice}
+											</a>
+										</div>
+									))}
+							</div>
+						</div>
+
+						{/* space between */}
+						<div>
+							<br />
+						</div>
+						{/* space between */}
+
+						<div className="text-[14px] font-semibold text-slate-800">
 							Socials:
 							<div className="text-[#fac805]	 text-slate-500 ">
 								<a href={hero.socials}>{hero.socials}</a>

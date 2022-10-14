@@ -4,6 +4,11 @@ import TagsFilterForm from './TagsFilterForm';
 import TagsFilterHairForm from './TagsFilterHairForm';
 import TagsFilterEyeForm from './TagsFilterEyeForm';
 import TagsFilterTattooForm from './TagsFilterTattooForm';
+import TagsFilterScarsForm from './TagsFilterScarsForm';
+import TagsFilterSexForm from './TagsFilterSexForm';
+import TagsFilterInvoiceForm from './TagsFilterInvoiceForm';
+
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -14,6 +19,9 @@ function HeroesPageSideBarForm({
   heroHair,
   heroEye,
   heroTattoo,
+  heroScars,
+  heroSex,
+  heroInvoice,
   sideBarFormState,
   setSideBarFormState,
   setDisplayedHeroes,
@@ -175,6 +183,30 @@ function HeroesPageSideBarForm({
            <TagsFilterTattooForm
             heroTattoo={heroTattoo}
             selectedTattooTags={sideBarFormState.selectedTattooTags}
+            setSideBarFormState={setSideBarFormState}
+          />
+
+           {/* FilterScarForm */}
+
+           <TagsFilterScarsForm
+            heroScars={heroScars}
+            selectedScarsTags={sideBarFormState.selectedScarsTags}
+            setSideBarFormState={setSideBarFormState}
+          />
+
+           {/* FilterSexForm */}
+
+           <TagsFilterSexForm
+            heroSex={heroSex}
+            selectedSexTags={sideBarFormState.selectedSexTags}
+            setSideBarFormState={setSideBarFormState}
+          />
+
+           {/* FilterInvoiceForm */}
+
+           <TagsFilterInvoiceForm
+            heroInvoice={heroInvoice}
+            selectedInvoiceTags={sideBarFormState.selectedInvoiceTags}
             setSideBarFormState={setSideBarFormState}
           />
 

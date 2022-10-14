@@ -3,7 +3,7 @@ import HeroCard from '../cards/HeroCard';
 
 const HeroesList = ({ heroes }) => {
   return (
-    <div>
+    <div >
       {heroes.map((hero) => (
         <HeroCard hero={hero} key={hero.id} />
       ))}
