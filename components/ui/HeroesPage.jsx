@@ -5,7 +5,7 @@ import SearchHeroForm from '../forms/SearchHeroForm';
 import HeroesPageSideBarForm from '../forms/HeroesPageSideBarForm';
 import HeroesSortForm from '../forms/HeroesSortForm';
 
-export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye }) {
+export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, heroTattoo }) {
   const [displayedHeroes, setDisplayedHeroes] = useState(heroes);
 
   const [sideBarFormState, setSideBarFormState] = useState({
@@ -18,6 +18,7 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye }) {
     selectedTags: [],
     selectedHairTags: [],
     selectedEyeTags: [],
+    selectedTattooTags: [],
   });
 
   const [searchFormState, setSearchFormState] = useState('');
@@ -98,7 +99,7 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye }) {
     });
   };
 
-  // hairTag delete 
+  // eyeTag delete 
   const handleEyeTagDelete = (e, eyeTag) => {
     e.preventDefault();
     setSideBarFormState((prevState) => {
@@ -109,12 +110,24 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye }) {
     });
   };
 
+  // tattooTag delete 
+  const handleTattooTagDelete = (e, tattooTag) => {
+    e.preventDefault();
+    setSideBarFormState((prevState) => {
+      return {
+        ...prevState,
+        selectedTattooTags: prevState.selectedTattooTags.filter((tag) => tattooTag != tag),
+      };
+    });
+  };
+
   return (
     <div className='flex flex-col space-y-10 sm:flex-row sm:space-x-6 sm:space-y-0 md:flex-col md:space-x-0 md:space-y-10 xl:flex-row xl:space-x-6 xl:space-y-0 mt-9'>
       <HeroesPageSideBarForm
         heroSkills={heroSkills}
         heroHair={heroHair}
         heroEye={heroEye}
+        heroTattoo={heroTattoo}
         sideBarFormState={sideBarFormState}
         setSideBarFormState={setSideBarFormState}
         setdisplayedHeroes={setDisplayedHeroes}
@@ -192,7 +205,7 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye }) {
             </div>
           </div>
 
-          {/* hair tags */}
+          {/* eye tags */}
           <div>
             <div className='flex flex-wrap items-center -m-1 max-w-2xl'>
               {sideBarFormState.selectedEyeTags &&
@@ -222,11 +235,42 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye }) {
             </div>
           </div>
 
+          {/* tattoo tags */}
+          <div>
+            <div className='flex flex-wrap items-center -m-1 max-w-2xl'>
+              {sideBarFormState.selectedTattooTags &&
+                sideBarFormState.selectedTattooTags.map((tattoo) => (
+                  <div className='m-1' key={tattoo}>
+                    <a
+                      className='text-xs hover:scale-110  hover:bg-red-100 hover:text-red-600 inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1'
+                      href='#'
+                    >
+                      (tattoo){tattoo}
+                      <svg
+                        className='h-2 w-2 ml-2 mt-1 text-sm hover:cursor-pointer'
+                        stroke='currentColor'
+                        fill='none'
+                        viewBox='0 0 8 8'
+                        onClick={(e) => handleTattooTagDelete(e, tattoo)}
+                      >
+                        <path
+                          strokeLinecap='round'
+                          strokeWidth='1.5'
+                          d='M1 1l6 6m0-6L1 7'
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                ))}
+            </div>
+          </div>
+
           {/* Sort */}
-          <HeroesSortForm
+          {/* <HeroesSortForm
             heroes={displayedHeroes}
             setDisplayedHeroes={setDisplayedHeroes}
-          />
+          /> */}
+          
         </div>
         <HeroesList heroes={displayedHeroes} />
       </div>

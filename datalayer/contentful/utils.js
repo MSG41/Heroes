@@ -66,6 +66,13 @@ export const eyeReducer = (parsedTags) => {
 	return eye;
 };
 
+// tattooReducer
+export const tattooReducer = (parsedTags) => {
+	const tattooTags = parsedTags.filter((tag) => tag.includes('tattoo.'));
+	const tattoo = tattooTags.map((tattooTag) => tattooTag.replace('tattoo.', ''));
+	return tattoo;
+};
+
 export const heroReducer = (rawHero, parseRelatedHeroes = true) => {
 	let hero = { ...rawHero.fields };
 
@@ -81,6 +88,7 @@ export const heroReducer = (rawHero, parseRelatedHeroes = true) => {
 	hero.skills = skillsReducer(hero.tags);
 	hero.hair = hairReducer(hero.tags);
 	hero.eye = eyeReducer(hero.tags);
+	hero.tattoo = tattooReducer(hero.tags);
 	hero.foto = imageReducer(rawHero.fields.foto);
 
 	const relatedHeroes = rawHero.fields.relatedHeroes || [];

@@ -42,7 +42,7 @@ export default function TagsFilterHairForm({
       as='div'
       key={filterhair.name}
       id='desktop-menu'
-      className='relative z-[10] inline-block text-left'
+      className='relative z-[14] inline-block text-left'
 
     >
       <div>

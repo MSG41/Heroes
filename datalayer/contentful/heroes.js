@@ -1,5 +1,5 @@
 import { client } from './client';
-import { heroReducer, skillsReducer, tagsReducer, hairReducer, eyeReducer } from './utils';
+import { heroReducer, skillsReducer, tagsReducer, hairReducer, eyeReducer, tattooReducer } from './utils';
 
 export const getHeroes = async () => {
   const res = await client.getEntries({ content_type: 'heroes' });
@@ -39,6 +39,16 @@ export const getHeroesEye = async () => {
   const tags = tagsReducer(rawTags);
   const eye = eyeReducer(tags);
   return eye;
+};
+
+//  Get Hero Tattoo
+export const getHeroesTattoo = async () => {
+  const res = await client.getTags();
+  const rawTags = res.items;
+
+  const tags = tagsReducer(rawTags);
+  const tattoo = tattooReducer(tags);
+  return tattoo;
 };
 
 
@@ -113,10 +123,15 @@ export const searchHeroes = async (query) => {
   if (selectedHairTags.length)
     contentFullQuery['metadata.tags.sys.id[in]'] = selectedHairTags.join(',');
 
-  // we first parse the eye tags back to their contentful-specific version with the "hair." prefix
+  // we first parse the eye tags back to their contentful-specific version with the "eye." prefix
   const selectedEyeTags = query.selectedEyeTags.map((tag) => `eye.${tag}`);
   if (selectedEyeTags.length)
     contentFullQuery['metadata.tags.sys.id[in]'] = selectedEyeTags.join(',');
+
+     // we first parse the eye tags back to their contentful-specific version with the "tattoo." prefix
+  const selectedTattooTags = query.selectedTattooTags.map((tag) => `tattoo.${tag}`);
+  if (selectedTattooTags.length)
+    contentFullQuery['metadata.tags.sys.id[in]'] = selectedTattooTags.join(',');
 
   // Add Full Text Search Query
   if (query.searchBarText) {

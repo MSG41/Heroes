@@ -3,6 +3,7 @@ import { Switch } from '@headlessui/react';
 import TagsFilterForm from './TagsFilterForm';
 import TagsFilterHairForm from './TagsFilterHairForm';
 import TagsFilterEyeForm from './TagsFilterEyeForm';
+import TagsFilterTattooForm from './TagsFilterTattooForm';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -12,6 +13,7 @@ function HeroesPageSideBarForm({
   heroSkills,
   heroHair,
   heroEye,
+  heroTattoo,
   sideBarFormState,
   setSideBarFormState,
   setDisplayedHeroes,
@@ -168,8 +170,16 @@ function HeroesPageSideBarForm({
             setSideBarFormState={setSideBarFormState}
           />
 
+           {/* FilterTattooForm */}
+
+           <TagsFilterTattooForm
+            heroTattoo={heroTattoo}
+            selectedTattooTags={sideBarFormState.selectedTattooTags}
+            setSideBarFormState={setSideBarFormState}
+          />
+
           {/* Group 1 */}
-          <Switch.Group as='div' className='flex items-center'>
+          {/* <Switch.Group as='div' className='flex items-center'>
             <Switch
               checked={sideBarFormState.remoteOkOnly}
               onChange={handleRemoteOkChange}
@@ -193,10 +203,10 @@ function HeroesPageSideBarForm({
                 Remote Ok Only
               </span>
             </Switch.Label>
-          </Switch.Group>
+          </Switch.Group> */}
 
           {/* Group 2 */}
-          <Switch.Group as='div' className='flex items-center'>
+          {/* <Switch.Group as='div' className='flex items-center'>
             <Switch
               checked={sideBarFormState.featuredHeroesOnly}
               onChange={handleFeaturedHeroesOnlyChange}
@@ -222,10 +232,10 @@ function HeroesPageSideBarForm({
                 Featured Heroes Only
               </span>
             </Switch.Label>
-          </Switch.Group>
+          </Switch.Group> */}
 
           {/* Group 3 */}
-          <div>
+          {/* <div>
             <div className='text-sm text-slate-800 font-semibold mb-3'>
               Hero Types
             </div>
@@ -250,10 +260,10 @@ function HeroesPageSideBarForm({
                 );
               })}
             </ul>
-          </div>
+          </div> */}
 
           {/* Group 4 */}
-          <div>
+          {/* <div>
             <div className='text-sm text-slate-800 font-semibold mb-3'>
               Experience Level
             </div>
@@ -280,10 +290,10 @@ function HeroesPageSideBarForm({
                 );
               })}
             </ul>
-          </div>
+          </div> */}
 
           {/* Group 5 */}
-          <div>
+          {/* <div>
             <div className='text-sm text-slate-800 font-semibold mb-3'>
               Pay Range
             </div>
@@ -314,9 +324,15 @@ function HeroesPageSideBarForm({
                 );
               })}
             </ul>
-          </div>
+          </div> */}
         </div>
       </div>
+
+
+
+
+
+
       {/* Alert */}
       {/* <div className='relative bg-indigo-200 rounded-sm p-5 min-w-60'>
         <div className='absolute bottom-0 -mb-3'>

@@ -42,7 +42,7 @@ export default function TagsFilterForm({
       as='div'
       key={filter.name}
       id='desktop-menu'
-      className='relative z-[11] inline-block text-left'
+      className='relative z-[15] inline-block text-left'
 
     >
       <div>

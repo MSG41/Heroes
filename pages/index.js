@@ -1,9 +1,9 @@
 import { getHeroes } from '../datalayer';
 import HeroesPage from '../components/ui/HeroesPage';
-import { getHeroesSkills, getHeroesHair, getHeroesEye } from '../datalayer/contentful/heroes';
+import { getHeroesSkills, getHeroesHair, getHeroesEye, getHeroesTattoo } from '../datalayer/contentful/heroes';
 
-export default function Index({ heroes, heroSkills, heroHair, heroEye }) {
-  return <HeroesPage heroes={heroes} heroSkills={heroSkills} heroHair={heroHair} heroEye={heroEye} />;
+export default function Index({ heroes, heroSkills, heroHair, heroEye, heroTattoo }) {
+  return <HeroesPage heroes={heroes} heroSkills={heroSkills} heroHair={heroHair} heroEye={heroEye} heroTattoo={heroTattoo} />;
 }
 
 export const getStaticProps = async (ctx) => {
@@ -11,6 +11,7 @@ export const getStaticProps = async (ctx) => {
   const heroSkills = await getHeroesSkills();
   const heroHair = await getHeroesHair();
   const heroEye = await getHeroesEye();
+  const heroTattoo = await getHeroesTattoo();
 
   return {
     props: {
@@ -18,6 +19,7 @@ export const getStaticProps = async (ctx) => {
       heroSkills,
       heroHair,
       heroEye,
+      heroTattoo,
     },
     revalidate: 5,
   };
