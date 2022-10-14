@@ -15,7 +15,7 @@ const profile = {
   message:
     "Please use this search engine to find your hero :)",
   callToActionURL: 'tel:+31207371018',
-  callToActionMessage: 'Call me if you can\'t find your hero',
+  callToActionMessage: 'Call me if you can\'t find your hero.',
   profileImage: LaurentAvatar,
   coverImage: TiaBanner,
 };

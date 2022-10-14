@@ -7,7 +7,11 @@ const HeroCard = ({ hero }) => {
 		<div
 			className={`shadow-lg rounded-sm border px-5 py-4 ${hero.featuredHero
 				? 'bg-amber-50 border-amber-300'
-				: 'bg-white border-slate-200'} max-h-[200px] overflow-auto`}
+				: 'bg-white border-slate-200'} 
+				
+				max-h-[350px] overflow-auto
+				
+				`}
 		>
 			<div className="md:flex justify-between items-center space-y-4 md:space-y-0 space-x-2 ">
 				{/* Left side */}
@@ -190,6 +194,30 @@ const HeroCard = ({ hero }) => {
 												href="#"
 											>
 												{invoice}
+											</a>
+										</div>
+									))}
+							</div>
+						</div>
+
+						{/* space between */}
+						<div>
+							<br />
+						</div>
+						{/* space between */}
+
+						<div className="text-[14px] font-semibold text-slate-800">
+							{' '}
+							Drive:
+							<div className="flex flex-wrap items-center -m-1">
+								{hero.drive &&
+									hero.drive.map((drive) => (
+										<div className="m-1" key={drive}>
+											<a
+												className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+												href="#"
+											>
+												{drive}
 											</a>
 										</div>
 									))}

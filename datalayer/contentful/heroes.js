@@ -1,5 +1,5 @@
 import { client } from './client';
-import { heroReducer, skillsReducer, tagsReducer, hairReducer, eyeReducer, tattooReducer, scarsReducer, sexReducer, invoiceReducer } from './utils';
+import { heroReducer, skillsReducer, tagsReducer, hairReducer, eyeReducer, tattooReducer, scarsReducer, sexReducer, invoiceReducer, driveReducer } from './utils';
 
 export const getHeroes = async () => {
   const res = await client.getEntries({ content_type: 'heroes' });
@@ -79,6 +79,16 @@ export const getHeroesInvoice = async () => {
   const tags = tagsReducer(rawTags);
   const invoice = invoiceReducer(tags);
   return invoice;
+};
+
+//  Get Hero Drive
+export const getHeroesDrive = async () => {
+  const res = await client.getTags();
+  const rawTags = res.items;
+
+  const tags = tagsReducer(rawTags);
+  const drive = driveReducer(tags);
+  return drive;
 };
 
 
@@ -177,6 +187,11 @@ export const searchHeroes = async (query) => {
   const selectedInvoiceTags = query.selectedInvoiceTags.map((tag) => `invoice.${tag}`);
   if (selectedInvoiceTags.length)
     contentFullQuery['metadata.tags.sys.id[in]'] = selectedInvoiceTags.join(',');
+
+    // we first parse the eye tags back to their contentful-specific version with the "drive." prefix
+  const selectedDriveTags = query.selectedDriveTags.map((tag) => `drive.${tag}`);
+  if (selectedDriveTags.length)
+    contentFullQuery['metadata.tags.sys.id[in]'] = selectedDriveTags.join(',');
 
   // Add Full Text Search Query
   if (query.searchBarText) {

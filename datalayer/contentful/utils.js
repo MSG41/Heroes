@@ -94,6 +94,13 @@ export const invoiceReducer = (parsedTags) => {
 	return invoice;
 };
 
+// driveReducer
+export const driveReducer = (parsedTags) => {
+	const driveTags = parsedTags.filter((tag) => tag.includes('drive.'));
+	const drive = driveTags.map((driveTag) => driveTag.replace('drive.', ''));
+	return drive;
+};
+
 export const heroReducer = (rawHero, parseRelatedHeroes = true) => {
 	let hero = { ...rawHero.fields };
 
@@ -113,6 +120,7 @@ export const heroReducer = (rawHero, parseRelatedHeroes = true) => {
 	hero.scars = scarsReducer(hero.tags);
 	hero.sex = sexReducer(hero.tags);
 	hero.invoice = invoiceReducer(hero.tags);
+	hero.drive = driveReducer(hero.tags);
 	hero.foto = imageReducer(rawHero.fields.foto);
 
 	const relatedHeroes = rawHero.fields.relatedHeroes || [];

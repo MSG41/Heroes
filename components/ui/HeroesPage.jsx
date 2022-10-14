@@ -5,7 +5,7 @@ import SearchHeroForm from '../forms/SearchHeroForm';
 import HeroesPageSideBarForm from '../forms/HeroesPageSideBarForm';
 import HeroesSortForm from '../forms/HeroesSortForm';
 
-export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, heroTattoo, heroScars, heroSex, heroInvoice }) {
+export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, heroTattoo, heroScars, heroSex, heroInvoice, heroDrive }) {
   const [displayedHeroes, setDisplayedHeroes] = useState(heroes);
 
   const [sideBarFormState, setSideBarFormState] = useState({
@@ -22,6 +22,7 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
     selectedScarsTags: [],
     selectedSexTags: [],
     selectedInvoiceTags: [],
+    selectedDriveTags: [],
   });
 
   const [searchFormState, setSearchFormState] = useState('');
@@ -157,6 +158,17 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
     });
   };
 
+   // driveTag delete 
+   const handleDriveTagDelete = (e, driveTag) => {
+    e.preventDefault();
+    setSideBarFormState((prevState) => {
+      return {
+        ...prevState,
+        selectedDriveTags: prevState.selectedDriveTags.filter((tag) => driveTag != tag),
+      };
+    });
+  };
+
   return (
     <div className='flex flex-col space-y-10 sm:flex-row sm:space-x-6 sm:space-y-0 md:flex-col md:space-x-0 md:space-y-10 xl:flex-row xl:space-x-6 xl:space-y-0 mt-9'>
       <HeroesPageSideBarForm
@@ -167,11 +179,12 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
         heroScars ={heroScars}
         heroSex ={heroSex}
         heroInvoice ={heroInvoice}
+        heroDrive={heroDrive}
         sideBarFormState={sideBarFormState}
         setSideBarFormState={setSideBarFormState}
         setdisplayedHeroes={setDisplayedHeroes}
       />
-      <div className='w-[850px] '>
+      <div className='w-[935px] '>
         <SearchHeroForm
           searchFormState={searchFormState}
           setSearchFormState={setSearchFormState}
@@ -381,6 +394,36 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
                         fill='none'
                         viewBox='0 0 8 8'
                         onClick={(e) => handleInvoiceTagDelete(e, invoice)}
+                      >
+                        <path
+                          strokeLinecap='round'
+                          strokeWidth='1.5'
+                          d='M1 1l6 6m0-6L1 7'
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                ))}
+            </div>
+          </div>
+
+          {/* drive tags */}
+          <div>
+            <div className='flex flex-wrap items-center -m-1 max-w-2xl'>
+              {sideBarFormState.selectedDriveTags &&
+                sideBarFormState.selectedDriveTags.map((drive) => (
+                  <div className='m-1' key={drive}>
+                    <a
+                      className='text-xs hover:scale-110  hover:bg-red-100 hover:text-red-600 inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1'
+                      href='#'
+                    >
+                      (drive){drive}
+                      <svg
+                        className='h-2 w-2 ml-2 mt-1 text-sm hover:cursor-pointer'
+                        stroke='currentColor'
+                        fill='none'
+                        viewBox='0 0 8 8'
+                        onClick={(e) => handleDriveTagDelete(e, drive)}
                       >
                         <path
                           strokeLinecap='round'

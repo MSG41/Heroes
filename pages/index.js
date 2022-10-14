@@ -1,9 +1,9 @@
 import { getHeroes } from '../datalayer';
 import HeroesPage from '../components/ui/HeroesPage';
-import { getHeroesSkills, getHeroesHair, getHeroesEye, getHeroesTattoo, getHeroesScars, getHeroesSex, getHeroesInvoice } from '../datalayer/contentful/heroes';
+import { getHeroesSkills, getHeroesHair, getHeroesEye, getHeroesTattoo, getHeroesScars, getHeroesSex, getHeroesInvoice, getHeroesDrive } from '../datalayer/contentful/heroes';
 
-export default function Index({ heroes, heroSkills, heroHair, heroEye, heroTattoo, heroScars, heroSex, heroInvoice }) {
-  return <HeroesPage heroes={heroes} heroSkills={heroSkills} heroHair={heroHair} heroEye={heroEye} heroTattoo={heroTattoo} heroScars={heroScars} heroSex={heroSex} heroInvoice={heroInvoice} />;
+export default function Index({ heroes, heroSkills, heroHair, heroEye, heroTattoo, heroScars, heroSex, heroInvoice, heroDrive }) {
+  return <HeroesPage heroes={heroes} heroSkills={heroSkills} heroHair={heroHair} heroEye={heroEye} heroTattoo={heroTattoo} heroScars={heroScars} heroSex={heroSex} heroInvoice={heroInvoice} heroDrive={heroDrive} />;
 }
 
 export const getStaticProps = async (ctx) => {
@@ -15,6 +15,7 @@ export const getStaticProps = async (ctx) => {
   const heroScars = await getHeroesScars();
   const heroSex = await getHeroesSex();
   const heroInvoice = await getHeroesInvoice();
+  const heroDrive = await getHeroesDrive();
 
   return {
     props: {
@@ -26,7 +27,8 @@ export const getStaticProps = async (ctx) => {
       heroScars,
       heroSex,
       heroInvoice,
+      heroDrive,
     },
-    revalidate: 5,
+    revalidate: 9,
   };
 };

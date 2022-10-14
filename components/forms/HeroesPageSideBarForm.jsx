@@ -7,6 +7,7 @@ import TagsFilterTattooForm from './TagsFilterTattooForm';
 import TagsFilterScarsForm from './TagsFilterScarsForm';
 import TagsFilterSexForm from './TagsFilterSexForm';
 import TagsFilterInvoiceForm from './TagsFilterInvoiceForm';
+import TagsFilterDriveForm from './TagsFilterDriveForm';
 
 
 
@@ -22,6 +23,7 @@ function HeroesPageSideBarForm({
   heroScars,
   heroSex,
   heroInvoice,
+  heroDrive,
   sideBarFormState,
   setSideBarFormState,
   setDisplayedHeroes,
@@ -154,7 +156,7 @@ function HeroesPageSideBarForm({
     <div className='space-y-8'>
       {/* White box */}
       <div className='bg-white shadow-lg rounded-sm border border-slate-200 p-5'>
-        <div className='grid md:grid-cols-2 xl:grid-cols-1 gap-6'>
+        <div className='grid md:grid-cols-2 xl:grid-cols-1 gap-7'>
           {/* Group 0*/}
           <TagsFilterForm
             heroSkills={heroSkills}
@@ -207,6 +209,14 @@ function HeroesPageSideBarForm({
            <TagsFilterInvoiceForm
             heroInvoice={heroInvoice}
             selectedInvoiceTags={sideBarFormState.selectedInvoiceTags}
+            setSideBarFormState={setSideBarFormState}
+          />
+
+           {/* FilterDriveForm */}
+
+           <TagsFilterDriveForm
+            heroDrive={heroDrive}
+            selectedDriveTags={sideBarFormState.selectedDriveTags}
             setSideBarFormState={setSideBarFormState}
           />
 
