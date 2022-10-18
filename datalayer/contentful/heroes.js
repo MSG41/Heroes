@@ -218,13 +218,22 @@ export const searchHeroes = async (query) => {
     return false;
   });
 
-  filteredHeroes = filteredHeroes.filter((hero) => {
-    if (query.heroTypes.length == 0) return true;
-    if (query.heroTypes.includes(hero.heroType)) return true;
-    return false;
-  });
+//   filteredHeroes = filteredHeroes.filter((hero) => {
+//     if (query.heroTypes.length == 0) return true;
+//     if (query.heroTypes.includes(hero.heroType)) return true;
+//     return false;
+//   });
 
-  return filteredHeroes;
+//   return filteredHeroes;
+// };
+
+filteredHeroes = filteredHeroes.filter((hero) => {
+  if (query.heroGenders.length == 0) return true;
+  if (query.heroGenders.includes(hero.gender)) return true;
+  return false;
+});
+
+return filteredHeroes;
 };
 
 export const searchCompaniesButReturnHeroes = async (searchBarText) => {

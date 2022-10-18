@@ -5,11 +5,12 @@ const HeroCard = ({ hero }) => {
 	//console.log(hero);
 	return (
 		<div
+		// max-h-[350px] overflow-auto
 			className={`shadow-lg rounded-sm border px-5 py-4 ${hero.featuredHero
 				? 'bg-amber-50 border-amber-300'
 				: 'bg-white border-slate-200'} 
 				
-				max-h-[350px] overflow-auto
+				
 				
 				`}
 		>

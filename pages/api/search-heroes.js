@@ -21,6 +21,10 @@ export default async function handler(req, res) {
     capitalizeFirstLetter(heroType)
   );
 
+  const heroGenders = sideBarFormState.heroGenders.map((gender) =>
+  capitalizeFirstLetter(gender)
+);
+
   const experienceLevels = sideBarFormState.experienceLevels.map(
     (experienceLevel) => capitalizeFirstLetter(experienceLevel)
   );
@@ -31,6 +35,7 @@ export default async function handler(req, res) {
     minBaseSalary,
     maxBaseSalary,
     heroTypes,
+    heroGenders,
     experienceLevels,
   };
 

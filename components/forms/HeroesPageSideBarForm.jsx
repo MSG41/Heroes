@@ -35,47 +35,52 @@ function HeroesPageSideBarForm({
     { value: 'contract', display: 'Contract' },
   ];
 
-  const experienceLevelsOptions = [
-    { value: 'junior', display: 'Junior' },
-    { value: 'medior', display: 'Medior' },
-    { value: 'senior', display: 'Senior' },
-    { value: 'tech-lead', display: 'Tech Lead' },
+  const heroGendersOptions = [
+    { value: 'female', display: 'Female' },
+    { value: 'male', display: 'Male' },
   ];
 
-  const baseSalaryRangesOptions = [
-    { value: '<20K', display: '< £20K', bounds: { min: 0, max: 20000 } },
-    {
-      value: '20K-50K',
-      display: '£20K - £50K',
-      bounds: { min: 20001, max: 50000 },
-    },
-    {
-      value: '50K-100K',
-      display: '£50K - £100K',
-      bounds: { min: 50001, max: 100000 },
-    },
-    {
-      value: '> 100K',
-      display: '> £100K',
-      bounds: { min: 100001, max: 1000000 },
-    },
-  ];
+  // const experienceLevelsOptions = [
+  //   { value: 'junior', display: 'Junior' },
+  //   { value: 'medior', display: 'Medior' },
+  //   { value: 'senior', display: 'Senior' },
+  //   { value: 'tech-lead', display: 'Tech Lead' },
+  // ];
 
-  const handleRemoteOkChange = (checked) => {
-    console.log(checked);
-    //TODO: send request and filter jobs
-    setSideBarFormState((prevState) => {
-      return { ...prevState, remoteOkOnly: !prevState.remoteOkOnly };
-    });
-  };
+  // const baseSalaryRangesOptions = [
+  //   { value: '<20K', display: '< £20K', bounds: { min: 0, max: 20000 } },
+  //   {
+  //     value: '20K-50K',
+  //     display: '£20K - £50K',
+  //     bounds: { min: 20001, max: 50000 },
+  //   },
+  //   {
+  //     value: '50K-100K',
+  //     display: '£50K - £100K',
+  //     bounds: { min: 50001, max: 100000 },
+  //   },
+  //   {
+  //     value: '> 100K',
+  //     display: '> £100K',
+  //     bounds: { min: 100001, max: 1000000 },
+  //   },
+  // ];
 
-  const handleFeaturedHeroesOnlyChange = (checked) => {
-    console.log(checked);
-    //TODO: send request and filter jobs
-    setSideBarFormState((prevState) => {
-      return { ...prevState, featuredHeroesOnly: !prevState.featuredHeroesOnly };
-    });
-  };
+  // const handleRemoteOkChange = (checked) => {
+  //   console.log(checked);
+  //   //TODO: send request and filter jobs
+  //   setSideBarFormState((prevState) => {
+  //     return { ...prevState, remoteOkOnly: !prevState.remoteOkOnly };
+  //   });
+  // };
+
+  // const handleFeaturedHeroesOnlyChange = (checked) => {
+  //   console.log(checked);
+  //   //TODO: send request and filter jobs
+  //   setSideBarFormState((prevState) => {
+  //     return { ...prevState, featuredHeroesOnly: !prevState.featuredHeroesOnly };
+  //   });
+  // };
 
   const handleHeroTypeSelect = (e, option) => {
     console.log(e.target.checked, option);
@@ -95,62 +100,82 @@ function HeroesPageSideBarForm({
     }
   };
 
-  const handleExperienceLevelsSelect = (e, option) => {
+  // hero gender types 
+
+  const handleHeroGenderSelect = (e, option) => {
     console.log(e.target.checked, option);
     if (e.target.checked) {
       setSideBarFormState((prevState) => {
-        const experienceLevels = [...prevState.experienceLevels];
-        experienceLevels.push(option);
-        return { ...prevState, experienceLevels };
+        const heroGenders = [...prevState.heroGenders];
+        heroGenders.push(option);
+        return { ...prevState, heroGenders };
       });
     } else {
       setSideBarFormState((prevState) => {
         return {
           ...prevState,
-          experienceLevels: prevState.experienceLevels.filter(
-            (experienceLevel) => option != experienceLevel
-          ),
+          heroGenders: prevState.heroGenders.filter((gender) => option != gender),
         };
       });
     }
   };
 
-  const handleBaseSalaryRangesSelect = (e, option, bounds) => {
-    console.log(e.target.checked, option, bounds);
-    if (e.target.checked) {
-      setSideBarFormState((prevState) => {
-        const baseSalaryOptions = [...prevState.baseSalaryOptions];
-        baseSalaryOptions.push(option);
+  // const handleExperienceLevelsSelect = (e, option) => {
+  //   console.log(e.target.checked, option);
+  //   if (e.target.checked) {
+  //     setSideBarFormState((prevState) => {
+  //       const experienceLevels = [...prevState.experienceLevels];
+  //       experienceLevels.push(option);
+  //       return { ...prevState, experienceLevels };
+  //     });
+  //   } else {
+  //     setSideBarFormState((prevState) => {
+  //       return {
+  //         ...prevState,
+  //         experienceLevels: prevState.experienceLevels.filter(
+  //           (experienceLevel) => option != experienceLevel
+  //         ),
+  //       };
+  //     });
+  //   }
+  // };
 
-        const baseSalaryBounds = [...prevState.baseSalaryBounds];
-        baseSalaryBounds.push(bounds.min);
-        baseSalaryBounds.push(bounds.max);
+  // const handleBaseSalaryRangesSelect = (e, option, bounds) => {
+  //   console.log(e.target.checked, option, bounds);
+  //   if (e.target.checked) {
+  //     setSideBarFormState((prevState) => {
+  //       const baseSalaryOptions = [...prevState.baseSalaryOptions];
+  //       baseSalaryOptions.push(option);
 
-        const newFormState = {
-          ...prevState,
-          baseSalaryOptions,
-          baseSalaryBounds,
-        };
-        console.log(newFormState);
-        return newFormState;
-      });
-    } else {
-      setSideBarFormState((prevState) => {
-        const newFormState = {
-          ...prevState,
-          baseSalaryOptions: prevState.baseSalaryOptions.filter(
-            (baseSalaryOption) => option != baseSalaryOption
-          ),
-          baseSalaryBounds: prevState.baseSalaryBounds.filter(
-            (bound) => ![bounds.min, bounds.max].includes(bound)
-          ),
-        };
+  //       const baseSalaryBounds = [...prevState.baseSalaryBounds];
+  //       baseSalaryBounds.push(bounds.min);
+  //       baseSalaryBounds.push(bounds.max);
 
-        console.log(newFormState);
-        return newFormState;
-      });
-    }
-  };
+  //       const newFormState = {
+  //         ...prevState,
+  //         baseSalaryOptions,
+  //         baseSalaryBounds,
+  //       };
+  //       console.log(newFormState);
+  //       return newFormState;
+  //     });
+  //   } else {
+  //     setSideBarFormState((prevState) => {
+  //       const newFormState = {
+  //         ...prevState,
+  //         baseSalaryOptions: prevState.baseSalaryOptions.filter(
+  //           (baseSalaryOption) => option != baseSalaryOption
+  //         ),
+  //         baseSalaryBounds: prevState.baseSalaryBounds.filter(
+  //           (bound) => ![bounds.min, bounds.max].includes(bound)
+  //         ),
+  //       };
+
+  //       console.log(newFormState);
+  //       return newFormState;
+  //     });
+  //   }
+  // };
 
   return (
     <div className='space-y-8'>
@@ -162,6 +187,7 @@ function HeroesPageSideBarForm({
             heroSkills={heroSkills}
             selectedTags={sideBarFormState.selectedTags}
             setSideBarFormState={setSideBarFormState}
+            
           />
 
           {/* FilterHairForm */}
@@ -198,11 +224,11 @@ function HeroesPageSideBarForm({
 
            {/* FilterSexForm */}
 
-           <TagsFilterSexForm
+           {/* <TagsFilterSexForm
             heroSex={heroSex}
             selectedSexTags={sideBarFormState.selectedSexTags}
             setSideBarFormState={setSideBarFormState}
-          />
+          /> */}
 
            {/* FilterInvoiceForm */}
 
@@ -303,6 +329,34 @@ function HeroesPageSideBarForm({
               })}
             </ul>
           </div> */}
+
+          {/* group hero gender  */}
+           <div> 
+            <div className='text-sm text-slate-800 font-semibold mb-3'>
+              Hero Gender
+            </div>
+            <ul className='space-y-2'>
+              {heroGendersOptions.map((option) => {
+                return (
+                  <li key={option.value}>
+                    <label className='flex items-center'>
+                      <input
+                        type='checkbox'
+                        className='form-checkbox'
+                        onChange={(e) => handleHeroGenderSelect(e, option.value)}
+                        checked={sideBarFormState.heroGenders.includes(
+                          option.value
+                        )}
+                      />
+                      <span className='text-sm text-slate-600 font-medium ml-2'>
+                        {option.display}
+                      </span>
+                    </label>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
 
           {/* Group 4 */}
           {/* <div>
