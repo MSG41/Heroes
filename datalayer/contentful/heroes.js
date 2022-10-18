@@ -2,7 +2,11 @@ import { client } from './client';
 import { heroReducer, skillsReducer, tagsReducer, hairReducer, eyeReducer, tattooReducer, scarsReducer, sexReducer, invoiceReducer, driveReducer } from './utils';
 
 export const getHeroes = async () => {
-  const res = await client.getEntries({ content_type: 'heroes' });
+  const res = await client.getEntries({
+    content_type: 'heroes',
+    limit: 1000,
+
+  });
   const rawHeroes = res.items;
 
   const heroes = rawHeroes.map((rawHeroes) => {
@@ -136,6 +140,7 @@ export const searchHeroes = async (query) => {
   let contentFullQuery = {
     content_type: 'heroes',
     include: 2,
+    limit:1000,
   };
 
 
@@ -188,7 +193,7 @@ export const searchHeroes = async (query) => {
   if (selectedInvoiceTags.length)
     contentFullQuery['metadata.tags.sys.id[in]'] = selectedInvoiceTags.join(',');
 
-    // we first parse the eye tags back to their contentful-specific version with the "drive." prefix
+  // we first parse the eye tags back to their contentful-specific version with the "drive." prefix
   const selectedDriveTags = query.selectedDriveTags.map((tag) => `drive.${tag}`);
   if (selectedDriveTags.length)
     contentFullQuery['metadata.tags.sys.id[in]'] = selectedDriveTags.join(',');
@@ -218,35 +223,37 @@ export const searchHeroes = async (query) => {
     return false;
   });
 
-//   filteredHeroes = filteredHeroes.filter((hero) => {
-//     if (query.heroTypes.length == 0) return true;
-//     if (query.heroTypes.includes(hero.heroType)) return true;
-//     return false;
-//   });
+  //   filteredHeroes = filteredHeroes.filter((hero) => {
+  //     if (query.heroTypes.length == 0) return true;
+  //     if (query.heroTypes.includes(hero.heroType)) return true;
+  //     return false;
+  //   });
 
-//   return filteredHeroes;
-// };
+  //   return filteredHeroes;
+  // };
 
-filteredHeroes = filteredHeroes.filter((hero) => {
-  if (query.heroGenders.length == 0) return true;
-  if (query.heroGenders.includes(hero.gender)) return true;
-  return false;
-});
+  filteredHeroes = filteredHeroes.filter((hero) => {
+    if (query.heroGenders.length == 0) return true;
+    if (query.heroGenders.includes(hero.gender)) return true;
+    return false;
+  });
 
-return filteredHeroes;
+  return filteredHeroes;
 };
 
 export const searchCompaniesButReturnHeroes = async (searchBarText) => {
   let contentFullQuery = {
     content_type: 'heroes',
-    'fields.company.sys.contentType.sys.id': 'company',
-    'fields.company.fields.name[match]': searchBarText,
+    // 'fields.company.sys.contentType.sys.id': 'company',
+    // 'fields.company.fields.name[match]': searchBarText,
+    'fields.heroes.fields.heroName[match]': searchBarText,
 
     // multiple matches are NOT supported by Contentful so we prioritise the company name
     'fields.company.fields.city[match]': searchBarText,
     'fields.company.fields.slogan[match]': searchBarText,
     'fields.company.fields.website[match]': searchBarText,
     include: 2,
+    limit:1000,
   };
   const res = await client.getEntries(contentFullQuery);
   const foundHeroes = res.items;

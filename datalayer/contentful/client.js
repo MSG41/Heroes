@@ -12,8 +12,11 @@ const serverOnlyCreateClient = () => {
     space: process.env.CONTENTFUL_SPACE_ID,
     accessToken: process.env.CONTENTFUL_DELIVERY_API_TOKEN,
     environment: process.env.CONTENTFUL_ENVIRONMENT,
+    limit:1000,
+  
   });
   return client;
 };
+
 
 export const client = serverOnlyCreateClient();

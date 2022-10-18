@@ -178,10 +178,10 @@ function HeroesPageSideBarForm({
   // };
 
   return (
-    <div className='space-y-8'>
+    <div className='flex-row w-fit space-y-8 '>
       {/* White box */}
-      <div className='bg-white shadow-lg rounded-sm border border-slate-200 p-5'>
-        <div className='grid md:grid-cols-2 xl:grid-cols-1 gap-7'>
+      <div className='bg-white shadow-lg rounded-sm border border-slate-200 p-5 '>
+        <div className='grid md:grid-cols-2 xl:grid-cols-1 gap-7 '>
           {/* Group 0*/}
           <TagsFilterForm
             heroSkills={heroSkills}
@@ -224,11 +224,11 @@ function HeroesPageSideBarForm({
 
            {/* FilterSexForm */}
 
-           {/* <TagsFilterSexForm
+           <TagsFilterSexForm
             heroSex={heroSex}
             selectedSexTags={sideBarFormState.selectedSexTags}
             setSideBarFormState={setSideBarFormState}
-          /> */}
+          />
 
            {/* FilterInvoiceForm */}
 

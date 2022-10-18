@@ -1,3 +1,14 @@
+export const sortHeroesByName = ({ heroes, ASC = true }) => {
+  // we don't want to modify the original list of jobs provided
+  const sorted = [...heroes];
+  sorted.sort(function (hero1, hero2) {
+    if (hero1.heroName < hero2.heroName) return ASC ? -1 : 1;
+    else if (hero1.heroName > hero2.heroName) return ASC ? 1 : -1;
+    else return 0;
+  });
+  return sorted;
+};
+
 export const sortHeroesByDatePosted = ({ heroes, ASC = true }) => {
   // we don't want to modify the original list of jobs provided
   const sorted = [...heroes];

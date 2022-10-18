@@ -5,8 +5,8 @@ const HeroCard = ({ hero }) => {
 	//console.log(hero);
 	return (
 		<div
-		// max-h-[350px] overflow-auto
-			className={`shadow-lg rounded-sm border px-5 py-4 ${hero.featuredHero
+			// max-h-[350px] overflow-auto
+			className={`shadow-lg rounded-sm border px-5 py-4  flex justify-start	w-[100%] md:w-auto hover:border-slate-300 transition duration-300 ease-out hover:ease-in ${hero.featuredHero
 				? 'bg-amber-50 border-amber-300'
 				: 'bg-white border-slate-200'} 
 				
@@ -14,10 +14,10 @@ const HeroCard = ({ hero }) => {
 				
 				`}
 		>
-			<div className="md:flex justify-between items-center space-y-4 md:space-y-0 space-x-2 ">
+			<div className="md:flex justify-between items-center space-y-4 md:space-y-0 space-x-2 w-screen  ">
 				{/* Left side */}
-				<div className="flex items-start space-x-3 md:space-x-8 ">
-					<div className="object- w-[150px]	 h-[250px]   ">
+				<div className="flex items-start space-x-3 md:space-x-8   ">
+					<div className="   w-[100px] md:w-32 lg:w-48   ">
 						<Image
 							className="w-9 h-9 rounded-full "
 							src={hero.foto.url}
@@ -231,10 +231,10 @@ const HeroCard = ({ hero }) => {
 						</div>
 						{/* space between */}
 
-						<div className="text-[14px] font-semibold text-slate-800">
+						<div className="text-[14px] font-semibold text-slate-800  ">
 							Socials:
 							<div className="text-[#fac805]	 text-slate-500 ">
-								<a href={hero.socials}>{hero.socials}</a>
+								<a className='break-all' href={hero.socials}>{hero.socials}</a>
 								{/* {hero.sex}/ {hero.heightInCm} / {hero.company.city}{' '} */}
 								{/* {hero.remoteOk && '/ Remote Ok'} */}
 								{/* {hero.sex} */}

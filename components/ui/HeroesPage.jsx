@@ -10,7 +10,7 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
 
   const [sideBarFormState, setSideBarFormState] = useState({
     heroTypes: [],
-    heroGenders:[],
+    heroGenders: [],
     experienceLevels: [],
     remoteOkOnly: false,
     featuredHeroesOnly: false,
@@ -35,8 +35,13 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
         'Content-Type': 'application/json;charset=utf-8',
       },
       body: JSON.stringify(formsStates),
+      content_type: 'heroes',
+      limit: 1000,
     });
-    const foundHeroes = await response.json();
+    const foundHeroes = await response.json({
+      content_type: 'heroes',
+      limit: 1000,
+    });
     console.log(foundHeroes);
     setDisplayedHeroes(foundHeroes);
   };
@@ -75,6 +80,10 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
     }
     case 1: {
       heroesFoundMessage = 'Only one Hero found.';
+      break;
+    }
+    case 100: {
+      heroesFoundMessage = 'Please use the filter to find your heroes!';
       break;
     }
 
@@ -159,8 +168,8 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
     });
   };
 
-   // driveTag delete 
-   const handleDriveTagDelete = (e, driveTag) => {
+  // driveTag delete 
+  const handleDriveTagDelete = (e, driveTag) => {
     e.preventDefault();
     setSideBarFormState((prevState) => {
       return {
@@ -171,28 +180,28 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
   };
 
   return (
-    <div className='flex flex-col space-y-10 sm:flex-row sm:space-x-6 sm:space-y-0 md:flex-col md:space-x-0 md:space-y-10 xl:flex-row xl:space-x-6 xl:space-y-0 mt-9'>
+    <div className='flex flex-col space-y-10 sm:flex-row sm:space-x-6 sm:space-y-0 md:flex-col md:space-x-0 md:space-y-10 xl:flex-row xl:space-x-6 xl:space-y-0 mt-9 w-[100%]'>
       <HeroesPageSideBarForm
         heroSkills={heroSkills}
         heroHair={heroHair}
         heroEye={heroEye}
         heroTattoo={heroTattoo}
-        heroScars ={heroScars}
-        heroSex ={heroSex}
-        heroInvoice ={heroInvoice}
+        heroScars={heroScars}
+        heroSex={heroSex}
+        heroInvoice={heroInvoice}
         heroDrive={heroDrive}
         sideBarFormState={sideBarFormState}
         setSideBarFormState={setSideBarFormState}
         setdisplayedHeroes={setDisplayedHeroes}
       />
-      <div className='w-[935px] '>
+      <div className='md:max-w-screen xl:w-[70%]  align-center '>
         <SearchHeroForm
           searchFormState={searchFormState}
           setSearchFormState={setSearchFormState}
           setdisplayedHeroes={setDisplayedHeroes}
         />
         {/* Heroes header */}
-        <div className='flex justify-between items-center mb-4 '>
+        <div className='flex justify-between items-center mb-4  '>
           {/* Number of heroes found message  */}
           <div className='text-sm text-slate-500 italic'>
             {heroesFoundMessage}
@@ -318,8 +327,8 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
             </div>
           </div>
 
-           {/* scars tags */}
-           <div>
+          {/* scars tags */}
+          <div>
             <div className='flex flex-wrap items-center -m-1 max-w-2xl'>
               {sideBarFormState.selectedScarsTags &&
                 sideBarFormState.selectedScarsTags.map((scars) => (
@@ -348,8 +357,8 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
             </div>
           </div>
 
-           {/* sex tags */}
-           <div>
+          {/* sex tags */}
+          <div>
             <div className='flex flex-wrap items-center -m-1 max-w-2xl'>
               {sideBarFormState.selectedSexTags &&
                 sideBarFormState.selectedSexTags.map((sex) => (
@@ -378,8 +387,8 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
             </div>
           </div>
 
-           {/* invoice tags */}
-           <div>
+          {/* invoice tags */}
+          <div>
             <div className='flex flex-wrap items-center -m-1 max-w-2xl'>
               {sideBarFormState.selectedInvoiceTags &&
                 sideBarFormState.selectedInvoiceTags.map((invoice) => (
@@ -439,10 +448,10 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
           </div>
 
           {/* Sort */}
-          {/* <HeroesSortForm
+          <HeroesSortForm
             heroes={displayedHeroes}
             setDisplayedHeroes={setDisplayedHeroes}
-          /> */}
+          />
 
         </div>
         <HeroesList heroes={displayedHeroes} />
