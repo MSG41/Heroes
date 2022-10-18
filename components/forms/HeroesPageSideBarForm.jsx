@@ -5,7 +5,7 @@ import TagsFilterHairForm from './TagsFilterHairForm';
 import TagsFilterEyeForm from './TagsFilterEyeForm';
 import TagsFilterTattooForm from './TagsFilterTattooForm';
 import TagsFilterScarsForm from './TagsFilterScarsForm';
-import TagsFilterSexForm from './TagsFilterSexForm';
+// import TagsFilterSexForm from './TagsFilterSexForm';
 import TagsFilterInvoiceForm from './TagsFilterInvoiceForm';
 import TagsFilterDriveForm from './TagsFilterDriveForm';
 
