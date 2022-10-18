@@ -63,7 +63,7 @@ const HeroesSortForm = ({ heroes, setDisplayedHeroes }) => {
   return (
     <div>
       {/* Sort */}
-      <div className='flex items-center space-x-2'>
+      <div className='flex items-center space-x-2 pl-6'>
         <label
           htmlFor='sorting'
           className='block text-sm font-sm text-gray-500 italic w-full'

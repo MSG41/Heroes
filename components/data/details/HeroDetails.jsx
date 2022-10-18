@@ -15,36 +15,36 @@ const HeroDetails = ({ hero }) => {
         <div>
           <div className='mb-6'>
             <Link href='/'>
-              <a className='inline-flex items-center px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
+              <a className='inline-flex items-center px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 shadow-lg shadow-indigo-900/40'>
                 <ChevronLeftIcon className='mr-3 h-5 w-5' aria-hidden='true' />
-                Back To Jobs
+                Back To Heroes
               </a>
             </Link>
           </div>
           <div className='text-xs text-slate-500 italic mb-2'>
             Posted On: <span className='font-semibold'>{hero.datePosted}</span>
             {'  -  '}
-            Job Category:{' '}
+            Hero Name:{' '}
             <span className='font-semibold'>{hero.heroCategory}</span>
           </div>
           <header className='mb-4'>
             {/* Title */}
-            <h1 className='text-2xl md:text-3xl text-slate-800 font-bold'>
+            <h1 className='text-2xl md:text-3xl text-slate-1200 font-bold '>
               {hero.heroName}
             </h1>
 
             {/* Important Job Details */}
-            <div className='md:flex justify-between items-center space-y-4 md:space-y-0 space-x-2 mt-2'>
+            <div className='md:flex justify-between items-center space-y-4 md:space-y-0 space-x-2 '>
               {/* Left side */}
-              <div className='flex items-start space-x-3 md:space-x-4'>
+              <div className='flex items-start space-x-3 md:space-x-4 '>
                 <div>
-                  <div className='text-sm text-slate-500'>
-                    {hero.heroType} / {hero.experienceLevel} / {hero.company.city}{' '}
-                    {hero.remoteOk && '/ Remote Ok'}
+                  <div className='text-sm text-slate-500 pt-3'>
+                    {hero.company.city}{' '} /   {hero.crew} {' '} / {hero.region}
+
                   </div>
                   {/* Skill Tags */}
                   <div>
-                    <div className='flex flex-wrap items-center -m-1'>
+                    <div className='flex flex-wrap items-center pt-3'>
                       {hero.skills &&
                         hero.skills.map((skill) => (
                           <div className='m-1' key={skill}>
@@ -56,17 +56,17 @@ const HeroDetails = ({ hero }) => {
                             </a>
                           </div>
                         ))}
-                      
+
                     </div>
                   </div>
                 </div>
               </div>
               {/* Right side */}
-              <div className='flex flex-col space-y-1 items-end'>
+              <div className='flex flex-col space-y-1 items-end '>
                 <div className='text-sm text-slate-900'>
-                  £{hero.baseAnnualSalary} / Year
+                  € {hero.baseAnnualSalary} / Session
                 </div>
-                <div className='flex items-center space-x-4 pl-10 md:pl-0'>
+                {/* <div className='flex items-center space-x-4 pl-10 md:pl-0'>
                   {hero.featuredJob && (
                     <div
                       className={`text-xs inline-flex font-medium rounded-full text-center px-2.5 py-1 bg-amber-100 text-amber-600`}
@@ -85,31 +85,31 @@ const HeroDetails = ({ hero }) => {
                       <path d='M2 0C.9 0 0 .9 0 2v14l6-3 6 3V2c0-1.1-.9-2-2-2H2Z' />
                     </svg>
                   </button>
-                </div>
+                </div> */}
               </div>
             </div>
           </header>
 
           {/* Company information (mobile) */}
-          <div className='bg-white p-5 shadow-lg rounded-sm border border-slate-200 mb-6 lg:hidden'>
-            <div className='text-center mb-6'>
+           <div className='bg-white p-5 shadow-lg rounded-sm border border-slate-200 mb-0 lg:hidden'>
+            <div className='text-center mb-0'>
               <div className='inline-flex mb-3'>
                 <Image
-                  className='w-16 h-16 rounded-full'
-                  src={hero.company.logo.url}
-                  width={hero.company.logo.width}
-                  height={hero.company.logo.height}
-                  alt={`${hero.company.name} - ${hero.company.logo.alt}`}
+                 className="w-[600px] h-[500px] rounded-full "
+                 src={hero.foto.url}
+                 width="500px"
+                 height="500px"
+                 alt={`${hero.heroName} - ${hero.foto.alt}`}
                 />
               </div>
               <div className='text-lg font-bold text-slate-800 mb-1'>
-                {hero.company.name}
+                {hero.heroName}
               </div>
-              <div className='text-sm text-slate-500 italic'>
-                {hero.company.city}
-              </div>
+              <div className="text-emerald-500/70	 text-slate-500 font-serif hover:font-serif hover:text-violet-500/90 transition duration-500 hover:ease-in hover:ease-out">
+                <a className='break-all italic' href={hero.socials}>{hero.socials}</a></div>
+            
             </div>
-            <div className='space-y-2 sm:flex sm:space-y-0 sm:space-x-2'>
+            {/* <div className='space-y-2 sm:flex sm:space-y-0 sm:space-x-2'>
               <a
                 href={hero.applicationLink}
                 className='flex items-center justify-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
@@ -133,13 +133,13 @@ const HeroDetails = ({ hero }) => {
                   />
                 </a>
               </Link>
-            </div>
+            </div> */}
           </div>
 
-          <hr className='my-6 border-t border-slate-200' />
+          {/* <hr className='my-6 border-t border-slate-200' />  */}
 
           {/* The Role */}
-          <div>
+          {/* <div>
             <h2 className='text-xl leading-snug text-slate-800 font-bold mb-2'>
               The Role
             </h2>
@@ -150,10 +150,10 @@ const HeroDetails = ({ hero }) => {
               }}
             ></div>
           </div>
-          <hr className='my-6 border-t border-slate-200' />
+          <hr className='my-6 border-t border-slate-200' /> */}
 
           {/* About You */}
-          <div>
+          {/* <div>
             <h2 className='text-xl leading-snug text-slate-800 font-bold mb-2'>
               About You
             </h2>
@@ -164,10 +164,10 @@ const HeroDetails = ({ hero }) => {
               }}
             ></div>
           </div>
-          <hr className='my-6 border-t border-slate-200' />
+          <hr className='my-6 border-t border-slate-200' /> */}
 
           {/* Your Responsabilities */}
-          <div>
+          {/* <div>
             <h2 className='text-xl leading-snug text-slate-800 font-bold mb-2'>
               Your Responsabilities
             </h2>
@@ -178,10 +178,10 @@ const HeroDetails = ({ hero }) => {
               }}
             ></div>
           </div>
-          <hr className='my-6 border-t border-slate-200' />
+          <hr className='my-6 border-t border-slate-200' /> */}
 
           {/* Remuneration */}
-          <div>
+          {/* <div>
             <h2 className='text-xl leading-snug text-slate-800 font-bold mb-2'>
               Remuneration
             </h2>
@@ -192,17 +192,19 @@ const HeroDetails = ({ hero }) => {
               }}
             ></div>
           </div>
-          <hr className='my-6 border-t border-slate-200' />
+          <hr className='my-6 border-t border-slate-200' /> */}
 
           {/* Apply section */}
-          <div className='mt-6'>
+          {/* <div className='mt-6'>
             <p className='font-medium text-slate-800 italic mb-6'>
               Do you have what it takes?
             </p>
-            <div className='flex justify-between items-center'>
-              {/* Apply button */}
+            <div className='flex justify-between items-center'> */}
 
-              <a
+
+          {/* Apply button */}
+
+          {/* <a
                 href={hero.applicationLink}
                 className='inline-flex items-center justify-center p-2 bg-indigo-500 hover:bg-indigo-600 text-white'
               >
@@ -211,9 +213,9 @@ const HeroDetails = ({ hero }) => {
                   className='ml-4 mr-3 h-5 w-5'
                   aria-hidden='true'
                 />
-              </a>
-              {/* Share */}
-              <div className='flex items-center'>
+              </a> */}
+          {/* Share */}
+          {/* <div className='flex items-center'>
                 <div className='text-sm text-slate-500 italic mr-4'>Share:</div>
                 <div className='flex items-center space-x-3'>
                   <button className='text-slate-400 hover:text-indigo-500'>
@@ -250,9 +252,9 @@ const HeroDetails = ({ hero }) => {
               </div>
             </div>
           </div>
-          <hr className='my-6 border-t border-slate-200' />
+          <hr className='my-6 border-t border-slate-200' /> */}
 
-          Related Heroes
+          {/* Related Heroes */}
           {/* {hero.relatedhero.length ? (
             <div>
               <h2 className='text-xl leading-snug text-slate-800 font-bold mb-6'>
@@ -266,31 +268,34 @@ const HeroDetails = ({ hero }) => {
             </div>
           ) : null} */}
 
-          
+
         </div>
 
         {/* Sidebar */}
-        <div className='hidden lg:block space-y-4'>
+        <div className='hidden lg:block space-y-4 '>
           {/* Company information (desktop) */}
-          <div className='bg-white p-5 shadow-lg rounded-sm border border-slate-200 lg:w-72 xl:w-80'>
-            <div className='text-center mb-6'>
-              <div className='inline-flex mb-3'>
+          <div className='bg-white p-5 shadow-lg rounded-sm border border-slate-200 '>
+            <div className='text-center mb-0 '>
+              <div className='inline-flex mb-3  '>
                 <Image
-                  className='w-16 h-16 rounded-full'
-                  src={hero.company.logo.url}
-                  width={hero.company.logo.width}
-                  height={hero.company.logo.height}
-                  alt={`${hero.company.name} - ${hero.company.logo.alt}`}
+                  className="w-[600px] h-[500px] rounded-full "
+                  src={hero.foto.url}
+                  width="500px"
+                  height="500px"
+                  alt={`${hero.heroName} - ${hero.foto.alt}`}
                 />
               </div>
               <div className='text-lg font-bold text-slate-800 mb-1'>
-                {hero.company.name}
+                {hero.heroName}
               </div>
-              <div className='text-sm text-slate-500 italic'>
-                {hero.company.city}
-              </div>
+              {/* <div className='text-sm text-slate-500 italic'>
+                {hero.crew}
+              </div> */}
+
+              <div className="text-emerald-500/70	 text-slate-500 font-serif hover:font-serif hover:text-violet-500/90 transition duration-500 hover:ease-in hover:ease-out">
+                <a className='break-all italic' href={hero.socials}>{hero.socials}</a></div>
             </div>
-            <div className='space-y-2'>
+            {/* <div className='space-y-2'>
               <a
                 href={hero.applicationLink}
                 className='inline-flex items-center justify-center w-full p-2 bg-indigo-500 hover:bg-indigo-600 text-white'
@@ -314,7 +319,7 @@ const HeroDetails = ({ hero }) => {
                   />
                 </a>
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

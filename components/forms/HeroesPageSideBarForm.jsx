@@ -224,11 +224,11 @@ function HeroesPageSideBarForm({
 
            {/* FilterSexForm */}
 
-           <TagsFilterSexForm
+           {/* <TagsFilterSexForm
             heroSex={heroSex}
             selectedSexTags={sideBarFormState.selectedSexTags}
             setSideBarFormState={setSideBarFormState}
-          />
+          /> */}
 
            {/* FilterInvoiceForm */}
 
