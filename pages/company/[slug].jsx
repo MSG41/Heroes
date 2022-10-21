@@ -1,15 +1,15 @@
-import CompanyDetails from '../../components/data/details/CompanyDetails';
-import LoadingSpinner from '../../components/ui/LoadingSpinner';
+import CompanyDetails from "../../components/data/details/CompanyDetails";
+import LoadingSpinner from "../../components/ui/LoadingSpinner";
 import {
   getCompaniesSlugs,
-  getJobsByCompanyId,
+  getHeroesByCompanyId,
   getCompanyBySlug,
-} from '../../datalayer';
+} from "../../datalayer";
 
-const CompanyPage = ({ company, companyJobs }) => {
+const CompanyPage = ({ company, companyHeroes }) => {
   if (!company)
-    return <LoadingSpinner customMessage='Loading company data...' />;
-  return <CompanyDetails company={company} companyJobs={companyJobs} />;
+    return <LoadingSpinner customMessage="Loading company data..." />;
+  return <CompanyDetails company={company} companyHeroes={companyHeroes} />;
 };
 
 export default CompanyPage;
@@ -17,12 +17,12 @@ export default CompanyPage;
 export const getStaticProps = async ({ params }) => {
   const slug = params.slug;
   const company = await getCompanyBySlug({ slug });
-  const companyJobs = await getJobsByCompanyId({ id: company.id });
+  const companyHeroes = await getHeroesByCompanyId({ id: company.id });
 
   return {
     props: {
       company,
-      companyJobs,
+      companyHeroes,
     },
     revalidate: 5,
   };
@@ -32,7 +32,7 @@ export const getStaticPaths = async () => {
   const slugs = await getCompaniesSlugs();
   const paths = slugs.map((slug) => ({ params: { slug } }));
   return {
-    paths,
-    fallback: true,
+    paths: [],
+    fallback: false,
   };
 };

@@ -1,11 +1,21 @@
-import { client } from './client';
-import { heroReducer, skillsReducer, tagsReducer, hairReducer, eyeReducer, tattooReducer, scarsReducer, sexReducer, invoiceReducer, driveReducer } from './utils';
+import { client } from "./client";
+import {
+  heroReducer,
+  skillsReducer,
+  tagsReducer,
+  hairReducer,
+  eyeReducer,
+  tattooReducer,
+  scarsReducer,
+  sexReducer,
+  invoiceReducer,
+  driveReducer,
+} from "./utils";
 
 export const getHeroes = async () => {
   const res = await client.getEntries({
-    content_type: 'heroes',
+    content_type: "heroes",
     limit: 1000,
-
   });
   const rawHeroes = res.items;
 
@@ -95,13 +105,10 @@ export const getHeroesDrive = async () => {
   return drive;
 };
 
-
-
-
 export const getHeroesSlugs = async () => {
   const rawSlugs = await client.getEntries({
-    content_type: 'heroes',
-    select: ['fields.slug'],
+    content_type: "heroes",
+    select: ["fields.slug"],
   });
   const slugs = rawSlugs.items.map((rawSlug) => rawSlug.fields.slug);
   return slugs;
@@ -109,8 +116,8 @@ export const getHeroesSlugs = async () => {
 
 export const getHeroBySlug = async ({ slug }) => {
   const found = await client.getEntries({
-    content_type: 'heroes',
-    'fields.slug': slug,
+    content_type: "heroes",
+    "fields.slug": slug,
 
     // needed to fetch linked items, otherwise job.fields.relatedJobs[0].fields.company.fields is undefined
     // https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/links/retrieval-of-linked-items
@@ -124,8 +131,8 @@ export const getHeroBySlug = async ({ slug }) => {
 
 export const getHeroesByCompanyId = async ({ id }) => {
   const res = await client.getEntries({
-    content_type: 'heroes',
-    'fields.company.sys.id': id,
+    content_type: "heroes",
+    "fields.company.sys.id": id,
     include: 2,
   });
 
@@ -138,11 +145,10 @@ export const getHeroesByCompanyId = async ({ id }) => {
 
 export const searchHeroes = async (query) => {
   let contentFullQuery = {
-    content_type: 'heroes',
+    content_type: "heroes",
     include: 2,
-    limit:1000,
+    limit: 1000,
   };
-
 
   //continue here--------------------------------
 
@@ -161,46 +167,55 @@ export const searchHeroes = async (query) => {
   // we first parse the skills tags back to their contentful-specific version with the "skill." prefix
   const selectedTags = query.selectedTags.map((tag) => `skill.${tag}`);
   if (selectedTags.length)
-    contentFullQuery['metadata.tags.sys.id[in]'] = selectedTags.join(',');
+    contentFullQuery["metadata.tags.sys.id[in]"] = selectedTags.join(",");
 
   // we first parse the hair tags back to their contentful-specific version with the "hair." prefix
   const selectedHairTags = query.selectedHairTags.map((tag) => `hair.${tag}`);
   if (selectedHairTags.length)
-    contentFullQuery['metadata.tags.sys.id[in]'] = selectedHairTags.join(',');
+    contentFullQuery["metadata.tags.sys.id[in]"] = selectedHairTags.join(",");
 
   // we first parse the eye tags back to their contentful-specific version with the "eye." prefix
   const selectedEyeTags = query.selectedEyeTags.map((tag) => `eye.${tag}`);
   if (selectedEyeTags.length)
-    contentFullQuery['metadata.tags.sys.id[in]'] = selectedEyeTags.join(',');
+    contentFullQuery["metadata.tags.sys.id[in]"] = selectedEyeTags.join(",");
 
   // we first parse the eye tags back to their contentful-specific version with the "tattoo." prefix
-  const selectedTattooTags = query.selectedTattooTags.map((tag) => `tattoo.${tag}`);
+  const selectedTattooTags = query.selectedTattooTags.map(
+    (tag) => `tattoo.${tag}`
+  );
   if (selectedTattooTags.length)
-    contentFullQuery['metadata.tags.sys.id[in]'] = selectedTattooTags.join(',');
+    contentFullQuery["metadata.tags.sys.id[in]"] = selectedTattooTags.join(",");
 
   // we first parse the eye tags back to their contentful-specific version with the "scars." prefix
-  const selectedScarsTags = query.selectedScarsTags.map((tag) => `scars.${tag}`);
+  const selectedScarsTags = query.selectedScarsTags.map(
+    (tag) => `scars.${tag}`
+  );
   if (selectedScarsTags.length)
-    contentFullQuery['metadata.tags.sys.id[in]'] = selectedScarsTags.join(',');
+    contentFullQuery["metadata.tags.sys.id[in]"] = selectedScarsTags.join(",");
 
   // we first parse the eye tags back to their contentful-specific version with the "sex." prefix
   const selectedSexTags = query.selectedSexTags.map((tag) => `sex.${tag}`);
   if (selectedSexTags.length)
-    contentFullQuery['metadata.tags.sys.id[in]'] = selectedSexTags.join(',');
+    contentFullQuery["metadata.tags.sys.id[in]"] = selectedSexTags.join(",");
 
   // we first parse the eye tags back to their contentful-specific version with the "invoice." prefix
-  const selectedInvoiceTags = query.selectedInvoiceTags.map((tag) => `invoice.${tag}`);
+  const selectedInvoiceTags = query.selectedInvoiceTags.map(
+    (tag) => `invoice.${tag}`
+  );
   if (selectedInvoiceTags.length)
-    contentFullQuery['metadata.tags.sys.id[in]'] = selectedInvoiceTags.join(',');
+    contentFullQuery["metadata.tags.sys.id[in]"] =
+      selectedInvoiceTags.join(",");
 
   // we first parse the eye tags back to their contentful-specific version with the "drive." prefix
-  const selectedDriveTags = query.selectedDriveTags.map((tag) => `drive.${tag}`);
+  const selectedDriveTags = query.selectedDriveTags.map(
+    (tag) => `drive.${tag}`
+  );
   if (selectedDriveTags.length)
-    contentFullQuery['metadata.tags.sys.id[in]'] = selectedDriveTags.join(',');
+    contentFullQuery["metadata.tags.sys.id[in]"] = selectedDriveTags.join(",");
 
   // Add Full Text Search Query
   if (query.searchBarText) {
-    contentFullQuery['query'] = query.searchBarText;
+    contentFullQuery["query"] = query.searchBarText;
   }
 
   // Add Inclusion Query Filters
@@ -243,17 +258,17 @@ export const searchHeroes = async (query) => {
 
 export const searchCompaniesButReturnHeroes = async (searchBarText) => {
   let contentFullQuery = {
-    content_type: 'heroes',
+    content_type: "heroes",
     // 'fields.company.sys.contentType.sys.id': 'company',
     // 'fields.company.fields.name[match]': searchBarText,
-    'fields.heroes.fields.heroName[match]': searchBarText,
+    "fields.heroes.fields.heroName[match]": searchBarText,
 
     // multiple matches are NOT supported by Contentful so we prioritise the company name
-    'fields.company.fields.city[match]': searchBarText,
-    'fields.company.fields.slogan[match]': searchBarText,
-    'fields.company.fields.website[match]': searchBarText,
+    "fields.company.fields.city[match]": searchBarText,
+    "fields.company.fields.slogan[match]": searchBarText,
+    "fields.company.fields.website[match]": searchBarText,
     include: 2,
-    limit:1000,
+    limit: 1000,
   };
   const res = await client.getEntries(contentFullQuery);
   const foundHeroes = res.items;

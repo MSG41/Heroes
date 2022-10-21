@@ -5,9 +5,9 @@ export {
   getHeroesByCompanyId,
   searchHeroes,
   searchCompaniesButReturnHeroes,
-} from './contentful/heroes';
+} from "./contentful/heroes";
 export {
   getCompanies,
   getCompaniesSlugs,
   getCompanyBySlug,
-} from './contentful/company';
+} from "./contentful/company";

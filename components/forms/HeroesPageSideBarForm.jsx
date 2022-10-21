@@ -38,6 +38,7 @@ function HeroesPageSideBarForm({
   const heroGendersOptions = [
     { value: 'female', display: 'Female' },
     { value: 'male', display: 'Male' },
+    { value: 'Non-Binary', display: 'Non-Binary' },
   ];
 
   // const experienceLevelsOptions = [
@@ -187,7 +188,7 @@ function HeroesPageSideBarForm({
             heroSkills={heroSkills}
             selectedTags={sideBarFormState.selectedTags}
             setSideBarFormState={setSideBarFormState}
-            
+
           />
 
           {/* FilterHairForm */}
@@ -206,41 +207,41 @@ function HeroesPageSideBarForm({
             setSideBarFormState={setSideBarFormState}
           />
 
-           {/* FilterTattooForm */}
+          {/* FilterTattooForm */}
 
-           <TagsFilterTattooForm
+          <TagsFilterTattooForm
             heroTattoo={heroTattoo}
             selectedTattooTags={sideBarFormState.selectedTattooTags}
             setSideBarFormState={setSideBarFormState}
           />
 
-           {/* FilterScarForm */}
+          {/* FilterScarForm */}
 
-           <TagsFilterScarsForm
+          <TagsFilterScarsForm
             heroScars={heroScars}
             selectedScarsTags={sideBarFormState.selectedScarsTags}
             setSideBarFormState={setSideBarFormState}
           />
 
-           {/* FilterSexForm */}
+          {/* FilterSexForm */}
 
-           {/* <TagsFilterSexForm
+          {/* <TagsFilterSexForm
             heroSex={heroSex}
             selectedSexTags={sideBarFormState.selectedSexTags}
             setSideBarFormState={setSideBarFormState}
           /> */}
 
-           {/* FilterInvoiceForm */}
+          {/* FilterInvoiceForm */}
 
-           <TagsFilterInvoiceForm
+          <TagsFilterInvoiceForm
             heroInvoice={heroInvoice}
             selectedInvoiceTags={sideBarFormState.selectedInvoiceTags}
             setSideBarFormState={setSideBarFormState}
           />
 
-           {/* FilterDriveForm */}
+          {/* FilterDriveForm */}
 
-           <TagsFilterDriveForm
+          <TagsFilterDriveForm
             heroDrive={heroDrive}
             selectedDriveTags={sideBarFormState.selectedDriveTags}
             setSideBarFormState={setSideBarFormState}
@@ -331,7 +332,7 @@ function HeroesPageSideBarForm({
           </div> */}
 
           {/* group hero gender  */}
-           <div> 
+          <div>
             <div className='text-sm text-slate-800 font-semibold mb-3'>
               Hero Gender
             </div>
