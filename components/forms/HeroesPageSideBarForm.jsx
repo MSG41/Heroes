@@ -1,18 +1,16 @@
-import React, { useState } from 'react';
-import { Switch } from '@headlessui/react';
-import TagsFilterForm from './TagsFilterForm';
-import TagsFilterHairForm from './TagsFilterHairForm';
-import TagsFilterEyeForm from './TagsFilterEyeForm';
-import TagsFilterTattooForm from './TagsFilterTattooForm';
-import TagsFilterScarsForm from './TagsFilterScarsForm';
+import React, { useState } from "react";
+import { Switch } from "@headlessui/react";
+import TagsFilterForm from "./TagsFilterForm";
+import TagsFilterHairForm from "./TagsFilterHairForm";
+import TagsFilterEyeForm from "./TagsFilterEyeForm";
+import TagsFilterTattooForm from "./TagsFilterTattooForm";
+import TagsFilterScarsForm from "./TagsFilterScarsForm";
 // import TagsFilterSexForm from './TagsFilterSexForm';
-import TagsFilterInvoiceForm from './TagsFilterInvoiceForm';
-import TagsFilterDriveForm from './TagsFilterDriveForm';
-
-
+import TagsFilterInvoiceForm from "./TagsFilterInvoiceForm";
+import TagsFilterDriveForm from "./TagsFilterDriveForm";
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 function HeroesPageSideBarForm({
@@ -29,16 +27,16 @@ function HeroesPageSideBarForm({
   setDisplayedHeroes,
 }) {
   const heroTypesOptions = [
-    { value: 'full-time', display: 'Full Time' },
-    { value: 'part-time', display: 'Part Time' },
-    { value: 'internship', display: 'Internship' },
-    { value: 'contract', display: 'Contract' },
+    { value: "full-time", display: "Full Time" },
+    { value: "part-time", display: "Part Time" },
+    { value: "internship", display: "Internship" },
+    { value: "contract", display: "Contract" },
   ];
 
   const heroGendersOptions = [
-    { value: 'female', display: 'Female' },
-    { value: 'male', display: 'Male' },
-    { value: 'Non-Binary', display: 'Non-Binary' },
+    { value: "female", display: "Female" },
+    { value: "male", display: "Male" },
+    { value: "Non-Binary", display: "Non-Binary" },
   ];
 
   // const experienceLevelsOptions = [
@@ -95,13 +93,15 @@ function HeroesPageSideBarForm({
       setSideBarFormState((prevState) => {
         return {
           ...prevState,
-          heroTypes: prevState.heroTypes.filter((heroType) => option != heroType),
+          heroTypes: prevState.heroTypes.filter(
+            (heroType) => option != heroType
+          ),
         };
       });
     }
   };
 
-  // hero gender types 
+  // hero gender types
 
   const handleHeroGenderSelect = (e, option) => {
     console.log(e.target.checked, option);
@@ -115,7 +115,9 @@ function HeroesPageSideBarForm({
       setSideBarFormState((prevState) => {
         return {
           ...prevState,
-          heroGenders: prevState.heroGenders.filter((gender) => option != gender),
+          heroGenders: prevState.heroGenders.filter(
+            (gender) => option != gender
+          ),
         };
       });
     }
@@ -179,16 +181,15 @@ function HeroesPageSideBarForm({
   // };
 
   return (
-    <div className='flex-row w-fit space-y-8 '>
+    <div className="flex-row space-y-8  ">
       {/* White box */}
-      <div className='bg-white shadow-lg rounded-sm border border-slate-200 p-5 '>
-        <div className='grid md:grid-cols-2 xl:grid-cols-1 gap-7 '>
+      <div className="bg-white shadow-lg rounded-sm border border-slate-200 p-5 ">
+        <div className="grid md:grid-cols-2 xl:grid-cols-1 gap-7 ">
           {/* Group 0*/}
           <TagsFilterForm
             heroSkills={heroSkills}
             selectedTags={sideBarFormState.selectedTags}
             setSideBarFormState={setSideBarFormState}
-
           />
 
           {/* FilterHairForm */}
@@ -333,23 +334,25 @@ function HeroesPageSideBarForm({
 
           {/* group hero gender  */}
           <div>
-            <div className='text-sm text-slate-800 font-semibold mb-3'>
+            <div className="text-sm text-slate-800 font-semibold mb-3">
               Hero Gender
             </div>
-            <ul className='space-y-2'>
+            <ul className="space-y-2">
               {heroGendersOptions.map((option) => {
                 return (
                   <li key={option.value}>
-                    <label className='flex items-center'>
+                    <label className="flex items-center">
                       <input
-                        type='checkbox'
-                        className='form-checkbox'
-                        onChange={(e) => handleHeroGenderSelect(e, option.value)}
+                        type="checkbox"
+                        className="form-checkbox"
+                        onChange={(e) =>
+                          handleHeroGenderSelect(e, option.value)
+                        }
                         checked={sideBarFormState.heroGenders.includes(
                           option.value
                         )}
                       />
-                      <span className='text-sm text-slate-600 font-medium ml-2'>
+                      <span className="text-sm text-slate-600 font-medium ml-2">
                         {option.display}
                       </span>
                     </label>
@@ -425,11 +428,6 @@ function HeroesPageSideBarForm({
         </div>
       </div>
 
-
-
-
-
-
       {/* Alert */}
       {/* <div className='relative bg-indigo-200 rounded-sm p-5 min-w-60'>
         <div className='absolute bottom-0 -mb-3'>
@@ -489,7 +487,6 @@ function HeroesPageSideBarForm({
       </div> */}
 
       {/* End Alert */}
-
     </div>
   );
 }
