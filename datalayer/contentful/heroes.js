@@ -233,21 +233,21 @@ export const searchHeroes = async (query) => {
 
   // Now because contentful doesn't have an OR operator we have to filter at the application level which is not efficient
   let filteredHeroes = heroes.filter((hero) => {
-    if (query.experienceLevels.length == 0) return true;
-    if (query.experienceLevels.includes(hero.experienceLevel)) return true;
-    return false;
-  });
+    //   if (query.experienceLevels.length == 0) return true;
+    //   if (query.experienceLevels.includes(hero.experienceLevel)) return true;
+    //   return false;
+    // });
 
-  //   filteredHeroes = filteredHeroes.filter((hero) => {
-  //     if (query.heroTypes.length == 0) return true;
-  //     if (query.heroTypes.includes(hero.heroType)) return true;
-  //     return false;
-  //   });
+    //   filteredHeroes = filteredHeroes.filter((hero) => {
+    //     if (query.heroTypes.length == 0) return true;
+    //     if (query.heroTypes.includes(hero.heroType)) return true;
+    //     return false;
+    //   });
 
-  //   return filteredHeroes;
-  // };
+    //   return filteredHeroes;
+    // };
 
-  filteredHeroes = filteredHeroes.filter((hero) => {
+    // filteredHeroes = filteredHeroes.filter((hero) => {
     if (query.heroGenders.length == 0) return true;
     if (query.heroGenders.includes(hero.gender)) return true;
     return false;
@@ -259,14 +259,14 @@ export const searchHeroes = async (query) => {
 export const searchCompaniesButReturnHeroes = async (searchBarText) => {
   let contentFullQuery = {
     content_type: "heroes",
-    // 'fields.company.sys.contentType.sys.id': 'company',
-    // 'fields.company.fields.name[match]': searchBarText,
-    "fields.heroes.fields.heroName[match]": searchBarText,
+    "fields.company.sys.contentType.sys.id": "company",
+    "fields.company.fields.name[match]": searchBarText,
+    // "fields.heroes.fields.heroName[match]": searchBarText,
 
     // multiple matches are NOT supported by Contentful so we prioritise the company name
-    "fields.company.fields.city[match]": searchBarText,
-    "fields.company.fields.slogan[match]": searchBarText,
-    "fields.company.fields.website[match]": searchBarText,
+    // "fields.company.fields.city[match]": searchBarText,
+    // "fields.company.fields.slogan[match]": searchBarText,
+    // "fields.company.fields.website[match]": searchBarText,
     include: 2,
     limit: 1000,
   };

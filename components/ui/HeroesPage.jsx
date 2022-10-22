@@ -1,21 +1,31 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect, useRef } from 'react';
-import HeroesList from '../data/lists/HeroesList';
-import SearchHeroForm from '../forms/SearchHeroForm';
-import HeroesPageSideBarForm from '../forms/HeroesPageSideBarForm';
-import HeroesSortForm from '../forms/HeroesSortForm';
+import { useState, useEffect, useRef } from "react";
+import HeroesList from "../data/lists/HeroesList";
+import SearchHeroForm from "../forms/SearchHeroForm";
+import HeroesPageSideBarForm from "../forms/HeroesPageSideBarForm";
+import HeroesSortForm from "../forms/HeroesSortForm";
 
-export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, heroTattoo, heroScars, heroSex, heroInvoice, heroDrive }) {
+export default function HeroesPage({
+  heroes,
+  heroSkills,
+  heroHair,
+  heroEye,
+  heroTattoo,
+  heroScars,
+  heroSex,
+  heroInvoice,
+  heroDrive,
+}) {
   const [displayedHeroes, setDisplayedHeroes] = useState(heroes);
 
   const [sideBarFormState, setSideBarFormState] = useState({
-    heroTypes: [],
+    // heroTypes: [],
     heroGenders: [],
-    experienceLevels: [],
-    remoteOkOnly: false,
-    featuredHeroesOnly: false,
-    baseSalaryOptions: [],
-    baseSalaryBounds: [],
+    // experienceLevels: [],
+    // remoteOkOnly: false,
+    // featuredHeroesOnly: false,
+    // baseSalaryOptions: [],
+    // baseSalaryBounds: [],
     selectedTags: [],
     selectedHairTags: [],
     selectedEyeTags: [],
@@ -26,22 +36,23 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
     selectedDriveTags: [],
   });
 
-  const [searchFormState, setSearchFormState] = useState('');
+  const [searchFormState, setSearchFormState] = useState("");
 
   const searchHeroes = async (apiUrl, formsStates) => {
     const response = await fetch(apiUrl, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json;charset=utf-8',
+        "Content-Type": "application/json;charset=utf-8",
       },
       body: JSON.stringify(formsStates),
-      content_type: 'heroes',
-      limit: 1000,
+      // content_type: 'heroes',
+      // limit: 1000,
     });
-    const foundHeroes = await response.json({
-      content_type: 'heroes',
-      limit: 1000,
-    });
+    const foundHeroes = await response
+      .json
+      // content_type: 'heroes',
+      // limit: 1000,
+      ();
     console.log(foundHeroes);
     setDisplayedHeroes(foundHeroes);
   };
@@ -52,9 +63,9 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
     if (initialRender1.current) {
       initialRender1.current = false;
     } else {
-      console.log('sidebar state form changed => triggering a search');
+      console.log("sidebar state form changed => triggering a search");
       const formsStates = { searchFormState, sideBarFormState };
-      searchHeroes('api/search-heroes', formsStates);
+      searchHeroes("api/search-heroes", formsStates);
     }
   }, [sideBarFormState]);
 
@@ -64,10 +75,12 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
     if (initialRender2.current) {
       initialRender2.current = false;
     } else {
-      console.log('search form changed && length >= 3 OR ==0 => triggering a search');
+      console.log(
+        "search form changed && length >= 3 OR ==0 => triggering a search"
+      );
       if (searchFormState.length >= 3 || searchFormState.length == 0) {
         const formsStates = { searchFormState, sideBarFormState };
-        searchHeroes('api/search-heroes', formsStates);
+        searchHeroes("api/search-heroes", formsStates);
       }
     }
   }, [searchFormState]);
@@ -75,15 +88,15 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
   let heroesFoundMessage = `Found ${displayedHeroes.length} Heroes`;
   switch (displayedHeroes.length) {
     case 0: {
-      heroesFoundMessage = 'No Heroes found.';
+      heroesFoundMessage = "No Heroes found.";
       break;
     }
     case 1: {
-      heroesFoundMessage = 'Only one Hero found.';
+      heroesFoundMessage = "Only one Hero found.";
       break;
     }
     case 100: {
-      heroesFoundMessage = 'Please use the filter to find your heroes!';
+      heroesFoundMessage = "Please use the filter to find your heroes!";
       break;
     }
 
@@ -91,7 +104,7 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
       break;
   }
 
-  // skillTag delete 
+  // skillTag delete
   const handleSkillTagDelete = (e, skillTag) => {
     e.preventDefault();
     setSideBarFormState((prevState) => {
@@ -102,85 +115,99 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
     });
   };
 
-  // hairTag delete 
+  // hairTag delete
   const handleHairTagDelete = (e, hairTag) => {
     e.preventDefault();
     setSideBarFormState((prevState) => {
       return {
         ...prevState,
-        selectedHairTags: prevState.selectedHairTags.filter((tag) => hairTag != tag),
+        selectedHairTags: prevState.selectedHairTags.filter(
+          (tag) => hairTag != tag
+        ),
       };
     });
   };
 
-  // eyeTag delete 
+  // eyeTag delete
   const handleEyeTagDelete = (e, eyeTag) => {
     e.preventDefault();
     setSideBarFormState((prevState) => {
       return {
         ...prevState,
-        selectedEyeTags: prevState.selectedEyeTags.filter((tag) => eyeTag != tag),
+        selectedEyeTags: prevState.selectedEyeTags.filter(
+          (tag) => eyeTag != tag
+        ),
       };
     });
   };
 
-  // tattooTag delete 
+  // tattooTag delete
   const handleTattooTagDelete = (e, tattooTag) => {
     e.preventDefault();
     setSideBarFormState((prevState) => {
       return {
         ...prevState,
-        selectedTattooTags: prevState.selectedTattooTags.filter((tag) => tattooTag != tag),
+        selectedTattooTags: prevState.selectedTattooTags.filter(
+          (tag) => tattooTag != tag
+        ),
       };
     });
   };
 
-  // scarsTag delete 
+  // scarsTag delete
   const handleScarsTagDelete = (e, scarsTag) => {
     e.preventDefault();
     setSideBarFormState((prevState) => {
       return {
         ...prevState,
-        selectedScarsTags: prevState.selectedScarsTags.filter((tag) => scarsTag != tag),
+        selectedScarsTags: prevState.selectedScarsTags.filter(
+          (tag) => scarsTag != tag
+        ),
       };
     });
   };
 
-  // sexTag delete 
+  // sexTag delete
   const handleSexTagDelete = (e, sexTag) => {
     e.preventDefault();
     setSideBarFormState((prevState) => {
       return {
         ...prevState,
-        selectedSexTags: prevState.selectedSexTags.filter((tag) => sexTag != tag),
+        selectedSexTags: prevState.selectedSexTags.filter(
+          (tag) => sexTag != tag
+        ),
       };
     });
   };
 
-  // invoiceTag delete 
+  // invoiceTag delete
   const handleInvoiceTagDelete = (e, invoiceTag) => {
     e.preventDefault();
     setSideBarFormState((prevState) => {
       return {
         ...prevState,
-        selectedInvoiceTags: prevState.selectedInvoiceTags.filter((tag) => invoiceTag != tag),
+        selectedInvoiceTags: prevState.selectedInvoiceTags.filter(
+          (tag) => invoiceTag != tag
+        ),
       };
     });
   };
 
-  // driveTag delete 
+  // driveTag delete
   const handleDriveTagDelete = (e, driveTag) => {
     e.preventDefault();
     setSideBarFormState((prevState) => {
       return {
         ...prevState,
-        selectedDriveTags: prevState.selectedDriveTags.filter((tag) => driveTag != tag),
+        selectedDriveTags: prevState.selectedDriveTags.filter(
+          (tag) => driveTag != tag
+        ),
       };
     });
   };
 
   return (
-    <div className='flex flex-col space-y-10 sm:flex-row sm:space-x-6 sm:space-y-0 md:flex-col md:space-x-0 md:space-y-10 xl:flex-row xl:space-x-6 xl:space-y-0 mt-9 w-[100%]'>
+    <div className="flex flex-col space-y-10 sm:flex-row sm:space-x-6 sm:space-y-0 md:flex-col md:space-x-0 md:space-y-10 xl:flex-row xl:space-x-6 xl:space-y-0 mt-9 w-[100%]">
       <HeroesPageSideBarForm
         heroSkills={heroSkills}
         heroHair={heroHair}
@@ -194,41 +221,41 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
         setSideBarFormState={setSideBarFormState}
         setdisplayedHeroes={setDisplayedHeroes}
       />
-      <div className='md:max-w-screen xl:w-[70%]  align-center '>
+      <div className="md:max-w-screen xl:w-[70%]  align-center ">
         <SearchHeroForm
           searchFormState={searchFormState}
           setSearchFormState={setSearchFormState}
           setdisplayedHeroes={setDisplayedHeroes}
         />
         {/* Heroes header */}
-        <div className='flex justify-between items-center mb-4  '>
+        <div className="flex justify-between items-center mb-4  ">
           {/* Number of heroes found message  */}
-          <div className='text-sm text-slate-500 italic'>
+          <div className="text-sm text-slate-500 italic">
             {heroesFoundMessage}
           </div>
 
           {/* skills tags */}
           <div>
-            <div className='flex flex-wrap items-center -m-1 max-w-2xl'>
+            <div className="flex flex-wrap items-center -m-1 max-w-2xl">
               {sideBarFormState.selectedTags &&
                 sideBarFormState.selectedTags.map((skill) => (
-                  <div className='m-1' key={skill}>
+                  <div className="m-1" key={skill}>
                     <a
-                      className='text-xs hover:scale-110  hover:bg-red-100 hover:text-red-600 inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1'
-                      href='#'
+                      className="text-xs hover:scale-110  hover:bg-red-100 hover:text-red-600 inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+                      href="#"
                     >
                       {skill}
                       <svg
-                        className='h-2 w-2 ml-2 mt-1 text-sm hover:cursor-pointer'
-                        stroke='currentColor'
-                        fill='none'
-                        viewBox='0 0 8 8'
+                        className="h-2 w-2 ml-2 mt-1 text-sm hover:cursor-pointer"
+                        stroke="currentColor"
+                        fill="none"
+                        viewBox="0 0 8 8"
                         onClick={(e) => handleSkillTagDelete(e, skill)}
                       >
                         <path
-                          strokeLinecap='round'
-                          strokeWidth='1.5'
-                          d='M1 1l6 6m0-6L1 7'
+                          strokeLinecap="round"
+                          strokeWidth="1.5"
+                          d="M1 1l6 6m0-6L1 7"
                         />
                       </svg>
                     </a>
@@ -239,26 +266,26 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
 
           {/* hair tags */}
           <div>
-            <div className='flex flex-wrap items-center -m-1 max-w-2xl'>
+            <div className="flex flex-wrap items-center -m-1 max-w-2xl">
               {sideBarFormState.selectedHairTags &&
                 sideBarFormState.selectedHairTags.map((hair) => (
-                  <div className='m-1' key={hair}>
+                  <div className="m-1" key={hair}>
                     <a
-                      className='text-xs hover:scale-110  hover:bg-red-100 hover:text-red-600 inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1'
-                      href='#'
+                      className="text-xs hover:scale-110  hover:bg-red-100 hover:text-red-600 inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+                      href="#"
                     >
                       {hair}
                       <svg
-                        className='h-2 w-2 ml-2 mt-1 text-sm hover:cursor-pointer'
-                        stroke='currentColor'
-                        fill='none'
-                        viewBox='0 0 8 8'
+                        className="h-2 w-2 ml-2 mt-1 text-sm hover:cursor-pointer"
+                        stroke="currentColor"
+                        fill="none"
+                        viewBox="0 0 8 8"
                         onClick={(e) => handleHairTagDelete(e, hair)}
                       >
                         <path
-                          strokeLinecap='round'
-                          strokeWidth='1.5'
-                          d='M1 1l6 6m0-6L1 7'
+                          strokeLinecap="round"
+                          strokeWidth="1.5"
+                          d="M1 1l6 6m0-6L1 7"
                         />
                       </svg>
                     </a>
@@ -269,26 +296,26 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
 
           {/* eye tags */}
           <div>
-            <div className='flex flex-wrap items-center -m-1 max-w-2xl'>
+            <div className="flex flex-wrap items-center -m-1 max-w-2xl">
               {sideBarFormState.selectedEyeTags &&
                 sideBarFormState.selectedEyeTags.map((eye) => (
-                  <div className='m-1' key={eye}>
+                  <div className="m-1" key={eye}>
                     <a
-                      className='text-xs hover:scale-110  hover:bg-red-100 hover:text-red-600 inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1'
-                      href='#'
+                      className="text-xs hover:scale-110  hover:bg-red-100 hover:text-red-600 inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+                      href="#"
                     >
                       (eyes){eye}
                       <svg
-                        className='h-2 w-2 ml-2 mt-1 text-sm hover:cursor-pointer'
-                        stroke='currentColor'
-                        fill='none'
-                        viewBox='0 0 8 8'
+                        className="h-2 w-2 ml-2 mt-1 text-sm hover:cursor-pointer"
+                        stroke="currentColor"
+                        fill="none"
+                        viewBox="0 0 8 8"
                         onClick={(e) => handleEyeTagDelete(e, eye)}
                       >
                         <path
-                          strokeLinecap='round'
-                          strokeWidth='1.5'
-                          d='M1 1l6 6m0-6L1 7'
+                          strokeLinecap="round"
+                          strokeWidth="1.5"
+                          d="M1 1l6 6m0-6L1 7"
                         />
                       </svg>
                     </a>
@@ -299,26 +326,26 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
 
           {/* tattoo tags */}
           <div>
-            <div className='flex flex-wrap items-center -m-1 max-w-2xl'>
+            <div className="flex flex-wrap items-center -m-1 max-w-2xl">
               {sideBarFormState.selectedTattooTags &&
                 sideBarFormState.selectedTattooTags.map((tattoo) => (
-                  <div className='m-1' key={tattoo}>
+                  <div className="m-1" key={tattoo}>
                     <a
-                      className='text-xs hover:scale-110  hover:bg-red-100 hover:text-red-600 inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1'
-                      href='#'
+                      className="text-xs hover:scale-110  hover:bg-red-100 hover:text-red-600 inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+                      href="#"
                     >
                       (tattoo){tattoo}
                       <svg
-                        className='h-2 w-2 ml-2 mt-1 text-sm hover:cursor-pointer'
-                        stroke='currentColor'
-                        fill='none'
-                        viewBox='0 0 8 8'
+                        className="h-2 w-2 ml-2 mt-1 text-sm hover:cursor-pointer"
+                        stroke="currentColor"
+                        fill="none"
+                        viewBox="0 0 8 8"
                         onClick={(e) => handleTattooTagDelete(e, tattoo)}
                       >
                         <path
-                          strokeLinecap='round'
-                          strokeWidth='1.5'
-                          d='M1 1l6 6m0-6L1 7'
+                          strokeLinecap="round"
+                          strokeWidth="1.5"
+                          d="M1 1l6 6m0-6L1 7"
                         />
                       </svg>
                     </a>
@@ -329,26 +356,26 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
 
           {/* scars tags */}
           <div>
-            <div className='flex flex-wrap items-center -m-1 max-w-2xl'>
+            <div className="flex flex-wrap items-center -m-1 max-w-2xl">
               {sideBarFormState.selectedScarsTags &&
                 sideBarFormState.selectedScarsTags.map((scars) => (
-                  <div className='m-1' key={scars}>
+                  <div className="m-1" key={scars}>
                     <a
-                      className='text-xs hover:scale-110  hover:bg-red-100 hover:text-red-600 inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1'
-                      href='#'
+                      className="text-xs hover:scale-110  hover:bg-red-100 hover:text-red-600 inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+                      href="#"
                     >
                       (scars){scars}
                       <svg
-                        className='h-2 w-2 ml-2 mt-1 text-sm hover:cursor-pointer'
-                        stroke='currentColor'
-                        fill='none'
-                        viewBox='0 0 8 8'
+                        className="h-2 w-2 ml-2 mt-1 text-sm hover:cursor-pointer"
+                        stroke="currentColor"
+                        fill="none"
+                        viewBox="0 0 8 8"
                         onClick={(e) => handleScarsTagDelete(e, scars)}
                       >
                         <path
-                          strokeLinecap='round'
-                          strokeWidth='1.5'
-                          d='M1 1l6 6m0-6L1 7'
+                          strokeLinecap="round"
+                          strokeWidth="1.5"
+                          d="M1 1l6 6m0-6L1 7"
                         />
                       </svg>
                     </a>
@@ -359,26 +386,26 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
 
           {/* sex tags */}
           <div>
-            <div className='flex flex-wrap items-center -m-1 max-w-2xl'>
+            <div className="flex flex-wrap items-center -m-1 max-w-2xl">
               {sideBarFormState.selectedSexTags &&
                 sideBarFormState.selectedSexTags.map((sex) => (
-                  <div className='m-1' key={sex}>
+                  <div className="m-1" key={sex}>
                     <a
-                      className='text-xs hover:scale-110  hover:bg-red-100 hover:text-red-600 inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1'
-                      href='#'
+                      className="text-xs hover:scale-110  hover:bg-red-100 hover:text-red-600 inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+                      href="#"
                     >
                       (sex){sex}
                       <svg
-                        className='h-2 w-2 ml-2 mt-1 text-sm hover:cursor-pointer'
-                        stroke='currentColor'
-                        fill='none'
-                        viewBox='0 0 8 8'
+                        className="h-2 w-2 ml-2 mt-1 text-sm hover:cursor-pointer"
+                        stroke="currentColor"
+                        fill="none"
+                        viewBox="0 0 8 8"
                         onClick={(e) => handleSexTagDelete(e, sex)}
                       >
                         <path
-                          strokeLinecap='round'
-                          strokeWidth='1.5'
-                          d='M1 1l6 6m0-6L1 7'
+                          strokeLinecap="round"
+                          strokeWidth="1.5"
+                          d="M1 1l6 6m0-6L1 7"
                         />
                       </svg>
                     </a>
@@ -389,26 +416,26 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
 
           {/* invoice tags */}
           <div>
-            <div className='flex flex-wrap items-center -m-1 max-w-2xl'>
+            <div className="flex flex-wrap items-center -m-1 max-w-2xl">
               {sideBarFormState.selectedInvoiceTags &&
                 sideBarFormState.selectedInvoiceTags.map((invoice) => (
-                  <div className='m-1' key={invoice}>
+                  <div className="m-1" key={invoice}>
                     <a
-                      className='text-xs hover:scale-110  hover:bg-red-100 hover:text-red-600 inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1'
-                      href='#'
+                      className="text-xs hover:scale-110  hover:bg-red-100 hover:text-red-600 inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+                      href="#"
                     >
                       (invoice){invoice}
                       <svg
-                        className='h-2 w-2 ml-2 mt-1 text-sm hover:cursor-pointer'
-                        stroke='currentColor'
-                        fill='none'
-                        viewBox='0 0 8 8'
+                        className="h-2 w-2 ml-2 mt-1 text-sm hover:cursor-pointer"
+                        stroke="currentColor"
+                        fill="none"
+                        viewBox="0 0 8 8"
                         onClick={(e) => handleInvoiceTagDelete(e, invoice)}
                       >
                         <path
-                          strokeLinecap='round'
-                          strokeWidth='1.5'
-                          d='M1 1l6 6m0-6L1 7'
+                          strokeLinecap="round"
+                          strokeWidth="1.5"
+                          d="M1 1l6 6m0-6L1 7"
                         />
                       </svg>
                     </a>
@@ -419,26 +446,26 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
 
           {/* drive tags */}
           <div>
-            <div className='flex flex-wrap items-center -m-1 max-w-2xl'>
+            <div className="flex flex-wrap items-center -m-1 max-w-2xl">
               {sideBarFormState.selectedDriveTags &&
                 sideBarFormState.selectedDriveTags.map((drive) => (
-                  <div className='m-1' key={drive}>
+                  <div className="m-1" key={drive}>
                     <a
-                      className='text-xs hover:scale-110  hover:bg-red-100 hover:text-red-600 inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1'
-                      href='#'
+                      className="text-xs hover:scale-110  hover:bg-red-100 hover:text-red-600 inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+                      href="#"
                     >
                       (drive){drive}
                       <svg
-                        className='h-2 w-2 ml-2 mt-1 text-sm hover:cursor-pointer'
-                        stroke='currentColor'
-                        fill='none'
-                        viewBox='0 0 8 8'
+                        className="h-2 w-2 ml-2 mt-1 text-sm hover:cursor-pointer"
+                        stroke="currentColor"
+                        fill="none"
+                        viewBox="0 0 8 8"
                         onClick={(e) => handleDriveTagDelete(e, drive)}
                       >
                         <path
-                          strokeLinecap='round'
-                          strokeWidth='1.5'
-                          d='M1 1l6 6m0-6L1 7'
+                          strokeLinecap="round"
+                          strokeWidth="1.5"
+                          d="M1 1l6 6m0-6L1 7"
                         />
                       </svg>
                     </a>
@@ -452,7 +479,6 @@ export default function HeroesPage({ heroes, heroSkills, heroHair, heroEye, hero
             heroes={displayedHeroes}
             setDisplayedHeroes={setDisplayedHeroes}
           />
-
         </div>
         <HeroesList heroes={displayedHeroes} />
       </div>

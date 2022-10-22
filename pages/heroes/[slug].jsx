@@ -24,6 +24,5 @@ export const getStaticProps = async ({ params }) => {
     props: {
       hero,
     },
-    revalidate: 5,
   };
 };
