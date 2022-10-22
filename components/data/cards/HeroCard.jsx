@@ -19,7 +19,7 @@ const HeroCard = ({ hero }) => {
       <div className="md:flex justify-between items-center space-y-4 md:space-y-0 space-x-2 w-screen  ">
         {/* Left side */}
         <div className="flex items-start space-x-3 md:space-x-8   ">
-          <div className="   w-[100px] md:w-32 lg:w-48   ">
+          <div className="  max-w-[125px] lg:min-w-[200px]   ">
             <Image
               className="w-9 h-9 rounded-full "
               src={hero.foto.url}
@@ -47,7 +47,7 @@ const HeroCard = ({ hero }) => {
             <div className="text-[14px] font-semibold text-slate-800">
               {" "}
               Skills:
-              <div className="flex flex-wrap items-center -m-1">
+              <div className="flex flex-wrap justify-start items-center -m-1">
                 {hero.skills &&
                   hero.skills.map((skill) => (
                     <div className="m-1" key={skill}>
@@ -238,7 +238,7 @@ const HeroCard = ({ hero }) => {
 
             <div className="text-[14px] font-semibold text-slate-800  ">
               Socials:
-              <div className="text-[#fac805]	 text-slate-500 ">
+              <div className="text-[#3da388]	text-md italic text-slate-500 font-medium hover:font-sans hover:text-yellow-600/90 transition duration-500 hover:ease-in hover:ease-out">
                 <a className="break-all" href={hero.socials}>
                   {hero.socials}
                 </a>

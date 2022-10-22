@@ -289,7 +289,7 @@ const HeroDetails = ({ hero }) => {
                 {hero.crew}
               </div> */}
 
-              <div className="text-emerald-500/70	 text-slate-500 font-serif hover:font-serif hover:text-violet-500/90 transition duration-500 hover:ease-in hover:ease-out">
+              <div className="text-[#3da388]	 text-slate-500 font-serif hover:font-serif hover:text-yellow-600/90 transition duration-500 hover:ease-in hover:ease-out">
                 <a className="break-all italic" href={hero.socials}>
                   {hero.socials}
                 </a>
