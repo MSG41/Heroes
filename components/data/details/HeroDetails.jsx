@@ -152,22 +152,89 @@ const HeroDetails = ({ hero }) => {
           </div>
           <hr className="my-6 border-t border-slate-200" />
 
-          {/* About You */}
-          {/* <div>
+          {/*  */}
+          <div>
             <h2 className="text-xl leading-snug text-slate-800 font-bold mb-2">
-              About You
+              Specs
             </h2>
-            <div
-              className="space-y-6 text-slate-500 font-normal text-sm"
-              dangerouslySetInnerHTML={{
-                __html: hero.heroName,
-              }}
-            ></div>
-          </div>
-          <hr className="my-6 border-t border-slate-200" /> */}
 
-          {/* Your Responsabilities */}
-          {/* <div>
+            <div className="flex flex-inline justify-evenly">
+              <div className="text-[14px] font-semibold text-slate-800">
+                {" "}
+                Invoice:
+                <div className="flex flex-wrap items-center -m-1">
+                  {hero.invoice &&
+                    hero.invoice.map((invoice) => (
+                      <div className="m-1" key={invoice}>
+                        <a
+                          className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+                          href="#"
+                        >
+                          {invoice}
+                        </a>
+                      </div>
+                    ))}
+                </div>
+              </div>
+
+              <div className="text-[14px] font-semibold text-slate-800">
+                {" "}
+                Drive:
+                <div className="flex flex-wrap items-center -m-1">
+                  {hero.drive &&
+                    hero.drive.map((drive) => (
+                      <div className="m-1" key={drive}>
+                        <a
+                          className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+                          href="#"
+                        >
+                          {drive}
+                        </a>
+                      </div>
+                    ))}
+                </div>
+              </div>
+
+              <div className="text-[14px] font-semibold text-slate-800">
+                {" "}
+                Scars:
+                <div className="flex flex-wrap items-center -m-1">
+                  {hero.scars &&
+                    hero.scars.map((scars) => (
+                      <div className="m-1" key={scars}>
+                        <a
+                          className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+                          href="#"
+                        >
+                          {scars}
+                        </a>
+                      </div>
+                    ))}
+                </div>
+              </div>
+
+              <div className="text-[14px] font-semibold text-slate-800">
+                {" "}
+                Tattoo:
+                <div className="flex flex-wrap items-center -m-1">
+                  {hero.tattoo &&
+                    hero.tattoo.map((tattoo) => (
+                      <div className="m-1" key={tattoo}>
+                        <a
+                          className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+                          href="#"
+                        >
+                          {tattoo}
+                        </a>
+                      </div>
+                    ))}
+                </div>
+              </div>
+            </div>
+            <hr className="my-6 border-t border-slate-200" />
+
+            {/* Your Responsabilities */}
+            {/* <div>
             <h2 className='text-xl leading-snug text-slate-800 font-bold mb-2'>
               Your Responsabilities
             </h2>
@@ -180,8 +247,8 @@ const HeroDetails = ({ hero }) => {
           </div>
           <hr className='my-6 border-t border-slate-200' /> */}
 
-          {/* Remuneration */}
-          {/* <div>
+            {/* Remuneration */}
+            {/* <div>
             <h2 className='text-xl leading-snug text-slate-800 font-bold mb-2'>
               Remuneration
             </h2>
@@ -194,16 +261,16 @@ const HeroDetails = ({ hero }) => {
           </div>
           <hr className='my-6 border-t border-slate-200' /> */}
 
-          {/* Apply section */}
-          {/* <div className='mt-6'>
+            {/* Apply section */}
+            {/* <div className='mt-6'>
             <p className='font-medium text-slate-800 italic mb-6'>
               Do you have what it takes?
             </p>
             <div className='flex justify-between items-center'> */}
 
-          {/* Apply button */}
+            {/* Apply button */}
 
-          {/* <a
+            {/* <a
                 href={hero.applicationLink}
                 className='inline-flex items-center justify-center p-2 bg-indigo-500 hover:bg-indigo-600 text-white'
               >
@@ -213,8 +280,8 @@ const HeroDetails = ({ hero }) => {
                   aria-hidden='true'
                 />
               </a> */}
-          {/* Share */}
-          {/* <div className='flex items-center'>
+            {/* Share */}
+            {/* <div className='flex items-center'>
                 <div className='text-sm text-slate-500 italic mr-4'>Share:</div>
                 <div className='flex items-center space-x-3'>
                   <button className='text-slate-400 hover:text-indigo-500'>
@@ -253,8 +320,8 @@ const HeroDetails = ({ hero }) => {
           </div>
           <hr className='my-6 border-t border-slate-200' /> */}
 
-          {/* Related Heroes */}
-          {/* {hero.relatedhero.length ? (
+            {/* Related Heroes */}
+            {/* {hero.relatedhero.length ? (
             <div>
               <h2 className='text-xl leading-snug text-slate-800 font-bold mb-6'>
                 Related hero
@@ -266,6 +333,7 @@ const HeroDetails = ({ hero }) => {
               </div>
             </div>
           ) : null} */}
+          </div>
         </div>
 
         {/* Sidebar */}

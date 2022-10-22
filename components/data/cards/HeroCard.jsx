@@ -116,7 +116,7 @@ const HeroCard = ({ hero }) => {
             </div>
             {/* space between */}
 
-            <div className="text-[14px] font-semibold text-slate-800">
+            {/* <div className="text-[14px] font-semibold text-slate-800">
               {" "}
               Tattoo:
               <div className="flex flex-wrap items-center -m-1">
@@ -132,15 +132,15 @@ const HeroCard = ({ hero }) => {
                     </div>
                   ))}
               </div>
-            </div>
+            </div> */}
 
             {/* space between */}
-            <div>
+            {/* <div>
               <br />
-            </div>
+            </div> */}
             {/* space between */}
 
-            <div className="text-[14px] font-semibold text-slate-800">
+            {/* <div className="text-[14px] font-semibold text-slate-800">
               {" "}
               Scars:
               <div className="flex flex-wrap items-center -m-1">
@@ -156,12 +156,12 @@ const HeroCard = ({ hero }) => {
                     </div>
                   ))}
               </div>
-            </div>
+            </div> */}
 
             {/* space between */}
-            <div>
+            {/* <div>
               <br />
-            </div>
+            </div> */}
             {/* space between */}
 
             <div className="text-[14px] font-semibold text-slate-800">
@@ -183,12 +183,12 @@ const HeroCard = ({ hero }) => {
             </div>
 
             {/* space between */}
-            <div>
+            {/* <div>
               <br />
-            </div>
+            </div> */}
             {/* space between */}
 
-            <div className="text-[14px] font-semibold text-slate-800">
+            {/* <div className="text-[14px] font-semibold text-slate-800">
               {" "}
               Invoice:
               <div className="flex flex-wrap items-center -m-1">
@@ -204,15 +204,15 @@ const HeroCard = ({ hero }) => {
                     </div>
                   ))}
               </div>
-            </div>
+            </div> */}
 
             {/* space between */}
-            <div>
+            {/* <div>
               <br />
-            </div>
+            </div> */}
             {/* space between */}
 
-            <div className="text-[14px] font-semibold text-slate-800">
+            {/* <div className="text-[14px] font-semibold text-slate-800">
               {" "}
               Drive:
               <div className="flex flex-wrap items-center -m-1">
@@ -228,7 +228,7 @@ const HeroCard = ({ hero }) => {
                     </div>
                   ))}
               </div>
-            </div>
+            </div> */}
 
             {/* space between */}
             <div>
