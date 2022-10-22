@@ -141,7 +141,7 @@ const HeroDetails = ({ hero }) => {
           {/* The Hero Bio */}
           <div>
             <h2 className="text-xl leading-snug text-slate-800 font-bold mb-2 ">
-              Hero BIO
+              Hero BIO en info
             </h2>
             <div
               className=" space-y-6 text-slate-500 font-normal text-sm max-w-[500px]"
