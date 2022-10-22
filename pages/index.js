@@ -1,9 +1,41 @@
-import { getHeroes } from '../datalayer';
-import HeroesPage from '../components/ui/HeroesPage';
-import { getHeroesSkills, getHeroesHair, getHeroesEye, getHeroesTattoo, getHeroesScars, getHeroesSex, getHeroesInvoice, getHeroesDrive } from '../datalayer/contentful/heroes';
+import { getHeroes } from "../datalayer";
+import HeroesPage from "../components/ui/HeroesPage";
+// import InfiniteScroll from "react-infinite-scroll-component";
+import {
+  getHeroesSkills,
+  getHeroesHair,
+  getHeroesEye,
+  getHeroesTattoo,
+  getHeroesScars,
+  getHeroesSex,
+  getHeroesInvoice,
+  getHeroesDrive,
+} from "../datalayer/contentful/heroes";
 
-export default function Index({ heroes, heroSkills, heroHair, heroEye, heroTattoo, heroScars, heroSex, heroInvoice, heroDrive }) {
-  return <HeroesPage heroes={heroes} heroSkills={heroSkills} heroHair={heroHair} heroEye={heroEye} heroTattoo={heroTattoo} heroScars={heroScars} heroSex={heroSex} heroInvoice={heroInvoice} heroDrive={heroDrive} />;
+export default function Index({
+  heroes,
+  heroSkills,
+  heroHair,
+  heroEye,
+  heroTattoo,
+  heroScars,
+  heroSex,
+  heroInvoice,
+  heroDrive,
+}) {
+  return (
+    <HeroesPage
+      heroes={heroes}
+      heroSkills={heroSkills}
+      heroHair={heroHair}
+      heroEye={heroEye}
+      heroTattoo={heroTattoo}
+      heroScars={heroScars}
+      heroSex={heroSex}
+      heroInvoice={heroInvoice}
+      heroDrive={heroDrive}
+    />
+  );
 }
 
 export const getStaticProps = async (ctx) => {

@@ -13,7 +13,7 @@ export const getStaticPaths = async () => {
   const paths = slugs.map((slug) => ({ params: { slug } }));
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 };
 
@@ -24,5 +24,6 @@ export const getStaticProps = async ({ params }) => {
     props: {
       hero,
     },
+    revalidate: 5,
   };
 };

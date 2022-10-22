@@ -869,6 +869,11 @@
   "resolved" "https://registry.npmjs.org/esutils/-/esutils-2.0.3.tgz"
   "version" "2.0.3"
 
+"ev-emitter@^2.1.0":
+  "integrity" "sha512-jQ5Ql18hdCQ4qS+RCrbLfz1n+Pags27q5TwMKvZyhp5hh2UULUYZUy1keqj6k6SYsdqIYjnmz7xyyEY0V67B8Q=="
+  "resolved" "https://registry.npmjs.org/ev-emitter/-/ev-emitter-2.1.2.tgz"
+  "version" "2.1.2"
+
 "fast-copy@^2.1.0":
   "integrity" "sha512-ozrGwyuCTAy7YgFCua8rmqmytECYk/JYAMXcswOcm0qvGoE3tPb7ivBeIHTOK2DiapBhDZgacIhzhQIKU5TCfA=="
   "resolved" "https://registry.npmjs.org/fast-copy/-/fast-copy-2.1.7.tgz"
@@ -925,6 +930,11 @@
   "version" "7.0.1"
   dependencies:
     "to-regex-range" "^5.0.1"
+
+"fizzy-ui-utils@^3.0.0":
+  "integrity" "sha512-uJj38QFQiJ/KCio5tiZhwAjIbTXSIgzBCKdKVbaYfLS053F6z23Nb0o1ZoO9gnxOQWN7BCc35jsvrCtAq3gY9g=="
+  "resolved" "https://registry.npmjs.org/fizzy-ui-utils/-/fizzy-ui-utils-3.0.0.tgz"
+  "version" "3.0.0"
 
 "flat-cache@^3.0.4":
   "integrity" "sha512-dm9s5Pw7Jc0GvMYbshN6zchCA9RgQlzzEZX3vylR9IqFfS8XciblUXOKfW6SiuJ0e13eDYZoZV5wdrev7P3Nwg=="
@@ -1127,6 +1137,14 @@
   "integrity" "sha512-JmXMZ6wuvDmLiHEml9ykzqO6lwFbof0GG4IkcGaENdCRDDmMVnny7s5HsIgHCbaq0w2MyPhDqkhTUgS2LU2PHA=="
   "resolved" "https://registry.npmjs.org/imurmurhash/-/imurmurhash-0.1.4.tgz"
   "version" "0.1.4"
+
+"infinite-scroll@^4.0.1":
+  "integrity" "sha512-14Utu6d8g6mO5PmwUxfAUK5uaKdClIkrJqLmBYXj/AMBRy5ApsCWkkY84HvsSq4MM1A062gtf58S9OiD5WBfRA=="
+  "resolved" "https://registry.npmjs.org/infinite-scroll/-/infinite-scroll-4.0.1.tgz"
+  "version" "4.0.1"
+  dependencies:
+    "ev-emitter" "^2.1.0"
+    "fizzy-ui-utils" "^3.0.0"
 
 "inflight@^1.0.4":
   "integrity" "sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA=="
