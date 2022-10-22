@@ -78,7 +78,7 @@ export default function HeroesPage({
       console.log(
         "search form changed && length >= 3 OR ==0 => triggering a search"
       );
-      if (searchFormState.length >= 3 || searchFormState.length == 0) {
+      if (searchFormState.length >= 2 || searchFormState.length == 0) {
         const formsStates = { searchFormState, sideBarFormState };
         searchHeroes("api/search-heroes", formsStates);
       }
