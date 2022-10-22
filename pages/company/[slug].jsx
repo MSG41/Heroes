@@ -24,6 +24,7 @@ export const getStaticProps = async ({ params }) => {
       company,
       companyHeroes,
     },
+    revalidate: 5,
   };
 };
 
