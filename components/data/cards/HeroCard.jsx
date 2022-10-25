@@ -6,14 +6,11 @@ const HeroCard = ({ hero }) => {
   return (
     <div
       // max-h-[350px] overflow-auto
-      className={`shadow-lg rounded-sm border px-5 py-4  flex justify-start	w-[100%] md:w-auto hover:border-slate-300 transition duration-300 ease-out hover:ease-in ${
+      className={` shadow-lg rounded-sm border px-5 py-4  flex justify-start	w-[100%] md:w-auto hover:border-slate-300 transition duration-300 ease-out hover:ease-in ${
         hero.featuredHero
           ? "bg-amber-50 border-amber-300"
           : "bg-white border-slate-200"
-      } 
-				
-				
-				
+      }	
 				`}
     >
       <div className="md:flex justify-between items-center space-y-4 md:space-y-0 space-x-2 w-screen  ">

@@ -233,23 +233,46 @@ export const searchHeroes = async (query) => {
 
   // Now because contentful doesn't have an OR operator we have to filter at the application level which is not efficient
   let filteredHeroes = heroes.filter((hero) => {
-    //   if (query.experienceLevels.length == 0) return true;
-    //   if (query.experienceLevels.includes(hero.experienceLevel)) return true;
-    //   return false;
-    // });
+    if (query.tattoos.length == 0) return true;
+    if (query.tattoos.includes(hero.heroTattoo)) return true;
+    return false;
+  });
 
-    //   filteredHeroes = filteredHeroes.filter((hero) => {
-    //     if (query.heroTypes.length == 0) return true;
-    //     if (query.heroTypes.includes(hero.heroType)) return true;
-    //     return false;
-    //   });
+  //   if (query.experienceLevels.length == 0) return true;
+  //   if (query.experienceLevels.includes(hero.experienceLevel)) return true;
+  //   return false;
+  // });
 
-    //   return filteredHeroes;
-    // };
+  //   filteredHeroes = filteredHeroes.filter((hero) => {
+  //     if (query.heroTypes.length == 0) return true;
+  //     if (query.heroTypes.includes(hero.heroType)) return true;
+  //     return false;
+  //   });
 
-    // filteredHeroes = filteredHeroes.filter((hero) => {
+  //   return filteredHeroes;
+  // };
+
+  filteredHeroes = filteredHeroes.filter((hero) => {
     if (query.heroGenders.length == 0) return true;
     if (query.heroGenders.includes(hero.gender)) return true;
+    return false;
+  });
+
+  filteredHeroes = filteredHeroes.filter((hero) => {
+    if (query.heroLooks.length == 0) return true;
+    if (query.heroLooks.includes(hero.looks)) return true;
+    return false;
+  });
+
+  filteredHeroes = filteredHeroes.filter((hero) => {
+    if (query.heroScars.length == 0) return true;
+    if (query.heroScars.includes(hero.scar)) return true;
+    return false;
+  });
+
+  filteredHeroes = filteredHeroes.filter((hero) => {
+    if (query.hairColors.length == 0) return true;
+    if (query.hairColors.includes(hero.hairColor)) return true;
     return false;
   });
 

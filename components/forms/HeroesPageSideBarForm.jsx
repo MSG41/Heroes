@@ -8,6 +8,7 @@ import TagsFilterScarsForm from "./TagsFilterScarsForm";
 // import TagsFilterSexForm from './TagsFilterSexForm';
 import TagsFilterInvoiceForm from "./TagsFilterInvoiceForm";
 import TagsFilterDriveForm from "./TagsFilterDriveForm";
+import { ChevronDownIcon, FilterIcon } from "@heroicons/react/solid";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -26,17 +27,34 @@ function HeroesPageSideBarForm({
   setSideBarFormState,
   setDisplayedHeroes,
 }) {
-  const heroTypesOptions = [
-    { value: "full-time", display: "Full Time" },
-    { value: "part-time", display: "Part Time" },
-    { value: "internship", display: "Internship" },
-    { value: "contract", display: "Contract" },
+  const tattoosOptions = [
+    { value: "no", display: "No" },
+    { value: "yes", display: "Yes" },
   ];
 
   const heroGendersOptions = [
     { value: "female", display: "Female" },
     { value: "male", display: "Male" },
     { value: "Non-Binary", display: "Non-Binary" },
+  ];
+  const heroLooksOptions = [
+    { value: "Caucasian", display: "Caucasian" },
+    { value: "Asian", display: "Asian" },
+    { value: "Latin/Hispanic", display: "Latin/Hispanic" },
+    { value: "POC", display: "POC" },
+    { value: "MENA", display: "MENA" },
+    { value: "Mixed", display: "Mixed" },
+  ];
+  const heroScarsOptions = [
+    { value: "no", display: "No" },
+    { value: "yes", display: "Yes" },
+  ];
+  const hairColorsOptions = [
+    { value: "Black", display: "Black" },
+    { value: "Brown", display: "Brown" },
+    { value: "Blonde", display: "Blonde" },
+    { value: "Red", display: "Red" },
+    { value: "Colored", display: "Colored" },
   ];
 
   // const experienceLevelsOptions = [
@@ -123,6 +141,84 @@ function HeroesPageSideBarForm({
     }
   };
 
+  // ------------------------
+
+  const handleTattooSelect = (e, option) => {
+    console.log(e.target.checked, option);
+    if (e.target.checked) {
+      setSideBarFormState((prevState) => {
+        const tattoos = [...prevState.tattoos];
+        tattoos.push(option);
+        return { ...prevState, tattoos };
+      });
+    } else {
+      setSideBarFormState((prevState) => {
+        return {
+          ...prevState,
+          tattoos: prevState.tattoos.filter(
+            (heroTattoo) => option != heroTattoo
+          ),
+        };
+      });
+    }
+  };
+  // ------------------------
+  const handleHeroLookSelect = (e, option) => {
+    console.log(e.target.checked, option);
+    if (e.target.checked) {
+      setSideBarFormState((prevState) => {
+        const heroLooks = [...prevState.heroLooks];
+        heroLooks.push(option);
+        return { ...prevState, heroLooks };
+      });
+    } else {
+      setSideBarFormState((prevState) => {
+        return {
+          ...prevState,
+          heroLooks: prevState.heroLooks.filter((looks) => option != looks),
+        };
+      });
+    }
+  };
+  // ------------------------
+  const handleHeroScarSelect = (e, option) => {
+    console.log(e.target.checked, option);
+    if (e.target.checked) {
+      setSideBarFormState((prevState) => {
+        const heroScars = [...prevState.heroScars];
+        heroScars.push(option);
+        return { ...prevState, heroScars };
+      });
+    } else {
+      setSideBarFormState((prevState) => {
+        return {
+          ...prevState,
+          heroScars: prevState.heroScars.filter((scar) => option != scar),
+        };
+      });
+    }
+  };
+  // ------------------------
+  const handleHairColorSelect = (e, option) => {
+    console.log(e.target.checked, option);
+    if (e.target.checked) {
+      setSideBarFormState((prevState) => {
+        const hairColors = [...prevState.hairColors];
+        hairColors.push(option);
+        return { ...prevState, hairColors };
+      });
+    } else {
+      setSideBarFormState((prevState) => {
+        return {
+          ...prevState,
+          hairColors: prevState.hairColors.filter(
+            (hairColor) => option != hairColor
+          ),
+        };
+      });
+    }
+  };
+  // ------------------------
   // const handleExperienceLevelsSelect = (e, option) => {
   //   console.log(e.target.checked, option);
   //   if (e.target.checked) {
@@ -194,35 +290,35 @@ function HeroesPageSideBarForm({
 
           {/* FilterHairForm */}
 
-          <TagsFilterHairForm
+          {/* <TagsFilterHairForm
             heroHair={heroHair}
             selectedHairTags={sideBarFormState.selectedHairTags}
             setSideBarFormState={setSideBarFormState}
-          />
+          /> */}
 
           {/* FilterEyeForm */}
 
-          <TagsFilterEyeForm
+          {/* <TagsFilterEyeForm
             heroEye={heroEye}
             selectedEyeTags={sideBarFormState.selectedEyeTags}
             setSideBarFormState={setSideBarFormState}
-          />
+          /> */}
 
           {/* FilterTattooForm */}
 
-          <TagsFilterTattooForm
+          {/* <TagsFilterTattooForm
             heroTattoo={heroTattoo}
             selectedTattooTags={sideBarFormState.selectedTattooTags}
             setSideBarFormState={setSideBarFormState}
-          />
+          /> */}
 
           {/* FilterScarForm */}
 
-          <TagsFilterScarsForm
+          {/* <TagsFilterScarsForm
             heroScars={heroScars}
             selectedScarsTags={sideBarFormState.selectedScarsTags}
             setSideBarFormState={setSideBarFormState}
-          />
+          /> */}
 
           {/* FilterSexForm */}
 
@@ -234,19 +330,19 @@ function HeroesPageSideBarForm({
 
           {/* FilterInvoiceForm */}
 
-          <TagsFilterInvoiceForm
+          {/* <TagsFilterInvoiceForm
             heroInvoice={heroInvoice}
             selectedInvoiceTags={sideBarFormState.selectedInvoiceTags}
             setSideBarFormState={setSideBarFormState}
-          />
+          /> */}
 
           {/* FilterDriveForm */}
 
-          <TagsFilterDriveForm
+          {/* <TagsFilterDriveForm
             heroDrive={heroDrive}
             selectedDriveTags={sideBarFormState.selectedDriveTags}
             setSideBarFormState={setSideBarFormState}
-          />
+          /> */}
 
           {/* Group 1 */}
           {/* <Switch.Group as='div' className='flex items-center'>
@@ -334,8 +430,15 @@ function HeroesPageSideBarForm({
 
           {/* group hero gender  */}
           <div>
-            <div className="text-sm text-slate-800 font-semibold mb-3">
-              Hero Gender
+            <div className="flex flex-row">
+              {" "}
+              <FilterIcon
+                className="ml-1 mr-2 h-6 w-6 text-gray-400"
+                aria-hidden="true"
+              />
+              <div className="text-sm text-slate-800 font-semibold mb-3">
+                Gender
+              </div>
             </div>
             <ul className="space-y-2">
               {heroGendersOptions.map((option) => {
@@ -361,6 +464,143 @@ function HeroesPageSideBarForm({
               })}
             </ul>
           </div>
+
+          {/* Group filter tattoo  */}
+          <div>
+            <div className="flex flex-row">
+              <FilterIcon
+                className="ml-1 mr-2 h-6 w-6 text-gray-400"
+                aria-hidden="true"
+              />
+              <div className="text-sm text-slate-800 font-semibold mb-3">
+                Tattoo
+              </div>
+            </div>
+            <ul className="space-y-2">
+              {tattoosOptions.map((option) => {
+                return (
+                  <li key={option.value}>
+                    <label className="flex items-center">
+                      <input
+                        type="checkbox"
+                        className="form-checkbox"
+                        onChange={(e) => handleTattooSelect(e, option.value)}
+                        checked={sideBarFormState.tattoos.includes(
+                          option.value
+                        )}
+                      />
+                      <span className="text-sm text-slate-600 font-medium ml-2">
+                        {option.display}
+                      </span>
+                    </label>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          {/* ------------------------------- */}
+          <div>
+            <div className="flex flex-row">
+              {" "}
+              <FilterIcon
+                className="ml-1 mr-2 h-6 w-6 text-gray-400"
+                aria-hidden="true"
+              />
+              <div className="text-sm text-slate-800 font-semibold mb-3">
+                Looks
+              </div>
+            </div>
+            <ul className="space-y-2">
+              {heroLooksOptions.map((option) => {
+                return (
+                  <li key={option.value}>
+                    <label className="flex items-center">
+                      <input
+                        type="checkbox"
+                        className="form-checkbox"
+                        onChange={(e) => handleHeroLookSelect(e, option.value)}
+                        checked={sideBarFormState.heroLooks.includes(
+                          option.value
+                        )}
+                      />
+                      <span className="text-sm text-slate-600 font-medium ml-2">
+                        {option.display}
+                      </span>
+                    </label>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          {/* ------------------------------- */}
+          <div>
+            <div className="flex flex-row">
+              {" "}
+              <FilterIcon
+                className="ml-1 mr-2 h-6 w-6 text-gray-400"
+                aria-hidden="true"
+              />
+              <div className="text-sm text-slate-800 font-semibold mb-3">
+                Scar(s)
+              </div>
+            </div>
+            <ul className="space-y-2">
+              {heroScarsOptions.map((option) => {
+                return (
+                  <li key={option.value}>
+                    <label className="flex items-center">
+                      <input
+                        type="checkbox"
+                        className="form-checkbox"
+                        onChange={(e) => handleHeroScarSelect(e, option.value)}
+                        checked={sideBarFormState.heroScars.includes(
+                          option.value
+                        )}
+                      />
+                      <span className="text-sm text-slate-600 font-medium ml-2">
+                        {option.display}
+                      </span>
+                    </label>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          {/* ------------------------------- */}
+          <div>
+            <div className="flex flex-row">
+              {" "}
+              <FilterIcon
+                className="ml-1 mr-2 h-6 w-6 text-gray-400"
+                aria-hidden="true"
+              />
+              <div className="text-sm text-slate-800 font-semibold mb-3">
+                Hair Color
+              </div>
+            </div>
+            <ul className="space-y-2">
+              {hairColorsOptions.map((option) => {
+                return (
+                  <li key={option.value}>
+                    <label className="flex items-center">
+                      <input
+                        type="checkbox"
+                        className="form-checkbox"
+                        onChange={(e) => handleHairColorSelect(e, option.value)}
+                        checked={sideBarFormState.hairColors.includes(
+                          option.value
+                        )}
+                      />
+                      <span className="text-sm text-slate-600 font-medium ml-2">
+                        {option.display}
+                      </span>
+                    </label>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          {/* ------------------------------- */}
 
           {/* Group 4 */}
           {/* <div>

@@ -25,6 +25,21 @@ export default async function handler(req, res) {
     capitalizeFirstLetter(gender)
   );
 
+  const tattoos = sideBarFormState.tattoos.map((heroTattoo) =>
+    capitalizeFirstLetter(heroTattoo)
+  );
+
+  const heroLooks = sideBarFormState.heroLooks.map((looks) =>
+    capitalizeFirstLetter(looks)
+  );
+
+  const heroScars = sideBarFormState.heroScars.map((scar) =>
+    capitalizeFirstLetter(scar)
+  );
+
+  const hairColors = sideBarFormState.hairColors.map((hairColor) =>
+    capitalizeFirstLetter(hairColor)
+  );
   // const experienceLevels = sideBarFormState.experienceLevels.map(
   //   (experienceLevel) => capitalizeFirstLetter(experienceLevel)
   // );
@@ -36,6 +51,10 @@ export default async function handler(req, res) {
     // maxBaseSalary,
     // heroTypes,
     heroGenders,
+    tattoos,
+    heroLooks,
+    heroScars,
+    hairColors,
     // experienceLevels,
   };
 

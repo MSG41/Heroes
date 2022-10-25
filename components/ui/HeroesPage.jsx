@@ -21,6 +21,10 @@ export default function HeroesPage({
   const [sideBarFormState, setSideBarFormState] = useState({
     // heroTypes: [],
     heroGenders: [],
+    tattoos: [],
+    heroLooks: [],
+    heroScars: [],
+    hairColors: [],
     // experienceLevels: [],
     // remoteOkOnly: false,
     // featuredHeroesOnly: false,
