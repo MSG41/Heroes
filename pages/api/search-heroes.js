@@ -40,6 +40,14 @@ export default async function handler(req, res) {
   const hairColors = sideBarFormState.hairColors.map((hairColor) =>
     capitalizeFirstLetter(hairColor)
   );
+
+  const eyeColors = sideBarFormState.eyeColors.map((eyeColor) =>
+    capitalizeFirstLetter(eyeColor)
+  );
+
+  const sizes = sideBarFormState.sizes.map((standardSize) =>
+    capitalizeFirstLetter(standardSize)
+  );
   // const experienceLevels = sideBarFormState.experienceLevels.map(
   //   (experienceLevel) => capitalizeFirstLetter(experienceLevel)
   // );
@@ -55,6 +63,8 @@ export default async function handler(req, res) {
     heroLooks,
     heroScars,
     hairColors,
+    eyeColors,
+    sizes,
     // experienceLevels,
   };
 

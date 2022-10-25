@@ -69,17 +69,14 @@ const HeroCard = ({ hero }) => {
               {" "}
               Hair Color:
               <div className="flex flex-wrap items-center -m-1">
-                {hero.hair &&
-                  hero.hair.map((hair) => (
-                    <div className="m-1" key={hair}>
-                      <a
-                        className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
-                        href="#"
-                      >
-                        {hair}
-                      </a>
-                    </div>
-                  ))}
+                <div className="m-1">
+                  <a
+                    className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+                    href="#"
+                  >
+                    {hero.hairColor}
+                  </a>
+                </div>
               </div>
             </div>
 
@@ -93,17 +90,14 @@ const HeroCard = ({ hero }) => {
               {" "}
               Eye Color:
               <div className="flex flex-wrap items-center -m-1">
-                {hero.eye &&
-                  hero.eye.map((eye) => (
-                    <div className="m-1" key={eye}>
-                      <a
-                        className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
-                        href="#"
-                      >
-                        {eye}
-                      </a>
-                    </div>
-                  ))}
+                <div className="m-1">
+                  <a
+                    className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+                    href="#"
+                  >
+                    {hero.eyeColor}
+                  </a>
+                </div>
               </div>
             </div>
 
@@ -165,17 +159,14 @@ const HeroCard = ({ hero }) => {
               {" "}
               Sex:
               <div className="flex flex-wrap items-center -m-1">
-                {hero.sex &&
-                  hero.sex.map((sex) => (
-                    <div className="m-1" key={sex}>
-                      <a
-                        className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
-                        href="#"
-                      >
-                        {sex}
-                      </a>
-                    </div>
-                  ))}
+                <div className="m-1">
+                  <a
+                    className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+                    href="#"
+                  >
+                    {hero.gender}
+                  </a>
+                </div>
               </div>
             </div>
 

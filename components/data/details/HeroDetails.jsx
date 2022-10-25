@@ -199,17 +199,14 @@ const HeroDetails = ({ hero }) => {
                 {" "}
                 Scars:
                 <div className="flex flex-wrap items-center -m-1">
-                  {hero.scars &&
-                    hero.scars.map((scars) => (
-                      <div className="m-1" key={scars}>
-                        <a
-                          className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
-                          href="#"
-                        >
-                          {scars}
-                        </a>
-                      </div>
-                    ))}
+                  <div className="m-1">
+                    <a
+                      className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+                      href="#"
+                    >
+                      {hero.scar}
+                    </a>
+                  </div>
                 </div>
               </div>
 
@@ -217,17 +214,14 @@ const HeroDetails = ({ hero }) => {
                 {" "}
                 Tattoo:
                 <div className="flex flex-wrap items-center -m-1">
-                  {hero.tattoo &&
-                    hero.tattoo.map((tattoo) => (
-                      <div className="m-1" key={tattoo}>
-                        <a
-                          className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
-                          href="#"
-                        >
-                          {tattoo}
-                        </a>
-                      </div>
-                    ))}
+                  <div className="m-1">
+                    <a
+                      className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+                      href="#"
+                    >
+                      {hero.heroTattoo}
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

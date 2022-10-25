@@ -25,6 +25,8 @@ export default function HeroesPage({
     heroLooks: [],
     heroScars: [],
     hairColors: [],
+    eyeColors: [],
+    sizes: [],
     // experienceLevels: [],
     // remoteOkOnly: false,
     // featuredHeroesOnly: false,

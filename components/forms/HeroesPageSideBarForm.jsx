@@ -56,6 +56,19 @@ function HeroesPageSideBarForm({
     { value: "Red", display: "Red" },
     { value: "Colored", display: "Colored" },
   ];
+  const eyeColorsOptions = [
+    { value: "Blue", display: "Blue" },
+    { value: "Brown", display: "Brown" },
+    { value: "Green", display: "Green" },
+    { value: "Grey", display: "Grey" },
+  ];
+  const sizesOptions = [
+    { value: "X-small", display: "X-small" },
+    { value: "Small", display: "Small" },
+    { value: "Medium", display: "Medium" },
+    { value: "Large", display: "Large" },
+    { value: "X-large", display: "X-large" },
+  ];
 
   // const experienceLevelsOptions = [
   //   { value: 'junior', display: 'Junior' },
@@ -219,6 +232,47 @@ function HeroesPageSideBarForm({
     }
   };
   // ------------------------
+  const handleEyeColorSelect = (e, option) => {
+    console.log(e.target.checked, option);
+    if (e.target.checked) {
+      setSideBarFormState((prevState) => {
+        const eyeColors = [...prevState.eyeColors];
+        eyeColors.push(option);
+        return { ...prevState, eyeColors };
+      });
+    } else {
+      setSideBarFormState((prevState) => {
+        return {
+          ...prevState,
+          eyeColors: prevState.eyeColors.filter(
+            (eyeColor) => option != eyeColor
+          ),
+        };
+      });
+    }
+  };
+  // ------------------------
+  const handleSizeSelect = (e, option) => {
+    console.log(e.target.checked, option);
+    if (e.target.checked) {
+      setSideBarFormState((prevState) => {
+        const sizes = [...prevState.sizes];
+        sizes.push(option);
+        return { ...prevState, sizes };
+      });
+    } else {
+      setSideBarFormState((prevState) => {
+        return {
+          ...prevState,
+          sizes: prevState.sizes.filter(
+            (standardSize) => option != standardSize
+          ),
+        };
+      });
+    }
+  };
+  // ------------------------
+
   // const handleExperienceLevelsSelect = (e, option) => {
   //   console.log(e.target.checked, option);
   //   if (e.target.checked) {
@@ -590,6 +644,72 @@ function HeroesPageSideBarForm({
                         checked={sideBarFormState.hairColors.includes(
                           option.value
                         )}
+                      />
+                      <span className="text-sm text-slate-600 font-medium ml-2">
+                        {option.display}
+                      </span>
+                    </label>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          {/* ------------------------------- */}
+          <div>
+            <div className="flex flex-row">
+              {" "}
+              <FilterIcon
+                className="ml-1 mr-2 h-6 w-6 text-gray-400"
+                aria-hidden="true"
+              />
+              <div className="text-sm text-slate-800 font-semibold mb-3">
+                Eye Color
+              </div>
+            </div>
+            <ul className="space-y-2">
+              {eyeColorsOptions.map((option) => {
+                return (
+                  <li key={option.value}>
+                    <label className="flex items-center">
+                      <input
+                        type="checkbox"
+                        className="form-checkbox"
+                        onChange={(e) => handleEyeColorSelect(e, option.value)}
+                        checked={sideBarFormState.eyeColors.includes(
+                          option.value
+                        )}
+                      />
+                      <span className="text-sm text-slate-600 font-medium ml-2">
+                        {option.display}
+                      </span>
+                    </label>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          {/* ------------------------------- */}
+          <div>
+            <div className="flex flex-row">
+              {" "}
+              <FilterIcon
+                className="ml-1 mr-2 h-6 w-6 text-gray-400"
+                aria-hidden="true"
+              />
+              <div className="text-sm text-slate-800 font-semibold mb-3">
+                Standard Size
+              </div>
+            </div>
+            <ul className="space-y-2">
+              {sizesOptions.map((option) => {
+                return (
+                  <li key={option.value}>
+                    <label className="flex items-center">
+                      <input
+                        type="checkbox"
+                        className="form-checkbox"
+                        onChange={(e) => handleSizeSelect(e, option.value)}
+                        checked={sideBarFormState.sizes.includes(option.value)}
                       />
                       <span className="text-sm text-slate-600 font-medium ml-2">
                         {option.display}

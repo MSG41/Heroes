@@ -276,6 +276,17 @@ export const searchHeroes = async (query) => {
     return false;
   });
 
+  filteredHeroes = filteredHeroes.filter((hero) => {
+    if (query.eyeColors.length == 0) return true;
+    if (query.eyeColors.includes(hero.eyeColor)) return true;
+    return false;
+  });
+  filteredHeroes = filteredHeroes.filter((hero) => {
+    if (query.sizes.length == 0) return true;
+    if (query.sizes.includes(hero.standardSize)) return true;
+    return false;
+  });
+
   return filteredHeroes;
 };
 
