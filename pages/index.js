@@ -8,7 +8,7 @@ import {
   getHeroesTattoo,
   getHeroesScars,
   getHeroesSex,
-  getHeroesInvoice,
+  // getHeroesInvoice,
   getHeroesDrive,
 } from "../datalayer/contentful/heroes";
 
@@ -20,7 +20,7 @@ export default function Index({
   heroTattoo,
   heroScars,
   heroSex,
-  heroInvoice,
+  // heroInvoice,
   heroDrive,
 }) {
   return (
@@ -32,7 +32,7 @@ export default function Index({
       heroTattoo={heroTattoo}
       heroScars={heroScars}
       heroSex={heroSex}
-      heroInvoice={heroInvoice}
+      // heroInvoice={heroInvoice}
       heroDrive={heroDrive}
     />
   );
@@ -46,7 +46,7 @@ export const getStaticProps = async (ctx) => {
   const heroTattoo = await getHeroesTattoo();
   const heroScars = await getHeroesScars();
   const heroSex = await getHeroesSex();
-  const heroInvoice = await getHeroesInvoice();
+  // const heroInvoice = await getHeroesInvoice();
   const heroDrive = await getHeroesDrive();
 
   return {
@@ -58,9 +58,9 @@ export const getStaticProps = async (ctx) => {
       heroTattoo,
       heroScars,
       heroSex,
-      heroInvoice,
+      // heroInvoice,
       heroDrive,
     },
-    revalidate: 5,
+    revalidate: 8,
   };
 };

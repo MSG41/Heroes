@@ -163,17 +163,14 @@ const HeroDetails = ({ hero }) => {
                 {" "}
                 Invoice:
                 <div className="flex flex-wrap items-center -m-1">
-                  {hero.invoice &&
-                    hero.invoice.map((invoice) => (
-                      <div className="m-1" key={invoice}>
-                        <a
-                          className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
-                          href="#"
-                        >
-                          {invoice}
-                        </a>
-                      </div>
-                    ))}
+                  <div className="m-1">
+                    <a
+                      className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+                      href="#"
+                    >
+                      {hero.heroInvoice}
+                    </a>
+                  </div>
                 </div>
               </div>
 

@@ -13,13 +13,14 @@ export default function HeroesPage({
   heroTattoo,
   heroScars,
   heroSex,
-  heroInvoice,
+  // heroInvoice,
   heroDrive,
 }) {
   const [displayedHeroes, setDisplayedHeroes] = useState(heroes);
 
   const [sideBarFormState, setSideBarFormState] = useState({
     // heroTypes: [],
+    heroInvoices: [],
     heroGenders: [],
     tattoos: [],
     heroLooks: [],
@@ -38,7 +39,7 @@ export default function HeroesPage({
     selectedTattooTags: [],
     selectedScarsTags: [],
     selectedSexTags: [],
-    selectedInvoiceTags: [],
+    // selectedInvoiceTags: [],
     selectedDriveTags: [],
   });
 
@@ -187,17 +188,17 @@ export default function HeroesPage({
   };
 
   // invoiceTag delete
-  const handleInvoiceTagDelete = (e, invoiceTag) => {
-    e.preventDefault();
-    setSideBarFormState((prevState) => {
-      return {
-        ...prevState,
-        selectedInvoiceTags: prevState.selectedInvoiceTags.filter(
-          (tag) => invoiceTag != tag
-        ),
-      };
-    });
-  };
+  // const handleInvoiceTagDelete = (e, invoiceTag) => {
+  //   e.preventDefault();
+  //   setSideBarFormState((prevState) => {
+  //     return {
+  //       ...prevState,
+  //       selectedInvoiceTags: prevState.selectedInvoiceTags.filter(
+  //         (tag) => invoiceTag != tag
+  //       ),
+  //     };
+  //   });
+  // };
 
   // driveTag delete
   const handleDriveTagDelete = (e, driveTag) => {
@@ -221,7 +222,7 @@ export default function HeroesPage({
         heroTattoo={heroTattoo}
         heroScars={heroScars}
         heroSex={heroSex}
-        heroInvoice={heroInvoice}
+        // heroInvoice={heroInvoice}
         heroDrive={heroDrive}
         sideBarFormState={sideBarFormState}
         setSideBarFormState={setSideBarFormState}
@@ -421,7 +422,7 @@ export default function HeroesPage({
           </div>
 
           {/* invoice tags */}
-          <div>
+          {/* <div>
             <div className="flex flex-wrap items-center -m-1 max-w-2xl">
               {sideBarFormState.selectedInvoiceTags &&
                 sideBarFormState.selectedInvoiceTags.map((invoice) => (
@@ -448,7 +449,7 @@ export default function HeroesPage({
                   </div>
                 ))}
             </div>
-          </div>
+          </div> */}
 
           {/* drive tags */}
           <div>
@@ -486,6 +487,7 @@ export default function HeroesPage({
             setDisplayedHeroes={setDisplayedHeroes}
           />
         </div>
+
         <HeroesList heroes={displayedHeroes} />
       </div>
     </div>

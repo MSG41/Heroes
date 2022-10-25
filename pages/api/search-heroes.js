@@ -48,6 +48,10 @@ export default async function handler(req, res) {
   const sizes = sideBarFormState.sizes.map((standardSize) =>
     capitalizeFirstLetter(standardSize)
   );
+
+  const heroInvoices = sideBarFormState.heroInvoices.map((heroInvoice) =>
+    capitalizeFirstLetter(heroInvoice)
+  );
   // const experienceLevels = sideBarFormState.experienceLevels.map(
   //   (experienceLevel) => capitalizeFirstLetter(experienceLevel)
   // );
@@ -58,6 +62,7 @@ export default async function handler(req, res) {
     // minBaseSalary,
     // maxBaseSalary,
     // heroTypes,
+    heroInvoices,
     heroGenders,
     tattoos,
     heroLooks,

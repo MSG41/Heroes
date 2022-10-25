@@ -8,7 +8,7 @@ import {
   tattooReducer,
   scarsReducer,
   sexReducer,
-  invoiceReducer,
+  // invoiceReducer,
   driveReducer,
 } from "./utils";
 
@@ -86,14 +86,14 @@ export const getHeroesSex = async () => {
 };
 
 //  Get Hero Invoice
-export const getHeroesInvoice = async () => {
-  const res = await client.getTags();
-  const rawTags = res.items;
+// export const getHeroesInvoice = async () => {
+//   const res = await client.getTags();
+//   const rawTags = res.items;
 
-  const tags = tagsReducer(rawTags);
-  const invoice = invoiceReducer(tags);
-  return invoice;
-};
+//   const tags = tagsReducer(rawTags);
+//   const invoice = invoiceReducer(tags);
+//   return invoice;
+// };
 
 //  Get Hero Drive
 export const getHeroesDrive = async () => {
@@ -198,13 +198,13 @@ export const searchHeroes = async (query) => {
   if (selectedSexTags.length)
     contentFullQuery["metadata.tags.sys.id[in]"] = selectedSexTags.join(",");
 
-  // we first parse the eye tags back to their contentful-specific version with the "invoice." prefix
-  const selectedInvoiceTags = query.selectedInvoiceTags.map(
-    (tag) => `invoice.${tag}`
-  );
-  if (selectedInvoiceTags.length)
-    contentFullQuery["metadata.tags.sys.id[in]"] =
-      selectedInvoiceTags.join(",");
+  // we first parse the invoice tags back to their contentful-specific version with the "invoice." prefix
+  // const selectedInvoiceTags = query.selectedInvoiceTags.map(
+  //   (tag) => `invoice.${tag}`
+  // );
+  // if (selectedInvoiceTags.length)
+  //   contentFullQuery["metadata.tags.sys.id[in]"] =
+  //     selectedInvoiceTags.join(",");
 
   // we first parse the eye tags back to their contentful-specific version with the "drive." prefix
   const selectedDriveTags = query.selectedDriveTags.map(
@@ -284,6 +284,11 @@ export const searchHeroes = async (query) => {
   filteredHeroes = filteredHeroes.filter((hero) => {
     if (query.sizes.length == 0) return true;
     if (query.sizes.includes(hero.standardSize)) return true;
+    return false;
+  });
+  filteredHeroes = filteredHeroes.filter((hero) => {
+    if (query.heroInvoices.length == 0) return true;
+    if (query.heroInvoices.includes(hero.heroInvoice)) return true;
     return false;
   });
 

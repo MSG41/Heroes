@@ -6,7 +6,7 @@ import TagsFilterEyeForm from "./TagsFilterEyeForm";
 import TagsFilterTattooForm from "./TagsFilterTattooForm";
 import TagsFilterScarsForm from "./TagsFilterScarsForm";
 // import TagsFilterSexForm from './TagsFilterSexForm';
-import TagsFilterInvoiceForm from "./TagsFilterInvoiceForm";
+// import TagsFilterInvoiceForm from "./TagsFilterInvoiceForm";
 import TagsFilterDriveForm from "./TagsFilterDriveForm";
 import { ChevronDownIcon, FilterIcon } from "@heroicons/react/solid";
 
@@ -21,7 +21,7 @@ function HeroesPageSideBarForm({
   heroTattoo,
   heroScars,
   heroSex,
-  heroInvoice,
+  // heroInvoice,
   heroDrive,
   sideBarFormState,
   setSideBarFormState,
@@ -68,6 +68,10 @@ function HeroesPageSideBarForm({
     { value: "Medium", display: "Medium" },
     { value: "Large", display: "Large" },
     { value: "X-large", display: "X-large" },
+  ];
+  const heroInvoicesOptions = [
+    { value: "no", display: "No" },
+    { value: "yes", display: "Yes" },
   ];
 
   // const experienceLevelsOptions = [
@@ -266,6 +270,26 @@ function HeroesPageSideBarForm({
           ...prevState,
           sizes: prevState.sizes.filter(
             (standardSize) => option != standardSize
+          ),
+        };
+      });
+    }
+  };
+  // ------------------------
+  const handleheroInvoiceSelect = (e, option) => {
+    console.log(e.target.checked, option);
+    if (e.target.checked) {
+      setSideBarFormState((prevState) => {
+        const heroInvoices = [...prevState.heroInvoices];
+        heroInvoices.push(option);
+        return { ...prevState, heroInvoices };
+      });
+    } else {
+      setSideBarFormState((prevState) => {
+        return {
+          ...prevState,
+          heroInvoices: prevState.heroInvoices.filter(
+            (heroInvoice) => option != heroInvoice
           ),
         };
       });
@@ -710,6 +734,42 @@ function HeroesPageSideBarForm({
                         className="form-checkbox"
                         onChange={(e) => handleSizeSelect(e, option.value)}
                         checked={sideBarFormState.sizes.includes(option.value)}
+                      />
+                      <span className="text-sm text-slate-600 font-medium ml-2">
+                        {option.display}
+                      </span>
+                    </label>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          {/* ------------------------------- */}
+          <div>
+            <div className="flex flex-row">
+              {" "}
+              <FilterIcon
+                className="ml-1 mr-2 h-6 w-6 text-gray-400"
+                aria-hidden="true"
+              />
+              <div className="text-sm text-slate-800 font-semibold mb-3">
+                Invoice
+              </div>
+            </div>
+            <ul className="space-y-2">
+              {heroInvoicesOptions.map((option) => {
+                return (
+                  <li key={option.value}>
+                    <label className="flex items-center">
+                      <input
+                        type="checkbox"
+                        className="form-checkbox"
+                        onChange={(e) =>
+                          handleheroInvoiceSelect(e, option.value)
+                        }
+                        checked={sideBarFormState.heroInvoices.includes(
+                          option.value
+                        )}
                       />
                       <span className="text-sm text-slate-600 font-medium ml-2">
                         {option.display}
