@@ -73,6 +73,10 @@ function HeroesPageSideBarForm({
     { value: "no", display: "No" },
     { value: "yes", display: "Yes" },
   ];
+  const driversOptions = [
+    { value: "no", display: "No" },
+    { value: "yes", display: "Yes" },
+  ];
 
   // const experienceLevelsOptions = [
   //   { value: 'junior', display: 'Junior' },
@@ -291,6 +295,24 @@ function HeroesPageSideBarForm({
           heroInvoices: prevState.heroInvoices.filter(
             (heroInvoice) => option != heroInvoice
           ),
+        };
+      });
+    }
+  };
+  // ------------------------
+  const handleDriverSelect = (e, option) => {
+    console.log(e.target.checked, option);
+    if (e.target.checked) {
+      setSideBarFormState((prevState) => {
+        const drivers = [...prevState.drivers];
+        drivers.push(option);
+        return { ...prevState, drivers };
+      });
+    } else {
+      setSideBarFormState((prevState) => {
+        return {
+          ...prevState,
+          drivers: prevState.drivers.filter((driver) => option != driver),
         };
       });
     }
@@ -781,7 +803,40 @@ function HeroesPageSideBarForm({
             </ul>
           </div>
           {/* ------------------------------- */}
-
+          <div>
+            <div className="flex flex-row">
+              {" "}
+              <FilterIcon
+                className="ml-1 mr-2 h-6 w-6 text-gray-400"
+                aria-hidden="true"
+              />
+              <div className="text-sm text-slate-800 font-semibold mb-3">
+                Drivers's Licence
+              </div>
+            </div>
+            <ul className="space-y-2">
+              {driversOptions.map((option) => {
+                return (
+                  <li key={option.value}>
+                    <label className="flex items-center">
+                      <input
+                        type="checkbox"
+                        className="form-checkbox"
+                        onChange={(e) => handleDriverSelect(e, option.value)}
+                        checked={sideBarFormState.drivers.includes(
+                          option.value
+                        )}
+                      />
+                      <span className="text-sm text-slate-600 font-medium ml-2">
+                        {option.display}
+                      </span>
+                    </label>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          {/* ------------------------------- */}
           {/* Group 4 */}
           {/* <div>
             <div className='text-sm text-slate-800 font-semibold mb-3'>

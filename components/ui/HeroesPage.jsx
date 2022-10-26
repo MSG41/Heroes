@@ -28,6 +28,7 @@ export default function HeroesPage({
     hairColors: [],
     eyeColors: [],
     sizes: [],
+    drivers: [],
     // experienceLevels: [],
     // remoteOkOnly: false,
     // featuredHeroesOnly: false,

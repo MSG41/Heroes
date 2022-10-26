@@ -178,17 +178,14 @@ const HeroDetails = ({ hero }) => {
                 {" "}
                 Drive:
                 <div className="flex flex-wrap items-center -m-1">
-                  {hero.drive &&
-                    hero.drive.map((drive) => (
-                      <div className="m-1" key={drive}>
-                        <a
-                          className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
-                          href="#"
-                        >
-                          {drive}
-                        </a>
-                      </div>
-                    ))}
+                  <div className="m-1">
+                    <a
+                      className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+                      href="#"
+                    >
+                      {hero.driver}
+                    </a>
+                  </div>
                 </div>
               </div>
 

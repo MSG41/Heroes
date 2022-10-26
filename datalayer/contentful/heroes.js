@@ -291,6 +291,11 @@ export const searchHeroes = async (query) => {
     if (query.heroInvoices.includes(hero.heroInvoice)) return true;
     return false;
   });
+  filteredHeroes = filteredHeroes.filter((hero) => {
+    if (query.drivers.length == 0) return true;
+    if (query.drivers.includes(hero.driver)) return true;
+    return false;
+  });
 
   return filteredHeroes;
 };

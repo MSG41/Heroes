@@ -52,6 +52,9 @@ export default async function handler(req, res) {
   const heroInvoices = sideBarFormState.heroInvoices.map((heroInvoice) =>
     capitalizeFirstLetter(heroInvoice)
   );
+  const drivers = sideBarFormState.drivers.map((driver) =>
+    capitalizeFirstLetter(driver)
+  );
   // const experienceLevels = sideBarFormState.experienceLevels.map(
   //   (experienceLevel) => capitalizeFirstLetter(experienceLevel)
   // );
@@ -70,6 +73,7 @@ export default async function handler(req, res) {
     hairColors,
     eyeColors,
     sizes,
+    drivers,
     // experienceLevels,
   };
 
