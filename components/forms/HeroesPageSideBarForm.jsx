@@ -401,75 +401,76 @@ function HeroesPageSideBarForm({
   // };
 
   return (
-    <div className="flex-row space-y-8  ">
-      {/* White box */}
-      <div className="bg-white shadow-lg rounded-sm border border-slate-200 p-5 ">
-        <div className="grid md:grid-cols-2 xl:grid-cols-1 gap-7 ">
-          {/* Group 0*/}
-          <TagsFilterForm
-            heroSkills={heroSkills}
-            selectedTags={sideBarFormState.selectedTags}
-            setSideBarFormState={setSideBarFormState}
-          />
+    <div className="xl:sticky xl:top-0 xl:bottom-0 xl:h-[100vh] xl:overflow-y-auto sm:sticky-none sm:top-none sm:bottom-none sm:h-none sm:overflow-none">
+      <div className="flex-row space-y-8">
+        {/* White box */}
+        <div className="bg-white shadow-lg rounded-sm border border-slate-200 p-5 ">
+          <div className="grid md:grid-cols-2 xl:grid-cols-1 gap-7 ">
+            {/* Group 0*/}
+            <TagsFilterForm
+              heroSkills={heroSkills}
+              selectedTags={sideBarFormState.selectedTags}
+              setSideBarFormState={setSideBarFormState}
+            />
 
-          {/* FilterHairForm */}
+            {/* FilterHairForm */}
 
-          {/* <TagsFilterHairForm
+            {/* <TagsFilterHairForm
             heroHair={heroHair}
             selectedHairTags={sideBarFormState.selectedHairTags}
             setSideBarFormState={setSideBarFormState}
           /> */}
 
-          {/* FilterEyeForm */}
+            {/* FilterEyeForm */}
 
-          {/* <TagsFilterEyeForm
+            {/* <TagsFilterEyeForm
             heroEye={heroEye}
             selectedEyeTags={sideBarFormState.selectedEyeTags}
             setSideBarFormState={setSideBarFormState}
           /> */}
 
-          {/* FilterTattooForm */}
+            {/* FilterTattooForm */}
 
-          {/* <TagsFilterTattooForm
+            {/* <TagsFilterTattooForm
             heroTattoo={heroTattoo}
             selectedTattooTags={sideBarFormState.selectedTattooTags}
             setSideBarFormState={setSideBarFormState}
           /> */}
 
-          {/* FilterScarForm */}
+            {/* FilterScarForm */}
 
-          {/* <TagsFilterScarsForm
+            {/* <TagsFilterScarsForm
             heroScars={heroScars}
             selectedScarsTags={sideBarFormState.selectedScarsTags}
             setSideBarFormState={setSideBarFormState}
           /> */}
 
-          {/* FilterSexForm */}
+            {/* FilterSexForm */}
 
-          {/* <TagsFilterSexForm
+            {/* <TagsFilterSexForm
             heroSex={heroSex}
             selectedSexTags={sideBarFormState.selectedSexTags}
             setSideBarFormState={setSideBarFormState}
           /> */}
 
-          {/* FilterInvoiceForm */}
+            {/* FilterInvoiceForm */}
 
-          {/* <TagsFilterInvoiceForm
+            {/* <TagsFilterInvoiceForm
             heroInvoice={heroInvoice}
             selectedInvoiceTags={sideBarFormState.selectedInvoiceTags}
             setSideBarFormState={setSideBarFormState}
           /> */}
 
-          {/* FilterDriveForm */}
+            {/* FilterDriveForm */}
 
-          {/* <TagsFilterDriveForm
+            {/* <TagsFilterDriveForm
             heroDrive={heroDrive}
             selectedDriveTags={sideBarFormState.selectedDriveTags}
             setSideBarFormState={setSideBarFormState}
           /> */}
 
-          {/* Group 1 */}
-          {/* <Switch.Group as='div' className='flex items-center'>
+            {/* Group 1 */}
+            {/* <Switch.Group as='div' className='flex items-center'>
             <Switch
               checked={sideBarFormState.remoteOkOnly}
               onChange={handleRemoteOkChange}
@@ -495,8 +496,8 @@ function HeroesPageSideBarForm({
             </Switch.Label>
           </Switch.Group> */}
 
-          {/* Group 2 */}
-          {/* <Switch.Group as='div' className='flex items-center'>
+            {/* Group 2 */}
+            {/* <Switch.Group as='div' className='flex items-center'>
             <Switch
               checked={sideBarFormState.featuredHeroesOnly}
               onChange={handleFeaturedHeroesOnlyChange}
@@ -524,8 +525,8 @@ function HeroesPageSideBarForm({
             </Switch.Label>
           </Switch.Group> */}
 
-          {/* Group 3 */}
-          {/* <div>
+            {/* Group 3 */}
+            {/* <div>
             <div className='text-sm text-slate-800 font-semibold mb-3'>
               Hero Types
             </div>
@@ -552,351 +553,361 @@ function HeroesPageSideBarForm({
             </ul>
           </div> */}
 
-          {/* group hero gender  */}
-          <div>
-            <div className="flex flex-row">
-              {" "}
-              <FilterIcon
-                className="ml-1 mr-2 h-6 w-6 text-gray-400"
-                aria-hidden="true"
-              />
-              <div className="text-sm text-slate-800 font-semibold mb-3">
-                Gender
+            {/* group hero gender  */}
+            <div>
+              <div className="flex flex-row">
+                {" "}
+                <FilterIcon
+                  className="ml-1 mr-2 h-6 w-6 text-gray-400"
+                  aria-hidden="true"
+                />
+                <div className="text-sm text-slate-800 font-semibold mb-3">
+                  Gender
+                </div>
               </div>
+              <ul className="space-y-2">
+                {heroGendersOptions.map((option) => {
+                  return (
+                    <li key={option.value}>
+                      <label className="flex items-center">
+                        <input
+                          type="checkbox"
+                          className="form-checkbox"
+                          onChange={(e) =>
+                            handleHeroGenderSelect(e, option.value)
+                          }
+                          checked={sideBarFormState.heroGenders.includes(
+                            option.value
+                          )}
+                        />
+                        <span className="text-sm text-slate-600 font-medium ml-2">
+                          {option.display}
+                        </span>
+                      </label>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
-            <ul className="space-y-2">
-              {heroGendersOptions.map((option) => {
-                return (
-                  <li key={option.value}>
-                    <label className="flex items-center">
-                      <input
-                        type="checkbox"
-                        className="form-checkbox"
-                        onChange={(e) =>
-                          handleHeroGenderSelect(e, option.value)
-                        }
-                        checked={sideBarFormState.heroGenders.includes(
-                          option.value
-                        )}
-                      />
-                      <span className="text-sm text-slate-600 font-medium ml-2">
-                        {option.display}
-                      </span>
-                    </label>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
 
-          {/* Group filter tattoo  */}
-          <div>
-            <div className="flex flex-row">
-              <FilterIcon
-                className="ml-1 mr-2 h-6 w-6 text-gray-400"
-                aria-hidden="true"
-              />
-              <div className="text-sm text-slate-800 font-semibold mb-3">
-                Tattoo
+            {/* Group filter tattoo  */}
+            <div>
+              <div className="flex flex-row">
+                <FilterIcon
+                  className="ml-1 mr-2 h-6 w-6 text-gray-400"
+                  aria-hidden="true"
+                />
+                <div className="text-sm text-slate-800 font-semibold mb-3">
+                  Tattoo
+                </div>
               </div>
+              <ul className="space-y-2">
+                {tattoosOptions.map((option) => {
+                  return (
+                    <li key={option.value}>
+                      <label className="flex items-center">
+                        <input
+                          type="checkbox"
+                          className="form-checkbox"
+                          onChange={(e) => handleTattooSelect(e, option.value)}
+                          checked={sideBarFormState.tattoos.includes(
+                            option.value
+                          )}
+                        />
+                        <span className="text-sm text-slate-600 font-medium ml-2">
+                          {option.display}
+                        </span>
+                      </label>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
-            <ul className="space-y-2">
-              {tattoosOptions.map((option) => {
-                return (
-                  <li key={option.value}>
-                    <label className="flex items-center">
-                      <input
-                        type="checkbox"
-                        className="form-checkbox"
-                        onChange={(e) => handleTattooSelect(e, option.value)}
-                        checked={sideBarFormState.tattoos.includes(
-                          option.value
-                        )}
-                      />
-                      <span className="text-sm text-slate-600 font-medium ml-2">
-                        {option.display}
-                      </span>
-                    </label>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-          {/* ------------------------------- */}
-          <div>
-            <div className="flex flex-row">
-              {" "}
-              <FilterIcon
-                className="ml-1 mr-2 h-6 w-6 text-gray-400"
-                aria-hidden="true"
-              />
-              <div className="text-sm text-slate-800 font-semibold mb-3">
-                Looks
+            {/* ------------------------------- */}
+            <div>
+              <div className="flex flex-row">
+                {" "}
+                <FilterIcon
+                  className="ml-1 mr-2 h-6 w-6 text-gray-400"
+                  aria-hidden="true"
+                />
+                <div className="text-sm text-slate-800 font-semibold mb-3">
+                  Looks
+                </div>
               </div>
+              <ul className="space-y-2">
+                {heroLooksOptions.map((option) => {
+                  return (
+                    <li key={option.value}>
+                      <label className="flex items-center">
+                        <input
+                          type="checkbox"
+                          className="form-checkbox"
+                          onChange={(e) =>
+                            handleHeroLookSelect(e, option.value)
+                          }
+                          checked={sideBarFormState.heroLooks.includes(
+                            option.value
+                          )}
+                        />
+                        <span className="text-sm text-slate-600 font-medium ml-2">
+                          {option.display}
+                        </span>
+                      </label>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
-            <ul className="space-y-2">
-              {heroLooksOptions.map((option) => {
-                return (
-                  <li key={option.value}>
-                    <label className="flex items-center">
-                      <input
-                        type="checkbox"
-                        className="form-checkbox"
-                        onChange={(e) => handleHeroLookSelect(e, option.value)}
-                        checked={sideBarFormState.heroLooks.includes(
-                          option.value
-                        )}
-                      />
-                      <span className="text-sm text-slate-600 font-medium ml-2">
-                        {option.display}
-                      </span>
-                    </label>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-          {/* ------------------------------- */}
-          <div>
-            <div className="flex flex-row">
-              {" "}
-              <FilterIcon
-                className="ml-1 mr-2 h-6 w-6 text-gray-400"
-                aria-hidden="true"
-              />
-              <div className="text-sm text-slate-800 font-semibold mb-3">
-                Scar(s)
+            {/* ------------------------------- */}
+            <div>
+              <div className="flex flex-row">
+                {" "}
+                <FilterIcon
+                  className="ml-1 mr-2 h-6 w-6 text-gray-400"
+                  aria-hidden="true"
+                />
+                <div className="text-sm text-slate-800 font-semibold mb-3">
+                  Scar(s)
+                </div>
               </div>
+              <ul className="space-y-2">
+                {heroScarsOptions.map((option) => {
+                  return (
+                    <li key={option.value}>
+                      <label className="flex items-center">
+                        <input
+                          type="checkbox"
+                          className="form-checkbox"
+                          onChange={(e) =>
+                            handleHeroScarSelect(e, option.value)
+                          }
+                          checked={sideBarFormState.heroScars.includes(
+                            option.value
+                          )}
+                        />
+                        <span className="text-sm text-slate-600 font-medium ml-2">
+                          {option.display}
+                        </span>
+                      </label>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
-            <ul className="space-y-2">
-              {heroScarsOptions.map((option) => {
-                return (
-                  <li key={option.value}>
-                    <label className="flex items-center">
-                      <input
-                        type="checkbox"
-                        className="form-checkbox"
-                        onChange={(e) => handleHeroScarSelect(e, option.value)}
-                        checked={sideBarFormState.heroScars.includes(
-                          option.value
-                        )}
-                      />
-                      <span className="text-sm text-slate-600 font-medium ml-2">
-                        {option.display}
-                      </span>
-                    </label>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-          {/* ------------------------------- */}
-          <div>
-            <div className="flex flex-row">
-              {" "}
-              <FilterIcon
-                className="ml-1 mr-2 h-6 w-6 text-gray-400"
-                aria-hidden="true"
-              />
-              <div className="text-sm text-slate-800 font-semibold mb-3">
-                Hair Color
+            {/* ------------------------------- */}
+            <div>
+              <div className="flex flex-row">
+                {" "}
+                <FilterIcon
+                  className="ml-1 mr-2 h-6 w-6 text-gray-400"
+                  aria-hidden="true"
+                />
+                <div className="text-sm text-slate-800 font-semibold mb-3">
+                  Hair Color
+                </div>
               </div>
+              <ul className="space-y-2">
+                {hairColorsOptions.map((option) => {
+                  return (
+                    <li key={option.value}>
+                      <label className="flex items-center">
+                        <input
+                          type="checkbox"
+                          className="form-checkbox"
+                          onChange={(e) =>
+                            handleHairColorSelect(e, option.value)
+                          }
+                          checked={sideBarFormState.hairColors.includes(
+                            option.value
+                          )}
+                        />
+                        <span className="text-sm text-slate-600 font-medium ml-2">
+                          {option.display}
+                        </span>
+                      </label>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
-            <ul className="space-y-2">
-              {hairColorsOptions.map((option) => {
-                return (
-                  <li key={option.value}>
-                    <label className="flex items-center">
-                      <input
-                        type="checkbox"
-                        className="form-checkbox"
-                        onChange={(e) => handleHairColorSelect(e, option.value)}
-                        checked={sideBarFormState.hairColors.includes(
-                          option.value
-                        )}
-                      />
-                      <span className="text-sm text-slate-600 font-medium ml-2">
-                        {option.display}
-                      </span>
-                    </label>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-          {/* ------------------------------- */}
-          <div>
-            <div className="flex flex-row">
-              {" "}
-              <FilterIcon
-                className="ml-1 mr-2 h-6 w-6 text-gray-400"
-                aria-hidden="true"
-              />
-              <div className="text-sm text-slate-800 font-semibold mb-3">
-                Eye Color
+            {/* ------------------------------- */}
+            <div>
+              <div className="flex flex-row">
+                {" "}
+                <FilterIcon
+                  className="ml-1 mr-2 h-6 w-6 text-gray-400"
+                  aria-hidden="true"
+                />
+                <div className="text-sm text-slate-800 font-semibold mb-3">
+                  Eye Color
+                </div>
               </div>
+              <ul className="space-y-2">
+                {eyeColorsOptions.map((option) => {
+                  return (
+                    <li key={option.value}>
+                      <label className="flex items-center">
+                        <input
+                          type="checkbox"
+                          className="form-checkbox"
+                          onChange={(e) =>
+                            handleEyeColorSelect(e, option.value)
+                          }
+                          checked={sideBarFormState.eyeColors.includes(
+                            option.value
+                          )}
+                        />
+                        <span className="text-sm text-slate-600 font-medium ml-2">
+                          {option.display}
+                        </span>
+                      </label>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
-            <ul className="space-y-2">
-              {eyeColorsOptions.map((option) => {
-                return (
-                  <li key={option.value}>
-                    <label className="flex items-center">
-                      <input
-                        type="checkbox"
-                        className="form-checkbox"
-                        onChange={(e) => handleEyeColorSelect(e, option.value)}
-                        checked={sideBarFormState.eyeColors.includes(
-                          option.value
-                        )}
-                      />
-                      <span className="text-sm text-slate-600 font-medium ml-2">
-                        {option.display}
-                      </span>
-                    </label>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-          {/* ------------------------------- */}
-          <div>
-            <div className="flex flex-row">
-              {" "}
-              <FilterIcon
-                className="ml-1 mr-2 h-6 w-6 text-gray-400"
-                aria-hidden="true"
-              />
-              <div className="text-sm text-slate-800 font-semibold mb-3">
-                Standard Size
+            {/* ------------------------------- */}
+            <div>
+              <div className="flex flex-row">
+                {" "}
+                <FilterIcon
+                  className="ml-1 mr-2 h-6 w-6 text-gray-400"
+                  aria-hidden="true"
+                />
+                <div className="text-sm text-slate-800 font-semibold mb-3">
+                  Standard Size
+                </div>
               </div>
+              <ul className="space-y-2">
+                {sizesOptions.map((option) => {
+                  return (
+                    <li key={option.value}>
+                      <label className="flex items-center">
+                        <input
+                          type="checkbox"
+                          className="form-checkbox"
+                          onChange={(e) => handleSizeSelect(e, option.value)}
+                          checked={sideBarFormState.sizes.includes(
+                            option.value
+                          )}
+                        />
+                        <span className="text-sm text-slate-600 font-medium ml-2">
+                          {option.display}
+                        </span>
+                      </label>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
-            <ul className="space-y-2">
-              {sizesOptions.map((option) => {
-                return (
-                  <li key={option.value}>
-                    <label className="flex items-center">
-                      <input
-                        type="checkbox"
-                        className="form-checkbox"
-                        onChange={(e) => handleSizeSelect(e, option.value)}
-                        checked={sideBarFormState.sizes.includes(option.value)}
-                      />
-                      <span className="text-sm text-slate-600 font-medium ml-2">
-                        {option.display}
-                      </span>
-                    </label>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-          {/* ------------------------------- */}
-          <div>
-            <div className="flex flex-row">
-              {" "}
-              <FilterIcon
-                className="ml-1 mr-2 h-6 w-6 text-gray-400"
-                aria-hidden="true"
-              />
-              <div className="text-sm text-slate-800 font-semibold mb-3">
-                Invoice
+            {/* ------------------------------- */}
+            <div>
+              <div className="flex flex-row">
+                {" "}
+                <FilterIcon
+                  className="ml-1 mr-2 h-6 w-6 text-gray-400"
+                  aria-hidden="true"
+                />
+                <div className="text-sm text-slate-800 font-semibold mb-3">
+                  Invoice
+                </div>
               </div>
+              <ul className="space-y-2">
+                {heroInvoicesOptions.map((option) => {
+                  return (
+                    <li key={option.value}>
+                      <label className="flex items-center">
+                        <input
+                          type="checkbox"
+                          className="form-checkbox"
+                          onChange={(e) =>
+                            handleheroInvoiceSelect(e, option.value)
+                          }
+                          checked={sideBarFormState.heroInvoices.includes(
+                            option.value
+                          )}
+                        />
+                        <span className="text-sm text-slate-600 font-medium ml-2">
+                          {option.display}
+                        </span>
+                      </label>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
-            <ul className="space-y-2">
-              {heroInvoicesOptions.map((option) => {
-                return (
-                  <li key={option.value}>
-                    <label className="flex items-center">
-                      <input
-                        type="checkbox"
-                        className="form-checkbox"
-                        onChange={(e) =>
-                          handleheroInvoiceSelect(e, option.value)
-                        }
-                        checked={sideBarFormState.heroInvoices.includes(
-                          option.value
-                        )}
-                      />
-                      <span className="text-sm text-slate-600 font-medium ml-2">
-                        {option.display}
-                      </span>
-                    </label>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-          {/* ------------------------------- */}
-          <div>
-            <div className="flex flex-row">
-              {" "}
-              <FilterIcon
-                className="ml-1 mr-2 h-6 w-6 text-gray-400"
-                aria-hidden="true"
-              />
-              <div className="text-sm text-slate-800 font-semibold mb-3">
-                Drivers's Licence
+            {/* ------------------------------- */}
+            <div>
+              <div className="flex flex-row">
+                {" "}
+                <FilterIcon
+                  className="ml-1 mr-2 h-6 w-6 text-gray-400"
+                  aria-hidden="true"
+                />
+                <div className="text-sm text-slate-800 font-semibold mb-3">
+                  Drivers's Licence
+                </div>
               </div>
+              <ul className="space-y-2">
+                {driversOptions.map((option) => {
+                  return (
+                    <li key={option.value}>
+                      <label className="flex items-center">
+                        <input
+                          type="checkbox"
+                          className="form-checkbox"
+                          onChange={(e) => handleDriverSelect(e, option.value)}
+                          checked={sideBarFormState.drivers.includes(
+                            option.value
+                          )}
+                        />
+                        <span className="text-sm text-slate-600 font-medium ml-2">
+                          {option.display}
+                        </span>
+                      </label>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
-            <ul className="space-y-2">
-              {driversOptions.map((option) => {
-                return (
-                  <li key={option.value}>
-                    <label className="flex items-center">
-                      <input
-                        type="checkbox"
-                        className="form-checkbox"
-                        onChange={(e) => handleDriverSelect(e, option.value)}
-                        checked={sideBarFormState.drivers.includes(
-                          option.value
-                        )}
-                      />
-                      <span className="text-sm text-slate-600 font-medium ml-2">
-                        {option.display}
-                      </span>
-                    </label>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-          {/* ------------------------------- */}
-          <div>
-            <div className="flex flex-row">
-              {" "}
-              <FilterIcon
-                className="ml-1 mr-2 h-6 w-6 text-gray-400"
-                aria-hidden="true"
-              />
-              <div className="text-sm text-slate-800 font-semibold mb-3">
-                Other Agency ?
+            {/* ------------------------------- */}
+            <div>
+              <div className="flex flex-row">
+                {" "}
+                <FilterIcon
+                  className="ml-1 mr-2 h-6 w-6 text-gray-400"
+                  aria-hidden="true"
+                />
+                <div className="text-sm text-slate-800 font-semibold mb-3">
+                  Other Agency ?
+                </div>
               </div>
+              <ul className="space-y-2">
+                {AgenciesOptions.map((option) => {
+                  return (
+                    <li key={option.value}>
+                      <label className="flex items-center">
+                        <input
+                          type="checkbox"
+                          className="form-checkbox"
+                          onChange={(e) => handleAgencySelect(e, option.value)}
+                          checked={sideBarFormState.agencies.includes(
+                            option.value
+                          )}
+                        />
+                        <span className="text-sm text-slate-600 font-medium ml-2">
+                          {option.display}
+                        </span>
+                      </label>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
-            <ul className="space-y-2">
-              {AgenciesOptions.map((option) => {
-                return (
-                  <li key={option.value}>
-                    <label className="flex items-center">
-                      <input
-                        type="checkbox"
-                        className="form-checkbox"
-                        onChange={(e) => handleAgencySelect(e, option.value)}
-                        checked={sideBarFormState.agencies.includes(
-                          option.value
-                        )}
-                      />
-                      <span className="text-sm text-slate-600 font-medium ml-2">
-                        {option.display}
-                      </span>
-                    </label>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-          {/* ------------------------------- */}
-          {/* Group 4 */}
-          {/* <div>
+            {/* ------------------------------- */}
+            {/* Group 4 */}
+            {/* <div>
             <div className='text-sm text-slate-800 font-semibold mb-3'>
               Experience Level
             </div>
@@ -925,8 +936,8 @@ function HeroesPageSideBarForm({
             </ul>
           </div> */}
 
-          {/* Group 5 */}
-          {/* <div>
+            {/* Group 5 */}
+            {/* <div>
             <div className='text-sm text-slate-800 font-semibold mb-3'>
               Pay Range
             </div>
@@ -958,11 +969,11 @@ function HeroesPageSideBarForm({
               })}
             </ul>
           </div> */}
+          </div>
         </div>
-      </div>
 
-      {/* Alert */}
-      {/* <div className='relative bg-indigo-200 rounded-sm p-5 min-w-60'>
+        {/* Alert */}
+        {/* <div className='relative bg-indigo-200 rounded-sm p-5 min-w-60'>
         <div className='absolute bottom-0 -mb-3'>
           <svg
             width='44'
@@ -1019,7 +1030,8 @@ function HeroesPageSideBarForm({
         </div>
       </div> */}
 
-      {/* End Alert */}
+        {/* End Alert */}
+      </div>
     </div>
   );
 }

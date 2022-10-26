@@ -231,11 +231,13 @@ export default function HeroesPage({
         setdisplayedHeroes={setDisplayedHeroes}
       />
       <div className="md:max-w-screen xl:w-[70%]  align-center ">
-        <SearchHeroForm
-          searchFormState={searchFormState}
-          setSearchFormState={setSearchFormState}
-          setdisplayedHeroes={setDisplayedHeroes}
-        />
+        <div className="lg:sticky lg:top-0 lg:z-10 md:sticky md:top-0 md:z-10 xs:sticky xs:top-0 xs:z-10 ">
+          <SearchHeroForm
+            searchFormState={searchFormState}
+            setSearchFormState={setSearchFormState}
+            setdisplayedHeroes={setDisplayedHeroes}
+          />
+        </div>
         {/* Heroes header */}
         <div className="flex justify-between items-center mb-4  ">
           {/* Number of heroes found message  */}
