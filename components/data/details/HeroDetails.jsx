@@ -64,11 +64,11 @@ const HeroDetails = ({ hero }) => {
                 <div className="text-md text-slate-900 bg-emerald-600/40 rounded-full text-center px-2.5 py-1 italic">
                   € {hero.dayFee} / Day Fee
                 </div>
-                <div className="text-sm text-slate-600 bg-emerald-200/50 rounded-full text-center px-2.5 py-1 italic ">
+                <div className="text-xs text-slate-600 bg-emerald-200/50 rounded-full text-center px-2.5 py-1 italic ">
                   € {hero.halfDayFee} / Half-day Fee
                 </div>
-
-                {/* <div className='flex items-center space-x-4 pl-10 md:pl-0'>
+              </div>
+              {/* <div className='flex items-center space-x-4 pl-10 md:pl-0'>
                   {hero.featuredJob && (
                     <div
                       className={`text-xs inline-flex font-medium rounded-full text-center px-2.5 py-1 bg-amber-100 text-amber-600`}
@@ -88,7 +88,6 @@ const HeroDetails = ({ hero }) => {
                     </svg>
                   </button>
                 </div> */}
-              </div>
             </div>
           </header>
 

@@ -282,11 +282,23 @@ const HeroCard = ({ hero }) => {
           </div>
         </div>
 
+        {/* <div className="flex flex-col space-y-1 items-end">
+                <div className="text-md text-slate-900 bg-emerald-600/40 rounded-full text-center px-2.5 py-1 italic">
+                  € {hero.dayFee} / Day Fee
+                </div>
+                <div className="text-sm text-slate-600 bg-emerald-200/50 rounded-full text-center px-2.5 py-1 italic ">
+                  € {hero.halfDayFee} / Half-day Fee
+                </div>
+              </div> */}
+
         {/* Right side */}
         <div className="flex flex-col space-y-1 items-end">
-          <div className="text-sm text-slate-900">
-            €{hero.baseAnnualSalary} / Day
+          {/* <div className="text-sm text-slate-900 bg-emerald-600/40 rounded-full text-center px-2.5 py-1 italic">
+            € {hero.dayFee} / Day Fee
           </div>
+          <div className="text-xs text-slate-600 bg-emerald-200/50 rounded-full text-center px-2.5 py-1 italic ">
+            € {hero.halfDayFee} / Half-day Fee
+          </div> */}
           <div className="flex flex-row items-center space-x-4 pl-10 md:pl-0">
             {/* date posted  */}
             {/* <div className='text-sm text-slate-500 italic whitespace-nowrap'>
