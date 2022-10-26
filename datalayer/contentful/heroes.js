@@ -296,6 +296,11 @@ export const searchHeroes = async (query) => {
     if (query.drivers.includes(hero.driver)) return true;
     return false;
   });
+  filteredHeroes = filteredHeroes.filter((hero) => {
+    if (query.agencies.length == 0) return true;
+    if (query.agencies.includes(hero.otherAgency)) return true;
+    return false;
+  });
 
   return filteredHeroes;
 };

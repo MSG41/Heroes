@@ -60,10 +60,14 @@ const HeroDetails = ({ hero }) => {
                 </div>
               </div>
               {/* Right side */}
-              <div className="flex flex-col space-y-1 items-end ">
-                <div className="text-sm text-slate-900">
-                  € {hero.baseAnnualSalary} / Day
+              <div className="flex flex-col space-y-1 items-end">
+                <div className="text-md text-slate-900 bg-emerald-600/40 rounded-full text-center px-2.5 py-1 italic">
+                  € {hero.dayFee} / Day Fee
                 </div>
+                <div className="text-sm text-slate-600 bg-emerald-200/50 rounded-full text-center px-2.5 py-1 italic ">
+                  € {hero.halfDayFee} / Half-day Fee
+                </div>
+
                 {/* <div className='flex items-center space-x-4 pl-10 md:pl-0'>
                   {hero.featuredJob && (
                     <div
@@ -214,6 +218,36 @@ const HeroDetails = ({ hero }) => {
                       href="#"
                     >
                       {hero.heroTattoo}
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="text-[14px] font-semibold text-slate-800">
+                {" "}
+                Hair Color:
+                <div className="flex flex-wrap items-center -m-1">
+                  <div className="m-1">
+                    <a
+                      className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+                      href="#"
+                    >
+                      {hero.hairColor}
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="text-[14px] font-semibold text-slate-800">
+                {" "}
+                Eye Color:
+                <div className="flex flex-wrap items-center -m-1">
+                  <div className="m-1">
+                    <a
+                      className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+                      href="#"
+                    >
+                      {hero.eyeColor}
                     </a>
                   </div>
                 </div>

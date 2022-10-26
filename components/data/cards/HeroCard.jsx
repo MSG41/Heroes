@@ -64,8 +64,67 @@ const HeroCard = ({ hero }) => {
               <br />
             </div>
             {/* space between */}
-
             <div className="text-[14px] font-semibold text-slate-800">
+              {" "}
+              Gender:
+              <div className="flex flex-wrap items-center -m-1">
+                <div className="m-1">
+                  <a
+                    className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+                    href="#"
+                  >
+                    {hero.gender}
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* space between */}
+            <div>
+              <br />
+            </div>
+            {/* space between */}
+            <div className="text-[14px] font-semibold text-slate-800">
+              {" "}
+              Looks:
+              <div className="flex flex-wrap items-center -m-1">
+                <div className="m-1">
+                  <a
+                    className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+                    href="#"
+                  >
+                    {hero.looks}
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* space between */}
+            <div>
+              <br />
+            </div>
+            {/* space between */}
+            <div className="text-[14px] font-semibold text-slate-800">
+              {" "}
+              Other agency:
+              <div className="flex flex-wrap items-center -m-1">
+                <div className="m-1">
+                  <a
+                    className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+                    href="#"
+                  >
+                    {hero.otherAgency}
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* space between */}
+            {/* <div>
+              <br />
+            </div> */}
+            {/* space between */}
+            {/* <div className="text-[14px] font-semibold text-slate-800">
               {" "}
               Hair Color:
               <div className="flex flex-wrap items-center -m-1">
@@ -78,15 +137,15 @@ const HeroCard = ({ hero }) => {
                   </a>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* space between */}
-            <div>
+            {/* <div>
               <br />
-            </div>
+            </div> */}
             {/* space between */}
 
-            <div className="text-[14px] font-semibold text-slate-800">
+            {/* <div className="text-[14px] font-semibold text-slate-800">
               {" "}
               Eye Color:
               <div className="flex flex-wrap items-center -m-1">
@@ -99,12 +158,12 @@ const HeroCard = ({ hero }) => {
                   </a>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* space between */}
-            <div>
+            {/* <div>
               <br />
-            </div>
+            </div> */}
             {/* space between */}
 
             {/* <div className="text-[14px] font-semibold text-slate-800">
@@ -154,21 +213,6 @@ const HeroCard = ({ hero }) => {
               <br />
             </div> */}
             {/* space between */}
-
-            <div className="text-[14px] font-semibold text-slate-800">
-              {" "}
-              Sex:
-              <div className="flex flex-wrap items-center -m-1">
-                <div className="m-1">
-                  <a
-                    className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
-                    href="#"
-                  >
-                    {hero.gender}
-                  </a>
-                </div>
-              </div>
-            </div>
 
             {/* space between */}
             {/* <div>

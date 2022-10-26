@@ -55,6 +55,9 @@ export default async function handler(req, res) {
   const drivers = sideBarFormState.drivers.map((driver) =>
     capitalizeFirstLetter(driver)
   );
+  const agencies = sideBarFormState.agencies.map((otherAgency) =>
+    capitalizeFirstLetter(otherAgency)
+  );
   // const experienceLevels = sideBarFormState.experienceLevels.map(
   //   (experienceLevel) => capitalizeFirstLetter(experienceLevel)
   // );
@@ -74,6 +77,7 @@ export default async function handler(req, res) {
     eyeColors,
     sizes,
     drivers,
+    agencies,
     // experienceLevels,
   };
 

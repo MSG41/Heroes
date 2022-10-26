@@ -77,6 +77,10 @@ function HeroesPageSideBarForm({
     { value: "no", display: "No" },
     { value: "yes", display: "Yes" },
   ];
+  const AgenciesOptions = [
+    { value: "no", display: "No" },
+    { value: "yes", display: "Yes" },
+  ];
 
   // const experienceLevelsOptions = [
   //   { value: 'junior', display: 'Junior' },
@@ -313,6 +317,26 @@ function HeroesPageSideBarForm({
         return {
           ...prevState,
           drivers: prevState.drivers.filter((driver) => option != driver),
+        };
+      });
+    }
+  };
+  // ------------------------
+  const handleAgencySelect = (e, option) => {
+    console.log(e.target.checked, option);
+    if (e.target.checked) {
+      setSideBarFormState((prevState) => {
+        const agencies = [...prevState.agencies];
+        agencies.push(option);
+        return { ...prevState, agencies };
+      });
+    } else {
+      setSideBarFormState((prevState) => {
+        return {
+          ...prevState,
+          agencies: prevState.agencies.filter(
+            (otherAgency) => option != otherAgency
+          ),
         };
       });
     }
@@ -824,6 +848,40 @@ function HeroesPageSideBarForm({
                         className="form-checkbox"
                         onChange={(e) => handleDriverSelect(e, option.value)}
                         checked={sideBarFormState.drivers.includes(
+                          option.value
+                        )}
+                      />
+                      <span className="text-sm text-slate-600 font-medium ml-2">
+                        {option.display}
+                      </span>
+                    </label>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          {/* ------------------------------- */}
+          <div>
+            <div className="flex flex-row">
+              {" "}
+              <FilterIcon
+                className="ml-1 mr-2 h-6 w-6 text-gray-400"
+                aria-hidden="true"
+              />
+              <div className="text-sm text-slate-800 font-semibold mb-3">
+                Other Agency ?
+              </div>
+            </div>
+            <ul className="space-y-2">
+              {AgenciesOptions.map((option) => {
+                return (
+                  <li key={option.value}>
+                    <label className="flex items-center">
+                      <input
+                        type="checkbox"
+                        className="form-checkbox"
+                        onChange={(e) => handleAgencySelect(e, option.value)}
+                        checked={sideBarFormState.agencies.includes(
                           option.value
                         )}
                       />
