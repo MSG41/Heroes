@@ -33,7 +33,7 @@ export default function Header() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="-mt-0 sm:-mt-16 sm:flex sm:items-end sm:space-x-5">
             <div className="flex">
-              <div className="relative md:h-[150px] md:w-[150px] h-[125px] w-[125px] rounded-full ring-4 ring-[#fac805] sm:h-28 sm:w-28">
+              <div className="relative md:h-[180px] md:w-[180px] h-[200px] w-[200px] mb-3 rounded-full ring-4 ring-[#fac805] sm:h-28 sm:w-28">
                 <Image
                   className="rounded-full object-cover"
                   src={profile.profileImage}
@@ -56,7 +56,7 @@ export default function Header() {
                     {profile.companyName}
                   </a>{" "}
                 </p>
-                <p className="text-sm mt-4 mb-4 font-light text-liftedgreen-600">
+                <p className="text-sm mt-4 mb-6 font-light text-liftedgreen-600">
                   {profile.message}
                 </p>
               </div>
