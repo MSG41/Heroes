@@ -61,6 +61,6 @@ export const getStaticProps = async (ctx) => {
       // heroInvoice,
       heroDrive,
     },
-    revalidate: 8,
+    revalidate: 6,
   };
 };

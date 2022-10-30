@@ -9,6 +9,7 @@ import TagsFilterScarsForm from "./TagsFilterScarsForm";
 // import TagsFilterInvoiceForm from "./TagsFilterInvoiceForm";
 import TagsFilterDriveForm from "./TagsFilterDriveForm";
 import { ChevronDownIcon, FilterIcon } from "@heroicons/react/solid";
+import SliderShoe from "../Sliders/SliderShoe/SliderShoe";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -407,6 +408,7 @@ function HeroesPageSideBarForm({
         <div className="bg-white shadow-lg rounded-sm border border-slate-200 p-5 ">
           <div className="grid md:grid-cols-2 xl:grid-cols-1 gap-7 ">
             {/* Group 0*/}
+
             <TagsFilterForm
               heroSkills={heroSkills}
               selectedTags={sideBarFormState.selectedTags}
@@ -906,6 +908,9 @@ function HeroesPageSideBarForm({
               </ul>
             </div>
             {/* ------------------------------- */}
+
+            <SliderShoe />
+
             {/* Group 4 */}
             {/* <div>
             <div className='text-sm text-slate-800 font-semibold mb-3'>
