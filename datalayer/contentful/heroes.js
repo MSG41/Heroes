@@ -158,9 +158,12 @@ export const searchHeroes = async (query) => {
   // if (query.featuredJobsOnly)
   //   contentFullQuery['fields.featuredJob'] = query.featuredJobsOnly;
 
-  // Add Range Query Filters
-  // contentFullQuery['fields.baseAnnualSalary[gte]'] = query.minBaseSalary;
-  // contentFullQuery['fields.baseAnnualSalary[lte]'] = query.maxBaseSalary;
+  // Add Range Query Filters for Shoe Size:
+  contentFullQuery["fields.shoeSize[gte]"] = query.minShoeSize;
+  contentFullQuery["fields.shoeSize[lte]"] = query.maxShoeSize;
+
+  let minShoeSize = query.minShoeSize;
+  let maxShoeSize = query.maxShoeSize;
 
   // Add Tags Query Filters
 

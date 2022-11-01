@@ -11,6 +11,8 @@ import TagsFilterDriveForm from "./TagsFilterDriveForm";
 import { ChevronDownIcon, FilterIcon } from "@heroicons/react/solid";
 import SliderShoe from "../Sliders/SliderShoe/SliderShoe";
 
+import MultiRangeShoeSizeSlider from "../Sliders/SliderShoe/MultiRangeShoeSizeSlider";
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -364,42 +366,42 @@ function HeroesPageSideBarForm({
   //   }
   // };
 
-  // const handleBaseSalaryRangesSelect = (e, option, bounds) => {
-  //   console.log(e.target.checked, option, bounds);
-  //   if (e.target.checked) {
-  //     setSideBarFormState((prevState) => {
-  //       const baseSalaryOptions = [...prevState.baseSalaryOptions];
-  //       baseSalaryOptions.push(option);
+  const handleBaseSalaryRangesSelect = (e, option, bounds) => {
+    console.log(e.target.checked, option, bounds);
+    if (e.target.checked) {
+      setSideBarFormState((prevState) => {
+        const baseSalaryOptions = [...prevState.baseSalaryOptions];
+        baseSalaryOptions.push(option);
 
-  //       const baseSalaryBounds = [...prevState.baseSalaryBounds];
-  //       baseSalaryBounds.push(bounds.min);
-  //       baseSalaryBounds.push(bounds.max);
+        const baseSalaryBounds = [...prevState.baseSalaryBounds];
+        baseSalaryBounds.push(bounds.min);
+        baseSalaryBounds.push(bounds.max);
 
-  //       const newFormState = {
-  //         ...prevState,
-  //         baseSalaryOptions,
-  //         baseSalaryBounds,
-  //       };
-  //       console.log(newFormState);
-  //       return newFormState;
-  //     });
-  //   } else {
-  //     setSideBarFormState((prevState) => {
-  //       const newFormState = {
-  //         ...prevState,
-  //         baseSalaryOptions: prevState.baseSalaryOptions.filter(
-  //           (baseSalaryOption) => option != baseSalaryOption
-  //         ),
-  //         baseSalaryBounds: prevState.baseSalaryBounds.filter(
-  //           (bound) => ![bounds.min, bounds.max].includes(bound)
-  //         ),
-  //       };
+        const newFormState = {
+          ...prevState,
+          baseSalaryOptions,
+          baseSalaryBounds,
+        };
+        console.log(newFormState);
+        return newFormState;
+      });
+    } else {
+      setSideBarFormState((prevState) => {
+        const newFormState = {
+          ...prevState,
+          baseSalaryOptions: prevState.baseSalaryOptions.filter(
+            (baseSalaryOption) => option != baseSalaryOption
+          ),
+          baseSalaryBounds: prevState.baseSalaryBounds.filter(
+            (bound) => ![bounds.min, bounds.max].includes(bound)
+          ),
+        };
 
-  //       console.log(newFormState);
-  //       return newFormState;
-  //     });
-  //   }
-  // };
+        console.log(newFormState);
+        return newFormState;
+      });
+    }
+  };
 
   return (
     <div className="xl:sticky xl:top-0 xl:bottom-0 xl:h-[100vh] xl:overflow-y-auto sm:sticky-none sm:top-none sm:bottom-none sm:h-none sm:overflow-none">
@@ -909,7 +911,15 @@ function HeroesPageSideBarForm({
             </div>
             {/* ------------------------------- */}
 
-            <SliderShoe />
+            {/* <SliderShoe /> */}
+
+            <MultiRangeShoeSizeSlider
+              min={34}
+              max={50}
+              onChange={({ min, max }) =>
+                console.log(`min = ${min}, max = ${max}`)
+              }
+            />
 
             {/* Group 4 */}
             {/* <div>

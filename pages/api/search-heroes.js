@@ -7,15 +7,16 @@ function capitalizeFirstLetter(string) {
 export default async function handler(req, res) {
   const { searchFormState, sideBarFormState } = req.body;
 
-  // const minBaseSalary =
-  //   sideBarFormState.baseSalaryBounds.length > 0
-  //     ? Math.min(...sideBarFormState.baseSalaryBounds)
-  //     : 0;
+  // ShoeSize Min/Max
+  // const minShoeSize =
+  //   sideBarFormState.shoeSizeBounds.length > 0
+  //     ? Math.min(...sideBarFormState.shoeSizeBounds)
+  //     : 34;
 
-  // const maxBaseSalary =
-  //   sideBarFormState.baseSalaryBounds.length > 0
-  //     ? Math.max(...sideBarFormState.baseSalaryBounds)
-  //     : 1000000;
+  // const maxShoeSize =
+  //   sideBarFormState.shoeSizeBounds.length > 0
+  //     ? Math.max(...sideBarFormState.shoeSizeBounds)
+  //     : 50;
 
   // const heroTypes = sideBarFormState.heroTypes.map((heroType) =>
   //   capitalizeFirstLetter(heroType)
@@ -65,8 +66,8 @@ export default async function handler(req, res) {
   const query = {
     ...sideBarFormState,
     searchBarText: searchFormState,
-    // minBaseSalary,
-    // maxBaseSalary,
+    // minShoeSize,
+    // maxShoeSize,
     // heroTypes,
     heroInvoices,
     heroGenders,
