@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { Switch } from "@headlessui/react";
+// import { Switch } from "@headlessui/react";
 import TagsFilterForm from "./TagsFilterForm";
-import TagsFilterHairForm from "./TagsFilterHairForm";
-import TagsFilterEyeForm from "./TagsFilterEyeForm";
-import TagsFilterTattooForm from "./TagsFilterTattooForm";
-import TagsFilterScarsForm from "./TagsFilterScarsForm";
+// import TagsFilterHairForm from "./TagsFilterHairForm";
+// import TagsFilterEyeForm from "./TagsFilterEyeForm";
+// import TagsFilterTattooForm from "./TagsFilterTattooForm";
+// import TagsFilterScarsForm from "./TagsFilterScarsForm";
 // import TagsFilterSexForm from './TagsFilterSexForm';
 // import TagsFilterInvoiceForm from "./TagsFilterInvoiceForm";
-import TagsFilterDriveForm from "./TagsFilterDriveForm";
+// import TagsFilterDriveForm from "./TagsFilterDriveForm";
 import { ChevronDownIcon, FilterIcon } from "@heroicons/react/solid";
-import SliderShoe from "../Sliders/SliderShoe/SliderShoe";
+// import SliderShoe from "../Sliders/SliderShoe/SliderShoe";
 
 import MultiRangeShoeSizeSlider from "../Sliders/SliderShoe/MultiRangeShoeSizeSlider";
 
@@ -19,13 +19,13 @@ function classNames(...classes) {
 
 function HeroesPageSideBarForm({
   heroSkills,
-  heroHair,
-  heroEye,
-  heroTattoo,
-  heroScars,
-  heroSex,
+  // heroHair,
+  // heroEye,
+  // heroTattoo,
+  // heroScars,
+  // heroSex,
   // heroInvoice,
-  heroDrive,
+  // heroDrive,
   sideBarFormState,
   setSideBarFormState,
   setDisplayedHeroes,
@@ -111,6 +111,8 @@ function HeroesPageSideBarForm({
   //   },
   // ];
 
+  const shoeSizeRangesOptions = [{ bounds: { min: 0, max: 100 } }];
+
   // const handleRemoteOkChange = (checked) => {
   //   console.log(checked);
   //   //TODO: send request and filter jobs
@@ -127,25 +129,25 @@ function HeroesPageSideBarForm({
   //   });
   // };
 
-  const handleHeroTypeSelect = (e, option) => {
-    console.log(e.target.checked, option);
-    if (e.target.checked) {
-      setSideBarFormState((prevState) => {
-        const heroTypes = [...prevState.heroTypes];
-        heroTypes.push(option);
-        return { ...prevState, heroTypes };
-      });
-    } else {
-      setSideBarFormState((prevState) => {
-        return {
-          ...prevState,
-          heroTypes: prevState.heroTypes.filter(
-            (heroType) => option != heroType
-          ),
-        };
-      });
-    }
-  };
+  // const handleHeroTypeSelect = (e, option) => {
+  //   console.log(e.target.checked, option);
+  //   if (e.target.checked) {
+  //     setSideBarFormState((prevState) => {
+  //       const heroTypes = [...prevState.heroTypes];
+  //       heroTypes.push(option);
+  //       return { ...prevState, heroTypes };
+  //     });
+  //   } else {
+  //     setSideBarFormState((prevState) => {
+  //       return {
+  //         ...prevState,
+  //         heroTypes: prevState.heroTypes.filter(
+  //           (heroType) => option != heroType
+  //         ),
+  //       };
+  //     });
+  //   }
+  // };
 
   // hero gender types
 
@@ -366,21 +368,58 @@ function HeroesPageSideBarForm({
   //   }
   // };
 
-  const handleBaseSalaryRangesSelect = (e, option, bounds) => {
+  // const handleBaseSalaryRangesSelect = (e, option, bounds) => {
+  //   console.log(e.target.checked, option, bounds);
+  //   if (e.target.checked) {
+  //     setSideBarFormState((prevState) => {
+  //       const baseSalaryOptions = [...prevState.baseSalaryOptions];
+  //       baseSalaryOptions.push(option);
+
+  //       const baseSalaryBounds = [...prevState.baseSalaryBounds];
+  //       baseSalaryBounds.push(bounds.min);
+  //       baseSalaryBounds.push(bounds.max);
+
+  //       const newFormState = {
+  //         ...prevState,
+  //         baseSalaryOptions,
+  //         baseSalaryBounds,
+  //       };
+  //       console.log(newFormState);
+  //       return newFormState;
+  //     });
+  //   } else {
+  //     setSideBarFormState((prevState) => {
+  //       const newFormState = {
+  //         ...prevState,
+  //         baseSalaryOptions: prevState.baseSalaryOptions.filter(
+  //           (baseSalaryOption) => option != baseSalaryOption
+  //         ),
+  //         baseSalaryBounds: prevState.baseSalaryBounds.filter(
+  //           (bound) => ![bounds.min, bounds.max].includes(bound)
+  //         ),
+  //       };
+
+  //       console.log(newFormState);
+  //       return newFormState;
+  //     });
+  //   }
+  // };
+
+  const handleShoeSizeRangesSelect = (e, option, bounds) => {
     console.log(e.target.checked, option, bounds);
     if (e.target.checked) {
       setSideBarFormState((prevState) => {
-        const baseSalaryOptions = [...prevState.baseSalaryOptions];
-        baseSalaryOptions.push(option);
+        const shoeSizeOptions = [...prevState.shoeSizeOptions];
+        shoeSizeOptions.push(option);
 
-        const baseSalaryBounds = [...prevState.baseSalaryBounds];
-        baseSalaryBounds.push(bounds.min);
-        baseSalaryBounds.push(bounds.max);
+        const shoeSizeBounds = [...prevState.shoeSizeBounds];
+        shoeSizeBounds.push(bounds.min);
+        shoeSizeBounds.push(bounds.max);
 
         const newFormState = {
           ...prevState,
-          baseSalaryOptions,
-          baseSalaryBounds,
+          shoeSizeOptions,
+          shoeSizeBounds,
         };
         console.log(newFormState);
         return newFormState;
@@ -389,10 +428,10 @@ function HeroesPageSideBarForm({
       setSideBarFormState((prevState) => {
         const newFormState = {
           ...prevState,
-          baseSalaryOptions: prevState.baseSalaryOptions.filter(
-            (baseSalaryOption) => option != baseSalaryOption
+          shoeSizeOptions: prevState.shoeSizeOptions.filter(
+            (shoeSizeOption) => option != shoeSizeOption
           ),
-          baseSalaryBounds: prevState.baseSalaryBounds.filter(
+          shoeSizeBounds: prevState.shoeSizeBounds.filter(
             (bound) => ![bounds.min, bounds.max].includes(bound)
           ),
         };
@@ -410,69 +449,53 @@ function HeroesPageSideBarForm({
         <div className="bg-white shadow-lg rounded-sm border border-slate-200 p-5 ">
           <div className="grid md:grid-cols-2 xl:grid-cols-1 gap-7 ">
             {/* Group 0*/}
-
             <TagsFilterForm
               heroSkills={heroSkills}
               selectedTags={sideBarFormState.selectedTags}
               setSideBarFormState={setSideBarFormState}
             />
-
             {/* FilterHairForm */}
-
             {/* <TagsFilterHairForm
             heroHair={heroHair}
             selectedHairTags={sideBarFormState.selectedHairTags}
             setSideBarFormState={setSideBarFormState}
           /> */}
-
             {/* FilterEyeForm */}
-
             {/* <TagsFilterEyeForm
             heroEye={heroEye}
             selectedEyeTags={sideBarFormState.selectedEyeTags}
             setSideBarFormState={setSideBarFormState}
           /> */}
-
             {/* FilterTattooForm */}
-
             {/* <TagsFilterTattooForm
             heroTattoo={heroTattoo}
             selectedTattooTags={sideBarFormState.selectedTattooTags}
             setSideBarFormState={setSideBarFormState}
           /> */}
-
             {/* FilterScarForm */}
-
             {/* <TagsFilterScarsForm
             heroScars={heroScars}
             selectedScarsTags={sideBarFormState.selectedScarsTags}
             setSideBarFormState={setSideBarFormState}
           /> */}
-
             {/* FilterSexForm */}
-
             {/* <TagsFilterSexForm
             heroSex={heroSex}
             selectedSexTags={sideBarFormState.selectedSexTags}
             setSideBarFormState={setSideBarFormState}
           /> */}
-
             {/* FilterInvoiceForm */}
-
             {/* <TagsFilterInvoiceForm
             heroInvoice={heroInvoice}
             selectedInvoiceTags={sideBarFormState.selectedInvoiceTags}
             setSideBarFormState={setSideBarFormState}
           /> */}
-
             {/* FilterDriveForm */}
-
             {/* <TagsFilterDriveForm
             heroDrive={heroDrive}
             selectedDriveTags={sideBarFormState.selectedDriveTags}
             setSideBarFormState={setSideBarFormState}
           /> */}
-
             {/* Group 1 */}
             {/* <Switch.Group as='div' className='flex items-center'>
             <Switch
@@ -499,7 +522,6 @@ function HeroesPageSideBarForm({
               </span>
             </Switch.Label>
           </Switch.Group> */}
-
             {/* Group 2 */}
             {/* <Switch.Group as='div' className='flex items-center'>
             <Switch
@@ -528,7 +550,6 @@ function HeroesPageSideBarForm({
               </span>
             </Switch.Label>
           </Switch.Group> */}
-
             {/* Group 3 */}
             {/* <div>
             <div className='text-sm text-slate-800 font-semibold mb-3'>
@@ -556,7 +577,6 @@ function HeroesPageSideBarForm({
               })}
             </ul>
           </div> */}
-
             {/* group hero gender  */}
             <div>
               <div className="flex flex-row">
@@ -593,7 +613,6 @@ function HeroesPageSideBarForm({
                 })}
               </ul>
             </div>
-
             {/* Group filter tattoo  */}
             <div>
               <div className="flex flex-row">
@@ -910,9 +929,7 @@ function HeroesPageSideBarForm({
               </ul>
             </div>
             {/* ------------------------------- */}
-
             {/* <SliderShoe /> */}
-
             <MultiRangeShoeSizeSlider
               min={34}
               max={50}
@@ -920,7 +937,95 @@ function HeroesPageSideBarForm({
                 console.log(`min = ${min}, max = ${max}`)
               }
             />
+            {/* <div>
+              <div className="text-sm text-slate-800 font-semibold mb-3">
+                Shoe Size -----TEST---- 1, 2, Hamid, test
+              </div>
+              <ul className="space-y-2">
+                {shoeSizeRangesOptions.map((option) => {
+                  return (
+                    <li key={option.value}>
+                      <label className="flex items-center">
+                        <input
+                          type="range"
+                          min={min}
+                          max={max}
+                          value={maxVal}
+                          ref={maxValRef}
+                          onChange={(event, e) => {
+                            const value = Math.max(
+                              +event.target.value,
+                              minVal + 1
+                            );
+                            setMaxVal(value);
+                            event.target.value = value.toString();
 
+                            handleBaseSalaryRangesSelect(
+                              e,
+                              option.value,
+                              option.bounds
+                            );
+
+                            {
+                              sideBarFormState.baseSalaryOptions.includes(
+                                option.value
+                              );
+                            }
+                          }}
+                          className="thumb thumb--zindex-4"
+                          onChange={(e) =>
+                            handleBaseSalaryRangesSelect(
+                              e,
+                              option.value,
+                              option.bounds
+                            )
+                          }
+                          checked={sideBarFormState.baseSalaryOptions.includes(
+                            option.value
+                          )}
+                        />
+                        <span className='text-sm text-slate-600 font-medium ml-2'>
+                        {option.display}
+                      </span>
+                      </label>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div> */}
+
+            {/* <div>
+              <div className="text-sm text-slate-800 font-semibold mb-3">
+                Pay Range
+              </div>
+              <ul className="space-y-2">
+                {baseSalaryRangesOptions.map((option) => {
+                  return (
+                    <li key={option.value}>
+                      <label className="flex items-center">
+                        <input
+                          type="checkbox"
+                          className="form-checkbox"
+                          onChange={(e) =>
+                            handleBaseSalaryRangesSelect(
+                              e,
+                              option.value,
+                              option.bounds
+                            )
+                          }
+                          checked={sideBarFormState.baseSalaryOptions.includes(
+                            option.value
+                          )}
+                        />
+                        <span className="text-sm text-slate-600 font-medium ml-2">
+                          {option.display}
+                        </span>
+                      </label>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div> */}
             {/* Group 4 */}
             {/* <div>
             <div className='text-sm text-slate-800 font-semibold mb-3'>
@@ -950,7 +1055,6 @@ function HeroesPageSideBarForm({
               })}
             </ul>
           </div> */}
-
             {/* Group 5 */}
             {/* <div>
             <div className='text-sm text-slate-800 font-semibold mb-3'>
