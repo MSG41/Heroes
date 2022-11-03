@@ -162,8 +162,8 @@ export const searchHeroes = async (query) => {
   contentFullQuery["fields.shoeSize[gte]"] = query.minShoeSize;
   contentFullQuery["fields.shoeSize[lte]"] = query.maxShoeSize;
 
-  let minShoeSize = query.minShoeSize;
-  let maxShoeSize = query.maxShoeSize;
+  // let minShoeSize = query.minShoeSize;
+  // let maxShoeSize = query.maxShoeSize;
 
   // Add Tags Query Filters
 
@@ -173,33 +173,33 @@ export const searchHeroes = async (query) => {
     contentFullQuery["metadata.tags.sys.id[in]"] = selectedTags.join(",");
 
   // we first parse the hair tags back to their contentful-specific version with the "hair." prefix
-  const selectedHairTags = query.selectedHairTags.map((tag) => `hair.${tag}`);
-  if (selectedHairTags.length)
-    contentFullQuery["metadata.tags.sys.id[in]"] = selectedHairTags.join(",");
+  // const selectedHairTags = query.selectedHairTags.map((tag) => `hair.${tag}`);
+  // if (selectedHairTags.length)
+  //   contentFullQuery["metadata.tags.sys.id[in]"] = selectedHairTags.join(",");
 
   // we first parse the eye tags back to their contentful-specific version with the "eye." prefix
-  const selectedEyeTags = query.selectedEyeTags.map((tag) => `eye.${tag}`);
-  if (selectedEyeTags.length)
-    contentFullQuery["metadata.tags.sys.id[in]"] = selectedEyeTags.join(",");
+  // const selectedEyeTags = query.selectedEyeTags.map((tag) => `eye.${tag}`);
+  // if (selectedEyeTags.length)
+  //   contentFullQuery["metadata.tags.sys.id[in]"] = selectedEyeTags.join(",");
 
   // we first parse the eye tags back to their contentful-specific version with the "tattoo." prefix
-  const selectedTattooTags = query.selectedTattooTags.map(
-    (tag) => `tattoo.${tag}`
-  );
-  if (selectedTattooTags.length)
-    contentFullQuery["metadata.tags.sys.id[in]"] = selectedTattooTags.join(",");
+  // const selectedTattooTags = query.selectedTattooTags.map(
+  //   (tag) => `tattoo.${tag}`
+  // );
+  // if (selectedTattooTags.length)
+  //   contentFullQuery["metadata.tags.sys.id[in]"] = selectedTattooTags.join(",");
 
   // we first parse the eye tags back to their contentful-specific version with the "scars." prefix
-  const selectedScarsTags = query.selectedScarsTags.map(
-    (tag) => `scars.${tag}`
-  );
-  if (selectedScarsTags.length)
-    contentFullQuery["metadata.tags.sys.id[in]"] = selectedScarsTags.join(",");
+  // const selectedScarsTags = query.selectedScarsTags.map(
+  //   (tag) => `scars.${tag}`
+  // );
+  // if (selectedScarsTags.length)
+  //   contentFullQuery["metadata.tags.sys.id[in]"] = selectedScarsTags.join(",");
 
   // we first parse the eye tags back to their contentful-specific version with the "sex." prefix
-  const selectedSexTags = query.selectedSexTags.map((tag) => `sex.${tag}`);
-  if (selectedSexTags.length)
-    contentFullQuery["metadata.tags.sys.id[in]"] = selectedSexTags.join(",");
+  // const selectedSexTags = query.selectedSexTags.map((tag) => `sex.${tag}`);
+  // if (selectedSexTags.length)
+  //   contentFullQuery["metadata.tags.sys.id[in]"] = selectedSexTags.join(",");
 
   // we first parse the invoice tags back to their contentful-specific version with the "invoice." prefix
   // const selectedInvoiceTags = query.selectedInvoiceTags.map(
@@ -210,11 +210,11 @@ export const searchHeroes = async (query) => {
   //     selectedInvoiceTags.join(",");
 
   // we first parse the eye tags back to their contentful-specific version with the "drive." prefix
-  const selectedDriveTags = query.selectedDriveTags.map(
-    (tag) => `drive.${tag}`
-  );
-  if (selectedDriveTags.length)
-    contentFullQuery["metadata.tags.sys.id[in]"] = selectedDriveTags.join(",");
+  // const selectedDriveTags = query.selectedDriveTags.map(
+  //   (tag) => `drive.${tag}`
+  // );
+  // if (selectedDriveTags.length)
+  //   contentFullQuery["metadata.tags.sys.id[in]"] = selectedDriveTags.join(",");
 
   // Add Full Text Search Query
   if (query.searchBarText) {

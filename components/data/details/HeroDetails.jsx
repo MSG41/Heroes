@@ -239,6 +239,21 @@ const HeroDetails = ({ hero }) => {
 
               <div className="text-[14px] font-semibold text-slate-800">
                 {" "}
+                Shoe Size:
+                <div className="flex flex-wrap items-center -m-1">
+                  <div className="m-1">
+                    <a
+                      className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+                      href="#"
+                    >
+                      {hero.shoeSize}
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="text-[14px] font-semibold text-slate-800">
+                {" "}
                 Eye Color:
                 <div className="flex flex-wrap items-center -m-1">
                   <div className="m-1">

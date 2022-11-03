@@ -36,13 +36,13 @@ export default function HeroesPage({
     // baseSalaryOptions: [],
     // baseSalaryBounds: [],
     selectedTags: [],
-    selectedHairTags: [],
-    selectedEyeTags: [],
-    selectedTattooTags: [],
-    selectedScarsTags: [],
-    selectedSexTags: [],
+    // selectedHairTags: [],
+    // selectedEyeTags: [],
+    // selectedTattooTags: [],
+    // selectedScarsTags: [],
+    // selectedSexTags: [],
     // selectedInvoiceTags: [],
-    selectedDriveTags: [],
+    // selectedDriveTags: [],
   });
 
   const [searchFormState, setSearchFormState] = useState("");

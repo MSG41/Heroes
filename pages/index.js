@@ -27,13 +27,13 @@ export default function Index({
     <HeroesPage
       heroes={heroes}
       heroSkills={heroSkills}
-      heroHair={heroHair}
-      heroEye={heroEye}
-      heroTattoo={heroTattoo}
-      heroScars={heroScars}
-      heroSex={heroSex}
+      // heroHair={heroHair}
+      // heroEye={heroEye}
+      // heroTattoo={heroTattoo}
+      // heroScars={heroScars}
+      // heroSex={heroSex}
       // heroInvoice={heroInvoice}
-      heroDrive={heroDrive}
+      // heroDrive={heroDrive}
     />
   );
 }
@@ -53,14 +53,14 @@ export const getStaticProps = async (ctx) => {
     props: {
       heroes,
       heroSkills,
-      heroHair,
-      heroEye,
-      heroTattoo,
-      heroScars,
-      heroSex,
+      // heroHair,
+      // heroEye,
+      // heroTattoo,
+      // heroScars,
+      // heroSex,
       // heroInvoice,
-      heroDrive,
+      // heroDrive,
     },
-    revalidate: 6,
+    revalidate: 2,
   };
 };
