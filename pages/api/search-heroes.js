@@ -49,15 +49,15 @@ export default async function handler(req, res) {
     capitalizeFirstLetter(otherAgency)
   );
   // ShoeSize Min/Max
-  const minShoeSize =
-    sideBarFormState.shoeSizeBounds.length > 0
-      ? Math.min(...sideBarFormState.minshoe)
-      : 34;
+  // const minShoeSize =
+  //   sideBarFormState.shoeSizeBounds.length > 0
+  //     ? Math.min(...sideBarFormState.minshoe)
+  //     : 34;
 
-  const maxShoeSize =
-    sideBarFormState.shoeSizeBounds.length > 0
-      ? Math.max(...sideBarFormState.maxshoe)
-      : 50;
+  // const maxShoeSize =
+  //   sideBarFormState.shoeSizeBounds.length > 0
+  //     ? Math.max(...sideBarFormState.maxshoe)
+  //     : 50;
 
   // const shoesizes = sideBarFormState.shoesizes.map((shoeSize) =>
   //   capitalizeFirstLetter(shoeSize)
@@ -69,8 +69,8 @@ export default async function handler(req, res) {
   const query = {
     ...sideBarFormState,
     searchBarText: searchFormState,
-    minShoeSize,
-    maxShoeSize,
+    // minShoeSize,
+    // maxShoeSize,
     // heroTypes,
     heroInvoices,
     heroGenders,
