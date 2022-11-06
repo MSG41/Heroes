@@ -30,8 +30,8 @@ export default function HeroesPage({
     sizes: [],
     drivers: [],
     agencies: [],
-    minShoeSize: 34,
-    maxShoeSize: 50,
+    minShoeSize: "",
+    maxShoeSize: "",
     // experienceLevels: [],
     // remoteOkOnly: false,
     // featuredHeroesOnly: false,
@@ -50,7 +50,7 @@ export default function HeroesPage({
   const [searchFormState, setSearchFormState] = useState("");
 
   const searchHeroes = async (apiUrl, formsStates) => {
-    console.log("these are the formsStates sent to the back-end",formsStates);
+    console.log("these are the formsStates sent to the back-end", formsStates);
     const response = await fetch(apiUrl, {
       method: "POST",
       headers: {
@@ -234,8 +234,8 @@ export default function HeroesPage({
         setSideBarFormState={setSideBarFormState}
         setdisplayedHeroes={setDisplayedHeroes}
       />
-      <div className="md:max-w-screen xl:w-[70%]  align-center ">
-        <div className="lg:sticky lg:top-0 lg:z-10 md:sticky md:top-0 md:z-10 xs:sticky xs:top-0 xs:z-10 ">
+      <div className="md:max-w-screen xl:w-[70%] align-center ">
+        <div className="lg:sticky lg:top-5 lg:z-10 md:sticky md:top-5 md:z-10 xs:sticky xs:top-5 xs:z-10 ">
           <SearchHeroForm
             searchFormState={searchFormState}
             setSearchFormState={setSearchFormState}

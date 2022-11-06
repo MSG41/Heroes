@@ -43,13 +43,13 @@ const MultiRangeShoeSizeSlider = ({ min, max, setSideBarFormState }) => {
 
   // Get min and max values when their state changes
   useEffect(() => {
-      setSideBarFormState((prevState) => {
-        return {
-            ...prevState,
-            minShoeSize: minVal,
-            maxShoeSize: maxVal
-        }
-      });
+    setSideBarFormState((prevState) => {
+      return {
+        ...prevState,
+        minShoeSize: minVal,
+        maxShoeSize: maxVal,
+      };
+    });
   }, [minVal, maxVal]);
 
   return (
@@ -107,7 +107,7 @@ const MultiRangeShoeSizeSlider = ({ min, max, setSideBarFormState }) => {
 
 MultiRangeShoeSizeSlider.propTypes = {
   min: PropTypes.number.isRequired,
-  max: PropTypes.number.isRequired
+  max: PropTypes.number.isRequired,
 };
 
 export default MultiRangeShoeSizeSlider;
