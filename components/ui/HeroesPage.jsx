@@ -8,13 +8,13 @@ import HeroesSortForm from "../forms/HeroesSortForm";
 export default function HeroesPage({
   heroes,
   heroSkills,
-  heroHair,
-  heroEye,
-  heroTattoo,
-  heroScars,
-  heroSex,
+  // heroHair,
+  // heroEye,
+  // heroTattoo,
+  // heroScars,
+  // heroSex,
   // heroInvoice,
-  heroDrive,
+  // heroDrive,
 }) {
   const [displayedHeroes, setDisplayedHeroes] = useState(heroes);
 
@@ -30,6 +30,8 @@ export default function HeroesPage({
     sizes: [],
     drivers: [],
     agencies: [],
+    minShoeSize: [],
+    maxShoeSize: [],
     // experienceLevels: [],
     // remoteOkOnly: false,
     // featuredHeroesOnly: false,
@@ -85,7 +87,7 @@ export default function HeroesPage({
       initialRender2.current = false;
     } else {
       console.log(
-        "search form changed && length >= 3 OR ==0 => triggering a search"
+        "search form changed && length >= 2 OR ==0 => triggering a search"
       );
       if (searchFormState.length >= 2 || searchFormState.length == 0) {
         const formsStates = { searchFormState, sideBarFormState };
@@ -125,69 +127,69 @@ export default function HeroesPage({
   };
 
   // hairTag delete
-  const handleHairTagDelete = (e, hairTag) => {
-    e.preventDefault();
-    setSideBarFormState((prevState) => {
-      return {
-        ...prevState,
-        selectedHairTags: prevState.selectedHairTags.filter(
-          (tag) => hairTag != tag
-        ),
-      };
-    });
-  };
+  // const handleHairTagDelete = (e, hairTag) => {
+  //   e.preventDefault();
+  //   setSideBarFormState((prevState) => {
+  //     return {
+  //       ...prevState,
+  //       selectedHairTags: prevState.selectedHairTags.filter(
+  //         (tag) => hairTag != tag
+  //       ),
+  //     };
+  //   });
+  // };
 
   // eyeTag delete
-  const handleEyeTagDelete = (e, eyeTag) => {
-    e.preventDefault();
-    setSideBarFormState((prevState) => {
-      return {
-        ...prevState,
-        selectedEyeTags: prevState.selectedEyeTags.filter(
-          (tag) => eyeTag != tag
-        ),
-      };
-    });
-  };
+  // const handleEyeTagDelete = (e, eyeTag) => {
+  //   e.preventDefault();
+  //   setSideBarFormState((prevState) => {
+  //     return {
+  //       ...prevState,
+  //       selectedEyeTags: prevState.selectedEyeTags.filter(
+  //         (tag) => eyeTag != tag
+  //       ),
+  //     };
+  //   });
+  // };
 
   // tattooTag delete
-  const handleTattooTagDelete = (e, tattooTag) => {
-    e.preventDefault();
-    setSideBarFormState((prevState) => {
-      return {
-        ...prevState,
-        selectedTattooTags: prevState.selectedTattooTags.filter(
-          (tag) => tattooTag != tag
-        ),
-      };
-    });
-  };
+  // const handleTattooTagDelete = (e, tattooTag) => {
+  //   e.preventDefault();
+  //   setSideBarFormState((prevState) => {
+  //     return {
+  //       ...prevState,
+  //       selectedTattooTags: prevState.selectedTattooTags.filter(
+  //         (tag) => tattooTag != tag
+  //       ),
+  //     };
+  //   });
+  // };
 
   // scarsTag delete
-  const handleScarsTagDelete = (e, scarsTag) => {
-    e.preventDefault();
-    setSideBarFormState((prevState) => {
-      return {
-        ...prevState,
-        selectedScarsTags: prevState.selectedScarsTags.filter(
-          (tag) => scarsTag != tag
-        ),
-      };
-    });
-  };
+  // const handleScarsTagDelete = (e, scarsTag) => {
+  //   e.preventDefault();
+  //   setSideBarFormState((prevState) => {
+  //     return {
+  //       ...prevState,
+  //       selectedScarsTags: prevState.selectedScarsTags.filter(
+  //         (tag) => scarsTag != tag
+  //       ),
+  //     };
+  //   });
+  // };
 
   // sexTag delete
-  const handleSexTagDelete = (e, sexTag) => {
-    e.preventDefault();
-    setSideBarFormState((prevState) => {
-      return {
-        ...prevState,
-        selectedSexTags: prevState.selectedSexTags.filter(
-          (tag) => sexTag != tag
-        ),
-      };
-    });
-  };
+  // const handleSexTagDelete = (e, sexTag) => {
+  //   e.preventDefault();
+  //   setSideBarFormState((prevState) => {
+  //     return {
+  //       ...prevState,
+  //       selectedSexTags: prevState.selectedSexTags.filter(
+  //         (tag) => sexTag != tag
+  //       ),
+  //     };
+  //   });
+  // };
 
   // invoiceTag delete
   // const handleInvoiceTagDelete = (e, invoiceTag) => {
@@ -203,29 +205,29 @@ export default function HeroesPage({
   // };
 
   // driveTag delete
-  const handleDriveTagDelete = (e, driveTag) => {
-    e.preventDefault();
-    setSideBarFormState((prevState) => {
-      return {
-        ...prevState,
-        selectedDriveTags: prevState.selectedDriveTags.filter(
-          (tag) => driveTag != tag
-        ),
-      };
-    });
-  };
+  // const handleDriveTagDelete = (e, driveTag) => {
+  //   e.preventDefault();
+  //   setSideBarFormState((prevState) => {
+  //     return {
+  //       ...prevState,
+  //       selectedDriveTags: prevState.selectedDriveTags.filter(
+  //         (tag) => driveTag != tag
+  //       ),
+  //     };
+  //   });
+  // };
 
   return (
     <div className="flex flex-col space-y-10 sm:flex-row sm:space-x-6 sm:space-y-0 md:flex-col md:space-x-0 md:space-y-10 xl:flex-row xl:space-x-6 xl:space-y-0 mt-9 w-[100%]">
       <HeroesPageSideBarForm
         heroSkills={heroSkills}
-        heroHair={heroHair}
-        heroEye={heroEye}
-        heroTattoo={heroTattoo}
-        heroScars={heroScars}
-        heroSex={heroSex}
+        // heroHair={heroHair}
+        // heroEye={heroEye}
+        // heroTattoo={heroTattoo}
+        // heroScars={heroScars}
+        // heroSex={heroSex}
         // heroInvoice={heroInvoice}
-        heroDrive={heroDrive}
+        // heroDrive={heroDrive}
         sideBarFormState={sideBarFormState}
         setSideBarFormState={setSideBarFormState}
         setdisplayedHeroes={setDisplayedHeroes}
@@ -276,7 +278,7 @@ export default function HeroesPage({
           </div>
 
           {/* hair tags */}
-          <div>
+          {/* <div>
             <div className="flex flex-wrap items-center -m-1 max-w-2xl">
               {sideBarFormState.selectedHairTags &&
                 sideBarFormState.selectedHairTags.map((hair) => (
@@ -303,10 +305,10 @@ export default function HeroesPage({
                   </div>
                 ))}
             </div>
-          </div>
+          </div> */}
 
           {/* eye tags */}
-          <div>
+          {/* <div>
             <div className="flex flex-wrap items-center -m-1 max-w-2xl">
               {sideBarFormState.selectedEyeTags &&
                 sideBarFormState.selectedEyeTags.map((eye) => (
@@ -333,10 +335,10 @@ export default function HeroesPage({
                   </div>
                 ))}
             </div>
-          </div>
+          </div> */}
 
           {/* tattoo tags */}
-          <div>
+          {/* <div>
             <div className="flex flex-wrap items-center -m-1 max-w-2xl">
               {sideBarFormState.selectedTattooTags &&
                 sideBarFormState.selectedTattooTags.map((tattoo) => (
@@ -363,10 +365,10 @@ export default function HeroesPage({
                   </div>
                 ))}
             </div>
-          </div>
+          </div> */}
 
           {/* scars tags */}
-          <div>
+          {/* <div>
             <div className="flex flex-wrap items-center -m-1 max-w-2xl">
               {sideBarFormState.selectedScarsTags &&
                 sideBarFormState.selectedScarsTags.map((scars) => (
@@ -393,10 +395,10 @@ export default function HeroesPage({
                   </div>
                 ))}
             </div>
-          </div>
+          </div> */}
 
           {/* sex tags */}
-          <div>
+          {/* <div>
             <div className="flex flex-wrap items-center -m-1 max-w-2xl">
               {sideBarFormState.selectedSexTags &&
                 sideBarFormState.selectedSexTags.map((sex) => (
@@ -423,7 +425,7 @@ export default function HeroesPage({
                   </div>
                 ))}
             </div>
-          </div>
+          </div> */}
 
           {/* invoice tags */}
           {/* <div>
@@ -456,7 +458,7 @@ export default function HeroesPage({
           </div> */}
 
           {/* drive tags */}
-          <div>
+          {/* <div>
             <div className="flex flex-wrap items-center -m-1 max-w-2xl">
               {sideBarFormState.selectedDriveTags &&
                 sideBarFormState.selectedDriveTags.map((drive) => (
@@ -483,7 +485,7 @@ export default function HeroesPage({
                   </div>
                 ))}
             </div>
-          </div>
+          </div> */}
 
           {/* Sort */}
           <HeroesSortForm

@@ -18,14 +18,6 @@ const MultiRangeShoeSizeSlider = ({ min, max, onChange }) => {
 
   // Set width of the range to decrease from the left side
   useEffect(() => {
-    // rotate the shoe while sliding
-    // const input = document.querySelector("input");
-
-    // input.addEventListener("input", (event) => {
-    //   const value = Number(input.value) / 100;
-    //   input.style.setProperty("--thumb-rotate", `${value * 360}deg`);
-    // });
-
     if (maxValRef.current) {
       const minPercent = getPercent(minVal);
       const maxPercent = getPercent(+maxValRef.current.value); // Preceding with '+' converts the value from type string to type number
@@ -74,7 +66,7 @@ const MultiRangeShoeSizeSlider = ({ min, max, onChange }) => {
           value={minVal}
           ref={minValRef}
           onChange={(event) => {
-            const value = Math.min(+event.target.value, maxVal - 1);
+            const value = Math.min(+event.target.value, maxVal - 0.5);
             setMinVal(value);
             event.target.value = value.toString();
           }}
@@ -90,7 +82,7 @@ const MultiRangeShoeSizeSlider = ({ min, max, onChange }) => {
           value={maxVal}
           ref={maxValRef}
           onChange={(event) => {
-            const value = Math.max(+event.target.value, minVal + 1);
+            const value = Math.max(+event.target.value, minVal + 0.5);
             setMaxVal(value);
             event.target.value = value.toString();
           }}

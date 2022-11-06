@@ -3,13 +3,13 @@ import {
   heroReducer,
   skillsReducer,
   tagsReducer,
-  hairReducer,
-  eyeReducer,
-  tattooReducer,
-  scarsReducer,
-  sexReducer,
+  // hairReducer,
+  // eyeReducer,
+  // tattooReducer,
+  // scarsReducer,
+  // sexReducer,
   // invoiceReducer,
-  driveReducer,
+  // driveReducer,
 } from "./utils";
 
 export const getHeroes = async () => {
@@ -36,54 +36,54 @@ export const getHeroesSkills = async () => {
 };
 
 //  Get Hero Hair
-export const getHeroesHair = async () => {
-  const res = await client.getTags();
-  const rawTags = res.items;
+// export const getHeroesHair = async () => {
+//   const res = await client.getTags();
+//   const rawTags = res.items;
 
-  const tags = tagsReducer(rawTags);
-  const hair = hairReducer(tags);
-  return hair;
-};
+//   const tags = tagsReducer(rawTags);
+//   const hair = hairReducer(tags);
+//   return hair;
+// };
 
 //  Get Hero Eye
-export const getHeroesEye = async () => {
-  const res = await client.getTags();
-  const rawTags = res.items;
+// export const getHeroesEye = async () => {
+//   const res = await client.getTags();
+//   const rawTags = res.items;
 
-  const tags = tagsReducer(rawTags);
-  const eye = eyeReducer(tags);
-  return eye;
-};
+//   const tags = tagsReducer(rawTags);
+//   const eye = eyeReducer(tags);
+//   return eye;
+// };
 
 //  Get Hero Tattoo
-export const getHeroesTattoo = async () => {
-  const res = await client.getTags();
-  const rawTags = res.items;
+// export const getHeroesTattoo = async () => {
+//   const res = await client.getTags();
+//   const rawTags = res.items;
 
-  const tags = tagsReducer(rawTags);
-  const tattoo = tattooReducer(tags);
-  return tattoo;
-};
+//   const tags = tagsReducer(rawTags);
+//   const tattoo = tattooReducer(tags);
+//   return tattoo;
+// };
 
 //  Get Hero Scars
-export const getHeroesScars = async () => {
-  const res = await client.getTags();
-  const rawTags = res.items;
+// export const getHeroesScars = async () => {
+//   const res = await client.getTags();
+//   const rawTags = res.items;
 
-  const tags = tagsReducer(rawTags);
-  const scars = scarsReducer(tags);
-  return scars;
-};
+//   const tags = tagsReducer(rawTags);
+//   const scars = scarsReducer(tags);
+//   return scars;
+// };
 
 //  Get Hero Sex
-export const getHeroesSex = async () => {
-  const res = await client.getTags();
-  const rawTags = res.items;
+// export const getHeroesSex = async () => {
+//   const res = await client.getTags();
+//   const rawTags = res.items;
 
-  const tags = tagsReducer(rawTags);
-  const sex = sexReducer(tags);
-  return sex;
-};
+//   const tags = tagsReducer(rawTags);
+//   const sex = sexReducer(tags);
+//   return sex;
+// };
 
 //  Get Hero Invoice
 // export const getHeroesInvoice = async () => {
@@ -96,14 +96,14 @@ export const getHeroesSex = async () => {
 // };
 
 //  Get Hero Drive
-export const getHeroesDrive = async () => {
-  const res = await client.getTags();
-  const rawTags = res.items;
+// export const getHeroesDrive = async () => {
+//   const res = await client.getTags();
+//   const rawTags = res.items;
 
-  const tags = tagsReducer(rawTags);
-  const drive = driveReducer(tags);
-  return drive;
-};
+//   const tags = tagsReducer(rawTags);
+//   const drive = driveReducer(tags);
+//   return drive;
+// };
 
 export const getHeroesSlugs = async () => {
   const rawSlugs = await client.getEntries({
@@ -304,6 +304,19 @@ export const searchHeroes = async (query) => {
     if (query.agencies.includes(hero.otherAgency)) return true;
     return false;
   });
+
+  // Min and Max Shoe Sizes
+  filteredHeroes = filteredHeroes.filter((hero) => {
+    if (query.minShoeSize.length == 0) return true;
+    if (query.minShoeSize.includes(hero.shoeSize)) return true;
+    return false;
+  });
+  filteredHeroes = filteredHeroes.filter((hero) => {
+    if (query.maxShoeSize.length == 0) return true;
+    if (query.maxShoeSize.includes(hero.shoeSize)) return true;
+    return false;
+  });
+  // Min and Max Shoe Sizes
 
   return filteredHeroes;
 };

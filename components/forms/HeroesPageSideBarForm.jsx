@@ -111,8 +111,6 @@ function HeroesPageSideBarForm({
   //   },
   // ];
 
-  const shoeSizeRangesOptions = [{ bounds: { min: 0, max: 100 } }];
-
   // const handleRemoteOkChange = (checked) => {
   //   console.log(checked);
   //   //TODO: send request and filter jobs
@@ -405,6 +403,8 @@ function HeroesPageSideBarForm({
   //   }
   // };
 
+  const shoeSizeRangesOptions = [{ bounds: { min: 0, max: 50 } }];
+
   const handleShoeSizeRangesSelect = (e, option, bounds) => {
     console.log(e.target.checked, option, bounds);
     if (e.target.checked) {
@@ -453,6 +453,20 @@ function HeroesPageSideBarForm({
               heroSkills={heroSkills}
               selectedTags={sideBarFormState.selectedTags}
               setSideBarFormState={setSideBarFormState}
+            />
+
+            {/* <SliderShoe /> */}
+            <MultiRangeShoeSizeSlider
+              min={34}
+              max={50}
+              onChange={({ min, max }) =>
+                console.log(`min = ${min}, max = ${max}`)
+              }
+
+              // setSideBarFormState (
+              // return{...prevState,minShoeSize:[min],maxShoeSize})}
+              // console.log(`min = ${min}, max = ${max}`)
+              // }
             />
             {/* FilterHairForm */}
             {/* <TagsFilterHairForm
@@ -929,14 +943,7 @@ function HeroesPageSideBarForm({
               </ul>
             </div>
             {/* ------------------------------- */}
-            {/* <SliderShoe /> */}
-            <MultiRangeShoeSizeSlider
-              min={34}
-              max={50}
-              onChange={({ min, max }) =>
-                console.log(`min = ${min}, max = ${max}`)
-              }
-            />
+
             {/* <div>
               <div className="text-sm text-slate-800 font-semibold mb-3">
                 Shoe Size -----TEST---- 1, 2, Hamid, test

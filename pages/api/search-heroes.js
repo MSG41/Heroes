@@ -7,17 +7,6 @@ function capitalizeFirstLetter(string) {
 export default async function handler(req, res) {
   const { searchFormState, sideBarFormState } = req.body;
 
-  // ShoeSize Min/Max
-  // const minShoeSize =
-  //   sideBarFormState.shoeSizeBounds.length > 0
-  //     ? Math.min(...sideBarFormState.shoeSizeBounds)
-  //     : 34;
-
-  // const maxShoeSize =
-  //   sideBarFormState.shoeSizeBounds.length > 0
-  //     ? Math.max(...sideBarFormState.shoeSizeBounds)
-  //     : 50;
-
   // const heroTypes = sideBarFormState.heroTypes.map((heroType) =>
   //   capitalizeFirstLetter(heroType)
   // );
@@ -59,6 +48,20 @@ export default async function handler(req, res) {
   const agencies = sideBarFormState.agencies.map((otherAgency) =>
     capitalizeFirstLetter(otherAgency)
   );
+  // ShoeSize Min/Max
+  const minShoeSize =
+    sideBarFormState.shoeSizeBounds.length > 0
+      ? Math.min(...sideBarFormState.minshoe)
+      : 34;
+
+  const maxShoeSize =
+    sideBarFormState.shoeSizeBounds.length > 0
+      ? Math.max(...sideBarFormState.maxshoe)
+      : 50;
+
+  // const shoesizes = sideBarFormState.shoesizes.map((shoeSize) =>
+  //   capitalizeFirstLetter(shoeSize)
+  // );
   // const experienceLevels = sideBarFormState.experienceLevels.map(
   //   (experienceLevel) => capitalizeFirstLetter(experienceLevel)
   // );
@@ -66,8 +69,8 @@ export default async function handler(req, res) {
   const query = {
     ...sideBarFormState,
     searchBarText: searchFormState,
-    // minShoeSize,
-    // maxShoeSize,
+    minShoeSize,
+    maxShoeSize,
     // heroTypes,
     heroInvoices,
     heroGenders,
@@ -79,6 +82,7 @@ export default async function handler(req, res) {
     sizes,
     drivers,
     agencies,
+    // shoesizes,
     // experienceLevels,
   };
 
