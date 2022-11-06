@@ -150,6 +150,7 @@ export const searchHeroes = async (query) => {
     limit: 1000,
   };
 
+  console.log("this is what I'm looking for; query=",query);
   //continue here--------------------------------
 
   // Add Equality Query Filters
@@ -307,16 +308,14 @@ export const searchHeroes = async (query) => {
 
   // Min and Max Shoe Sizes
   filteredHeroes = filteredHeroes.filter((hero) => {
-    if (query.minShoeSize.length == 0) return true;
-    if (query.minShoeSize.includes(hero.shoeSize)) return true;
+    console.log("hero.shoeSize",hero.shoeSize);
+    if(query.minShoeSize <= hero.shoeSize <= query.maxShoeSize){
+        console.log("true");
+        return true
+    }
+    console.log("false");
     return false;
   });
-  filteredHeroes = filteredHeroes.filter((hero) => {
-    if (query.maxShoeSize.length == 0) return true;
-    if (query.maxShoeSize.includes(hero.shoeSize)) return true;
-    return false;
-  });
-  // Min and Max Shoe Sizes
 
   return filteredHeroes;
 };

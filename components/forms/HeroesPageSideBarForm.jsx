@@ -403,45 +403,6 @@ function HeroesPageSideBarForm({
   //   }
   // };
 
-  const shoeSizeRangesOptions = [{ bounds: { min: 0, max: 50 } }];
-
-  const handleShoeSizeRangesSelect = (e, option, bounds) => {
-    console.log(e.target.checked, option, bounds);
-    if (e.target.checked) {
-      setSideBarFormState((prevState) => {
-        const shoeSizeOptions = [...prevState.shoeSizeOptions];
-        shoeSizeOptions.push(option);
-
-        const shoeSizeBounds = [...prevState.shoeSizeBounds];
-        shoeSizeBounds.push(bounds.min);
-        shoeSizeBounds.push(bounds.max);
-
-        const newFormState = {
-          ...prevState,
-          shoeSizeOptions,
-          shoeSizeBounds,
-        };
-        console.log(newFormState);
-        return newFormState;
-      });
-    } else {
-      setSideBarFormState((prevState) => {
-        const newFormState = {
-          ...prevState,
-          shoeSizeOptions: prevState.shoeSizeOptions.filter(
-            (shoeSizeOption) => option != shoeSizeOption
-          ),
-          shoeSizeBounds: prevState.shoeSizeBounds.filter(
-            (bound) => ![bounds.min, bounds.max].includes(bound)
-          ),
-        };
-
-        console.log(newFormState);
-        return newFormState;
-      });
-    }
-  };
-
   return (
     <div className="xl:sticky xl:top-0 xl:bottom-0 xl:h-[100vh] xl:overflow-y-auto sm:sticky-none sm:top-none sm:bottom-none sm:h-none sm:overflow-none">
       <div className="flex-row space-y-8">
@@ -459,14 +420,7 @@ function HeroesPageSideBarForm({
             <MultiRangeShoeSizeSlider
               min={34}
               max={50}
-              onChange={({ min, max }) =>
-                console.log(`min = ${min}, max = ${max}`)
-              }
-
-              // setSideBarFormState (
-              // return{...prevState,minShoeSize:[min],maxShoeSize})}
-              // console.log(`min = ${min}, max = ${max}`)
-              // }
+              setSideBarFormState={setSideBarFormState}
             />
             {/* FilterHairForm */}
             {/* <TagsFilterHairForm
