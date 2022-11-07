@@ -7,10 +7,14 @@ import { ArrowRightIcon, ChevronLeftIcon } from "@heroicons/react/solid";
 import HeroCard from "../cards/HeroCard";
 
 const HeroDetails = ({ hero }) => {
+  const getAge = (birthDate) =>
+    Math.floor((new Date() - new Date(birthDate).getTime()) / 3.15576e10);
+  var DOB = getAge(hero.age);
+
   return (
     <div className="px-4 sm:px-6 lg:px-8 py-8 w-full">
       {/* Page content */}
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row lg:space-x-8 xl:space-x-16">
+      <div className="max-w-7xl mt-6  flex flex-col lg:flex-row lg:space-x-8 xl:space-x-16">
         {/* Content */}
         <div>
           <div className="mb-6">
@@ -157,15 +161,30 @@ const HeroDetails = ({ hero }) => {
 
           {/*  */}
           <div>
-            <h2 className="text-xl leading-snug text-slate-800 font-bold mb-2">
+            <h2 className="text-xl leading-snug text-slate-800 font-bold mb-2 ">
               Specs
             </h2>
 
-            <div className="flex flex-inline justify-evenly">
-              <div className="text-[14px] font-semibold text-slate-800">
+            <div className=" xs:grid xs:grid-cols-3	xl:flex-inline xl:justify-start ">
+              <div className="text-[14px] font-semibold text-slate-800 mt-6 ">
                 {" "}
-                Invoice:
-                <div className="flex flex-wrap items-center -m-1">
+                Age
+                <div className="flex flex-wrap items-left -m-1">
+                  <div className="m-1">
+                    <a
+                      className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+                      href="#"
+                    >
+                      {DOB}
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="text-[14px] font-semibold text-slate-800 mt-6 ">
+                {" "}
+                Invoice
+                <div className="flex flex-wrap items-left -m-1">
                   <div className="m-1">
                     <a
                       className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
@@ -177,9 +196,9 @@ const HeroDetails = ({ hero }) => {
                 </div>
               </div>
 
-              <div className="text-[14px] font-semibold text-slate-800">
+              <div className="text-[14px] font-semibold text-slate-800 mt-6 ">
                 {" "}
-                Drive:
+                Drive
                 <div className="flex flex-wrap items-center -m-1">
                   <div className="m-1">
                     <a
@@ -192,9 +211,9 @@ const HeroDetails = ({ hero }) => {
                 </div>
               </div>
 
-              <div className="text-[14px] font-semibold text-slate-800">
+              <div className="text-[14px] font-semibold text-slate-800 mt-6 ">
                 {" "}
-                Scars:
+                Scars
                 <div className="flex flex-wrap items-center -m-1">
                   <div className="m-1">
                     <a
@@ -207,9 +226,9 @@ const HeroDetails = ({ hero }) => {
                 </div>
               </div>
 
-              <div className="text-[14px] font-semibold text-slate-800">
+              <div className="text-[14px] font-semibold text-slate-800 mt-6 ">
                 {" "}
-                Tattoo:
+                Tattoo
                 <div className="flex flex-wrap items-center -m-1">
                   <div className="m-1">
                     <a
@@ -222,9 +241,9 @@ const HeroDetails = ({ hero }) => {
                 </div>
               </div>
 
-              <div className="text-[14px] font-semibold text-slate-800">
+              <div className="text-[14px] font-semibold text-slate-800 mt-6 ">
                 {" "}
-                Hair Color:
+                Hair Color
                 <div className="flex flex-wrap items-center -m-1">
                   <div className="m-1">
                     <a
@@ -237,9 +256,9 @@ const HeroDetails = ({ hero }) => {
                 </div>
               </div>
 
-              <div className="text-[14px] font-semibold text-slate-800">
+              <div className="text-[14px] font-semibold text-slate-800 mt-6 ">
                 {" "}
-                Shoe Size:
+                Shoe Size
                 <div className="flex flex-wrap items-center -m-1">
                   <div className="m-1">
                     <a
@@ -252,9 +271,9 @@ const HeroDetails = ({ hero }) => {
                 </div>
               </div>
 
-              <div className="text-[14px] font-semibold text-slate-800">
+              <div className="text-[14px] font-semibold text-slate-800 mt-6 ">
                 {" "}
-                Eye Color:
+                Eye Color
                 <div className="flex flex-wrap items-center -m-1">
                   <div className="m-1">
                     <a
