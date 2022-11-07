@@ -307,17 +307,17 @@ export const searchHeroes = async (query) => {
   });
 
   // Min and Max Shoe Sizes
-  filteredHeroes = filteredHeroes.filter((hero) => {
-    console.log("hero.shoeSize", hero.shoeSize);
+  // filteredHeroes = filteredHeroes.filter((hero) => {
+  //   console.log("hero.shoeSize", hero.shoeSize);
 
-    if (query.minShoeSize <= hero.shoeSize <= query.maxShoeSize) {
-      console.log("true");
-      return true;
-    }
+  //   // if (query.minShoeSize <= hero.shoeSize <= query.maxShoeSize) {
+  //   //   console.log("minmaxqueryfiltering");
+  //   //   return true;
+  //   // }
 
-    console.log("false");
-    return false;
-  });
+  //   console.log("false");
+  //   return false;
+  // });
 
   return filteredHeroes;
 };

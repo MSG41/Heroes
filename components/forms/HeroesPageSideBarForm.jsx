@@ -1,16 +1,7 @@
 import React, { useState } from "react";
-// import { Switch } from "@headlessui/react";
+import { Switch } from "@headlessui/react";
 import TagsFilterForm from "./TagsFilterForm";
-// import TagsFilterHairForm from "./TagsFilterHairForm";
-// import TagsFilterEyeForm from "./TagsFilterEyeForm";
-// import TagsFilterTattooForm from "./TagsFilterTattooForm";
-// import TagsFilterScarsForm from "./TagsFilterScarsForm";
-// import TagsFilterSexForm from './TagsFilterSexForm';
-// import TagsFilterInvoiceForm from "./TagsFilterInvoiceForm";
-// import TagsFilterDriveForm from "./TagsFilterDriveForm";
 import { ChevronDownIcon, FilterIcon } from "@heroicons/react/solid";
-// import SliderShoe from "../Sliders/SliderShoe/SliderShoe";
-
 import MultiRangeShoeSizeSlider from "../Sliders/SliderShoe/MultiRangeShoeSizeSlider";
 
 function classNames(...classes) {
@@ -19,13 +10,6 @@ function classNames(...classes) {
 
 function HeroesPageSideBarForm({
   heroSkills,
-  // heroHair,
-  // heroEye,
-  // heroTattoo,
-  // heroScars,
-  // heroSex,
-  // heroInvoice,
-  // heroDrive,
   sideBarFormState,
   setSideBarFormState,
   setDisplayedHeroes,
@@ -84,40 +68,6 @@ function HeroesPageSideBarForm({
     { value: "no", display: "No" },
     { value: "yes", display: "Yes" },
   ];
-
-  // const experienceLevelsOptions = [
-  //   { value: 'junior', display: 'Junior' },
-  //   { value: 'medior', display: 'Medior' },
-  //   { value: 'senior', display: 'Senior' },
-  //   { value: 'tech-lead', display: 'Tech Lead' },
-  // ];
-
-  // const baseSalaryRangesOptions = [
-  //   { value: '<20K', display: '< £20K', bounds: { min: 0, max: 20000 } },
-  //   {
-  //     value: '20K-50K',
-  //     display: '£20K - £50K',
-  //     bounds: { min: 20001, max: 50000 },
-  //   },
-  //   {
-  //     value: '50K-100K',
-  //     display: '£50K - £100K',
-  //     bounds: { min: 50001, max: 100000 },
-  //   },
-  //   {
-  //     value: '> 100K',
-  //     display: '> £100K',
-  //     bounds: { min: 100001, max: 1000000 },
-  //   },
-  // ];
-
-  // const handleRemoteOkChange = (checked) => {
-  //   console.log(checked);
-  //   //TODO: send request and filter jobs
-  //   setSideBarFormState((prevState) => {
-  //     return { ...prevState, remoteOkOnly: !prevState.remoteOkOnly };
-  //   });
-  // };
 
   // const handleFeaturedHeroesOnlyChange = (checked) => {
   //   console.log(checked);
@@ -344,67 +294,57 @@ function HeroesPageSideBarForm({
       });
     }
   };
-  // ------------------------
 
-  // const handleExperienceLevelsSelect = (e, option) => {
-  //   console.log(e.target.checked, option);
-  //   if (e.target.checked) {
-  //     setSideBarFormState((prevState) => {
-  //       const experienceLevels = [...prevState.experienceLevels];
-  //       experienceLevels.push(option);
-  //       return { ...prevState, experienceLevels };
-  //     });
-  //   } else {
-  //     setSideBarFormState((prevState) => {
-  //       return {
-  //         ...prevState,
-  //         experienceLevels: prevState.experienceLevels.filter(
-  //           (experienceLevel) => option != experienceLevel
-  //         ),
-  //       };
-  //     });
-  //   }
-  // };
+  const handleShoeChange = (checked) => {
+    console.log(checked);
+    //TODO: send request and filter jobs
+    setSideBarFormState((newstate) => {
+      return {
+        ...newstate,
+        shoeOn: !newstate.shoeOn,
+      };
+    });
+  };
 
-  // const handleBaseSalaryRangesSelect = (e, option, bounds) => {
-  //   console.log(e.target.checked, option, bounds);
-  //   if (e.target.checked) {
-  //     setSideBarFormState((prevState) => {
-  //       const baseSalaryOptions = [...prevState.baseSalaryOptions];
-  //       baseSalaryOptions.push(option);
+  const handleBaseSalaryRangesSelect = (e, option, bounds) => {
+    console.log(e.target.checked, option, bounds);
+    if (e.target.checked) {
+      setSideBarFormState((prevState) => {
+        const baseSalaryOptions = [...prevState.baseSalaryOptions];
+        baseSalaryOptions.push(option);
 
-  //       const baseSalaryBounds = [...prevState.baseSalaryBounds];
-  //       baseSalaryBounds.push(bounds.min);
-  //       baseSalaryBounds.push(bounds.max);
+        const baseSalaryBounds = [...prevState.baseSalaryBounds];
+        baseSalaryBounds.push(bounds.min);
+        baseSalaryBounds.push(bounds.max);
 
-  //       const newFormState = {
-  //         ...prevState,
-  //         baseSalaryOptions,
-  //         baseSalaryBounds,
-  //       };
-  //       console.log(newFormState);
-  //       return newFormState;
-  //     });
-  //   } else {
-  //     setSideBarFormState((prevState) => {
-  //       const newFormState = {
-  //         ...prevState,
-  //         baseSalaryOptions: prevState.baseSalaryOptions.filter(
-  //           (baseSalaryOption) => option != baseSalaryOption
-  //         ),
-  //         baseSalaryBounds: prevState.baseSalaryBounds.filter(
-  //           (bound) => ![bounds.min, bounds.max].includes(bound)
-  //         ),
-  //       };
+        const newFormState = {
+          ...prevState,
+          baseSalaryOptions,
+          baseSalaryBounds,
+        };
+        console.log(newFormState);
+        return newFormState;
+      });
+    } else {
+      setSideBarFormState((prevState) => {
+        const newFormState = {
+          ...prevState,
+          baseSalaryOptions: prevState.baseSalaryOptions.filter(
+            (baseSalaryOption) => option != baseSalaryOption
+          ),
+          baseSalaryBounds: prevState.baseSalaryBounds.filter(
+            (bound) => ![bounds.min, bounds.max].includes(bound)
+          ),
+        };
 
-  //       console.log(newFormState);
-  //       return newFormState;
-  //     });
-  //   }
-  // };
+        console.log(newFormState);
+        return newFormState;
+      });
+    }
+  };
 
   return (
-    <div className="xl:sticky xl:top-5 xl:bottom-0 xl:h-[100vh] xl:overflow-y-auto sm:sticky-none sm:top-none sm:bottom-none sm:h-none sm:overflow-none">
+    <div className="xl:sticky xl:top-5 xl:h-[96vh] xl:overflow-y-auto sm:sticky-none sm:top-none sm:bottom-none sm:h-none sm:overflow-none">
       <div className="flex-row space-y-8">
         {/* White box */}
         <div className="bg-white shadow-lg rounded-sm border border-slate-200 p-5 ">
@@ -416,135 +356,38 @@ function HeroesPageSideBarForm({
               setSideBarFormState={setSideBarFormState}
             />
 
+            <Switch.Group as="div" className="flex items-center">
+              <Switch
+                checked={sideBarFormState.shoeOn}
+                onChange={handleShoeChange}
+                className={classNames(
+                  sideBarFormState.shoeOn ? "bg-indigo-600" : "bg-gray-200",
+                  "relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                )}
+              >
+                <span
+                  aria-hidden="true"
+                  className={classNames(
+                    sideBarFormState.shoeOn ? "translate-x-5" : "translate-x-0",
+                    "pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
+                  )}
+                />
+              </Switch>
+              <Switch.Label as="span" className="ml-3">
+                <span className="text-sm font-medium text-gray-900">
+                  Activate Shoe Filter
+                </span>
+              </Switch.Label>
+            </Switch.Group>
+
             {/* <SliderShoe /> */}
             <MultiRangeShoeSizeSlider
-              min={34}
+              min={0 || 34}
               max={50}
+              shoeOn={false}
               setSideBarFormState={setSideBarFormState}
             />
-            {/* FilterHairForm */}
-            {/* <TagsFilterHairForm
-            heroHair={heroHair}
-            selectedHairTags={sideBarFormState.selectedHairTags}
-            setSideBarFormState={setSideBarFormState}
-          /> */}
-            {/* FilterEyeForm */}
-            {/* <TagsFilterEyeForm
-            heroEye={heroEye}
-            selectedEyeTags={sideBarFormState.selectedEyeTags}
-            setSideBarFormState={setSideBarFormState}
-          /> */}
-            {/* FilterTattooForm */}
-            {/* <TagsFilterTattooForm
-            heroTattoo={heroTattoo}
-            selectedTattooTags={sideBarFormState.selectedTattooTags}
-            setSideBarFormState={setSideBarFormState}
-          /> */}
-            {/* FilterScarForm */}
-            {/* <TagsFilterScarsForm
-            heroScars={heroScars}
-            selectedScarsTags={sideBarFormState.selectedScarsTags}
-            setSideBarFormState={setSideBarFormState}
-          /> */}
-            {/* FilterSexForm */}
-            {/* <TagsFilterSexForm
-            heroSex={heroSex}
-            selectedSexTags={sideBarFormState.selectedSexTags}
-            setSideBarFormState={setSideBarFormState}
-          /> */}
-            {/* FilterInvoiceForm */}
-            {/* <TagsFilterInvoiceForm
-            heroInvoice={heroInvoice}
-            selectedInvoiceTags={sideBarFormState.selectedInvoiceTags}
-            setSideBarFormState={setSideBarFormState}
-          /> */}
-            {/* FilterDriveForm */}
-            {/* <TagsFilterDriveForm
-            heroDrive={heroDrive}
-            selectedDriveTags={sideBarFormState.selectedDriveTags}
-            setSideBarFormState={setSideBarFormState}
-          /> */}
-            {/* Group 1 */}
-            {/* <Switch.Group as='div' className='flex items-center'>
-            <Switch
-              checked={sideBarFormState.remoteOkOnly}
-              onChange={handleRemoteOkChange}
-              className={classNames(
-                sideBarFormState.remoteOkOnly ? 'bg-indigo-600' : 'bg-gray-200',
-                'relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 z-[8]'
-              )}
-            >
-              <span
-                aria-hidden='true'
-                className={classNames(
-                  sideBarFormState.remoteOkOnly
-                    ? 'translate-x-5'
-                    : 'translate-x-0',
-                  'pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200'
-                )}
-              />
-            </Switch>
-            <Switch.Label as='span' className='ml-3'>
-              <span className='text-sm font-medium text-gray-900'>
-                Remote Ok Only
-              </span>
-            </Switch.Label>
-          </Switch.Group> */}
-            {/* Group 2 */}
-            {/* <Switch.Group as='div' className='flex items-center'>
-            <Switch
-              checked={sideBarFormState.featuredHeroesOnly}
-              onChange={handleFeaturedHeroesOnlyChange}
-              className={classNames(
-                sideBarFormState.featuredHeroesOnly
-                  ? 'bg-indigo-600'
-                  : 'bg-gray-200',
-                'relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
-              )}
-            >
-              <span
-                aria-hidden='true'
-                className={classNames(
-                  sideBarFormState.featuredHeroesOnly
-                    ? 'translate-x-5'
-                    : 'translate-x-0',
-                  'pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200'
-                )}
-              />
-            </Switch>
-            <Switch.Label as='span' className='ml-3'>
-              <span className='text-sm font-medium text-gray-900'>
-                Featured Heroes Only
-              </span>
-            </Switch.Label>
-          </Switch.Group> */}
-            {/* Group 3 */}
-            {/* <div>
-            <div className='text-sm text-slate-800 font-semibold mb-3'>
-              Hero Types
-            </div>
-            <ul className='space-y-2'>
-              {heroTypesOptions.map((option) => {
-                return (
-                  <li key={option.value}>
-                    <label className='flex items-center'>
-                      <input
-                        type='checkbox'
-                        className='form-checkbox'
-                        onChange={(e) => handleHeroTypeSelect(e, option.value)}
-                        checked={sideBarFormState.heroTypes.includes(
-                          option.value
-                        )}
-                      />
-                      <span className='text-sm text-slate-600 font-medium ml-2'>
-                        {option.display}
-                      </span>
-                    </label>
-                  </li>
-                );
-              })}
-            </ul>
-          </div> */}
+
             {/* group hero gender  */}
             <div>
               <div className="flex flex-row">
@@ -896,159 +739,6 @@ function HeroesPageSideBarForm({
                 })}
               </ul>
             </div>
-            {/* ------------------------------- */}
-
-            {/* <div>
-              <div className="text-sm text-slate-800 font-semibold mb-3">
-                Shoe Size -----TEST---- 1, 2, Hamid, test
-              </div>
-              <ul className="space-y-2">
-                {shoeSizeRangesOptions.map((option) => {
-                  return (
-                    <li key={option.value}>
-                      <label className="flex items-center">
-                        <input
-                          type="range"
-                          min={min}
-                          max={max}
-                          value={maxVal}
-                          ref={maxValRef}
-                          onChange={(event, e) => {
-                            const value = Math.max(
-                              +event.target.value,
-                              minVal + 1
-                            );
-                            setMaxVal(value);
-                            event.target.value = value.toString();
-
-                            handleBaseSalaryRangesSelect(
-                              e,
-                              option.value,
-                              option.bounds
-                            );
-
-                            {
-                              sideBarFormState.baseSalaryOptions.includes(
-                                option.value
-                              );
-                            }
-                          }}
-                          className="thumb thumb--zindex-4"
-                          onChange={(e) =>
-                            handleBaseSalaryRangesSelect(
-                              e,
-                              option.value,
-                              option.bounds
-                            )
-                          }
-                          checked={sideBarFormState.baseSalaryOptions.includes(
-                            option.value
-                          )}
-                        />
-                        <span className='text-sm text-slate-600 font-medium ml-2'>
-                        {option.display}
-                      </span>
-                      </label>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div> */}
-
-            {/* <div>
-              <div className="text-sm text-slate-800 font-semibold mb-3">
-                Pay Range
-              </div>
-              <ul className="space-y-2">
-                {baseSalaryRangesOptions.map((option) => {
-                  return (
-                    <li key={option.value}>
-                      <label className="flex items-center">
-                        <input
-                          type="checkbox"
-                          className="form-checkbox"
-                          onChange={(e) =>
-                            handleBaseSalaryRangesSelect(
-                              e,
-                              option.value,
-                              option.bounds
-                            )
-                          }
-                          checked={sideBarFormState.baseSalaryOptions.includes(
-                            option.value
-                          )}
-                        />
-                        <span className="text-sm text-slate-600 font-medium ml-2">
-                          {option.display}
-                        </span>
-                      </label>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div> */}
-            {/* Group 4 */}
-            {/* <div>
-            <div className='text-sm text-slate-800 font-semibold mb-3'>
-              Experience Level
-            </div>
-            <ul className='space-y-2'>
-              {experienceLevelsOptions.map((option) => {
-                return (
-                  <li key={option.value}>
-                    <label className='flex items-center'>
-                      <input
-                        type='checkbox'
-                        className='form-checkbox'
-                        onChange={(e) =>
-                          handleExperienceLevelsSelect(e, option.value)
-                        }
-                        checked={sideBarFormState.experienceLevels.includes(
-                          option.value
-                        )}
-                      />
-                      <span className='text-sm text-slate-600 font-medium ml-2'>
-                        {option.display}
-                      </span>
-                    </label>
-                  </li>
-                );
-              })}
-            </ul>
-          </div> */}
-            {/* Group 5 */}
-            {/* <div>
-            <div className='text-sm text-slate-800 font-semibold mb-3'>
-              Pay Range
-            </div>
-            <ul className='space-y-2'>
-              {baseSalaryRangesOptions.map((option) => {
-                return (
-                  <li key={option.value}>
-                    <label className='flex items-center'>
-                      <input
-                        type='checkbox'
-                        className='form-checkbox'
-                        onChange={(e) =>
-                          handleBaseSalaryRangesSelect(
-                            e,
-                            option.value,
-                            option.bounds
-                          )
-                        }
-                      // checked={sideBarFormState.baseSalaryOptions.includes(
-                      //   option.value
-                      // )}
-                      />
-                      <span className='text-sm text-slate-600 font-medium ml-2'>
-                        {option.display}
-                      </span>
-                    </label>
-                  </li>
-                );
-              })}
-            </ul>
-          </div> */}
           </div>
         </div>
 

@@ -3,7 +3,12 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 import { FilterIcon } from "@heroicons/react/solid";
 
-const MultiRangeShoeSizeSlider = ({ min, max, setSideBarFormState }) => {
+const MultiRangeShoeSizeSlider = ({
+  min,
+  max,
+  setSideBarFormState,
+  shoeOn,
+}) => {
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
   const minValRef = useRef(null);
@@ -42,15 +47,16 @@ const MultiRangeShoeSizeSlider = ({ min, max, setSideBarFormState }) => {
   }, [maxVal, getPercent]);
 
   // Get min and max values when their state changes
-  useEffect(() => {
-    setSideBarFormState((prevState) => {
-      return {
-        ...prevState,
-        minShoeSize: minVal,
-        maxShoeSize: maxVal,
-      };
-    });
-  }, [minVal, maxVal]);
+
+  // useEffect(() => {
+  //   setSideBarFormState((prevState) => {
+  //     return {
+  //       ...prevState,
+  //       minShoeSize: minVal,
+  //       maxShoeSize: maxVal,
+  //     };
+  //   });
+  // }, [minVal, maxVal]);
 
   return (
     <div className="flex flex-col">
