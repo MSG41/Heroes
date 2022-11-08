@@ -4,6 +4,7 @@ import HeroesList from "../data/lists/HeroesList";
 import SearchHeroForm from "../forms/SearchHeroForm";
 import HeroesPageSideBarForm from "../forms/HeroesPageSideBarForm";
 import HeroesSortForm from "../forms/HeroesSortForm";
+import MultiRangeShoeSizeSlider from "../Sliders/SliderShoe/MultiRangeShoeSizeSlider";
 
 export default function HeroesPage({ heroes, heroSkills }) {
   const [displayedHeroes, setDisplayedHeroes] = useState(heroes);
@@ -19,7 +20,8 @@ export default function HeroesPage({ heroes, heroSkills }) {
     sizes: [],
     drivers: [],
     agencies: [],
-    shoeOn: false,
+    // shoeOn: false,
+
     // minShoeSize: ,
     // maxShoeSize: ,
     selectedTags: [],
@@ -63,6 +65,11 @@ export default function HeroesPage({ heroes, heroSkills }) {
       console.log(
         "search form changed && length >= 2 OR ==0 => triggering a search"
       );
+      if (searchFormState.length >= 2 || searchFormState.length == 0) {
+        const formsStates = { searchFormState, sideBarFormState };
+        searchHeroes("api/search-heroes", formsStates);
+      }
+
       if (searchFormState.length >= 2 || searchFormState.length == 0) {
         const formsStates = { searchFormState, sideBarFormState };
         searchHeroes("api/search-heroes", formsStates);

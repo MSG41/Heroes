@@ -1,12 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Switch } from "@headlessui/react";
 import TagsFilterForm from "./TagsFilterForm";
 import { ChevronDownIcon, FilterIcon } from "@heroicons/react/solid";
 import MultiRangeShoeSizeSlider from "../Sliders/SliderShoe/MultiRangeShoeSizeSlider";
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
 
 function HeroesPageSideBarForm({
   heroSkills,
@@ -295,53 +291,55 @@ function HeroesPageSideBarForm({
     }
   };
 
-  const handleShoeChange = (checked) => {
-    console.log(checked);
-    //TODO: send request and filter jobs
-    setSideBarFormState((newstate) => {
-      return {
-        ...newstate,
-        shoeOn: !newstate.shoeOn,
-      };
-    });
-  };
+  // shoeOn
+  //   ? useEffect(() => {
+  //       setSideBarFormState((prevState) => {
+  //         return {
+  //           ...prevState,
+  //           shoeOn: !prevState.shoeOn,
+  //           minShoeSizeON: minVal,
+  //           maxShoeSizeON: maxVal,
+  //         };
+  //       });
+  //     }, [minVal, maxVal])
+  //   : null;
 
-  const handleBaseSalaryRangesSelect = (e, option, bounds) => {
-    console.log(e.target.checked, option, bounds);
-    if (e.target.checked) {
-      setSideBarFormState((prevState) => {
-        const baseSalaryOptions = [...prevState.baseSalaryOptions];
-        baseSalaryOptions.push(option);
+  // const handleBaseSalaryRangesSelect = (e, option, bounds) => {
+  //   console.log(e.target.checked, option, bounds);
+  //   if (e.target.checked) {
+  //     setSideBarFormState((prevState) => {
+  //       const baseSalaryOptions = [...prevState.baseSalaryOptions];
+  //       baseSalaryOptions.push(option);
 
-        const baseSalaryBounds = [...prevState.baseSalaryBounds];
-        baseSalaryBounds.push(bounds.min);
-        baseSalaryBounds.push(bounds.max);
+  //       const baseSalaryBounds = [...prevState.baseSalaryBounds];
+  //       baseSalaryBounds.push(bounds.min);
+  //       baseSalaryBounds.push(bounds.max);
 
-        const newFormState = {
-          ...prevState,
-          baseSalaryOptions,
-          baseSalaryBounds,
-        };
-        console.log(newFormState);
-        return newFormState;
-      });
-    } else {
-      setSideBarFormState((prevState) => {
-        const newFormState = {
-          ...prevState,
-          baseSalaryOptions: prevState.baseSalaryOptions.filter(
-            (baseSalaryOption) => option != baseSalaryOption
-          ),
-          baseSalaryBounds: prevState.baseSalaryBounds.filter(
-            (bound) => ![bounds.min, bounds.max].includes(bound)
-          ),
-        };
+  //       const newFormState = {
+  //         ...prevState,
+  //         baseSalaryOptions,
+  //         baseSalaryBounds,
+  //       };
+  //       console.log(newFormState);
+  //       return newFormState;
+  //     });
+  //   } else {
+  //     setSideBarFormState((prevState) => {
+  //       const newFormState = {
+  //         ...prevState,
+  //         baseSalaryOptions: prevState.baseSalaryOptions.filter(
+  //           (baseSalaryOption) => option != baseSalaryOption
+  //         ),
+  //         baseSalaryBounds: prevState.baseSalaryBounds.filter(
+  //           (bound) => ![bounds.min, bounds.max].includes(bound)
+  //         ),
+  //       };
 
-        console.log(newFormState);
-        return newFormState;
-      });
-    }
-  };
+  //       console.log(newFormState);
+  //       return newFormState;
+  //     });
+  //   }
+  // };
 
   return (
     <div className="xl:sticky xl:top-5 xl:h-[96vh] xl:overflow-y-auto sm:sticky-none sm:top-none sm:bottom-none sm:h-none sm:overflow-none">
@@ -356,35 +354,10 @@ function HeroesPageSideBarForm({
               setSideBarFormState={setSideBarFormState}
             />
 
-            <Switch.Group as="div" className="flex items-center">
-              <Switch
-                checked={sideBarFormState.shoeOn}
-                onChange={handleShoeChange}
-                className={classNames(
-                  sideBarFormState.shoeOn ? "bg-indigo-600" : "bg-gray-200",
-                  "relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                )}
-              >
-                <span
-                  aria-hidden="true"
-                  className={classNames(
-                    sideBarFormState.shoeOn ? "translate-x-5" : "translate-x-0",
-                    "pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
-                  )}
-                />
-              </Switch>
-              <Switch.Label as="span" className="ml-3">
-                <span className="text-sm font-medium text-gray-900">
-                  Activate Shoe Filter
-                </span>
-              </Switch.Label>
-            </Switch.Group>
-
             {/* <SliderShoe /> */}
             <MultiRangeShoeSizeSlider
-              min={0 || 34}
+              min={34}
               max={50}
-              shoeOn={false}
               setSideBarFormState={setSideBarFormState}
             />
 

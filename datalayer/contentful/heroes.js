@@ -310,10 +310,10 @@ export const searchHeroes = async (query) => {
   // filteredHeroes = filteredHeroes.filter((hero) => {
   //   console.log("hero.shoeSize", hero.shoeSize);
 
-  //   // if (query.minShoeSize <= hero.shoeSize <= query.maxShoeSize) {
-  //   //   console.log("minmaxqueryfiltering");
-  //   //   return true;
-  //   // }
+  //   if (query.minShoeSize <= hero.shoeSize <= query.maxShoeSize) {
+  //     console.log("minmaxqueryfiltering");
+  //     return true;
+  //   }
 
   //   console.log("false");
   //   return false;
