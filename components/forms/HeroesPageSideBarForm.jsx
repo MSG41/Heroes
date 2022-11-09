@@ -354,12 +354,14 @@ function HeroesPageSideBarForm({
               setSideBarFormState={setSideBarFormState}
             />
 
-            {/* <SliderShoe /> */}
-            <MultiRangeShoeSizeSlider
-              min={34}
-              max={50}
-              setSideBarFormState={setSideBarFormState}
-            />
+            <div className="flex flex-row">
+              {/* <SliderShoe /> */}
+              <MultiRangeShoeSizeSlider
+                min={34}
+                max={50}
+                setSideBarFormState={setSideBarFormState}
+              />
+            </div>
 
             {/* group hero gender  */}
             <div>

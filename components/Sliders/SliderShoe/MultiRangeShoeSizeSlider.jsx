@@ -4,13 +4,13 @@ import PropTypes from "prop-types";
 import { FilterIcon } from "@heroicons/react/solid";
 import { Switch } from "@headlessui/react";
 import SearchHeroForm from "../../forms/SearchHeroForm";
-import { searchHeroes } from "../../../datalayer";
+import { getHeroes, searchHeroes } from "../../../datalayer";
 
 const MultiRangeShoeSizeSlider = ({
   min,
   max,
   setSideBarFormState,
-  setSearchFormState,
+  sideBarFormState,
 }) => {
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
@@ -55,28 +55,6 @@ const MultiRangeShoeSizeSlider = ({
 
   // Get min and max values when their state changes
 
-  // const [shoeOn, setShoeOn] = useState(false);
-
-  // shoeOn
-  //   ? useEffect(() => {
-  //       setSideBarFormState((prevState) => {
-  //         return {
-  //           ...prevState,
-  //           minShoeSize: minVal,
-  //           maxShoeSize: maxVal,
-  //         };
-  //       });
-  //     }, [setShoeOn, minVal, maxVal])
-  //   : useEffect(() => {
-  //       setSideBarFormState((prevState) => {
-  //         return {
-  //           ...prevState,
-  //           minShoeSize: [],
-  //           maxShoeSize: [],
-  //         };
-  //       });
-  //     },;
-
   // useEffect(() => {
   //   setSideBarFormState((prevState) => {
   //     return {
@@ -87,29 +65,70 @@ const MultiRangeShoeSizeSlider = ({
   //   });
   // }, [minVal, maxVal]);
 
-  // const refreshPage = () => {
-  //   window.location.reload();
-  // };
-
   const [shoeOn, setShoeOn] = useState("");
 
   const handleShoeChange = (checked) => {
     console.log(checked);
-    //TODO: send request and filter jobs
-    shoeOn ? setShoeOn(false) : setShoeOn(true);
-  };
 
-  useEffect(() => {
-    shoeOn
-      ? setSideBarFormState((newstate) => {
+    checked
+      ? setSideBarFormState((prevState) => {
           return {
-            ...newstate,
+            prevState,
+            heroInvoices: [],
+            heroGenders: [],
+            tattoos: [],
+            heroLooks: [],
+            heroScars: [],
+            hairColors: [],
+            eyeColors: [],
+            sizes: [],
+            drivers: [],
+            agencies: [],
+            selectedTags: [],
             minShoeSize: minVal,
             maxShoeSize: maxVal,
           };
         })
-      : setSideBarFormState(() => {
+      : setSideBarFormState((prevState) => {
           return {
+            prevState,
+            heroInvoices: [],
+            heroGenders: [],
+            tattoos: [],
+            heroLooks: [],
+            heroScars: [],
+            hairColors: [],
+            eyeColors: [],
+            sizes: [],
+            drivers: [],
+            agencies: [],
+            selectedTags: [],
+          };
+        });
+    //TODO: send request and filter jobs
+    shoeOn ? setShoeOn(false) : setShoeOn(true);
+
+    // setSideBarFormState((prevState) => {
+    //   return {
+    //     ...prevState,
+    //     minShoeSize: minVal,
+    //     maxShoeSize: maxVal,
+    //   };
+    // });
+  };
+
+  useEffect(() => {
+    shoeOn
+      ? setSideBarFormState((prevState) => {
+          return {
+            ...prevState,
+            minShoeSize: minVal,
+            maxShoeSize: maxVal,
+          };
+        })
+      : setSideBarFormState((prevState) => {
+          return {
+            ...prevState,
             heroInvoices: [],
             heroGenders: [],
             tattoos: [],
@@ -132,7 +151,6 @@ const MultiRangeShoeSizeSlider = ({
         className="flex items-center mb-5 bg-gradient-to-r from-violet-500/5 to-yellow-500/50 rounded-full"
       >
         <Switch
-          checked={shoeOn}
           onChange={handleShoeChange}
           className={classNames(
             shoeOn ? "bg-emerald-600" : "bg-gray-200",
@@ -148,13 +166,13 @@ const MultiRangeShoeSizeSlider = ({
           />
         </Switch>
         <Switch.Label as="span" className="ml-3">
-          <span className="text-sm font-medium text-green-900 ">
+          <span className="text-sm font-medium text-green-900 pr-2 ">
             Shoe Filter Active
           </span>
         </Switch.Label>
       </Switch.Group>
 
-      <div className="flex flex-col">
+      <div className={classNames(shoeOn ? "flex flex-col" : "  hidden ")}>
         <div className="flex flex-row">
           {" "}
           <FilterIcon

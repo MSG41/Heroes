@@ -20,7 +20,7 @@ export default function HeroesPage({ heroes, heroSkills }) {
     sizes: [],
     drivers: [],
     agencies: [],
-    // shoeOn: false,
+    shoeOn: "",
 
     // minShoeSize: ,
     // maxShoeSize: ,
