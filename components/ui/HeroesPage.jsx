@@ -108,66 +108,78 @@ export default function HeroesPage({ heroes, heroSkills }) {
   };
 
   return (
-    <div className="flex flex-col space-y-10 sm:flex-row sm:space-x-6 sm:space-y-0 md:flex-col md:space-x-0 md:space-y-10 xl:flex-row xl:space-x-6 xl:space-y-0 mt-9 w-[100%]">
-      <HeroesPageSideBarForm
-        heroSkills={heroSkills}
-        sideBarFormState={sideBarFormState}
-        setSideBarFormState={setSideBarFormState}
-        setdisplayedHeroes={setDisplayedHeroes}
-      />
-      <div className="md:max-w-screen xl:w-[70%] align-center ">
-        <div className="lg:sticky lg:top-5 lg:z-10 md:sticky md:top-5 md:z-10 xs:sticky xs:top-5 xs:z-10 ">
-          <SearchHeroForm
-            searchFormState={searchFormState}
-            setSearchFormState={setSearchFormState}
-            setdisplayedHeroes={setDisplayedHeroes}
-          />
-        </div>
-        {/* Heroes header */}
-        <div className="flex justify-between items-center mb-4  ">
-          {/* Number of heroes found message  */}
-          <div className="text-sm text-slate-500 italic">
-            {heroesFoundMessage}
+    <div className="w-[100%] mt-[-100px]">
+      <div className=" xl:sticky xl:left-[4vw] xl:top-2 xl:mt-[12vh] md:mt-10 xl:mb-[-14vh]  text-sm text-white italic xs:sticky xs:mt-[10vh] xs:left-[63%] md:left-[80%] md:top-5 xs:pl-2 xs:pr-2 xs:text-xs xl:text-sm xs:sticky xs:top-0.5 xs:z-[999] xs:bg-gradient-to-r from-indigo-500/90 via-purple-500/70 to-pink-500/90 hover:from-pink-500 xs:hover:to-yellow-500 xs:rounded-full xs:w-fit">
+        {heroesFoundMessage}
+      </div>
+      <div className=" xl:invisible md:z-10 lg:sticky lg:top-5 lg:z-10 md:mt-12  md:z-10  xs:z-10 xs:mt-[3.5vh] ">
+        <SearchHeroForm
+          searchFormState={searchFormState}
+          setSearchFormState={setSearchFormState}
+          setdisplayedHeroes={setDisplayedHeroes}
+        />
+      </div>
+      <div className="flex flex-col space-y-10 sm:flex-row sm:space-x-6 sm:space-y-0 md:flex-col md:space-x-0 md:space-y-10 xl:flex-row xl:space-x-6 xl:space-y-0 mt-9">
+        <HeroesPageSideBarForm
+          heroSkills={heroSkills}
+          sideBarFormState={sideBarFormState}
+          setSideBarFormState={setSideBarFormState}
+          setdisplayedHeroes={setDisplayedHeroes}
+        />
+        <div className="md:max-w-screen xl:w-[70%] align-center ">
+          <div className="lg:sticky lg:top-5 lg:z-10 md:sticky md:top-5 md:z-10 xs:sticky xs:top-5 xs:z-10 ">
+            <SearchHeroForm
+              searchFormState={searchFormState}
+              setSearchFormState={setSearchFormState}
+              setdisplayedHeroes={setDisplayedHeroes}
+            />
           </div>
-
-          {/* skills tags */}
-          <div>
-            <div className="flex flex-wrap items-center -m-1 max-w-2xl">
-              {sideBarFormState.selectedTags &&
-                sideBarFormState.selectedTags.map((skill) => (
-                  <div className="m-1" key={skill}>
-                    <a
-                      className="text-xs hover:scale-110  hover:bg-red-100 hover:text-red-600 inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
-                      href="#"
-                    >
-                      {skill}
-                      <svg
-                        className="h-2 w-2 ml-2 mt-1 text-sm hover:cursor-pointer"
-                        stroke="currentColor"
-                        fill="none"
-                        viewBox="0 0 8 8"
-                        onClick={(e) => handleSkillTagDelete(e, skill)}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeWidth="1.5"
-                          d="M1 1l6 6m0-6L1 7"
-                        />
-                      </svg>
-                    </a>
-                  </div>
-                ))}
+          {/* Heroes header */}
+          <div className="flex justify-between items-center mb-4  ">
+            {/* Number of heroes found message  */}
+            <div className="xs:invisible text-sm text-slate-500 italic ">
+              {heroesFoundMessage}
             </div>
+
+            {/* skills tags */}
+            <div>
+              <div className="flex flex-wrap items-center -m-1 max-w-2xl">
+                {sideBarFormState.selectedTags &&
+                  sideBarFormState.selectedTags.map((skill) => (
+                    <div className="m-1" key={skill}>
+                      <a
+                        className="text-xs hover:scale-110  hover:bg-red-100 hover:text-red-600 inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+                        href="#"
+                      >
+                        {skill}
+                        <svg
+                          className="h-2 w-2 ml-2 mt-1 text-sm hover:cursor-pointer"
+                          stroke="currentColor"
+                          fill="none"
+                          viewBox="0 0 8 8"
+                          onClick={(e) => handleSkillTagDelete(e, skill)}
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeWidth="1.5"
+                            d="M1 1l6 6m0-6L1 7"
+                          />
+                        </svg>
+                      </a>
+                    </div>
+                  ))}
+              </div>
+            </div>
+
+            {/* Sort */}
+            <HeroesSortForm
+              heroes={displayedHeroes}
+              setDisplayedHeroes={setDisplayedHeroes}
+            />
           </div>
 
-          {/* Sort */}
-          <HeroesSortForm
-            heroes={displayedHeroes}
-            setDisplayedHeroes={setDisplayedHeroes}
-          />
+          <HeroesList heroes={displayedHeroes} />
         </div>
-
-        <HeroesList heroes={displayedHeroes} />
       </div>
     </div>
   );
