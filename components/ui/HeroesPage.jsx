@@ -109,7 +109,7 @@ export default function HeroesPage({ heroes, heroSkills }) {
 
   return (
     <div className="w-[100%] mt-[-100px]">
-      <div className=" xl:sticky xl:left-[4vw] xl:top-2 xl:mt-[12vh] md:mt-10 xl:mb-[-14vh]  text-sm text-white italic xs:sticky xs:mt-[10vh] xs:left-[63%] md:left-[80%] md:top-5 xs:pl-2 xs:pr-2 xs:text-[1em] xl:text-sm xs:sticky xs:top-0.5 xs:z-[999] xs:bg-gradient-to-r from-indigo-500/90 via-purple-500/70 to-pink-500/90 hover:from-pink-500 xs:hover:to-yellow-500 xs:rounded-full xs:w-fit">
+      <div className=" xl:sticky xl:left-[4vw] xl:top-2 xl:mt-[12vh] md:mt-10 xl:mb-[-14vh]  text-sm text-white italic xs:sticky xs:mt-[10vh] xs:left-[63%] md:left-[80%] md:top-5 xs:pl-2 xs:pr-2 xs:text-[1em] xl:text-sm xs:sticky xs:top-0.5 xs:z-[999] xs:bg-gradient-to-r from-pink-500/40 via-yellow-500/70 to-yellow-500/30 hover:from-pink-500 xs:hover:to-yellow-500 xs:rounded-full xs:w-fit">
         {heroesFoundMessage}
       </div>
       <div className=" xl:invisible md:z-10 lg:sticky lg:top-5 lg:z-10 md:mt-12  md:z-10  xs:z-10 xs:mt-[3.5vh] ">
