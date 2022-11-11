@@ -70,43 +70,46 @@ const MultiRangeShoeSizeSlider = ({
   const handleShoeChange = (checked) => {
     console.log(checked);
 
-    checked
-      ? setSideBarFormState((prevState) => {
-          return {
-            prevState,
-            heroInvoices: [],
-            heroGenders: [],
-            tattoos: [],
-            heroLooks: [],
-            heroScars: [],
-            hairColors: [],
-            eyeColors: [],
-            sizes: [],
-            drivers: [],
-            agencies: [],
-            selectedTags: [],
-            minShoeSize: minVal,
-            maxShoeSize: maxVal,
-          };
-        })
-      : setSideBarFormState((prevState) => {
-          return {
-            prevState,
-            heroInvoices: [],
-            heroGenders: [],
-            tattoos: [],
-            heroLooks: [],
-            heroScars: [],
-            hairColors: [],
-            eyeColors: [],
-            sizes: [],
-            drivers: [],
-            agencies: [],
-            selectedTags: [],
-          };
-        });
+    if (checked) {
+      setSideBarFormState((prevState) => {
+        return {
+          prevState,
+          heroInvoices: [],
+          heroGenders: [],
+          tattoos: [],
+          heroLooks: [],
+          heroScars: [],
+          hairColors: [],
+          eyeColors: [],
+          sizes: [],
+          drivers: [],
+          agencies: [],
+          selectedTags: [],
+          minShoeSize: minVal,
+          maxShoeSize: maxVal,
+        };
+      });
+    } else {
+      setSideBarFormState((prevState) => {
+        return {
+          prevState,
+          heroInvoices: [],
+          heroGenders: [],
+          tattoos: [],
+          heroLooks: [],
+          heroScars: [],
+          hairColors: [],
+          eyeColors: [],
+          sizes: [],
+          drivers: [],
+          agencies: [],
+          selectedTags: [],
+        };
+      });
+    }
     //TODO: send request and filter jobs
-    shoeOn ? setShoeOn(false) : setShoeOn(true);
+    // shoeOn ? setShoeOn(false) : setShoeOn(true);
+    setShoeOn(!shoeOn);
 
     // setSideBarFormState((prevState) => {
     //   return {
@@ -118,30 +121,32 @@ const MultiRangeShoeSizeSlider = ({
   };
 
   useEffect(() => {
-    shoeOn
-      ? setSideBarFormState((prevState) => {
-          return {
-            ...prevState,
-            minShoeSize: minVal,
-            maxShoeSize: maxVal,
-          };
-        })
-      : setSideBarFormState((prevState) => {
-          return {
-            ...prevState,
-            heroInvoices: [],
-            heroGenders: [],
-            tattoos: [],
-            heroLooks: [],
-            heroScars: [],
-            hairColors: [],
-            eyeColors: [],
-            sizes: [],
-            drivers: [],
-            agencies: [],
-            selectedTags: [],
-          };
-        });
+    if (shoeOn) {
+      setSideBarFormState((prevState) => {
+        return {
+          ...prevState,
+          minShoeSize: minVal,
+          maxShoeSize: maxVal,
+        };
+      });
+    } else {
+      setSideBarFormState((prevState) => {
+        return {
+          ...prevState,
+          heroInvoices: [],
+          heroGenders: [],
+          tattoos: [],
+          heroLooks: [],
+          heroScars: [],
+          hairColors: [],
+          eyeColors: [],
+          sizes: [],
+          drivers: [],
+          agencies: [],
+          selectedTags: [],
+        };
+      });
+    }
   }, [minVal, maxVal]);
 
   return (
