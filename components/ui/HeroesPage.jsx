@@ -20,6 +20,7 @@ export default function HeroesPage({ heroes, heroSkills }) {
     drivers: [],
     agencies: [],
     shoeOn: "",
+    heightOn: "",
     selectedTags: [],
   });
 

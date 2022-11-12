@@ -66,8 +66,8 @@ const SliderHeight = ({ min, max, setSideBarFormState }) => {
           drivers: [],
           agencies: [],
           selectedTags: [],
-          minHeightSize: minVal,
-          maxHeightSize: maxVal,
+          minHeight: minVal,
+          maxHeight: maxVal,
         };
       });
     } else {
