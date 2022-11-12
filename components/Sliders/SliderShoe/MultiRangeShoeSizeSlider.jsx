@@ -172,7 +172,7 @@ const MultiRangeShoeSizeSlider = ({
         </Switch>
         <Switch.Label as="span" className="ml-3">
           <span className="text-sm font-medium text-green-900 pr-2 ">
-            Shoe Filter Active
+            Activate Shoe Size Slider
           </span>
         </Switch.Label>
       </Switch.Group>

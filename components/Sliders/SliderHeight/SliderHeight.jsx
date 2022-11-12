@@ -144,7 +144,7 @@ const SliderHeight = ({ min, max, setSideBarFormState }) => {
         </Switch>
         <Switch.Label as="span" className="ml-3">
           <span className="text-sm font-medium text-green-900 pr-2 ">
-            Height Slider Filter
+            Activate Height Slider
           </span>
         </Switch.Label>
       </Switch.Group>
