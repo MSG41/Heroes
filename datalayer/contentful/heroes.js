@@ -1,16 +1,5 @@
 import { client } from "./client";
-import {
-  heroReducer,
-  skillsReducer,
-  tagsReducer,
-  // hairReducer,
-  // eyeReducer,
-  // tattooReducer,
-  // scarsReducer,
-  // sexReducer,
-  // invoiceReducer,
-  // driveReducer,
-} from "./utils";
+import { heroReducer, skillsReducer, tagsReducer } from "./utils";
 
 export const getHeroes = async () => {
   const res = await client.getEntries({
@@ -34,76 +23,6 @@ export const getHeroesSkills = async () => {
   const skills = skillsReducer(tags);
   return skills;
 };
-
-//  Get Hero Hair
-// export const getHeroesHair = async () => {
-//   const res = await client.getTags();
-//   const rawTags = res.items;
-
-//   const tags = tagsReducer(rawTags);
-//   const hair = hairReducer(tags);
-//   return hair;
-// };
-
-//  Get Hero Eye
-// export const getHeroesEye = async () => {
-//   const res = await client.getTags();
-//   const rawTags = res.items;
-
-//   const tags = tagsReducer(rawTags);
-//   const eye = eyeReducer(tags);
-//   return eye;
-// };
-
-//  Get Hero Tattoo
-// export const getHeroesTattoo = async () => {
-//   const res = await client.getTags();
-//   const rawTags = res.items;
-
-//   const tags = tagsReducer(rawTags);
-//   const tattoo = tattooReducer(tags);
-//   return tattoo;
-// };
-
-//  Get Hero Scars
-// export const getHeroesScars = async () => {
-//   const res = await client.getTags();
-//   const rawTags = res.items;
-
-//   const tags = tagsReducer(rawTags);
-//   const scars = scarsReducer(tags);
-//   return scars;
-// };
-
-//  Get Hero Sex
-// export const getHeroesSex = async () => {
-//   const res = await client.getTags();
-//   const rawTags = res.items;
-
-//   const tags = tagsReducer(rawTags);
-//   const sex = sexReducer(tags);
-//   return sex;
-// };
-
-//  Get Hero Invoice
-// export const getHeroesInvoice = async () => {
-//   const res = await client.getTags();
-//   const rawTags = res.items;
-
-//   const tags = tagsReducer(rawTags);
-//   const invoice = invoiceReducer(tags);
-//   return invoice;
-// };
-
-//  Get Hero Drive
-// export const getHeroesDrive = async () => {
-//   const res = await client.getTags();
-//   const rawTags = res.items;
-
-//   const tags = tagsReducer(rawTags);
-//   const drive = driveReducer(tags);
-//   return drive;
-// };
 
 export const getHeroesSlugs = async () => {
   const rawSlugs = await client.getEntries({
@@ -163,6 +82,10 @@ export const searchHeroes = async (query) => {
   contentFullQuery["fields.shoeSize[gte]"] = query.minShoeSize;
   contentFullQuery["fields.shoeSize[lte]"] = query.maxShoeSize;
 
+  // Add Range Query Filters for height:
+  contentFullQuery["fields.height[gte]"] = query.minHeight;
+  contentFullQuery["fields.height[lte]"] = query.maxHeight;
+
   // let minShoeSize = query.minShoeSize;
   // let maxShoeSize = query.maxShoeSize;
 
@@ -173,60 +96,10 @@ export const searchHeroes = async (query) => {
   if (selectedTags.length)
     contentFullQuery["metadata.tags.sys.id[in]"] = selectedTags.join(",");
 
-  // we first parse the hair tags back to their contentful-specific version with the "hair." prefix
-  // const selectedHairTags = query.selectedHairTags.map((tag) => `hair.${tag}`);
-  // if (selectedHairTags.length)
-  //   contentFullQuery["metadata.tags.sys.id[in]"] = selectedHairTags.join(",");
-
-  // we first parse the eye tags back to their contentful-specific version with the "eye." prefix
-  // const selectedEyeTags = query.selectedEyeTags.map((tag) => `eye.${tag}`);
-  // if (selectedEyeTags.length)
-  //   contentFullQuery["metadata.tags.sys.id[in]"] = selectedEyeTags.join(",");
-
-  // we first parse the eye tags back to their contentful-specific version with the "tattoo." prefix
-  // const selectedTattooTags = query.selectedTattooTags.map(
-  //   (tag) => `tattoo.${tag}`
-  // );
-  // if (selectedTattooTags.length)
-  //   contentFullQuery["metadata.tags.sys.id[in]"] = selectedTattooTags.join(",");
-
-  // we first parse the eye tags back to their contentful-specific version with the "scars." prefix
-  // const selectedScarsTags = query.selectedScarsTags.map(
-  //   (tag) => `scars.${tag}`
-  // );
-  // if (selectedScarsTags.length)
-  //   contentFullQuery["metadata.tags.sys.id[in]"] = selectedScarsTags.join(",");
-
-  // we first parse the eye tags back to their contentful-specific version with the "sex." prefix
-  // const selectedSexTags = query.selectedSexTags.map((tag) => `sex.${tag}`);
-  // if (selectedSexTags.length)
-  //   contentFullQuery["metadata.tags.sys.id[in]"] = selectedSexTags.join(",");
-
-  // we first parse the invoice tags back to their contentful-specific version with the "invoice." prefix
-  // const selectedInvoiceTags = query.selectedInvoiceTags.map(
-  //   (tag) => `invoice.${tag}`
-  // );
-  // if (selectedInvoiceTags.length)
-  //   contentFullQuery["metadata.tags.sys.id[in]"] =
-  //     selectedInvoiceTags.join(",");
-
-  // we first parse the eye tags back to their contentful-specific version with the "drive." prefix
-  // const selectedDriveTags = query.selectedDriveTags.map(
-  //   (tag) => `drive.${tag}`
-  // );
-  // if (selectedDriveTags.length)
-  //   contentFullQuery["metadata.tags.sys.id[in]"] = selectedDriveTags.join(",");
-
   // Add Full Text Search Query
   if (query.searchBarText) {
     contentFullQuery["query"] = query.searchBarText;
   }
-
-  // Add Inclusion Query Filters
-  // [DOES NOT WORK]
-  // contentful api does NOT have an OR operator: https://www.contentfulcommunity.com/t/delivery-api-or-in-search-query/763
-  // contentFullQuery['fields.jobType[in]'] = query.jobTypes;
-  // contentFullQuery['fields.experienceLevel[in]'] = query.experienceLevels;
 
   const res = await client.getEntries(contentFullQuery);
   const foundHeroes = res.items;
@@ -241,20 +114,6 @@ export const searchHeroes = async (query) => {
     if (query.tattoos.includes(hero.heroTattoo)) return true;
     return false;
   });
-
-  //   if (query.experienceLevels.length == 0) return true;
-  //   if (query.experienceLevels.includes(hero.experienceLevel)) return true;
-  //   return false;
-  // });
-
-  //   filteredHeroes = filteredHeroes.filter((hero) => {
-  //     if (query.heroTypes.length == 0) return true;
-  //     if (query.heroTypes.includes(hero.heroType)) return true;
-  //     return false;
-  //   });
-
-  //   return filteredHeroes;
-  // };
 
   filteredHeroes = filteredHeroes.filter((hero) => {
     if (query.heroGenders.length == 0) return true;

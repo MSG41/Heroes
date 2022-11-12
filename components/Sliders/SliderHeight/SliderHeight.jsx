@@ -3,15 +3,8 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 import { FilterIcon } from "@heroicons/react/solid";
 import { Switch } from "@headlessui/react";
-import SearchHeroForm from "../../forms/SearchHeroForm";
-import { getHeroes, searchHeroes } from "../../../datalayer";
 
-const MultiRangeShoeSizeSlider = ({
-  min,
-  max,
-  setSideBarFormState,
-  sideBarFormState,
-}) => {
+const SliderHeight = ({ min, max, setSideBarFormState }) => {
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
@@ -53,21 +46,9 @@ const MultiRangeShoeSizeSlider = ({
     }
   }, [maxVal, getPercent]);
 
-  // Get min and max values when their state changes
+  const [heightOn, setHeightOn] = useState("");
 
-  // useEffect(() => {
-  //   setSideBarFormState((prevState) => {
-  //     return {
-  //       ...prevState,
-  //       minShoeSizeON: minVal,
-  //       maxShoeSizeON: maxVal,
-  //     };
-  //   });
-  // }, [minVal, maxVal]);
-
-  const [shoeOn, setShoeOn] = useState("");
-
-  const handleShoeChange = (checked) => {
+  const handleHeightChange = (checked) => {
     console.log(checked);
 
     if (checked) {
@@ -85,8 +66,8 @@ const MultiRangeShoeSizeSlider = ({
           drivers: [],
           agencies: [],
           selectedTags: [],
-          minShoeSize: minVal,
-          maxShoeSize: maxVal,
+          minHeightSize: minVal,
+          maxHeightSize: maxVal,
         };
       });
     } else {
@@ -107,26 +88,17 @@ const MultiRangeShoeSizeSlider = ({
         };
       });
     }
-    //TODO: send request and filter jobs
-    // shoeOn ? setShoeOn(false) : setShoeOn(true);
-    setShoeOn(!shoeOn);
 
-    // setSideBarFormState((prevState) => {
-    //   return {
-    //     ...prevState,
-    //     minShoeSize: minVal,
-    //     maxShoeSize: maxVal,
-    //   };
-    // });
+    setHeightOn(!heightOn);
   };
 
   useEffect(() => {
-    if (shoeOn) {
+    if (heightOn) {
       setSideBarFormState((prevState) => {
         return {
           ...prevState,
-          minShoeSize: minVal,
-          maxShoeSize: maxVal,
+          minHeight: minVal,
+          maxHeight: maxVal,
         };
       });
     } else {
@@ -156,28 +128,28 @@ const MultiRangeShoeSizeSlider = ({
         className="flex items-center mb-5 bg-gradient-to-r from-violet-500/5 to-yellow-500/50 rounded-full"
       >
         <Switch
-          onChange={handleShoeChange}
+          onChange={handleHeightChange}
           className={classNames(
-            shoeOn ? "bg-emerald-600" : "bg-gray-200",
+            heightOn ? "bg-emerald-600" : "bg-gray-200",
             "relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:-ring-2 focus:ring-offset-2 focus:-ring-indigo-500"
           )}
         >
           <span
             aria-hidden="true"
             className={classNames(
-              shoeOn ? "translate-x-5" : "translate-x-0",
+              heightOn ? "translate-x-5" : "translate-x-0",
               "pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
             )}
           />
         </Switch>
         <Switch.Label as="span" className="ml-3">
           <span className="text-sm font-medium text-green-900 pr-2 ">
-            Shoe Filter Active
+            Height Slider Filter
           </span>
         </Switch.Label>
       </Switch.Group>
 
-      <div className={classNames(shoeOn ? "flex flex-col" : "  hidden ")}>
+      <div className={classNames(heightOn ? "flex flex-col" : "  hidden ")}>
         <div className="flex flex-row">
           {" "}
           <FilterIcon
@@ -185,7 +157,7 @@ const MultiRangeShoeSizeSlider = ({
             aria-hidden="true"
           />
           <div className="text-sm text-slate-800 font-semibold mb-3">
-            Shoe Size (EU)
+            Height (cm)
           </div>
         </div>
         <div className="container">
@@ -200,7 +172,7 @@ const MultiRangeShoeSizeSlider = ({
               setMinVal(value);
               event.target.value = value.toString();
             }}
-            className={classnames("thumb thumb--zindex-3", {
+            className={classnames(" thumb thumb--zindex-3", {
               "thumb--zindex-5": minVal > max - 100,
             })}
           />
@@ -216,7 +188,7 @@ const MultiRangeShoeSizeSlider = ({
               setMaxVal(value);
               event.target.value = value.toString();
             }}
-            className="thumb thumb--zindex-4"
+            className="thumb thumb--zindex-4 "
           />
           <div className="slider">
             <div className="slider__track" />
@@ -224,7 +196,7 @@ const MultiRangeShoeSizeSlider = ({
               ref={range}
               className="slider__range bg-gradient-to-r from-pink-500 to-indigo-500"
             />
-            <div className="slider__left-value">{minVal}</div>
+            <div className="slider__left-value ">{minVal}</div>
             <div className="slider__right-value">{maxVal}</div>
           </div>
         </div>
@@ -233,9 +205,9 @@ const MultiRangeShoeSizeSlider = ({
   );
 };
 
-MultiRangeShoeSizeSlider.propTypes = {
+SliderHeight.propTypes = {
   min: PropTypes.number.isRequired,
   max: PropTypes.number.isRequired,
 };
 
-export default MultiRangeShoeSizeSlider;
+export default SliderHeight;

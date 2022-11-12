@@ -3,6 +3,7 @@ import { Switch } from "@headlessui/react";
 import TagsFilterForm from "./TagsFilterForm";
 import { ChevronDownIcon, FilterIcon } from "@heroicons/react/solid";
 import MultiRangeShoeSizeSlider from "../Sliders/SliderShoe/MultiRangeShoeSizeSlider";
+import SliderHeight from "../Sliders/SliderHeight/SliderHeight";
 
 function HeroesPageSideBarForm({
   heroSkills,
@@ -359,6 +360,15 @@ function HeroesPageSideBarForm({
               <MultiRangeShoeSizeSlider
                 min={34}
                 max={50}
+                setSideBarFormState={setSideBarFormState}
+              />
+            </div>
+
+            <div className="flex flex-row">
+              {/* <SliderShoe /> */}
+              <SliderHeight
+                min={140}
+                max={220}
                 setSideBarFormState={setSideBarFormState}
               />
             </div>

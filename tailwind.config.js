@@ -5,6 +5,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        metal: "url('/images/MetalFilter.png')",
+      },
       colors: {
         liftedgreen: {
           50: "#acd8cc",

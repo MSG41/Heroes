@@ -1,92 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/ */
-/* body {
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #e5e5e5;
-} */
 
-/* .middle {
-  position: relative;
-  width: 100%;
-  max-width: 100%;
-}
-
-.slider {
-  position: relative;
-  z-index: 1;
-  height: 10px;
-  margin: 0 15px;
-}
-.slider > .track {
-  position: absolute;
-  z-index: 1;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  border-radius: 5px;
-  background-color: #c6aee7;
-}
-.slider > .range {
-  position: absolute;
-  z-index: 2;
-  left: 25%;
-  right: 25%;
-  top: 0;
-  bottom: 0;
-  border-radius: 5px;
-  background-color: #6200ee;
-}
-.slider > .thumb {
-  position: absolute;
-  z-index: 3;
-  width: 20px;
-  height: 20px;
-  background-color: #6200ee;
-  border-radius: 50%;
-  box-shadow: 0 0 0 0 rgba(98, 0, 238, 0.1);
-  transition: box-shadow 0.3s ease-in-out;
-}
-.slider > .thumb.left {
-  left: 25%;
-  transform: translate(-10px, -5px);
-}
-.slider > .thumb.right {
-  right: 25%;
-  transform: translate(10px, -5px);
-}
-.slider > .thumb.hover {
-  box-shadow: 0 0 0 5px rgba(98, 0, 238, 0.1);
-}
-.slider > .thumb.active {
-  box-shadow: 0 0 0 10px rgba(98, 0, 238, 0.2);
-}
-
-input[type="range"] {
-  position: absolute;
-  pointer-events: none;
-  -webkit-appearance: none;
-  z-index: 2;
-  height: 10px;
-  width: 100%;
-  opacity: 0;
-}
-input[type="range"]::-webkit-slider-thumb {
-  pointer-events: all;
-  width: 30px;
-  height: 30px;
-  border-radius: 0;
-  border: 0 none;
-  background-color: red;
-  -webkit-appearance: none;
-} */
+/* SLIDER FILTERS LAYOUT  */
 .container {
   height: 100%;
   display: flex;
@@ -126,7 +42,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 .slider__range {
-  background-color: #6200ee;
+  /* background-color: #6200ee; */
   z-index: 2;
 }
 
@@ -136,8 +52,12 @@ input[type="range"]::-webkit-slider-thumb {
   font-size: 18px;
   font-weight: 800;
   margin-top: 20px;
-  border: solid 1px #aaaaaa;
-  border-radius: 40%;
+  border: solid 1px transparent;
+  background: linear-gradient(white, white) padding-box,
+    linear-gradient(to right, #b06ab3, #4568dc) border-box;
+  border-radius: 30%;
+  padding: 0 2% 0 2%;
+  /* border-radius: 40%; */
   margin-top: 35px;
 }
 
@@ -153,14 +73,14 @@ input[type="range"]::-webkit-slider-thumb {
 .thumb,
 .thumb::-webkit-slider-thumb {
   -webkit-appearance: none;
-  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: black;
 }
 
-.thumb,
+/* .thumb,
 .thumb::-moz-slider-thumb {
   -webkit-appearance: none;
   -webkit-tap-highlight-color: transparent;
-}
+} */
 
 .thumb {
   pointer-events: none;
@@ -230,6 +150,29 @@ input[type="range"]::-webkit-slider-thumb:focus-visible {
   box-shadow: 0 0 0 2px rgba(98, 0, 238, 0.1);
   transition: box-shadow 0.2s ease-in-out;
 }
+/* ---------------------------------------------------------------------------------  */
+/* metallic knob filter  */
+
+/* input[type="range"]::-webkit-slider-mthumb:active {
+  cursor: grabbing;
+  background-position: 100% 0px;
+  transform: scale(2.3) rotateZ(var(--thumb-rotate, 10deg));
+}
+
+input[type="range"]::-webkit-slider-mthumb:hover {
+  cursor: grabbing;
+  background-position: 100% 0px;
+  transform: scale(2.3) rotateZ(var(--thumb-rotate, 10deg));
+  box-shadow: 0 0 0 2px rgba(98, 0, 238, 0.1);
+  transition: box-shadow 0.2s ease-in-out;
+}
+input[type="range"]::-webkit-slider-mthumb:focus-visible {
+  cursor: grabbing;
+  background-position: 100% 0px;
+  transform: scale(2.3) rotateZ(var(--thumb-rotate, 10deg));
+  box-shadow: 0 0 0 2px rgba(98, 0, 238, 0.1);
+  transition: box-shadow 0.2s ease-in-out;
+} */
 
 /* .thumb::-webkit-slider-thumb:hover {
   box-shadow: 0 0 0 4px rgba(98, 0, 238, 0.1);
@@ -237,7 +180,7 @@ input[type="range"]::-webkit-slider-thumb:focus-visible {
 } */
 
 /* For Firefox browsers */
-.thumb::-webkit-slider-thumb {
+/* .thumb::-webkit-slider-thumb {
   background-color: transparent;
   border: none;
   border-radius: 50%;
@@ -283,4 +226,4 @@ input[type="range"]::-moz-slider-thumb:focus-visible {
   transform: scale(2.3) rotateZ(var(--thumb-rotate, 10deg));
   box-shadow: 0 0 0 2px rgba(98, 0, 238, 0.1);
   transition: box-shadow 0.2s ease-in-out;
-}
+} */
