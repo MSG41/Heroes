@@ -343,7 +343,7 @@ function HeroesPageSideBarForm({
   // };
 
   return (
-    <div className="xl:sticky xl:top-5 xl:h-[96vh] xl:overflow-y-auto sm:sticky-none sm:top-none sm:bottom-none sm:h-none sm:overflow-none">
+    <div className="xl:sticky xl:top-10 xl:h-[96vh] xl:overflow-y-auto sm:sticky-none sm:top-none sm:bottom-none sm:h-none sm:overflow-none">
       <div className="flex-row space-y-8">
         {/* White box */}
         <div className="bg-white shadow-lg rounded-sm border border-slate-200 p-5 ">

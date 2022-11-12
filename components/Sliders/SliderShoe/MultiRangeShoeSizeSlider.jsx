@@ -73,18 +73,18 @@ const MultiRangeShoeSizeSlider = ({
     if (checked) {
       setSideBarFormState((prevState) => {
         return {
-          prevState,
-          heroInvoices: [],
-          heroGenders: [],
-          tattoos: [],
-          heroLooks: [],
-          heroScars: [],
-          hairColors: [],
-          eyeColors: [],
-          sizes: [],
-          drivers: [],
-          agencies: [],
-          selectedTags: [],
+          ...prevState,
+          // heroInvoices: [],
+          // heroGenders: [],
+          // tattoos: [],
+          // heroLooks: [],
+          // heroScars: [],
+          // hairColors: [],
+          // eyeColors: [],
+          // sizes: [],
+          // drivers: [],
+          // agencies: [],
+          // selectedTags: [],
           minShoeSize: minVal,
           maxShoeSize: maxVal,
         };
@@ -132,7 +132,7 @@ const MultiRangeShoeSizeSlider = ({
     } else {
       setSideBarFormState((prevState) => {
         return {
-          ...prevState,
+          prevState,
           heroInvoices: [],
           heroGenders: [],
           tattoos: [],

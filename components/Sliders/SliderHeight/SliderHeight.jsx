@@ -54,18 +54,18 @@ const SliderHeight = ({ min, max, setSideBarFormState }) => {
     if (checked) {
       setSideBarFormState((prevState) => {
         return {
-          prevState,
-          heroInvoices: [],
-          heroGenders: [],
-          tattoos: [],
-          heroLooks: [],
-          heroScars: [],
-          hairColors: [],
-          eyeColors: [],
-          sizes: [],
-          drivers: [],
-          agencies: [],
-          selectedTags: [],
+          ...prevState,
+          // heroInvoices: [],
+          // heroGenders: [],
+          // tattoos: [],
+          // heroLooks: [],
+          // heroScars: [],
+          // hairColors: [],
+          // eyeColors: [],
+          // sizes: [],
+          // drivers: [],
+          // agencies: [],
+          // selectedTags: [],
           minHeight: minVal,
           maxHeight: maxVal,
         };
@@ -104,7 +104,7 @@ const SliderHeight = ({ min, max, setSideBarFormState }) => {
     } else {
       setSideBarFormState((prevState) => {
         return {
-          ...prevState,
+          prevState,
           heroInvoices: [],
           heroGenders: [],
           tattoos: [],
