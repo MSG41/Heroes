@@ -67,6 +67,27 @@ const MultiRangeShoeSizeSlider = ({
 
   const [shoeOn, setShoeOn] = useState("");
 
+  const handleSelectedTag = (e, option) => {
+    console.log(e.target.checked, option);
+    if (e.target.checked) {
+      setSideBarFormState((prevState) => {
+        const selectedTags = [...prevState.selectedTags];
+        selectedTags.push(option);
+        return { ...prevState, selectedTags };
+      });
+    } else {
+      setSideBarFormState((prevState) => {
+        return {
+          ...prevState,
+          selectedTags: prevState.selectedTags.filter((tag) => option != tag),
+        };
+      });
+    }
+  };
+
+  // checked={selectedTags.includes(option.value)}
+  //                 onChange={(e) => handleSelectedTag(e, option.value)}
+
   const handleShoeChange = (checked) => {
     console.log(checked);
 
@@ -92,18 +113,20 @@ const MultiRangeShoeSizeSlider = ({
     } else {
       setSideBarFormState((prevState) => {
         return {
-          prevState,
-          heroInvoices: [],
-          heroGenders: [],
-          tattoos: [],
-          heroLooks: [],
-          heroScars: [],
-          hairColors: [],
-          eyeColors: [],
-          sizes: [],
-          drivers: [],
-          agencies: [],
-          selectedTags: [],
+          ...prevState,
+          minShoeSize: prevState.minVal,
+          maxShoeSize: prevState.maxVal,
+          // heroInvoices: [],
+          // heroGenders: [],
+          // tattoos: [],
+          // heroLooks: [],
+          // heroScars: [],
+          // hairColors: [],
+          // eyeColors: [],
+          // sizes: [],
+          // drivers: [],
+          // agencies: [],
+          // selectedTags: [],
         };
       });
     }
