@@ -20,6 +20,8 @@ export default function HeroesPage({ heroes, heroSkills }) {
     drivers: [],
     agencies: [],
     selectedTags: [],
+    minage: undefined,
+    maxage: undefined,
   });
 
   const [searchFormState, setSearchFormState] = useState("");

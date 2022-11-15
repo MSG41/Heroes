@@ -48,34 +48,11 @@ const SliderAge = ({ min, max, setSideBarFormState }) => {
 
   const [ageOn, setageOn] = useState("");
 
-  const handleAgeChange = (checked) => {
-    console.log(checked);
-
-    // const getAge = (birthDate) =>
-    //   Math.floor((new Date() - new Date(birthDate).getTime()) / 3.15576e10);
-
-    if (checked) {
+  function ageSwitchBehavior(switch_status) {
+    if (switch_status) {
       setSideBarFormState((prevState) => {
         prevState["minage"] = minVal;
         prevState["maxage"] = maxVal;
-        return prevState;
-      });
-    } else {
-      setSideBarFormState((prevState) => {
-        prevState["minage"] = minVal;
-        prevState["maxage"] = maxVal;
-        return prevState;
-      });
-    }
-
-    setageOn(!ageOn);
-  };
-
-  useEffect(() => {
-    if (ageOn) {
-      setSideBarFormState((prevState, minage, maxage) => {
-        prevState[minage] = minVal;
-        prevState[maxage] = maxVal;
         return prevState;
       });
     } else {
@@ -85,6 +62,18 @@ const SliderAge = ({ min, max, setSideBarFormState }) => {
         return prevState;
       });
     }
+  }
+
+  const handleAgeChange = (checked) => {
+    console.log("checked", checked);
+    ageSwitchBehavior(checked);
+    setageOn(checked);
+  };
+
+  useEffect(() => {
+    console.log("useEffect", ageOn);
+    ageSwitchBehavior(ageOn);
+    setageOn(ageOn);
   }, [minVal, maxVal]);
 
   return (
