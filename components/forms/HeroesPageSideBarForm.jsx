@@ -4,6 +4,7 @@ import TagsFilterForm from "./TagsFilterForm";
 import { ChevronDownIcon, FilterIcon } from "@heroicons/react/solid";
 import MultiRangeShoeSizeSlider from "../Sliders/SliderShoe/MultiRangeShoeSizeSlider";
 import SliderHeight from "../Sliders/SliderHeight/SliderHeight";
+import SliderAge from "../Sliders/SliderAge/SliderAge";
 
 function HeroesPageSideBarForm({
   heroSkills,
@@ -356,7 +357,6 @@ function HeroesPageSideBarForm({
             />
 
             <div className="flex flex-row">
-              {/* <SliderShoe /> */}
               <MultiRangeShoeSizeSlider
                 min={34}
                 max={50}
@@ -365,10 +365,17 @@ function HeroesPageSideBarForm({
             </div>
 
             <div className="flex flex-row">
-              {/* <SliderShoe /> */}
               <SliderHeight
                 min={140}
                 max={220}
+                setSideBarFormState={setSideBarFormState}
+              />
+            </div>
+
+            <div className="flex flex-row">
+              <SliderAge
+                min={8}
+                max={99}
                 setSideBarFormState={setSideBarFormState}
               />
             </div>

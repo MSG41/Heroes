@@ -1,15 +1,21 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import moment from "moment";
 
 import { ArrowRightIcon, ChevronLeftIcon } from "@heroicons/react/solid";
 
-import HeroCard from "../cards/HeroCard";
+// import HeroCard from "../cards/HeroCard";
 
 const HeroDetails = ({ hero }) => {
-  const getAge = (birthDate) =>
-    Math.floor((new Date() - new Date(birthDate).getTime()) / 3.15576e10);
-  var DOB = getAge(hero.age);
+  //   const getAge = (birthDate) =>
+  //   Math.floor((new Date() - new Date(birthDate).getTime()) / 3.15576e10);
+  // var DOB = getAge(hero.age);
+
+  // var age = moment(hero.birthday, "YYYYMMDD").fromNow(true);
+  // console.log({ age });
+
+  var age = moment().diff(hero.birthday, "year");
 
   return (
     <div className="px-4 sm:px-6 lg:px-8 py-8 w-full">
@@ -175,7 +181,7 @@ const HeroDetails = ({ hero }) => {
                       className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
                       href="#"
                     >
-                      {DOB}
+                      {age} raw data birthday : {hero.birthday}
                     </a>
                   </div>
                 </div>
@@ -407,13 +413,13 @@ const HeroDetails = ({ hero }) => {
         </div>
 
         {/* Sidebar */}
-        <div className="hidden lg:block space-y-4 ">
+        <div className="hidden lg:block  space-y-4 ">
           {/* Company information (desktop) */}
-          <div className="bg-white p-5 shadow-lg rounded-sm border border-slate-200 ">
+          <div className="bg-white  lg:ml-[10vw] p-5 shadow-lg rounded-sm border border-slate-200 ">
             <div className="text-center mb-0 ">
               <div className="inline-flex mb-3  ">
                 <Image
-                  className="w-[600px] h-[500px] rounded-full "
+                  className="w-[500px] h-[500px] rounded-full "
                   src={hero.foto.url}
                   width="500px"
                   height="500px"

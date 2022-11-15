@@ -108,6 +108,17 @@ export const skillsReducer = (parsedTags) => {
 //   return drive;
 // };
 
+// convert birth date to AGE
+// const getAge = (birthDate) => {
+//   return ( = Math.floor(
+//     (new Date() - new Date(birthDate).getTime()) / 3.15576e10
+//   ));
+// };
+// console.log(getAge(query.agemin));
+
+const getAge = (birthDate) =>
+  Math.floor((new Date() - new Date(birthDate).getTime()) / 3.15576e10);
+
 export const heroReducer = (rawHero, parseRelatedHeroes = true) => {
   let hero = { ...rawHero.fields };
 
@@ -133,6 +144,7 @@ export const heroReducer = (rawHero, parseRelatedHeroes = true) => {
   // hero.invoice = invoiceReducer(hero.tags);
   // hero.drive = driveReducer(hero.tags);
   hero.foto = imageReducer(rawHero.fields.foto);
+  // hero.age = getAge(rawHero.fields.age);
 
   const relatedHeroes = rawHero.fields.relatedHeroes || [];
 

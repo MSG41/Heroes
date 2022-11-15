@@ -1,20 +1,18 @@
 import { PhoneIcon } from "@heroicons/react/solid";
 import Image from "next/image";
-// import LiftedWPBanner from '../../public/images/lifted.site-banner.png';
-// import LiftedFounderAvatar from '../../public/images/liftedwp-founder-avatar.png';
 import TiaBanner from "../../public/images/TiaBanner.png";
-import LaurentAvatar from "../../public/images/LaurentAvatar.png";
+import TiaBanner2 from "../../public/images/TiaBanner2.png";
 
 const profile = {
-  name: "Hero Finder",
-  role: "CEO",
+  name: "Inhuman Finder",
+  role: "Search Engine",
   companyURL: "https://theinhumansagency.com/",
   companyName: "The Inhumans Agency",
   email: "hello@theinhumansagency.com",
-  message: "Please use this search engine to find your hero :)",
+  message: "Please use this search engine to find your inhuman.",
   callToActionURL: "tel:+31207371018",
-  callToActionMessage: "Call me if you can't find your hero.",
-  profileImage: LaurentAvatar,
+  callToActionMessage: "Contact us if you can't find your hero!",
+  profileImage: TiaBanner2,
   coverImage: TiaBanner,
 };
 
@@ -32,7 +30,7 @@ export default function Header() {
         </div>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="-mt-0 sm:-mt-16 sm:flex sm:items-end sm:space-x-5">
-            <div className="flex">
+            {/* <div className="flex">
               <div className="relative md:h-[180px] md:w-[180px] h-[200px] w-[200px] mb-3 rounded-full ring-4 ring-[#fac805] sm:h-28 sm:w-28">
                 <Image
                   className="rounded-full object-cover"
@@ -41,21 +39,21 @@ export default function Header() {
                   alt={`profile picture ${profile.name}`}
                 />
               </div>
-            </div>
-            <div className="mt-4 sm:mt-12 sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
+            </div> */}
+            <div className="mt-4 xl:ml-[10vw] sm:mt-12 sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
               <div className="sm:hidden md:block mt-6 min-w-0 flex-1">
                 <h1 className=" text-3xl font-bold text-gray-900">
                   {profile.name}
                 </h1>
-                <p className="text-sm font-medium text-gray-500">
-                  {profile.role} at{" "}
+                {/* <p className="text-sm font-medium text-gray-500">
+                  {profile.role} Powered By{" "}
                   <a
                     href={profile.companyURL}
                     className="text-gray-900 hover:text-liftedgreen-700"
                   >
                     {profile.companyName}
                   </a>{" "}
-                </p>
+                </p> */}
                 <p className="text-sm mt-4 mb-6 font-light text-liftedgreen-600">
                   {profile.message}
                 </p>

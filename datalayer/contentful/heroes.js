@@ -1,5 +1,6 @@
 import { client } from "./client";
 import { heroReducer, skillsReducer, tagsReducer } from "./utils";
+import moment from "moment";
 
 export const getHeroes = async () => {
   const res = await client.getEntries({
@@ -65,26 +66,86 @@ export const getHeroesByCompanyId = async ({ id }) => {
 export const searchHeroes = async (query) => {
   let contentFullQuery = {
     content_type: "heroes",
-    include: 2,
+    include: 5,
     limit: 1000,
   };
 
+  // const getAge = (birthDate) =>
+  //   Math.floor((new Date() - new Date(birthDate).getTime()) / 3.15576e10);
+
+  // let AgeQuerymin = {
+  //   content_type: "heroes",
+  // };
+
+  // let AgeQuerymax = {
+  //   content_type: "heroes",
+  // };
+
   console.log("this is what I'm looking for; query=", query);
   //continue here--------------------------------
-
-  // Add Equality Query Filters
-  // if (query.remoteOkOnly)
-  //   contentFullQuery['fields.remoteOk'] = query.remoteOkOnly;
-  // if (query.featuredJobsOnly)
-  //   contentFullQuery['fields.featuredJob'] = query.featuredJobsOnly;
 
   // Add Range Query Filters for Shoe Size:
   contentFullQuery["fields.shoeSize[gte]"] = query.minShoeSize;
   contentFullQuery["fields.shoeSize[lte]"] = query.maxShoeSize;
 
-  // Add Range Query Filters for height:
+  // Add Range Query Filters for Height:
   contentFullQuery["fields.height[gte]"] = query.minHeight;
   contentFullQuery["fields.height[lte]"] = query.maxHeight;
+
+  // -------------------- AGE ------------------------------
+
+  if (query.agemax && query.agemin) {
+    var mindate = moment().subtract(query.maxage, "years").toDate();
+    var maxdate = moment().subtract(query.minage, "years").toDate();
+
+    contentFullQuery["fields.birthday[gte]"] = mindate;
+    contentFullQuery["fields.birthday[lte]"] = maxdate;
+  }
+
+  // contentFullQuery["fields.birthday[gte]"] = query.agemin;
+  // contentFullQuery["fields.birthday[lte]"] = query.agemax;
+
+  // console.log("maxdate:", maxdate);
+  // console.log("mindate:", mindate);
+
+  // console.log("agemin:", query.agemin);
+
+  // console.log("agemax:", query.agemax);
+
+  // console.log("contentful query gte", contentFullQuery["fields.birthday[gte]"]);
+
+  console.log("minage", query.minage);
+
+  console.log("maxage", query.maxage);
+  // console.log("minheight", query.minHeight);
+
+  // convert birth date to AGE
+  // const getAge = (birthDate) =>
+  //   Math.floor((new Date() - new Date(birthDate).getTime()) / 3.15576e10);
+
+  // console.log(query.agemin);
+  // console.log(getAge(query.agemin));
+
+  // console.log(query.agemin, "this is the query.agemin");
+
+  // AgeQuerymin["fields.age[gte]"] = query.amin;
+  // AgeQuerymax["fields.age[lte]"] = query.amax;
+
+  // var agemin = moment(AgeQuerymin["fields.age[gte]"], "YYYYMMDD").fromNow();
+
+  // var DOBmin = moment(query.amin, "YYYYMMDD").fromNow();
+  // console.log(agemin, " =agemin");
+
+  // console.log(query.min);
+
+  // console.log(AgeQuerymin["fields.age[gte]"], "this is the query.amin");
+
+  // console.log(query.agemin, "this is the query.agemin");
+
+  // const DOBmin = getAge(query.agemin);
+
+  // contentFullQuery["fields.age[gte]"] = minAge;
+  // contentFullQuery["fields.age[lte]"] = maxAge;
 
   // let minShoeSize = query.minShoeSize;
   // let maxShoeSize = query.maxShoeSize;
@@ -164,6 +225,17 @@ export const searchHeroes = async (query) => {
     if (query.agencies.includes(hero.otherAgency)) return true;
     return false;
   });
+
+  // filteredHeroes = filteredHeroes.filter((hero) => {
+
+  // if (minAge <= DOB <= maxAge) {
+  //   console.log("Age Filtering");
+  //   return true;
+  // }
+
+  //   console.log("false");
+  //   return false;
+  // });
 
   // Min and Max Shoe Sizes
   // filteredHeroes = filteredHeroes.filter((hero) => {
