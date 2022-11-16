@@ -70,18 +70,7 @@ export const searchHeroes = async (query) => {
     limit: 1000,
   };
 
-  // const getAge = (birthDate) =>
-  //   Math.floor((new Date() - new Date(birthDate).getTime()) / 3.15576e10);
-
-  // let AgeQuerymin = {
-  //   content_type: "heroes",
-  // };
-
-  // let AgeQuerymax = {
-  //   content_type: "heroes",
-  // };
-
-  console.log("this is what I'm looking for; query=", query);
+  // console.log("this is what I'm looking for; query=", query);
   //continue here--------------------------------
 
   // Add Range Query Filters for Shoe Size:
@@ -91,66 +80,21 @@ export const searchHeroes = async (query) => {
   // Add Range Query Filters for Height:
   contentFullQuery["fields.height[gte]"] = query.minHeight;
   contentFullQuery["fields.height[lte]"] = query.maxHeight;
+  // console.log("this is the query.maxHeight", query.maxHeight);
 
   // -------------------- AGE ------------------------------
 
-  if (query.agemax && query.agemin) {
-    var mindate = moment().subtract(query.maxage, "years").toDate();
-    var maxdate = moment().subtract(query.minage, "years").toDate();
+  contentFullQuery["fields.birthday[lte]"] = query.agemin;
+  var oldest = moment().subtract(query.agemin, "years").format("YYYY-MM-DD");
+  // console.log(oldest, "This is the oldest");
+  // console.log(query.agemax, "This is agemax");
 
-    contentFullQuery["fields.birthday[gte]"] = mindate;
-    contentFullQuery["fields.birthday[lte]"] = maxdate;
-  }
+  contentFullQuery["fields.birthday[gte]"] = query.agemax;
+  var youngest = moment().subtract(query.agemax, "years").format("YYYY-MM-DD");
+  // console.log(youngest, "This is the youngest");
+  // console.log(query.agemin, "This is agemin");
 
-  // contentFullQuery["fields.birthday[gte]"] = query.agemin;
-  // contentFullQuery["fields.birthday[lte]"] = query.agemax;
-
-  // console.log("maxdate:", maxdate);
-  // console.log("mindate:", mindate);
-
-  // console.log("agemin:", query.agemin);
-
-  // console.log("agemax:", query.agemax);
-
-  // console.log("contentful query gte", contentFullQuery["fields.birthday[gte]"]);
-
-  console.log("minage", query.minage);
-
-  console.log("maxage", query.maxage);
-  // console.log("minheight", query.minHeight);
-
-  // convert birth date to AGE
-  // const getAge = (birthDate) =>
-  //   Math.floor((new Date() - new Date(birthDate).getTime()) / 3.15576e10);
-
-  // console.log(query.agemin);
-  // console.log(getAge(query.agemin));
-
-  // console.log(query.agemin, "this is the query.agemin");
-
-  // AgeQuerymin["fields.age[gte]"] = query.amin;
-  // AgeQuerymax["fields.age[lte]"] = query.amax;
-
-  // var agemin = moment(AgeQuerymin["fields.age[gte]"], "YYYYMMDD").fromNow();
-
-  // var DOBmin = moment(query.amin, "YYYYMMDD").fromNow();
-  // console.log(agemin, " =agemin");
-
-  // console.log(query.min);
-
-  // console.log(AgeQuerymin["fields.age[gte]"], "this is the query.amin");
-
-  // console.log(query.agemin, "this is the query.agemin");
-
-  // const DOBmin = getAge(query.agemin);
-
-  // contentFullQuery["fields.age[gte]"] = minAge;
-  // contentFullQuery["fields.age[lte]"] = maxAge;
-
-  // let minShoeSize = query.minShoeSize;
-  // let maxShoeSize = query.maxShoeSize;
-
-  // Add Tags Query Filters
+  // -------------------- AGE ------------------------------
 
   // we first parse the skills tags back to their contentful-specific version with the "skill." prefix
   const selectedTags = query.selectedTags.map((tag) => `skill.${tag}`);
@@ -225,30 +169,6 @@ export const searchHeroes = async (query) => {
     if (query.agencies.includes(hero.otherAgency)) return true;
     return false;
   });
-
-  // filteredHeroes = filteredHeroes.filter((hero) => {
-
-  // if (minAge <= DOB <= maxAge) {
-  //   console.log("Age Filtering");
-  //   return true;
-  // }
-
-  //   console.log("false");
-  //   return false;
-  // });
-
-  // Min and Max Shoe Sizes
-  // filteredHeroes = filteredHeroes.filter((hero) => {
-  //   console.log("hero.shoeSize", hero.shoeSize);
-
-  //   if (query.minShoeSize <= hero.shoeSize <= query.maxShoeSize) {
-  //     console.log("minmaxqueryfiltering");
-  //     return true;
-  //   }
-
-  //   console.log("false");
-  //   return false;
-  // });
 
   return filteredHeroes;
 };

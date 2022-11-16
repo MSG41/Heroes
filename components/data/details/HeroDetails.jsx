@@ -15,7 +15,7 @@ const HeroDetails = ({ hero }) => {
   // var age = moment(hero.birthday, "YYYYMMDD").fromNow(true);
   // console.log({ age });
 
-  var age = moment().diff(hero.birthday, "year");
+  // var age = moment().diff(hero.birthday, "year");
 
   return (
     <div className="px-4 sm:px-6 lg:px-8 py-8 w-full">
@@ -78,26 +78,6 @@ const HeroDetails = ({ hero }) => {
                   € {hero.halfDayFee} / Half-day Fee
                 </div>
               </div>
-              {/* <div className='flex items-center space-x-4 pl-10 md:pl-0'>
-                  {hero.featuredJob && (
-                    <div
-                      className={`text-xs inline-flex font-medium rounded-full text-center px-2.5 py-1 bg-amber-100 text-amber-600`}
-                    >
-                      Featured
-                    </div>
-                  )}
-                  <button className='text-slate-300 hover:text-slate-400 mt-1'>
-                    <span className='sr-only'>Bookmark</span>
-                    <svg
-                      className='w-3 h-4 fill-current'
-                      width='12'
-                      height='16'
-                      xmlns='http://www.w3.org/2000/svg'
-                    >
-                      <path d='M2 0C.9 0 0 .9 0 2v14l6-3 6 3V2c0-1.1-.9-2-2-2H2Z' />
-                    </svg>
-                  </button>
-                </div> */}
             </div>
           </header>
 
@@ -122,31 +102,6 @@ const HeroDetails = ({ hero }) => {
                 </a>
               </div>
             </div>
-            {/* <div className='space-y-2 sm:flex sm:space-y-0 sm:space-x-2'>
-              <a
-                href={hero.applicationLink}
-                className='flex items-center justify-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
-              >
-                Apply Today
-                <ArrowRightIcon
-                  className='ml-4 mr-3 h-5 w-5'
-                  aria-hidden='true'
-                />
-              </a>
-
-              <Link href={`/company/${hero.company.slug}`}>
-                <a
-                  href={`/company/${hero.company.slug}`}
-                  className='flex items-center justify-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-slate-700 ring-slate-600 bg-slate-200 hover:bg-slate-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-700'
-                >
-                  All Company Jobs
-                  <ArrowRightIcon
-                    className='ml-4 mr-3 h-5 w-5'
-                    aria-hidden='true'
-                  />
-                </a>
-              </Link>
-            </div> */}
           </div>
 
           <hr className="my-6 border-t border-slate-200" />
@@ -181,7 +136,9 @@ const HeroDetails = ({ hero }) => {
                       className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
                       href="#"
                     >
-                      {age} raw data birthday : {hero.birthday}
+                      {/* {age} raw data birthday : {hero.birthday} */}
+                      {hero.age}
+                      {/* B-Day: {hero.birthday} */}
                     </a>
                   </div>
                 </div>

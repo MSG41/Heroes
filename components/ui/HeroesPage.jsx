@@ -20,14 +20,12 @@ export default function HeroesPage({ heroes, heroSkills }) {
     drivers: [],
     agencies: [],
     selectedTags: [],
-    minage: undefined,
-    maxage: undefined,
   });
 
   const [searchFormState, setSearchFormState] = useState("");
 
   const searchHeroes = async (apiUrl, formsStates) => {
-    console.log("these are the formsStates sent to the back-end", formsStates);
+    // console.log("these are the formsStates sent to the back-end", formsStates);
     const response = await fetch(apiUrl, {
       method: "POST",
       headers: {
@@ -36,14 +34,14 @@ export default function HeroesPage({ heroes, heroSkills }) {
       body: JSON.stringify(formsStates),
     });
     const foundHeroes = await response.json();
-    console.log(foundHeroes);
+    // console.log(foundHeroes);
     setDisplayedHeroes(foundHeroes);
   };
 
   const initialRender1 = useRef(true);
   // trigger a search whenever the sidebar form state  changes
   useEffect(() => {
-    console.log("this is the effect");
+    // console.log("this is the effect");
     if (initialRender1.current) {
       initialRender1.current = false;
     } else {

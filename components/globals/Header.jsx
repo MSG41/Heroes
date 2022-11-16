@@ -42,7 +42,7 @@ export default function Header() {
             </div> */}
             <div className="mt-4 xl:ml-[10vw] sm:mt-12 sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
               <div className="sm:hidden md:block mt-6 min-w-0 flex-1">
-                <h1 className=" text-3xl font-bold text-gray-900">
+                <h1 className=" text-[3em] font-bold text-gray-900">
                   {profile.name}
                 </h1>
                 {/* <p className="text-sm font-medium text-gray-500">

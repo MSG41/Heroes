@@ -67,36 +67,6 @@ function HeroesPageSideBarForm({
     { value: "yes", display: "Yes" },
   ];
 
-  // const handleFeaturedHeroesOnlyChange = (checked) => {
-  //   console.log(checked);
-  //   //TODO: send request and filter jobs
-  //   setSideBarFormState((prevState) => {
-  //     return { ...prevState, featuredHeroesOnly: !prevState.featuredHeroesOnly };
-  //   });
-  // };
-
-  // const handleHeroTypeSelect = (e, option) => {
-  //   console.log(e.target.checked, option);
-  //   if (e.target.checked) {
-  //     setSideBarFormState((prevState) => {
-  //       const heroTypes = [...prevState.heroTypes];
-  //       heroTypes.push(option);
-  //       return { ...prevState, heroTypes };
-  //     });
-  //   } else {
-  //     setSideBarFormState((prevState) => {
-  //       return {
-  //         ...prevState,
-  //         heroTypes: prevState.heroTypes.filter(
-  //           (heroType) => option != heroType
-  //         ),
-  //       };
-  //     });
-  //   }
-  // };
-
-  // hero gender types
-
   const handleHeroGenderSelect = (e, option) => {
     console.log(e.target.checked, option);
     if (e.target.checked) {
@@ -292,56 +262,6 @@ function HeroesPageSideBarForm({
       });
     }
   };
-
-  // shoeOn
-  //   ? useEffect(() => {
-  //       setSideBarFormState((prevState) => {
-  //         return {
-  //           ...prevState,
-  //           shoeOn: !prevState.shoeOn,
-  //           minShoeSizeON: minVal,
-  //           maxShoeSizeON: maxVal,
-  //         };
-  //       });
-  //     }, [minVal, maxVal])
-  //   : null;
-
-  // const handleBaseSalaryRangesSelect = (e, option, bounds) => {
-  //   console.log(e.target.checked, option, bounds);
-  //   if (e.target.checked) {
-  //     setSideBarFormState((prevState) => {
-  //       const baseSalaryOptions = [...prevState.baseSalaryOptions];
-  //       baseSalaryOptions.push(option);
-
-  //       const baseSalaryBounds = [...prevState.baseSalaryBounds];
-  //       baseSalaryBounds.push(bounds.min);
-  //       baseSalaryBounds.push(bounds.max);
-
-  //       const newFormState = {
-  //         ...prevState,
-  //         baseSalaryOptions,
-  //         baseSalaryBounds,
-  //       };
-  //       console.log(newFormState);
-  //       return newFormState;
-  //     });
-  //   } else {
-  //     setSideBarFormState((prevState) => {
-  //       const newFormState = {
-  //         ...prevState,
-  //         baseSalaryOptions: prevState.baseSalaryOptions.filter(
-  //           (baseSalaryOption) => option != baseSalaryOption
-  //         ),
-  //         baseSalaryBounds: prevState.baseSalaryBounds.filter(
-  //           (bound) => ![bounds.min, bounds.max].includes(bound)
-  //         ),
-  //       };
-
-  //       console.log(newFormState);
-  //       return newFormState;
-  //     });
-  //   }
-  // };
 
   return (
     <div className="xl:sticky xl:top-10 xl:h-[96vh] xl:overflow-y-auto sm:sticky-none sm:top-none sm:bottom-none sm:h-none sm:overflow-none">

@@ -1,5 +1,6 @@
 import date from "date-and-time";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+import moment from "moment";
 
 export const dateReducer = (dateStr) => {
   const dateObj = date.parse(dateStr.split("T")[0], "YYYY-MM-DD");
@@ -55,70 +56,6 @@ export const skillsReducer = (parsedTags) => {
   return skills;
 };
 
-// hairReducer
-// export const hairReducer = (parsedTags) => {
-//   const hairTags = parsedTags.filter((tag) => tag.includes("hair."));
-//   const hair = hairTags.map((hairTag) => hairTag.replace("hair.", ""));
-//   return hair;
-// };
-
-// eyeReducer
-// export const eyeReducer = (parsedTags) => {
-//   const eyeTags = parsedTags.filter((tag) => tag.includes("eye."));
-//   const eye = eyeTags.map((eyeTag) => eyeTag.replace("eye.", ""));
-//   return eye;
-// };
-
-// tattooReducer
-// export const tattooReducer = (parsedTags) => {
-//   const tattooTags = parsedTags.filter((tag) => tag.includes("tattoo."));
-//   const tattoo = tattooTags.map((tattooTag) =>
-//     tattooTag.replace("tattoo.", "")
-//   );
-//   return tattoo;
-// };
-
-// scarReducer
-// export const scarsReducer = (parsedTags) => {
-//   const scarsTags = parsedTags.filter((tag) => tag.includes("scars."));
-//   const scars = scarsTags.map((scarsTag) => scarsTag.replace("scars.", ""));
-//   return scars;
-// };
-
-// sexReducer
-// export const sexReducer = (parsedTags) => {
-//   const sexTags = parsedTags.filter((tag) => tag.includes("sex."));
-//   const sex = sexTags.map((sexTag) => sexTag.replace("sex.", ""));
-//   return sex;
-// };
-
-// invoiceReducer
-// export const invoiceReducer = (parsedTags) => {
-//   const invoiceTags = parsedTags.filter((tag) => tag.includes("invoice."));
-//   const invoice = invoiceTags.map((invoiceTag) =>
-//     invoiceTag.replace("invoice.", "")
-//   );
-//   return invoice;
-// };
-
-// driveReducer
-// export const driveReducer = (parsedTags) => {
-//   const driveTags = parsedTags.filter((tag) => tag.includes("drive."));
-//   const drive = driveTags.map((driveTag) => driveTag.replace("drive.", ""));
-//   return drive;
-// };
-
-// convert birth date to AGE
-// const getAge = (birthDate) => {
-//   return ( = Math.floor(
-//     (new Date() - new Date(birthDate).getTime()) / 3.15576e10
-//   ));
-// };
-// console.log(getAge(query.agemin));
-
-const getAge = (birthDate) =>
-  Math.floor((new Date() - new Date(birthDate).getTime()) / 3.15576e10);
-
 export const heroReducer = (rawHero, parseRelatedHeroes = true) => {
   let hero = { ...rawHero.fields };
 
@@ -144,7 +81,13 @@ export const heroReducer = (rawHero, parseRelatedHeroes = true) => {
   // hero.invoice = invoiceReducer(hero.tags);
   // hero.drive = driveReducer(hero.tags);
   hero.foto = imageReducer(rawHero.fields.foto);
-  // hero.age = getAge(rawHero.fields.age);
+  hero.age = moment().diff(rawHero.fields.birthday, "year");
+  // hero.birthdate = rawHero.fields.birthday || undefined;
+  // console.log("this is the hero.birthday", hero.birthday);
+
+  // console.log(hero.age);
+
+  // console.log(hero.age);
 
   const relatedHeroes = rawHero.fields.relatedHeroes || [];
 

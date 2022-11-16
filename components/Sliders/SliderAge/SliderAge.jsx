@@ -3,6 +3,7 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 import { FilterIcon } from "@heroicons/react/solid";
 import { Switch } from "@headlessui/react";
+import moment from "moment";
 
 const SliderAge = ({ min, max, setSideBarFormState }) => {
   function classNames(...classes) {
@@ -14,6 +15,10 @@ const SliderAge = ({ min, max, setSideBarFormState }) => {
   const minValRef = useRef(null);
   const maxValRef = useRef(null);
   const range = useRef(null);
+
+  // ----- Trick to convert age to birthdate to send to backend later ---
+  var miin = moment().subtract(minVal, "years").format("YYYY-MM-DD");
+  var maax = moment().subtract(maxVal, "years").format("YYYY-MM-DD");
 
   // Convert to percentage
   const getPercent = useCallback(
@@ -48,32 +53,46 @@ const SliderAge = ({ min, max, setSideBarFormState }) => {
 
   const [ageOn, setageOn] = useState("");
 
-  function ageSwitchBehavior(switch_status) {
-    if (switch_status) {
+  const handleHeightChange = (checked) => {
+    console.log(checked);
+
+    if (checked) {
       setSideBarFormState((prevState) => {
-        prevState["minage"] = minVal;
-        prevState["maxage"] = maxVal;
-        return prevState;
+        return {
+          ...prevState,
+          agemin: miin,
+          agemax: maax,
+        };
       });
     } else {
       setSideBarFormState((prevState) => {
-        delete prevState["minage"];
-        delete prevState["maxage"];
-        return prevState;
+        return {
+          ...prevState,
+          agemin: prevState.miin,
+          agemax: prevState.maax,
+        };
       });
     }
-  }
 
-  const handleAgeChange = (checked) => {
-    console.log("checked", checked);
-    ageSwitchBehavior(checked);
-    setageOn(checked);
+    setageOn(!ageOn);
   };
 
   useEffect(() => {
-    console.log("useEffect", ageOn);
-    ageSwitchBehavior(ageOn);
-    setageOn(ageOn);
+    if (ageOn) {
+      setSideBarFormState((prevState) => {
+        return {
+          ...prevState,
+          agemin: miin,
+          agemax: maax,
+        };
+      });
+    } else {
+      setSideBarFormState((prevState) => {
+        return {
+          ...prevState,
+        };
+      });
+    }
   }, [minVal, maxVal]);
 
   return (
@@ -83,7 +102,7 @@ const SliderAge = ({ min, max, setSideBarFormState }) => {
         className="flex items-center mb-5 bg-gradient-to-r from-violet-500/5 to-yellow-500/50 rounded-full"
       >
         <Switch
-          onChange={handleAgeChange}
+          onChange={handleHeightChange}
           className={classNames(
             ageOn ? "bg-emerald-600" : "bg-gray-200",
             "relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:-ring-2 focus:ring-offset-2 focus:-ring-indigo-500"
@@ -164,3 +183,35 @@ SliderAge.propTypes = {
 };
 
 export default SliderAge;
+
+// ---------NOTES FOR AVOIDING UGLY COPY PASTES !! --------
+
+//   function ageSwitchBehavior(switch_status) {
+//     if (switch_status) {
+//       setSideBarFormState((prevState, miin, maax) => {
+//         miin = minVal;
+//         console.log("miin", miin);
+//         maax = maxVal;
+//         console.log("maax", maax);
+//         return prevState;
+//       });
+//     } else {
+//       setSideBarFormState((prevState) => {
+//         delete prevState["miin"];
+//         delete prevState["maax"];
+//         return prevState;
+//       });
+//     }
+//   }
+
+//   const handleAgeChange = (checked) => {
+//     console.log("checked", checked);
+//     ageSwitchBehavior(checked);
+//     setageOn(checked);
+//   };
+
+//   useEffect(() => {
+//     console.log("useEffect", ageOn);
+//     ageSwitchBehavior(ageOn);
+//     setageOn(ageOn);
+//   }, [minVal, maxVal]);
