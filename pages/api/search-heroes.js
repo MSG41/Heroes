@@ -7,10 +7,6 @@ function capitalizeFirstLetter(string) {
 export default async function handler(req, res) {
   const { searchFormState, sideBarFormState } = req.body;
 
-  // const heroTypes = sideBarFormState.heroTypes.map((heroType) =>
-  //   capitalizeFirstLetter(heroType)
-  // );
-
   const heroGenders = sideBarFormState.heroGenders.map((gender) =>
     capitalizeFirstLetter(gender)
   );
@@ -48,12 +44,20 @@ export default async function handler(req, res) {
   const agencies = sideBarFormState.agencies.map((otherAgency) =>
     capitalizeFirstLetter(otherAgency)
   );
+  const continents = sideBarFormState.continents.map((continent) =>
+    capitalizeFirstLetter(continent)
+  );
+  const countries = sideBarFormState.countries.map((country) =>
+    capitalizeFirstLetter(country)
+  );
 
   const query = {
     ...sideBarFormState,
     searchBarText: searchFormState,
     heroInvoices,
     heroGenders,
+    continents,
+    countries,
     tattoos,
     heroLooks,
     heroScars,

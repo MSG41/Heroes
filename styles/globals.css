@@ -11,7 +11,9 @@
 #sizetext,
 #invoicetext,
 #drivertext,
-#othertext {
+#othertext,
+#continenttext,
+#countrytext {
   cursor: pointer;
 }
 

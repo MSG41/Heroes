@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Switch } from "@headlessui/react";
+import React from "react";
 import TagsFilterForm from "./TagsFilterForm";
-import { ChevronDownIcon, FilterIcon } from "@heroicons/react/solid";
+import { FilterIcon } from "@heroicons/react/solid";
 import MultiRangeShoeSizeSlider from "../Sliders/SliderShoe/MultiRangeShoeSizeSlider";
 import SliderHeight from "../Sliders/SliderHeight/SliderHeight";
 import SliderAge from "../Sliders/SliderAge/SliderAge";
@@ -10,7 +9,6 @@ function HeroesPageSideBarForm({
   heroSkills,
   sideBarFormState,
   setSideBarFormState,
-  setDisplayedHeroes,
 }) {
   function useToggle(initialValue = false) {
     const [value, setValue] = React.useState(initialValue);
@@ -74,6 +72,66 @@ function HeroesPageSideBarForm({
     { value: "no", display: "No" },
     { value: "yes", display: "Yes" },
   ];
+
+  const HeroContinentsOptions = [
+    { value: "Africa", display: "Africa" },
+    { value: "Asia", display: "Asia" },
+    { value: "Australia", display: "Australia" },
+    { value: "Europe", display: "Europe" },
+    { value: "Middle-East", display: "Middle-East" },
+    { value: "North-America", display: "North-America" },
+    { value: "South-America", display: "South-America" },
+  ];
+
+  const HeroCountriesOptions = [
+    { value: "Belgium", display: "Belgium" },
+    { value: "France", display: "France" },
+    { value: "the Netherlands", display: "The Netherlands" },
+  ];
+
+  // ------------------------
+
+  const handleContinentSelect = (e, option) => {
+    console.log(e.target.checked, option);
+    if (e.target.checked) {
+      setSideBarFormState((prevState) => {
+        const continents = [...prevState.continents];
+        continents.push(option);
+        return { ...prevState, continents };
+      });
+    } else {
+      setSideBarFormState((prevState) => {
+        return {
+          ...prevState,
+          continents: prevState.continents.filter(
+            (continent) => option != continent
+          ),
+        };
+      });
+    }
+  };
+
+  // ------------------------
+
+  const handleCountrySelect = (e, option) => {
+    console.log(e.target.checked, option);
+    if (e.target.checked) {
+      setSideBarFormState((prevState) => {
+        const countries = [...prevState.countries];
+        countries.push(option);
+        return { ...prevState, countries };
+      });
+    } else {
+      setSideBarFormState((prevState) => {
+        return {
+          ...prevState,
+          countries: prevState.countries.filter((country) => option != country),
+        };
+      });
+    }
+  };
+
+  // ------------------------
 
   const handleHeroGenderSelect = (e, option) => {
     console.log(e.target.checked, option);
@@ -281,6 +339,8 @@ function HeroesPageSideBarForm({
   const [invoiceisOn, toggleinvoiceIsOn] = useToggle();
   const [driverisOn, toggledriverIsOn] = useToggle();
   const [otherisOn, toggleotherIsOn] = useToggle();
+  const [continentisOn, togglecontinentIsOn] = useToggle();
+  const [countryisOn, togglecountryIsOn] = useToggle();
 
   return (
     <div className="xl:sticky xl:top-10 xl:h-[94vh] xl:overflow-y-auto sm:sticky-none sm:top-none sm:bottom-none sm:h-none sm:overflow-none">
@@ -318,7 +378,92 @@ function HeroesPageSideBarForm({
                 setSideBarFormState={setSideBarFormState}
               />
             </div>
-
+            {/* group Continents  */}
+            <div>
+              <div className="flex flex-row">
+                {" "}
+                <FilterIcon
+                  className="ml-1 mr-2 h-6 w-6 text-gray-400"
+                  aria-hidden="true"
+                  onClick={togglecontinentIsOn}
+                />
+                <div
+                  id="continenttext"
+                  className="text-sm text-slate-800 font-semibold mb-3"
+                  onClick={togglecontinentIsOn}
+                >
+                  Continent &nbsp;
+                </div>
+                🗺
+              </div>
+              <ul className="space-y-2">
+                {HeroContinentsOptions.map((option) => {
+                  if (continentisOn)
+                    return (
+                      <li key={option.value}>
+                        <label className="flex items-center">
+                          <input
+                            type="checkbox"
+                            className="form-checkbox"
+                            onChange={(e) =>
+                              handleContinentSelect(e, option.value)
+                            }
+                            checked={sideBarFormState.continents.includes(
+                              option.value
+                            )}
+                          />
+                          <span className="text-sm text-slate-600 font-medium ml-2">
+                            {option.display}
+                          </span>
+                        </label>
+                      </li>
+                    );
+                })}
+              </ul>
+            </div>
+            {/* group Countries  */}
+            <div>
+              <div className="flex flex-row">
+                {" "}
+                <FilterIcon
+                  className="ml-1 mr-2 h-6 w-6 text-gray-400"
+                  aria-hidden="true"
+                  onClick={togglecountryIsOn}
+                />
+                <div
+                  id="countrytext"
+                  className="text-sm text-slate-800 font-semibold mb-3"
+                  onClick={togglecountryIsOn}
+                >
+                  Country &nbsp;
+                </div>
+                📍
+              </div>
+              <ul className="space-y-2">
+                {HeroCountriesOptions.map((option) => {
+                  if (countryisOn)
+                    return (
+                      <li key={option.value}>
+                        <label className="flex items-center">
+                          <input
+                            type="checkbox"
+                            className="form-checkbox"
+                            onChange={(e) =>
+                              handleCountrySelect(e, option.value)
+                            }
+                            checked={sideBarFormState.countries.includes(
+                              option.value
+                            )}
+                          />
+                          <span className="text-sm text-slate-600 font-medium ml-2">
+                            {option.display}
+                          </span>
+                        </label>
+                      </li>
+                    );
+                })}
+              </ul>
+            </div>
             {/* group hero gender  */}
             <div>
               <div className="flex flex-row">

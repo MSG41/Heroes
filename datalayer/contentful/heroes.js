@@ -169,6 +169,16 @@ export const searchHeroes = async (query) => {
     if (query.agencies.includes(hero.otherAgency)) return true;
     return false;
   });
+  filteredHeroes = filteredHeroes.filter((hero) => {
+    if (query.continents.length == 0) return true;
+    if (query.continents.includes(hero.continent)) return true;
+    return false;
+  });
+  filteredHeroes = filteredHeroes.filter((hero) => {
+    if (query.countries.length == 0) return true;
+    if (query.countries.includes(hero.country)) return true;
+    return false;
+  });
 
   return filteredHeroes;
 };
@@ -178,12 +188,6 @@ export const searchCompaniesButReturnHeroes = async (searchBarText) => {
     content_type: "heroes",
     "fields.company.sys.contentType.sys.id": "company",
     "fields.company.fields.name[match]": searchBarText,
-    // "fields.heroes.fields.heroName[match]": searchBarText,
-
-    // multiple matches are NOT supported by Contentful so we prioritise the company name
-    // "fields.company.fields.city[match]": searchBarText,
-    // "fields.company.fields.slogan[match]": searchBarText,
-    // "fields.company.fields.website[match]": searchBarText,
     include: 2,
     limit: 1000,
   };

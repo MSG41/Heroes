@@ -11,6 +11,8 @@ export default function HeroesPage({ heroes, heroSkills }) {
   const [sideBarFormState, setSideBarFormState] = useState({
     heroInvoices: [],
     heroGenders: [],
+    continents: [],
+    countries: [],
     tattoos: [],
     heroLooks: [],
     heroScars: [],

@@ -4,12 +4,7 @@ import PropTypes from "prop-types";
 import { FilterIcon } from "@heroicons/react/solid";
 import { Switch } from "@headlessui/react";
 
-const MultiRangeShoeSizeSlider = ({
-  min,
-  max,
-  setSideBarFormState,
-  sideBarFormState,
-}) => {
+const MultiRangeShoeSizeSlider = ({ min, max, setSideBarFormState }) => {
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
@@ -107,6 +102,8 @@ const MultiRangeShoeSizeSlider = ({
       setSideBarFormState((prevState) => {
         return {
           prevState,
+          continents: [],
+          countries: [],
           heroInvoices: [],
           heroGenders: [],
           tattoos: [],

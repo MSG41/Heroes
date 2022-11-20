@@ -1,6 +1,5 @@
 import { getHeroes } from "../datalayer";
 import HeroesPage from "../components/ui/HeroesPage";
-// import InfiniteScroll from "react-infinite-scroll-component";
 import { getHeroesSkills } from "../datalayer/contentful/heroes";
 
 export default function Index({ heroes, heroSkills }) {

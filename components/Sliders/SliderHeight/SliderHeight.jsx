@@ -85,6 +85,8 @@ const SliderHeight = ({ min, max, setSideBarFormState }) => {
       setSideBarFormState((prevState) => {
         return {
           prevState,
+          continents: [],
+          countries: [],
           heroInvoices: [],
           heroGenders: [],
           tattoos: [],
