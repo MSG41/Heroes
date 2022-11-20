@@ -36,7 +36,7 @@ export default function HeroesPage({ heroes, heroSkills }) {
       body: JSON.stringify(formsStates),
     });
     const foundHeroes = await response.json();
-    // console.log(foundHeroes);
+    console.log(foundHeroes);
     setDisplayedHeroes(foundHeroes);
   };
 

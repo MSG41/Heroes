@@ -17,6 +17,41 @@
   cursor: pointer;
 }
 
+#setcard {
+  display: flex;
+  width: 115%;
+  justify-content: center;
+  margin-top: 0.5rem;
+
+  --bg-size: 400%;
+  --color-one: rgb(160, 37, 205);
+  --color-two: rgb(95, 161, 241);
+  font-family: sans-serif;
+
+  font-size: clamp(3rem, 10vmin, 1rem);
+  background: linear-gradient(
+      90deg,
+      var(--color-one),
+      var(--color-two),
+      var(--color-one)
+    )
+    0 0 / var(--bg-size) 100%;
+  /* color: transparent; */
+  /* -webkit-background-clip: text; */
+  /* background-clip: text; */
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  #setcard {
+    animation: move-bg 20s linear infinite;
+  }
+  @keyframes move-bg {
+    to {
+      background-position: var(--bg-size) 0;
+    }
+  }
+}
+
 /* SLIDER FILTERS LAYOUT  */
 .container {
   height: 100%;

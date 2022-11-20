@@ -73,21 +73,8 @@ export const heroReducer = (rawHero, parseRelatedHeroes = true) => {
   hero.heroDescription = richTextReducer(rawHero.fields.heroDescription);
   hero.tags = tagsReducer(rawHero.metadata.tags);
   hero.skills = skillsReducer(hero.tags);
-  // hero.hair = hairReducer(hero.tags);
-  // hero.eye = eyeReducer(hero.tags);
-  // hero.tattoo = tattooReducer(hero.tags);
-  // hero.scars = scarsReducer(hero.tags);
-  // hero.sex = sexReducer(hero.tags);
-  // hero.invoice = invoiceReducer(hero.tags);
-  // hero.drive = driveReducer(hero.tags);
   hero.foto = imageReducer(rawHero.fields.foto);
   hero.age = moment().diff(rawHero.fields.birthday, "year");
-  // hero.birthdate = rawHero.fields.birthday || undefined;
-  // console.log("this is the hero.birthday", hero.birthday);
-
-  // console.log(hero.age);
-
-  // console.log(hero.age);
 
   const relatedHeroes = rawHero.fields.relatedHeroes || [];
 
