@@ -12,6 +12,14 @@ function HeroesPageSideBarForm({
   setSideBarFormState,
   setDisplayedHeroes,
 }) {
+  function useToggle(initialValue = false) {
+    const [value, setValue] = React.useState(initialValue);
+    const toggle = React.useCallback(() => {
+      setValue((v) => !v);
+    }, []);
+    return [value, toggle];
+  }
+
   const tattoosOptions = [
     { value: "no", display: "No" },
     { value: "yes", display: "Yes" },
@@ -263,8 +271,19 @@ function HeroesPageSideBarForm({
     }
   };
 
+  const [genderisOn, togglegenderIsOn] = useToggle();
+  const [tattooisOn, toggletattooIsOn] = useToggle();
+  const [lookisOn, togglelookIsOn] = useToggle();
+  const [scarisOn, togglescarIsOn] = useToggle();
+  const [hairisOn, togglehairIsOn] = useToggle();
+  const [eyeisOn, toggleeyeIsOn] = useToggle();
+  const [sizeisOn, togglesizeIsOn] = useToggle();
+  const [invoiceisOn, toggleinvoiceIsOn] = useToggle();
+  const [driverisOn, toggledriverIsOn] = useToggle();
+  const [otherisOn, toggleotherIsOn] = useToggle();
+
   return (
-    <div className="xl:sticky xl:top-10 xl:h-[96vh] xl:overflow-y-auto sm:sticky-none sm:top-none sm:bottom-none sm:h-none sm:overflow-none">
+    <div className="xl:sticky xl:top-10 xl:h-[94vh] xl:overflow-y-auto sm:sticky-none sm:top-none sm:bottom-none sm:h-none sm:overflow-none">
       <div className="flex-row space-y-8">
         {/* White box */}
         <div className="bg-white shadow-lg rounded-sm border border-slate-200 p-5 ">
@@ -307,32 +326,38 @@ function HeroesPageSideBarForm({
                 <FilterIcon
                   className="ml-1 mr-2 h-6 w-6 text-gray-400"
                   aria-hidden="true"
+                  onClick={togglegenderIsOn}
                 />
-                <div className="text-sm text-slate-800 font-semibold mb-3">
+                <div
+                  id="gendertext"
+                  className="text-sm text-slate-800 font-semibold mb-3"
+                  onClick={togglegenderIsOn}
+                >
                   Gender
                 </div>
               </div>
               <ul className="space-y-2">
                 {heroGendersOptions.map((option) => {
-                  return (
-                    <li key={option.value}>
-                      <label className="flex items-center">
-                        <input
-                          type="checkbox"
-                          className="form-checkbox"
-                          onChange={(e) =>
-                            handleHeroGenderSelect(e, option.value)
-                          }
-                          checked={sideBarFormState.heroGenders.includes(
-                            option.value
-                          )}
-                        />
-                        <span className="text-sm text-slate-600 font-medium ml-2">
-                          {option.display}
-                        </span>
-                      </label>
-                    </li>
-                  );
+                  if (genderisOn)
+                    return (
+                      <li key={option.value}>
+                        <label className="flex items-center">
+                          <input
+                            type="checkbox"
+                            className="form-checkbox"
+                            onChange={(e) =>
+                              handleHeroGenderSelect(e, option.value)
+                            }
+                            checked={sideBarFormState.heroGenders.includes(
+                              option.value
+                            )}
+                          />
+                          <span className="text-sm text-slate-600 font-medium ml-2">
+                            {option.display}
+                          </span>
+                        </label>
+                      </li>
+                    );
                 })}
               </ul>
             </div>
@@ -342,30 +367,38 @@ function HeroesPageSideBarForm({
                 <FilterIcon
                   className="ml-1 mr-2 h-6 w-6 text-gray-400"
                   aria-hidden="true"
+                  onClick={toggletattooIsOn}
                 />
-                <div className="text-sm text-slate-800 font-semibold mb-3">
+                <div
+                  className="text-sm text-slate-800 font-semibold mb-3"
+                  onClick={toggletattooIsOn}
+                  id="tattootext"
+                >
                   Tattoo
                 </div>
               </div>
               <ul className="space-y-2">
                 {tattoosOptions.map((option) => {
-                  return (
-                    <li key={option.value}>
-                      <label className="flex items-center">
-                        <input
-                          type="checkbox"
-                          className="form-checkbox"
-                          onChange={(e) => handleTattooSelect(e, option.value)}
-                          checked={sideBarFormState.tattoos.includes(
-                            option.value
-                          )}
-                        />
-                        <span className="text-sm text-slate-600 font-medium ml-2">
-                          {option.display}
-                        </span>
-                      </label>
-                    </li>
-                  );
+                  if (tattooisOn)
+                    return (
+                      <li key={option.value}>
+                        <label className="flex items-center">
+                          <input
+                            type="checkbox"
+                            className="form-checkbox"
+                            onChange={(e) =>
+                              handleTattooSelect(e, option.value)
+                            }
+                            checked={sideBarFormState.tattoos.includes(
+                              option.value
+                            )}
+                          />
+                          <span className="text-sm text-slate-600 font-medium ml-2">
+                            {option.display}
+                          </span>
+                        </label>
+                      </li>
+                    );
                 })}
               </ul>
             </div>
@@ -376,32 +409,38 @@ function HeroesPageSideBarForm({
                 <FilterIcon
                   className="ml-1 mr-2 h-6 w-6 text-gray-400"
                   aria-hidden="true"
+                  onClick={togglelookIsOn}
                 />
-                <div className="text-sm text-slate-800 font-semibold mb-3">
+                <div
+                  className="text-sm text-slate-800 font-semibold mb-3"
+                  onClick={togglelookIsOn}
+                  id="looktext"
+                >
                   Looks
                 </div>
               </div>
               <ul className="space-y-2">
                 {heroLooksOptions.map((option) => {
-                  return (
-                    <li key={option.value}>
-                      <label className="flex items-center">
-                        <input
-                          type="checkbox"
-                          className="form-checkbox"
-                          onChange={(e) =>
-                            handleHeroLookSelect(e, option.value)
-                          }
-                          checked={sideBarFormState.heroLooks.includes(
-                            option.value
-                          )}
-                        />
-                        <span className="text-sm text-slate-600 font-medium ml-2">
-                          {option.display}
-                        </span>
-                      </label>
-                    </li>
-                  );
+                  if (lookisOn)
+                    return (
+                      <li key={option.value}>
+                        <label className="flex items-center">
+                          <input
+                            type="checkbox"
+                            className="form-checkbox"
+                            onChange={(e) =>
+                              handleHeroLookSelect(e, option.value)
+                            }
+                            checked={sideBarFormState.heroLooks.includes(
+                              option.value
+                            )}
+                          />
+                          <span className="text-sm text-slate-600 font-medium ml-2">
+                            {option.display}
+                          </span>
+                        </label>
+                      </li>
+                    );
                 })}
               </ul>
             </div>
@@ -412,32 +451,38 @@ function HeroesPageSideBarForm({
                 <FilterIcon
                   className="ml-1 mr-2 h-6 w-6 text-gray-400"
                   aria-hidden="true"
+                  onClick={togglescarIsOn}
                 />
-                <div className="text-sm text-slate-800 font-semibold mb-3">
+                <div
+                  className="text-sm text-slate-800 font-semibold mb-3"
+                  onClick={togglescarIsOn}
+                  id="scartext"
+                >
                   Scar(s)
                 </div>
               </div>
               <ul className="space-y-2">
                 {heroScarsOptions.map((option) => {
-                  return (
-                    <li key={option.value}>
-                      <label className="flex items-center">
-                        <input
-                          type="checkbox"
-                          className="form-checkbox"
-                          onChange={(e) =>
-                            handleHeroScarSelect(e, option.value)
-                          }
-                          checked={sideBarFormState.heroScars.includes(
-                            option.value
-                          )}
-                        />
-                        <span className="text-sm text-slate-600 font-medium ml-2">
-                          {option.display}
-                        </span>
-                      </label>
-                    </li>
-                  );
+                  if (scarisOn)
+                    return (
+                      <li key={option.value}>
+                        <label className="flex items-center">
+                          <input
+                            type="checkbox"
+                            className="form-checkbox"
+                            onChange={(e) =>
+                              handleHeroScarSelect(e, option.value)
+                            }
+                            checked={sideBarFormState.heroScars.includes(
+                              option.value
+                            )}
+                          />
+                          <span className="text-sm text-slate-600 font-medium ml-2">
+                            {option.display}
+                          </span>
+                        </label>
+                      </li>
+                    );
                 })}
               </ul>
             </div>
@@ -448,32 +493,38 @@ function HeroesPageSideBarForm({
                 <FilterIcon
                   className="ml-1 mr-2 h-6 w-6 text-gray-400"
                   aria-hidden="true"
+                  onClick={togglehairIsOn}
                 />
-                <div className="text-sm text-slate-800 font-semibold mb-3">
+                <div
+                  className="text-sm text-slate-800 font-semibold mb-3"
+                  onClick={togglehairIsOn}
+                  id="hairtext"
+                >
                   Hair Color
                 </div>
               </div>
               <ul className="space-y-2">
                 {hairColorsOptions.map((option) => {
-                  return (
-                    <li key={option.value}>
-                      <label className="flex items-center">
-                        <input
-                          type="checkbox"
-                          className="form-checkbox"
-                          onChange={(e) =>
-                            handleHairColorSelect(e, option.value)
-                          }
-                          checked={sideBarFormState.hairColors.includes(
-                            option.value
-                          )}
-                        />
-                        <span className="text-sm text-slate-600 font-medium ml-2">
-                          {option.display}
-                        </span>
-                      </label>
-                    </li>
-                  );
+                  if (hairisOn)
+                    return (
+                      <li key={option.value}>
+                        <label className="flex items-center">
+                          <input
+                            type="checkbox"
+                            className="form-checkbox"
+                            onChange={(e) =>
+                              handleHairColorSelect(e, option.value)
+                            }
+                            checked={sideBarFormState.hairColors.includes(
+                              option.value
+                            )}
+                          />
+                          <span className="text-sm text-slate-600 font-medium ml-2">
+                            {option.display}
+                          </span>
+                        </label>
+                      </li>
+                    );
                 })}
               </ul>
             </div>
@@ -484,32 +535,38 @@ function HeroesPageSideBarForm({
                 <FilterIcon
                   className="ml-1 mr-2 h-6 w-6 text-gray-400"
                   aria-hidden="true"
+                  onClick={toggleeyeIsOn}
                 />
-                <div className="text-sm text-slate-800 font-semibold mb-3">
+                <div
+                  className="text-sm text-slate-800 font-semibold mb-3"
+                  onClick={toggleeyeIsOn}
+                  id="eyetext"
+                >
                   Eye Color
                 </div>
               </div>
               <ul className="space-y-2">
                 {eyeColorsOptions.map((option) => {
-                  return (
-                    <li key={option.value}>
-                      <label className="flex items-center">
-                        <input
-                          type="checkbox"
-                          className="form-checkbox"
-                          onChange={(e) =>
-                            handleEyeColorSelect(e, option.value)
-                          }
-                          checked={sideBarFormState.eyeColors.includes(
-                            option.value
-                          )}
-                        />
-                        <span className="text-sm text-slate-600 font-medium ml-2">
-                          {option.display}
-                        </span>
-                      </label>
-                    </li>
-                  );
+                  if (eyeisOn)
+                    return (
+                      <li key={option.value}>
+                        <label className="flex items-center">
+                          <input
+                            type="checkbox"
+                            className="form-checkbox"
+                            onChange={(e) =>
+                              handleEyeColorSelect(e, option.value)
+                            }
+                            checked={sideBarFormState.eyeColors.includes(
+                              option.value
+                            )}
+                          />
+                          <span className="text-sm text-slate-600 font-medium ml-2">
+                            {option.display}
+                          </span>
+                        </label>
+                      </li>
+                    );
                 })}
               </ul>
             </div>
@@ -520,30 +577,36 @@ function HeroesPageSideBarForm({
                 <FilterIcon
                   className="ml-1 mr-2 h-6 w-6 text-gray-400"
                   aria-hidden="true"
+                  onClick={togglesizeIsOn}
                 />
-                <div className="text-sm text-slate-800 font-semibold mb-3">
+                <div
+                  className="text-sm text-slate-800 font-semibold mb-3"
+                  onClick={togglesizeIsOn}
+                  id="sizetext"
+                >
                   Standard Size
                 </div>
               </div>
               <ul className="space-y-2">
                 {sizesOptions.map((option) => {
-                  return (
-                    <li key={option.value}>
-                      <label className="flex items-center">
-                        <input
-                          type="checkbox"
-                          className="form-checkbox"
-                          onChange={(e) => handleSizeSelect(e, option.value)}
-                          checked={sideBarFormState.sizes.includes(
-                            option.value
-                          )}
-                        />
-                        <span className="text-sm text-slate-600 font-medium ml-2">
-                          {option.display}
-                        </span>
-                      </label>
-                    </li>
-                  );
+                  if (sizeisOn)
+                    return (
+                      <li key={option.value}>
+                        <label className="flex items-center">
+                          <input
+                            type="checkbox"
+                            className="form-checkbox"
+                            onChange={(e) => handleSizeSelect(e, option.value)}
+                            checked={sideBarFormState.sizes.includes(
+                              option.value
+                            )}
+                          />
+                          <span className="text-sm text-slate-600 font-medium ml-2">
+                            {option.display}
+                          </span>
+                        </label>
+                      </li>
+                    );
                 })}
               </ul>
             </div>
@@ -554,32 +617,38 @@ function HeroesPageSideBarForm({
                 <FilterIcon
                   className="ml-1 mr-2 h-6 w-6 text-gray-400"
                   aria-hidden="true"
+                  onClick={toggleinvoiceIsOn}
                 />
-                <div className="text-sm text-slate-800 font-semibold mb-3">
+                <div
+                  className="text-sm text-slate-800 font-semibold mb-3"
+                  onClick={toggleinvoiceIsOn}
+                  id="invoicetext"
+                >
                   Invoice
                 </div>
               </div>
               <ul className="space-y-2">
                 {heroInvoicesOptions.map((option) => {
-                  return (
-                    <li key={option.value}>
-                      <label className="flex items-center">
-                        <input
-                          type="checkbox"
-                          className="form-checkbox"
-                          onChange={(e) =>
-                            handleheroInvoiceSelect(e, option.value)
-                          }
-                          checked={sideBarFormState.heroInvoices.includes(
-                            option.value
-                          )}
-                        />
-                        <span className="text-sm text-slate-600 font-medium ml-2">
-                          {option.display}
-                        </span>
-                      </label>
-                    </li>
-                  );
+                  if (invoiceisOn)
+                    return (
+                      <li key={option.value}>
+                        <label className="flex items-center">
+                          <input
+                            type="checkbox"
+                            className="form-checkbox"
+                            onChange={(e) =>
+                              handleheroInvoiceSelect(e, option.value)
+                            }
+                            checked={sideBarFormState.heroInvoices.includes(
+                              option.value
+                            )}
+                          />
+                          <span className="text-sm text-slate-600 font-medium ml-2">
+                            {option.display}
+                          </span>
+                        </label>
+                      </li>
+                    );
                 })}
               </ul>
             </div>
@@ -590,30 +659,38 @@ function HeroesPageSideBarForm({
                 <FilterIcon
                   className="ml-1 mr-2 h-6 w-6 text-gray-400"
                   aria-hidden="true"
+                  onClick={toggledriverIsOn}
                 />
-                <div className="text-sm text-slate-800 font-semibold mb-3">
+                <div
+                  className="text-sm text-slate-800 font-semibold mb-3"
+                  onClick={toggledriverIsOn}
+                  id="drivertext"
+                >
                   Drivers's Licence
                 </div>
               </div>
               <ul className="space-y-2">
                 {driversOptions.map((option) => {
-                  return (
-                    <li key={option.value}>
-                      <label className="flex items-center">
-                        <input
-                          type="checkbox"
-                          className="form-checkbox"
-                          onChange={(e) => handleDriverSelect(e, option.value)}
-                          checked={sideBarFormState.drivers.includes(
-                            option.value
-                          )}
-                        />
-                        <span className="text-sm text-slate-600 font-medium ml-2">
-                          {option.display}
-                        </span>
-                      </label>
-                    </li>
-                  );
+                  if (driverisOn)
+                    return (
+                      <li key={option.value}>
+                        <label className="flex items-center">
+                          <input
+                            type="checkbox"
+                            className="form-checkbox"
+                            onChange={(e) =>
+                              handleDriverSelect(e, option.value)
+                            }
+                            checked={sideBarFormState.drivers.includes(
+                              option.value
+                            )}
+                          />
+                          <span className="text-sm text-slate-600 font-medium ml-2">
+                            {option.display}
+                          </span>
+                        </label>
+                      </li>
+                    );
                 })}
               </ul>
             </div>
@@ -624,95 +701,43 @@ function HeroesPageSideBarForm({
                 <FilterIcon
                   className="ml-1 mr-2 h-6 w-6 text-gray-400"
                   aria-hidden="true"
+                  onClick={toggleotherIsOn}
                 />
-                <div className="text-sm text-slate-800 font-semibold mb-3">
+                <div
+                  className="text-sm text-slate-800 font-semibold mb-3"
+                  onClick={toggleotherIsOn}
+                  id="othertext"
+                >
                   Other Agency ?
                 </div>
               </div>
               <ul className="space-y-2">
                 {AgenciesOptions.map((option) => {
-                  return (
-                    <li key={option.value}>
-                      <label className="flex items-center">
-                        <input
-                          type="checkbox"
-                          className="form-checkbox"
-                          onChange={(e) => handleAgencySelect(e, option.value)}
-                          checked={sideBarFormState.agencies.includes(
-                            option.value
-                          )}
-                        />
-                        <span className="text-sm text-slate-600 font-medium ml-2">
-                          {option.display}
-                        </span>
-                      </label>
-                    </li>
-                  );
+                  if (otherisOn)
+                    return (
+                      <li key={option.value}>
+                        <label className="flex items-center">
+                          <input
+                            type="checkbox"
+                            className="form-checkbox"
+                            onChange={(e) =>
+                              handleAgencySelect(e, option.value)
+                            }
+                            checked={sideBarFormState.agencies.includes(
+                              option.value
+                            )}
+                          />
+                          <span className="text-sm text-slate-600 font-medium ml-2">
+                            {option.display}
+                          </span>
+                        </label>
+                      </li>
+                    );
                 })}
               </ul>
             </div>
           </div>
         </div>
-
-        {/* Alert */}
-        {/* <div className='relative bg-indigo-200 rounded-sm p-5 min-w-60'>
-        <div className='absolute bottom-0 -mb-3'>
-          <svg
-            width='44'
-            height='42'
-            xmlns='http://www.w3.org/2000/svg'
-            xmlnsXlink='http://www.w3.org/1999/xlink'
-          >
-            <defs>
-              <linearGradient x1='50%' y1='0%' x2='50%' y2='100%' id='ill-b'>
-                <stop stopColor='#A5B4FC' offset='0%' />
-                <stop stopColor='#818CF8' offset='100%' />
-              </linearGradient>
-              <linearGradient
-                x1='50%'
-                y1='24.537%'
-                x2='50%'
-                y2='100%'
-                id='ill-c'
-              >
-                <stop stopColor='#4338CA' offset='0%' />
-                <stop stopColor='#6366F1' stopOpacity='0' offset='100%' />
-              </linearGradient>
-              <path id='ill-a' d='m20 0 20 40-20-6.25L0 40z' />
-            </defs>
-            <g
-              transform='scale(-1 1) rotate(-51 -11.267 67.017)'
-              fill='none'
-              fillRule='evenodd'
-            >
-              <mask id='ill-d' fill='#fff'>
-                <use xlinkHref='#ill-a' />
-              </mask>
-              <use fill='url(#ill-b)' xlinkHref='#ill-a' />
-              <path
-                fill='url(#ill-c)'
-                mask='url(#ill-d)'
-                d='M20.586-7.913h25v47.5h-25z'
-              />
-            </g>
-          </svg>
-        </div>
-        <div className='relative'>
-          <div className='text-sm font-medium text-slate-800 mb-2'>
-            Remember to keep track of your job research.
-          </div>
-          <div className='text-right'>
-            <a
-              className='text-sm font-medium text-indigo-500 hover:text-indigo-600'
-              href='#0'
-            >
-              Create Alert -&gt;
-            </a>
-          </div>
-        </div>
-      </div> */}
-
-        {/* End Alert */}
       </div>
     </div>
   );

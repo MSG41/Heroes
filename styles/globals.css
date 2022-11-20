@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+#gendertext,
+#tattootext,
+#looktext,
+#scartext,
+#hairtext,
+#eyetext,
+#sizetext,
+#invoicetext,
+#drivertext,
+#othertext {
+  cursor: pointer;
+}
+
 /* SLIDER FILTERS LAYOUT  */
 .container {
   height: 100%;
