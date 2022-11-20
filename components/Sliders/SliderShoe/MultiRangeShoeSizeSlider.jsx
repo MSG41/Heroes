@@ -3,8 +3,6 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 import { FilterIcon } from "@heroicons/react/solid";
 import { Switch } from "@headlessui/react";
-import SearchHeroForm from "../../forms/SearchHeroForm";
-import { getHeroes, searchHeroes } from "../../../datalayer";
 
 const MultiRangeShoeSizeSlider = ({
   min,
@@ -53,18 +51,6 @@ const MultiRangeShoeSizeSlider = ({
     }
   }, [maxVal, getPercent]);
 
-  // Get min and max values when their state changes
-
-  // useEffect(() => {
-  //   setSideBarFormState((prevState) => {
-  //     return {
-  //       ...prevState,
-  //       minShoeSizeON: minVal,
-  //       maxShoeSizeON: maxVal,
-  //     };
-  //   });
-  // }, [minVal, maxVal]);
-
   const [shoeOn, setShoeOn] = useState("");
 
   const handleSelectedTag = (e, option) => {
@@ -85,9 +71,6 @@ const MultiRangeShoeSizeSlider = ({
     }
   };
 
-  // checked={selectedTags.includes(option.value)}
-  //                 onChange={(e) => handleSelectedTag(e, option.value)}
-
   const handleShoeChange = (checked) => {
     console.log(checked);
 
@@ -95,17 +78,6 @@ const MultiRangeShoeSizeSlider = ({
       setSideBarFormState((prevState) => {
         return {
           ...prevState,
-          // heroInvoices: [],
-          // heroGenders: [],
-          // tattoos: [],
-          // heroLooks: [],
-          // heroScars: [],
-          // hairColors: [],
-          // eyeColors: [],
-          // sizes: [],
-          // drivers: [],
-          // agencies: [],
-          // selectedTags: [],
           minShoeSize: minVal,
           maxShoeSize: maxVal,
         };
@@ -116,31 +88,10 @@ const MultiRangeShoeSizeSlider = ({
           ...prevState,
           minShoeSize: prevState.minVal,
           maxShoeSize: prevState.maxVal,
-          // heroInvoices: [],
-          // heroGenders: [],
-          // tattoos: [],
-          // heroLooks: [],
-          // heroScars: [],
-          // hairColors: [],
-          // eyeColors: [],
-          // sizes: [],
-          // drivers: [],
-          // agencies: [],
-          // selectedTags: [],
         };
       });
     }
-    //TODO: send request and filter jobs
-    // shoeOn ? setShoeOn(false) : setShoeOn(true);
     setShoeOn(!shoeOn);
-
-    // setSideBarFormState((prevState) => {
-    //   return {
-    //     ...prevState,
-    //     minShoeSize: minVal,
-    //     maxShoeSize: maxVal,
-    //   };
-    // });
   };
 
   useEffect(() => {
@@ -219,12 +170,12 @@ const MultiRangeShoeSizeSlider = ({
             value={minVal}
             ref={minValRef}
             onChange={(event) => {
-              const value = Math.min(+event.target.value, maxVal - 0.5);
+              const value = Math.min(+event.target.value, maxVal - 1);
               setMinVal(value);
               event.target.value = value.toString();
             }}
             className={classnames("thumb thumb--zindex-3", {
-              "thumb--zindex-5": minVal > max - 100,
+              "thumb--zindex-5": minVal > max - 3,
             })}
           />
 
@@ -235,7 +186,7 @@ const MultiRangeShoeSizeSlider = ({
             value={maxVal}
             ref={maxValRef}
             onChange={(event) => {
-              const value = Math.max(+event.target.value, minVal + 0.5);
+              const value = Math.max(+event.target.value, minVal + 1);
               setMaxVal(value);
               event.target.value = value.toString();
             }}

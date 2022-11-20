@@ -140,12 +140,12 @@ const SliderAge = ({ min, max, setSideBarFormState }) => {
             value={minVal}
             ref={minValRef}
             onChange={(event) => {
-              const value = Math.min(+event.target.value, maxVal - 0.5);
+              const value = Math.min(+event.target.value, maxVal - 1);
               setMinVal(value);
               event.target.value = value.toString();
             }}
             className={classnames(" thumb thumb--zindex-3", {
-              "thumb--zindex-5": minVal > max - 100,
+              "thumb--zindex-5": minVal > max - 23,
             })}
           />
 
@@ -156,7 +156,7 @@ const SliderAge = ({ min, max, setSideBarFormState }) => {
             value={maxVal}
             ref={maxValRef}
             onChange={(event) => {
-              const value = Math.max(+event.target.value, minVal + 0.5);
+              const value = Math.max(+event.target.value, minVal + 1);
               setMaxVal(value);
               event.target.value = value.toString();
             }}

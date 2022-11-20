@@ -25,9 +25,9 @@
   position: absolute;
 }
 
-.slider__left-value {
+/* .slider__left-value {
   margin-left: -10px;
-}
+} */
 
 .slider__track,
 .slider__range {
