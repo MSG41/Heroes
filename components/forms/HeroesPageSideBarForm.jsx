@@ -394,7 +394,7 @@ function HeroesPageSideBarForm({
                 >
                   Continent &nbsp;
                 </div>
-                🗺
+                <div className="scale-125">🗺</div>
               </div>
               <ul className="space-y-2">
                 {HeroContinentsOptions.map((option) => {
@@ -437,7 +437,7 @@ function HeroesPageSideBarForm({
                 >
                   Country &nbsp;
                 </div>
-                📍
+                <div className="scale-125">📍</div>
               </div>
               <ul className="space-y-2">
                 {HeroCountriesOptions.map((option) => {
