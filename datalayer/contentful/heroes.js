@@ -45,6 +45,7 @@ export const getHeroBySlug = async ({ slug }) => {
   });
 
   if (found.items.length == 0) return null;
+
   const hero = found.items[0];
   return heroReducer(hero);
 };
@@ -195,6 +196,13 @@ export const searchCompaniesButReturnHeroes = async (searchBarText) => {
   const foundHeroes = res.items;
 
   const heroes = foundHeroes.map((rawHero) => {
+    // if (!hero.setcard) {
+    //   console.log("this hero has no setcard");
+    // }
+    {
+      console.log("this hero has a setcard", heroReducer(rawHero));
+    }
+
     return heroReducer(rawHero);
   });
 

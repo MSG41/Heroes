@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -257,12 +257,11 @@ const HeroDetails = ({ hero }) => {
                 SetCard Link
                 <div className="flex flex-wrap items-center -m-1">
                   <div className="m-1">
-                    {" "}
                     <a
                       id="setcard"
                       className=" link text-[250%] flex justify-center font-medium rounded-full text-center px-2.5 py-1"
                       download
-                      // href={hero.setcard.fields.file.url}
+                      href={hero.setcard?.fields?.file?.url}
                     >
                       🔖
                     </a>
