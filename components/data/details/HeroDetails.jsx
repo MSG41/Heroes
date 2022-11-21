@@ -262,6 +262,7 @@ const HeroDetails = ({ hero }) => {
                       className=" link text-[250%] flex justify-center font-medium rounded-full text-center px-2.5 py-1"
                       download
                       href={hero.setcard?.fields?.file?.url}
+                      target="_blank"
                     >
                       🔖
                     </a>
