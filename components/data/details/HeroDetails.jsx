@@ -269,16 +269,21 @@ const HeroDetails = ({ hero }) => {
                     </a>
                   </div>
                 </div>
-                <iframe
-                  src={hero.setcard?.fields?.file?.url}
-                  frameBorder="0"
-                  scrolling="auto"
-                  height="fit-content"
-                  width="fit-content"
-                ></iframe>
+                {/* <iframe src={hero.setcard?.fields?.file?.url}></iframe> */}
               </div>
             </div>
             <hr className="my-6 border-t border-slate-200" />
+          </div>
+
+          <div>
+            <h2 className="text-xl leading-snug text-slate-800 font-bold mb-2 ">
+              Preview Setcard
+            </h2>
+            <iframe
+              src={hero.setcard?.fields?.file?.url}
+              width="330rem"
+              height="187rem"
+            ></iframe>
           </div>
         </div>
         {/* ------------------------------------------------------- */}
@@ -309,6 +314,13 @@ const HeroDetails = ({ hero }) => {
               </div>
             </div>
           </div>
+
+          <iframe
+            className="lg:ml-[10vw]"
+            src={hero.setcard?.fields?.file?.url}
+            width="100%"
+            height="55%"
+          ></iframe>
         </div>
       </div>
     </div>
