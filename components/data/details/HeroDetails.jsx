@@ -269,12 +269,21 @@ const HeroDetails = ({ hero }) => {
                     </a>
                   </div>
                 </div>
+                <iframe
+                  src={hero.setcard?.fields?.file?.url}
+                  frameBorder="0"
+                  scrolling="auto"
+                  height="fit-content"
+                  width="fit-content"
+                ></iframe>
               </div>
             </div>
             <hr className="my-6 border-t border-slate-200" />
           </div>
         </div>
+        {/* ------------------------------------------------------- */}
 
+        {/* ------------------------------------------------------- */}
         {/* Sidebar */}
         <div className="hidden lg:block  space-y-4 ">
           {/* Company information (desktop) */}
