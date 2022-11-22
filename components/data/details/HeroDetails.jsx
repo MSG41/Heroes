@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { FaRegFilePdf } from "react-icons/fa";
 
 import { ChevronLeftIcon } from "@heroicons/react/solid";
 
@@ -254,17 +255,17 @@ const HeroDetails = ({ hero }) => {
 
               <div className="text-[14px] font-semibold text-slate-800 mt-6 ">
                 {" "}
-                SetCard Link
-                <div className="flex flex-wrap items-center -m-1">
+                SetCard
+                <div className="flex flex-wrap -m-1">
                   <div className="m-1">
                     <a
                       id="setcard"
-                      className=" link text-[250%] flex justify-center font-medium rounded-full text-center px-2.5 py-1"
+                      className=" link text-[250%] flex font-medium rounded-full text-center px-2.5 py-1"
                       download
                       href={hero.setcard?.fields?.file?.url}
                       target="_blank"
                     >
-                      🔖
+                      <FaRegFilePdf id="pdf" />
                     </a>
                   </div>
                 </div>

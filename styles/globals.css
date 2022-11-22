@@ -17,7 +17,7 @@
   cursor: pointer;
 }
 
-#setcard {
+/* #setcard {
   display: flex;
   width: 115%;
   justify-content: center;
@@ -36,9 +36,10 @@
       var(--color-one)
     )
     0 0 / var(--bg-size) 100%;
-  /* color: transparent; */
-  /* -webkit-background-clip: text; */
-  /* background-clip: text; */
+} */
+
+#pdf {
+  fill: rgba(255, 0, 0, 0.9);
 }
 
 @media (prefers-reduced-motion: no-preference) {
