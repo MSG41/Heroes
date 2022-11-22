@@ -260,12 +260,12 @@ const HeroDetails = ({ hero }) => {
                   <div className="m-1">
                     <a
                       id="setcard"
-                      className=" link text-[250%] flex font-medium rounded-full text-center px-2.5 py-1"
+                      className=" link text-[250%] flex justify-center font-medium rounded-full text-center px-2.5 py-1"
                       download
                       href={hero.setcard?.fields?.file?.url}
                       target="_blank"
                     >
-                      <FaRegFilePdf id="pdf" />
+                      <FaRegFilePdf id="pdf" className="flex justify-center" />
                     </a>
                   </div>
                 </div>
