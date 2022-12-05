@@ -1,10 +1,4 @@
-import { useState } from "react";
-
-const SearchHeroForm = ({
-  searchFormState,
-  setSearchFormState,
-  setDisplayedHeroes,
-}) => {
+const SearchHeroForm = ({ searchFormState, setSearchFormState }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(searchFormState);

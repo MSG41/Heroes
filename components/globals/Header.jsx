@@ -28,7 +28,7 @@ export default function Header() {
             alt={`services offered by ${profile.companyName} - & S.T.`}
           />
         </div>
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className=" xl:flex xl:w-screen xl:justify-around px-4 sm:px-6 lg:px-8">
           <div className="-mt-0 sm:-mt-16 sm:flex sm:items-end sm:space-x-5">
             {/* <div className="flex">
               <div className="relative md:h-[180px] md:w-[180px] h-[200px] w-[200px] mb-3 rounded-full ring-4 ring-[#fac805] sm:h-28 sm:w-28">
@@ -40,9 +40,9 @@ export default function Header() {
                 />
               </div>
             </div> */}
-            <div className="mt-4 xl:ml-[10vw] sm:mt-12 sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
+            <div className="mt-4 sm:mt-12 sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
               <div className="sm:hidden md:block mt-6 min-w-0 flex-1">
-                <h1 className=" text-[3em] font-bold text-gray-900">
+                <h1 className=" text-[3em] font-bold text-gray-900 xl:mr-[30vw]">
                   {profile.name}
                 </h1>
                 {/* <p className="text-sm font-medium text-gray-500">

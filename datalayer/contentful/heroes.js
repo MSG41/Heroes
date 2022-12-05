@@ -115,6 +115,9 @@ export const searchHeroes = async (query) => {
   });
 
   // Now because contentful doesn't have an OR operator we have to filter at the application level which is not efficient
+
+  // Please re-Write this in a smarter way !!!!!!
+
   let filteredHeroes = heroes.filter((hero) => {
     if (query.tattoos.length == 0) return true;
     if (query.tattoos.includes(hero.heroTattoo)) return true;

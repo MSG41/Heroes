@@ -91,6 +91,8 @@ function HeroesPageSideBarForm({
 
   // ------------------------
 
+  // Please Re-write the following in a smarter way!!!!
+
   const handleContinentSelect = (e, option) => {
     console.log(e.target.checked, option);
     if (e.target.checked) {
