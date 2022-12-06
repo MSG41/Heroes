@@ -116,7 +116,7 @@ export default function HeroesPage({ heroes, heroSkills }) {
           setdisplayedHeroes={setDisplayedHeroes}
         />
       </div>
-      <div className="flex flex-col space-y-10 sm:flex-row sm:space-x-6 sm:space-y-0 md:flex-col md:space-x-0 md:space-y-10 xl:flex-row xl:space-x-6 xl:space-y-0 mt-9">
+      <div className="flex space-y-10 sm:flex-row sm:space-x-6 sm:space-y-0 md:flex-col md:space-x-0 md:space-y-10 xl:flex-row xl:space-x-[4.5rem] xl:space-y-0 mt-9">
         <HeroesPageSideBarForm
           heroSkills={heroSkills}
           sideBarFormState={sideBarFormState}

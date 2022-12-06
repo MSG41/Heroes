@@ -28,7 +28,7 @@ export default function Header() {
             alt={`services offered by ${profile.companyName} - & S.T.`}
           />
         </div>
-        <div className=" xl:flex xl:w-screen xl:justify-around px-4 sm:px-6 lg:px-8">
+        <div className=" xl:flex xl:w-[100%] xl:justify-around px-4 sm:px-6 lg:px-8">
           <div className="-mt-0 sm:-mt-16 sm:flex sm:items-end sm:space-x-5">
             {/* <div className="flex">
               <div className="relative md:h-[180px] md:w-[180px] h-[200px] w-[200px] mb-3 rounded-full ring-4 ring-[#fac805] sm:h-28 sm:w-28">
