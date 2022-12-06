@@ -174,7 +174,6 @@ export default function HeroesPage({ heroes, heroSkills }) {
               setDisplayedHeroes={setDisplayedHeroes}
             />
           </div>
-
           <HeroesList heroes={displayedHeroes} />
         </div>
       </div>

@@ -14,6 +14,7 @@ const SearchHeroForm = ({ searchFormState, setSearchFormState }) => {
         <label htmlFor="hero-search" className="sr-only">
           Search
         </label>
+
         <input
           id="hero-search"
           className="form-input border-[2.5px] border-slate-900 xl:w-[30%] md:w-[50%] xs:w-[80%] pl-9 focus:border-slate400 rounded-full border-2"
@@ -22,6 +23,7 @@ const SearchHeroForm = ({ searchFormState, setSearchFormState }) => {
           value={searchFormState}
           onChange={(e) => setSearchFormState(e.target.value)}
         />
+
         <button
           className="absolute inset-0 right-auto group"
           type="submit"

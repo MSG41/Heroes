@@ -1,4 +1,3 @@
-import React from "react";
 import HeroCard from "../cards/HeroCard";
 
 const HeroesList = ({ heroes }) => {
