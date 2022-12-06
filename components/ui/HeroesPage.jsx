@@ -106,7 +106,7 @@ export default function HeroesPage({ heroes, heroSkills }) {
 
   return (
     <div className="w-[100%] mt-[-100px]">
-      <div className=" xl:sticky xl:left-[1.7em] xl:top-[0.25em] xl:mt-[12vh] md:mt-10 xl:mb-[-14vh]  text-sm text-white italic xs:sticky xs:mt-[10vh] xs:left-[63%] md:left-[80%] md:top-5 xs:pl-4 xs:pr-4 xs:text-[170%] xs:pt-3 xs:pb-3  xl:text-[170%] xs:sticky xs:top-[2.7em] xs:z-[999] xs:bg-gradient-to-r from-indigo-500/60 via-emerald-500/90 to-yellow-500/90 hover:from-pink-500 xs:hover:to-yellow-500 xs:rounded-full xs:w-fit">
+      <div className=" xl:sticky xl:left-[1.7em] xl:top-[0.25em] xl:mt-[12vh] md:mt-10 xl:mb-[-14vh] text-sm text-white italic xs:sticky xs:mt-[10vh] xs:left-[63%] md:left-[80%] md:top-5 xs:pl-4 xs:pr-4 xs:text-[170%] xs:pt-3 xs:pb-3  xl:text-[170%] xs:sticky xs:top-[2.7em] xs:z-[999] xs:bg-gradient-to-r from-indigo-500/60 via-emerald-500/90 to-yellow-500/90 hover:from-pink-500 xs:hover:to-yellow-500 xs:rounded-full xs:w-fit">
         {heroesFoundMessage}
       </div>
       <div className=" xl:invisible md:z-10 lg:sticky  lg:z-10 md:mt-12  md:z-10  xs:z-10 xs:mt-[3.5vh] ">
@@ -116,7 +116,7 @@ export default function HeroesPage({ heroes, heroSkills }) {
           setdisplayedHeroes={setDisplayedHeroes}
         />
       </div>
-      <div className="flex space-y-10 sm:flex-row sm:space-x-6 sm:space-y-0 md:flex-col md:space-x-0 md:space-y-10 xl:flex-row xl:space-x-[4.5rem] xl:space-y-0 mt-9">
+      <div className="flex flex-col space-y-10 sm:flex-row sm:space-x-6 sm:space-y-0 md:flex-col md:space-x-0 md:space-y-10 xl:flex-row xl:space-x-[4.5rem] xl:space-y-0 mt-9">
         <HeroesPageSideBarForm
           heroSkills={heroSkills}
           sideBarFormState={sideBarFormState}
