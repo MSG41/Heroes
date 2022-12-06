@@ -22,7 +22,7 @@ export default function Header() {
     <div>
       <div className="mb-8">
         <div className="relative h-60 w-full lg:h-64">
-          <div className="blur-[48px] w-[100%] h-[100%]">
+          <div className="blur-[0.15rem] border-hidden w-[100%] h-[100%]">
             <Blobs />
           </div>
           <Image
