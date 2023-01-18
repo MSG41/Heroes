@@ -9,7 +9,7 @@ const HeroDetails = ({ hero }) => {
   return (
     <div className="px-4 sm:px-6 lg:px-8 py-8 w-full">
       {/* Page content */}
-      <div className="max-w-7xl mt-6  flex flex-col lg:flex-row lg:space-x-8 xl:space-x-16">
+      <div className="max-w-6xl mt-6  flex flex-col lg:flex-row lg:space-x-8 xl:space-x-16">
         {/* Content */}
         <div>
           <div className="mb-6">

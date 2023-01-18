@@ -2,7 +2,7 @@ import { PhoneIcon } from "@heroicons/react/solid";
 import Image from "next/image";
 import TiaBanner from "../../public/images/TiaBanner.png";
 import TiaBanner2 from "../../public/images/TiaBanner2.png";
-import Blobs from "./Blobs";
+// import Blobs from "./Blobs";
 
 const profile = {
   name: "Inhuman Finder",
@@ -22,9 +22,9 @@ export default function Header() {
     <div>
       <div className="mb-8">
         <div className="relative h-60 w-full lg:h-64">
-          <div className="blur-[0.15rem] border-hidden w-[100%] h-[100%]">
+          {/* <div className="blur-[0.15rem] border-hidden w-[100%] h-[100%]">
             <Blobs />
-          </div>
+          </div> */}
           <Image
             className="object-contain scale-[0.8]"
             src={profile.coverImage}
