@@ -71,6 +71,7 @@ function HeroesPageSideBarForm({
   const AgenciesOptions = [
     { value: "no", display: "No" },
     { value: "yes", display: "Yes" },
+    { value: "Action Pact", display: "Action Pact" },
   ];
 
   const HeroContinentsOptions = [
