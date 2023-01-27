@@ -29,7 +29,7 @@ const ScrollButton = () => {
   }, []);
 
   return (
-    <div className="flex fixed xs:w-[2rem] md:w-[4rem] xl:w-[5rem] left-[90%] bottom-[50vh] height-[20px] text-[0.5rem] text-center z-[1] cursor-pointer text-[green]   ">
+    <div className="flex fixed xs:w-[2rem] md:w-[4rem] xl:w-[5rem] left-[90%] bottom-[50vh] height-[20px] text-[0.5rem] text-center z-[1] cursor-pointer text-[green]">
       <FaArrowCircleUp
         onClick={scrollToTop}
         style={{ display: visible ? "inline" : "none" }}

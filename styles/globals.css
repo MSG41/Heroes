@@ -17,6 +17,9 @@
   cursor: pointer;
 }
 
+html {
+  -webkit-tap-highlight-color: transparent;
+}
 /* #setcard {
   display: flex;
   width: 115%;
