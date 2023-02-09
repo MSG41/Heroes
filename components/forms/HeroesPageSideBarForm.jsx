@@ -95,7 +95,7 @@ function HeroesPageSideBarForm({
   // Please Re-write the following in a smarter way!!!!
 
   const handleContinentSelect = (e, option) => {
-    console.log(e.target.checked, option);
+    // console.log(e.target.checked, option);
     if (e.target.checked) {
       setSideBarFormState((prevState) => {
         const continents = [...prevState.continents];
@@ -117,7 +117,7 @@ function HeroesPageSideBarForm({
   // ------------------------
 
   const handleCountrySelect = (e, option) => {
-    console.log(e.target.checked, option);
+    // console.log(e.target.checked, option);
     if (e.target.checked) {
       setSideBarFormState((prevState) => {
         const countries = [...prevState.countries];
@@ -137,7 +137,7 @@ function HeroesPageSideBarForm({
   // ------------------------
 
   const handleHeroGenderSelect = (e, option) => {
-    console.log(e.target.checked, option);
+    // console.log(e.target.checked, option);
     if (e.target.checked) {
       setSideBarFormState((prevState) => {
         const heroGenders = [...prevState.heroGenders];
@@ -159,7 +159,7 @@ function HeroesPageSideBarForm({
   // ------------------------
 
   const handleTattooSelect = (e, option) => {
-    console.log(e.target.checked, option);
+    // console.log(e.target.checked, option);
     if (e.target.checked) {
       setSideBarFormState((prevState) => {
         const tattoos = [...prevState.tattoos];
@@ -179,7 +179,7 @@ function HeroesPageSideBarForm({
   };
   // ------------------------
   const handleHeroLookSelect = (e, option) => {
-    console.log(e.target.checked, option);
+    // console.log(e.target.checked, option);
     if (e.target.checked) {
       setSideBarFormState((prevState) => {
         const heroLooks = [...prevState.heroLooks];
@@ -197,7 +197,7 @@ function HeroesPageSideBarForm({
   };
   // ------------------------
   const handleHeroScarSelect = (e, option) => {
-    console.log(e.target.checked, option);
+    // console.log(e.target.checked, option);
     if (e.target.checked) {
       setSideBarFormState((prevState) => {
         const heroScars = [...prevState.heroScars];
@@ -215,7 +215,7 @@ function HeroesPageSideBarForm({
   };
   // ------------------------
   const handleHairColorSelect = (e, option) => {
-    console.log(e.target.checked, option);
+    // console.log(e.target.checked, option);
     if (e.target.checked) {
       setSideBarFormState((prevState) => {
         const hairColors = [...prevState.hairColors];
@@ -235,7 +235,7 @@ function HeroesPageSideBarForm({
   };
   // ------------------------
   const handleEyeColorSelect = (e, option) => {
-    console.log(e.target.checked, option);
+    // console.log(e.target.checked, option);
     if (e.target.checked) {
       setSideBarFormState((prevState) => {
         const eyeColors = [...prevState.eyeColors];
@@ -255,7 +255,7 @@ function HeroesPageSideBarForm({
   };
   // ------------------------
   const handleSizeSelect = (e, option) => {
-    console.log(e.target.checked, option);
+    // console.log(e.target.checked, option);
     if (e.target.checked) {
       setSideBarFormState((prevState) => {
         const sizes = [...prevState.sizes];
@@ -275,7 +275,7 @@ function HeroesPageSideBarForm({
   };
   // ------------------------
   const handleheroInvoiceSelect = (e, option) => {
-    console.log(e.target.checked, option);
+    // console.log(e.target.checked, option);
     if (e.target.checked) {
       setSideBarFormState((prevState) => {
         const heroInvoices = [...prevState.heroInvoices];
@@ -295,7 +295,7 @@ function HeroesPageSideBarForm({
   };
   // ------------------------
   const handleDriverSelect = (e, option) => {
-    console.log(e.target.checked, option);
+    // console.log(e.target.checked, option);
     if (e.target.checked) {
       setSideBarFormState((prevState) => {
         const drivers = [...prevState.drivers];
@@ -313,7 +313,7 @@ function HeroesPageSideBarForm({
   };
   // ------------------------
   const handleAgencySelect = (e, option) => {
-    console.log(e.target.checked, option);
+    // console.log(e.target.checked, option);
     if (e.target.checked) {
       setSideBarFormState((prevState) => {
         const agencies = [...prevState.agencies];

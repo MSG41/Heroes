@@ -36,7 +36,7 @@ export default function HeroesPage({ heroes, heroSkills }) {
       body: JSON.stringify(formsStates),
     });
     const foundHeroes = await response.json();
-    console.log(foundHeroes);
+    // console.log(foundHeroes);
     setDisplayedHeroes(foundHeroes);
   };
 
@@ -47,7 +47,7 @@ export default function HeroesPage({ heroes, heroSkills }) {
     if (initialRender1.current) {
       initialRender1.current = false;
     } else {
-      console.log("sidebar state form changed => triggering a search");
+      // console.log("sidebar state form changed => triggering a search");
       const formsStates = { searchFormState, sideBarFormState };
       searchHeroes("api/search-heroes", formsStates);
     }
@@ -59,9 +59,9 @@ export default function HeroesPage({ heroes, heroSkills }) {
     if (initialRender2.current) {
       initialRender2.current = false;
     } else {
-      console.log(
-        "search form changed && length >= 2 OR ==0 => triggering a search"
-      );
+      // console.log(
+      //   "search form changed && length >= 2 OR ==0 => triggering a search"
+      // );
       if (searchFormState.length >= 2 || searchFormState.length == 0) {
         const formsStates = { searchFormState, sideBarFormState };
         searchHeroes("api/search-heroes", formsStates);
